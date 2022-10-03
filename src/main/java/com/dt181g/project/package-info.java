@@ -1,4 +1,4 @@
 /**
  * Main package for the game.
  */
-package com.dt181g.projekt;
+package com.dt181g.project;
