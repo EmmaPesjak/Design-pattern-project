@@ -6,6 +6,9 @@ import com.dt181g.project.views.StartView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class StartController {
 
@@ -51,11 +54,10 @@ public class StartController {
     class GreenButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            try {
+            if (startView.rightAnswerFrank()) {
                 startView.blueLevel();
-            } catch (NumberFormatException exception) {
-                System.out.println(exception);
-                startView.displayErrorMsg("Please fill in all boxes, and only with numbers.");
+            } else {
+                startView.displayErrorMsg("Wrong answer, try again.");
             }
         }
     }
@@ -76,7 +78,16 @@ public class StartController {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                startView.redLevel();
+                List<Integer> numbs = new ArrayList<>(Arrays.asList(startView.getNumb1Yellow(),
+                        startView.getNumb2Yellow(), startView.getNumb3Yellow()));
+                startModel.calculateYellow(numbs);
+
+                if (startModel.yellowSuccess()) {
+                    startView.levelComplete();
+                } else {
+                    startView.displayErrorMsg("Does not add up to 15, try again!");
+                }
+
             } catch (NumberFormatException exception) {
                 System.out.println(exception);
                 startView.displayErrorMsg("Please fill in all boxes, and only with numbers.");

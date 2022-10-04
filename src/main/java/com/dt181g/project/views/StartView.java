@@ -26,6 +26,8 @@ public class StartView extends JFrame {
     JLabel dragonImg = new JLabel(dragon);
     ImageIcon crystal = new ImageIcon("img/crystal.png");
     JLabel crystalImg = new JLabel(crystal);
+    ImageIcon star = new ImageIcon("img/star.png");
+    JLabel starImg = new JLabel(star);
 
     JButton infoButton = new JButton("Info");
     JButton startButton = new JButton("Start");
@@ -34,6 +36,7 @@ public class StartView extends JFrame {
     JButton blueButton = new JButton("NÄSTA");
     JButton yellowButton = new JButton("Help the monster");
     JButton greenButton = new JButton("Check answer");
+    JButton nextButton = new JButton("Continue your journey");
 
     JTextField bucket1 = new JTextField(8);
     JTextField bucket2 = new JTextField(8);
@@ -50,7 +53,6 @@ public class StartView extends JFrame {
     //går ej
     // private final List<JPanel> panelList =
             //new ArrayList<>(Arrays.asList(topPanel, centerPanel, bottomPanel));
-
 
     public StartView() {
 
@@ -119,6 +121,24 @@ public class StartView extends JFrame {
         bottomPanel.repaint();
     }
 
+    public void levelComplete() {
+        clearAll();
+
+        JLabel completed = new JLabel("You did it! Well done!");
+        completed.setFont(Constants.TITLE_FONT);
+        completed.setForeground(Constants.TEXT_COLOR);
+        topPanel.add(completed);
+
+        centerPanel.add(starImg);
+
+        bottomPanel.add(nextButton);
+        nextButton.setFont(Constants.BUTTON_FONT);
+        nextButton.setBackground(Constants.BUTTON_COLOR);
+        nextButton.setForeground(Constants.BUTTON_TEXT_COLOR);
+
+        revalidateRepaint();
+    }
+
     public void blueLevel() {
 
         clearAll();
@@ -168,9 +188,6 @@ public class StartView extends JFrame {
 
     public void greenLevel() {
 
-
-        // här kan man väl köra någon radio button kanske
-
         clearAll();
 
         JLabel row1 = new JLabel("Hi, my name is Partygut the Ugly Flesh Beast, long name I know. I lost my brother");
@@ -212,16 +229,21 @@ public class StartView extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 3;
         centerPanel.add(radioButton3, gbc);
-
+        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.add(radioButton1);
+        buttonGroup.add(radioButton2);
+        buttonGroup.add(radioButton3);
 
         bottomPanel.add(greenButton);
         greenButton.setFont(Constants.BUTTON_FONT);
         greenButton.setBackground(Constants.BUTTON_COLOR);
         greenButton.setForeground(Constants.BUTTON_TEXT_COLOR);
 
-
         revalidateRepaint();
+    }
 
+    public boolean rightAnswerFrank() {
+        return radioButton2.isSelected();
     }
 
     public void yellowLevel() {
@@ -235,7 +257,7 @@ public class StartView extends JFrame {
         JLabel row2 = new JLabel("one, can you help me with a problem? I've got three buckets to carry my apples in, I need a total");
         row2.setFont(Constants.TEXT_FONT);
         row2.setForeground(Constants.TEXT_COLOR);
-        JLabel row3 = new JLabel("amount of 15 apples, how many apples should I place in each bucket?");
+        JLabel row3 = new JLabel("amount of 15 apples, no more, no less. How many apples should I place in each bucket?");
         row3.setFont(Constants.TEXT_FONT);
         row3.setForeground(Constants.TEXT_COLOR);
         topPanel.setBorder(new EmptyBorder(5, 5, 5,5));
@@ -297,4 +319,17 @@ public class StartView extends JFrame {
     public void displayErrorMsg (String errorMsg) {
         JOptionPane.showMessageDialog(this, errorMsg);
     }
+
+    public int getNumb1Yellow() {
+        return Integer.parseInt(bucket1.getText());
+    }
+
+    public int getNumb2Yellow() {
+        return Integer.parseInt(bucket2.getText());
+    }
+
+    public int getNumb3Yellow() {
+        return Integer.parseInt(bucket3.getText());
+    }
+
 }
