@@ -79,7 +79,6 @@ public class StartController implements Observer {
                 //}
                 //startView.updateRedLevel(observerThing.updateGUI());
 
-                System.out.println("test");
 
                 //observerThing.terminateThreads();
                 //observerThing.stopTimer();
@@ -147,7 +146,7 @@ public class StartController implements Observer {
     private final HealThread healThread = new HealThread();
     private final DamageThread damageThread = new DamageThread();
 
-    Timer timer = new Timer(1000, e -> {
+    Timer timer = new Timer(150, e -> {
         updateGUI();
     });
 
@@ -169,14 +168,11 @@ public class StartController implements Observer {
     }
 
     public void stopTimer() {
-        System.out.println("timer is stopped");
         timer.stop();
     }
 
     public void updateGUI() {
-        System.out.println("updating UI");
-        System.out.println(healPool.getHealth());
-        startView.updateRedLevel(new HealthPoolPanel(healPool.getHealth()));
+        startView.updateRedLevel(new HealthPoolPanel(healPool.getHealth()), healPool.getHealth());
     }
 
     public void createHealer () {
@@ -203,8 +199,7 @@ public class StartController implements Observer {
     public void update() {
         int amountOfHealth = this.healPool.getHealth();
 
-        System.out.println(amountOfHealth);
-        if (amountOfHealth > 150) {
+        if (amountOfHealth > 170) {
             terminateThreads();
             stopTimer();
             startView.levelComplete();

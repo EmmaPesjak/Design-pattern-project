@@ -10,6 +10,9 @@ public interface Constants {
     JLabel IMAGE_BLUE_MONSTER = new JLabel(new ImageIcon("img/monsters/blueMonster.png"));
     JLabel IMAGE_GREEN_MONSTER = new JLabel(new ImageIcon("img/monsters/greenMonster.png"));
     JLabel IMAGE_RED_MONSTER = new JLabel(new ImageIcon("img/monsters/redMonster.png"));
+    JLabel IMAGE_ORANGE_MONSTER = new JLabel(new ImageIcon("img/monsters/orangeMonster.png"));
+    JLabel IMAGE_GREY_MONSTER = new JLabel(new ImageIcon("img/monsters/greyMonster.png"));
+    JLabel IMAGE_SLIME_MONSTER = new JLabel(new ImageIcon("img/monsters/slimeMonster.png"));
     JLabel IMAGE_APPLE = new JLabel(new ImageIcon("img/misc/apple.png"));
     JLabel IMAGE_BUCKET = new JLabel(new ImageIcon("img/misc/bucket.png"));
     JLabel IMAGE_DRAGON = new JLabel( new ImageIcon("img/misc/dragon.png"));
@@ -21,14 +24,15 @@ public interface Constants {
     Font TEXT_FONT = new Font(Font.MONOSPACED, Font.PLAIN, 16);
     Font BUTTON_FONT = new Font(Font.MONOSPACED, Font.BOLD, 20);
 
-    // Colors
-    Color COLOR_DARKGREY = new Color(57,57, 57);
+    // Colours
     Color COLOR_MIDNIGHT = new Color(2, 2, 40);
     Color TEXT_COLOR = new Color(241, 241, 230);
     Color BUTTON_COLOR = new Color(152, 62, 92);
     Color BUTTON_TEXT_COLOR = new Color(234, 211, 193);
-
-
+    Color COLOR_LOW_HEALTH = new Color(214,109, 91);
+    Color COLOR_MEDIUM_LOW_HEALTH = new Color(249,173, 88);
+    Color COLOR_MEDIUM_HEALTH = new Color(249,248, 113);
+    Color COLOR_HIGH_HEALTH = new Color(155,222, 126);
 
     // Dimensions
 

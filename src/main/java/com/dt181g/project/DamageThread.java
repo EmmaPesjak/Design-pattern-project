@@ -22,7 +22,6 @@ public class DamageThread implements Runnable {
     }
 
     public void stopThread() {
-        System.out.println("damagethread stopped");
         terminate = true;
     }
 }

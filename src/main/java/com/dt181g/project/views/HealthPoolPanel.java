@@ -24,18 +24,18 @@ public class HealthPoolPanel extends JPanel {
 
         // Set colour of pool depending on the resource amount.
         if (amountOfHealth < 50) {
-            g2D.setColor(Color.RED);
+            g2D.setColor(Constants.COLOR_LOW_HEALTH);
         } else if (amountOfHealth < 100) {
-            g2D.setColor(Color.YELLOW);
+            g2D.setColor(Constants.COLOR_MEDIUM_LOW_HEALTH);
         } else if (amountOfHealth < 150) {
-            g2D.setColor(Color.GREEN);
+            g2D.setColor(Constants.COLOR_MEDIUM_HEALTH);
         } else {
-            g2D.setColor(Color.BLUE);
+            g2D.setColor(Constants.COLOR_HIGH_HEALTH);
         }
 
         // Draw the pool, size depending on the resource amount.
-        int x = this.getWidth()/2 - amountOfHealth/2;
-        int y = this.getHeight()/2 - amountOfHealth/2;
-        g2D.fillOval(x, y, amountOfHealth, amountOfHealth);
+        int x = this.getWidth()/2 - amountOfHealth;
+        int y = this.getHeight()/2;
+        g2D.fillRect(x, y, amountOfHealth * 2, 20);
     }
 }

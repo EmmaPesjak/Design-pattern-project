@@ -26,7 +26,6 @@ public class HealPool implements Observable {
 
     public synchronized void addHealth(int healAmount) {
         health = health + healAmount;
-        System.out.println("health is: " + getHealth());
         notifyObservers();
     }
 

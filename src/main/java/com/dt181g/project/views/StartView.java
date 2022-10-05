@@ -63,6 +63,10 @@ public class StartView extends JFrame {
     }
 
     public void frontPage() {
+
+        //lägga till hero selection? så får man en till Jcomponent
+
+
         // Top panel
         topPanel.setBorder(new EmptyBorder(40, 0, 0, 0));
         JLabel title = new JLabel("The Monster Game");
@@ -102,7 +106,7 @@ public class StartView extends JFrame {
     public void levelComplete() {
         clearAll();
 
-        JLabel completed = new JLabel("You did it! Well done!");
+        JLabel completed = new JLabel("You completed the level! Well done!");
         completed.setFont(Constants.TITLE_FONT);
         completed.setForeground(Constants.TEXT_COLOR);
         topPanel.add(completed);
@@ -110,13 +114,13 @@ public class StartView extends JFrame {
         centerPanel.add(Constants.IMAGE_STAR);
 
         bottomPanel.add(nextButton);
+        nextButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         revalidateRepaint();
     }
 
     public void blueLevel() {
 
-        System.out.println("you're in blue");
         clearAll();
 
         JLabel redLabel = new JLabel("HEJ");
@@ -137,7 +141,7 @@ public class StartView extends JFrame {
 
         clearAll();
 
-        JLabel row1 = new JLabel("Hero! I am Vaelarya Vision Walker, the mighty dragon. A monster is attacking me!");
+        JLabel row1 = new JLabel("Hero! I am Vaelarya Vision Walker, the mighty dragon. Some monsters are attacking me!");
         row1.setFont(Constants.TEXT_FONT);
         row1.setForeground(Constants.TEXT_COLOR);
         JLabel row2 = new JLabel("Grab that healing crystal and start channeling to heal me, quickly!");
@@ -150,36 +154,34 @@ public class StartView extends JFrame {
         centerPanel.setLayout(new GridLayout(2,2, 5, 5));
         centerPanel.add(Constants.IMAGE_DRAGON);
         centerPanel.add(Constants.IMAGE_RED_MONSTER);
-        // Här ska healing producer/consumer in
         centerPanel.add(Constants.IMAGE_CRYSTAL);
+
+        //lägg till fler monsterbilder här
 
         bottomPanel.add(redButton);
 
         revalidateRepaint();
     }
 
-    public void updateRedLevel(HealthPoolPanel healthPoolPanel) {
+    public void updateRedLevel(HealthPoolPanel healthPoolPanel, int health) {
 
-        System.out.println("channeling crystal");
-
-        centerPanel.removeAll();
-        centerPanel.setBorder(new EmptyBorder(40, 100, 20, 100));
-        centerPanel.setLayout(new GridLayout(2,2, 5, 5));
-        centerPanel.add(Constants.IMAGE_DRAGON);
-        centerPanel.add(Constants.IMAGE_RED_MONSTER);
-        centerPanel.add(Constants.IMAGE_CRYSTAL);
-        centerPanel.add(healthPoolPanel, BorderLayout.WEST);
+        //kanske lägger den i bottompanel istället så slipper man så mycket dubbel kod,
+        // gör en healthbar istället för en cirkel. ta en boxlayout så får jag en till Jlayout
 
         bottomPanel.removeAll();
-        healthLabel.setText("Health is: " );
+        healthLabel.setText("Vaelarya's health: " + health);
+        healthLabel.setFont(Constants.TITLE_FONT);
+        healthLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        healthLabel.setForeground(Constants.TEXT_COLOR);
+        bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS));
         bottomPanel.add(healthLabel);
+        bottomPanel.add(healthPoolPanel);
 
         revalidateRepaint();
     }
 
     public void greenLevel() {
 
-        System.out.println("you're in green");
 
         clearAll();
 
@@ -280,6 +282,10 @@ public class StartView extends JFrame {
         bottomPanel.add(yellowButton);
 
         revalidateRepaint();
+    }
+
+    public void gameFinished() {
+
     }
 
     public void addStartButtonListener(ActionListener listener) {

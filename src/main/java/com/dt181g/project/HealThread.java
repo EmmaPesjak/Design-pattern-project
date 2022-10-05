@@ -22,7 +22,6 @@ public class HealThread implements Runnable {
     }
 
     public void stopThread() {
-        System.out.println("healthread stopped");
         terminate = true;
     }
 }
