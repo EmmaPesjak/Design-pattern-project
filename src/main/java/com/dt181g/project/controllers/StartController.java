@@ -1,16 +1,17 @@
 package com.dt181g.project.controllers;
 
+import com.dt181g.project.*;
+import com.dt181g.project.Observer;
 import com.dt181g.project.models.StartModel;
+import com.dt181g.project.views.HealthPoolPanel;
 import com.dt181g.project.views.StartView;
 
-import java.awt.*;
+import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
-public class StartController {
+public class StartController implements Observer {
 
     private final StartView startView;
     private final StartModel startModel;
@@ -25,16 +26,36 @@ public class StartController {
         this.startView.addGreenButtonListener(new GreenButtonListener());
         this.startView.addYellowButtonListener(new YellowButtonListener());
         this.startView.addBlueButtonListener(new BlueButtonListener());
+        this.startView.addNextButtonListener(new NextButtonListener());
+
+
+
+    }
+
+
+
+
+    class NextButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                startView.greenLevel();
+            } catch (NumberFormatException exception) {
+                System.out.println(exception);
+                startView.displayErrorMsg("hej.");
+            }
+        }
     }
 
     class StartButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                startView.redLevel();
+                startView.blueLevel();
             } catch (NumberFormatException exception) {
                 System.out.println(exception);
-                startView.displayErrorMsg("Please fill in all boxes, and only with numbers.");
+                startView.displayErrorMsg("hej.");
             }
         }
     }
@@ -43,10 +64,31 @@ public class StartController {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                startView.greenLevel();
+
+                //ObserverThing observerThing = ObserverThing.INSTANCE;
+                GUITimer();
+                init();
+
+                //observerThing.updateGUI();
+                //ObserverThing.INSTANCE
+                //startView.updateRedLevel(observerThing.updateGUI());
+                //try {
+                    //Thread.sleep(5000);
+                //} catch (Exception ex) {
+                    //System.out.println(ex);
+                //}
+                //startView.updateRedLevel(observerThing.updateGUI());
+
+                System.out.println("test");
+
+                //observerThing.terminateThreads();
+                //observerThing.stopTimer();
+
+                //startView.greenLevel();
+
             } catch (NumberFormatException exception) {
                 System.out.println(exception);
-                startView.displayErrorMsg("Please fill in all boxes, and only with numbers.");
+                startView.displayErrorMsg("hej.");
             }
         }
     }
@@ -55,7 +97,7 @@ public class StartController {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (startView.rightAnswerFrank()) {
-                startView.blueLevel();
+                startView.yellowLevel();
             } else {
                 startView.displayErrorMsg("Wrong answer, try again.");
             }
@@ -66,7 +108,7 @@ public class StartController {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                startView.yellowLevel();
+                startView.redLevel();
             } catch (NumberFormatException exception) {
                 System.out.println(exception);
                 startView.displayErrorMsg("Please fill in all boxes, and only with numbers.");
@@ -92,6 +134,80 @@ public class StartController {
                 System.out.println(exception);
                 startView.displayErrorMsg("Please fill in all boxes, and only with numbers.");
             }
+        }
+    }
+
+
+
+
+    //observerskit
+    HealPool healPool = HealPool.INSTANCE;
+
+    //public static final ObserverThing INSTANCE = new ObserverThing(HealPool.INSTANCE);
+    private final HealThread healThread = new HealThread();
+    private final DamageThread damageThread = new DamageThread();
+
+    Timer timer = new Timer(1000, e -> {
+        updateGUI();
+    });
+
+    private final Deque<DamageThread> damageThreads = new LinkedList<>();
+
+    public void init() {
+        for (int i = 1; i <= 6; i++) {
+            createDamageMonster();
+        }
+        createHealer();
+        healPool.addObserver(this);
+    }
+
+    public void GUITimer() {
+        //Timer timer = new Timer(1000, e -> {
+        //updateGUI();
+        //});
+        timer.start();
+    }
+
+    public void stopTimer() {
+        System.out.println("timer is stopped");
+        timer.stop();
+    }
+
+    public void updateGUI() {
+        System.out.println("updating UI");
+        System.out.println(healPool.getHealth());
+        startView.updateRedLevel(new HealthPoolPanel(healPool.getHealth()));
+    }
+
+    public void createHealer () {
+        Thread thread = new Thread(healThread);
+        thread.start();
+    }
+
+    public void createDamageMonster() {
+
+        Thread thread = new Thread(damageThread);
+        damageThreads.add(damageThread);
+        thread.start();
+    }
+
+    public void terminateThreads() {
+        healThread.stopThread();
+
+        for (DamageThread thread : damageThreads) {
+            thread.stopThread();
+        }
+    }
+
+    @Override
+    public void update() {
+        int amountOfHealth = this.healPool.getHealth();
+
+        System.out.println(amountOfHealth);
+        if (amountOfHealth > 150) {
+            terminateThreads();
+            stopTimer();
+            startView.levelComplete();
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.dt181g.project.views;
 
+import com.dt181g.project.HealPool;
 import com.dt181g.project.support.Constants;
 
 import javax.swing.*;
@@ -9,46 +10,29 @@ import java.awt.event.ActionListener;
 
 public class StartView extends JFrame {
 
-    // Till images, sen addar man dem til en panel
-    ImageIcon yellowMonster = new ImageIcon("img/monsters/yellowMonster.png");
-    JLabel yellowMonsterImg = new JLabel(yellowMonster);
-    ImageIcon blueMonster = new ImageIcon("img/monsters/blueMonster.png");
-    JLabel blueMonsterImg = new JLabel(blueMonster);
-    ImageIcon greenMonster = new ImageIcon("img/monsters/greenMonster.png");
-    JLabel greenMonsterImg = new JLabel(greenMonster);
-    ImageIcon redMonster = new ImageIcon("img/monsters/redMonster.png");
-    JLabel redMonsterImg = new JLabel(redMonster);
-    ImageIcon apple = new ImageIcon("img/apple.png");
-    JLabel appleImg = new JLabel(apple);
-    ImageIcon bucket = new ImageIcon("img/bucket.png");
-    JLabel bucketImg = new JLabel(bucket);
-    ImageIcon dragon = new ImageIcon("img/dragon.png");
-    JLabel dragonImg = new JLabel(dragon);
-    ImageIcon crystal = new ImageIcon("img/crystal.png");
-    JLabel crystalImg = new JLabel(crystal);
-    ImageIcon star = new ImageIcon("img/star.png");
-    JLabel starImg = new JLabel(star);
-
-    JButton infoButton = new JButton("Info");
-    JButton startButton = new JButton("Start");
-
-    JButton redButton = new JButton("Channel crystal");
-    JButton blueButton = new JButton("NÄSTA");
-    JButton yellowButton = new JButton("Help the monster");
-    JButton greenButton = new JButton("Check answer");
-    JButton nextButton = new JButton("Continue your journey");
-
-    JTextField bucket1 = new JTextField(8);
-    JTextField bucket2 = new JTextField(8);
-    JTextField bucket3 = new JTextField(8);
+    //public static final StartView INSTANCE = new StartView();
 
     JPanel topPanel = new JPanel();
     JPanel centerPanel = new JPanel();
     JPanel bottomPanel = new JPanel();
 
+    MyButton infoButton = new MyButton("Info");
+    MyButton startButton = new MyButton("Start");
+    MyButton redButton = new MyButton("Channel crystal");
+    MyButton blueButton = new MyButton("NÄSTA");
+    MyButton yellowButton = new MyButton("Help the monster");
+    MyButton greenButton = new MyButton("Check answer");
+    MyButton nextButton = new MyButton("Continue your journey");
+
+    JTextField bucket1 = new JTextField(8);
+    JTextField bucket2 = new JTextField(8);
+    JTextField bucket3 = new JTextField(8);
+
     JRadioButton radioButton1 = new JRadioButton("Rothead");
     JRadioButton radioButton2 = new JRadioButton("Frank-Einstein");
     JRadioButton radioButton3 = new JRadioButton("Partygut");
+
+    JLabel healthLabel = new JLabel();
 
     //går ej
     // private final List<JPanel> panelList =
@@ -89,21 +73,15 @@ public class StartView extends JFrame {
         // Center panel
         centerPanel.setBorder(new EmptyBorder(40, 100, 20, 100));
         centerPanel.setLayout(new GridLayout(2,2, 5, 5));
-        centerPanel.add(yellowMonsterImg);
-        centerPanel.add(blueMonsterImg);
-        centerPanel.add(redMonsterImg);
-        centerPanel.add(greenMonsterImg);
+        centerPanel.add(Constants.IMAGE_YELLOW_MONSTER);
+        centerPanel.add(Constants.IMAGE_BLUE_MONSTER);
+        centerPanel.add(Constants.IMAGE_RED_MONSTER);
+        centerPanel.add(Constants.IMAGE_GREEN_MONSTER);
 
         // Bottom panel
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
         bottomPanel.add(infoButton);
         bottomPanel.add(startButton);
-        startButton.setFont(Constants.BUTTON_FONT);
-        startButton.setBackground(Constants.BUTTON_COLOR);
-        startButton.setForeground(Constants.BUTTON_TEXT_COLOR);
-        infoButton.setFont(Constants.BUTTON_FONT);
-        infoButton.setBackground(Constants.BUTTON_COLOR);
-        infoButton.setForeground(Constants.BUTTON_TEXT_COLOR);
     }
 
     public void clearAll() {
@@ -129,18 +107,16 @@ public class StartView extends JFrame {
         completed.setForeground(Constants.TEXT_COLOR);
         topPanel.add(completed);
 
-        centerPanel.add(starImg);
+        centerPanel.add(Constants.IMAGE_STAR);
 
         bottomPanel.add(nextButton);
-        nextButton.setFont(Constants.BUTTON_FONT);
-        nextButton.setBackground(Constants.BUTTON_COLOR);
-        nextButton.setForeground(Constants.BUTTON_TEXT_COLOR);
 
         revalidateRepaint();
     }
 
     public void blueLevel() {
 
+        System.out.println("you're in blue");
         clearAll();
 
         JLabel redLabel = new JLabel("HEJ");
@@ -148,7 +124,7 @@ public class StartView extends JFrame {
         redLabel.setForeground(Constants.TEXT_COLOR);
         topPanel.add(redLabel);
 
-        centerPanel.add(blueMonsterImg);
+        centerPanel.add(Constants.IMAGE_BLUE_MONSTER);
 
         bottomPanel.add(blueButton);
         revalidateRepaint();
@@ -172,21 +148,38 @@ public class StartView extends JFrame {
 
         centerPanel.setBorder(new EmptyBorder(40, 100, 20, 100));
         centerPanel.setLayout(new GridLayout(2,2, 5, 5));
-        centerPanel.add(dragonImg);
-        centerPanel.add(redMonsterImg);
+        centerPanel.add(Constants.IMAGE_DRAGON);
+        centerPanel.add(Constants.IMAGE_RED_MONSTER);
         // Här ska healing producer/consumer in
-        centerPanel.add(crystalImg);
-
+        centerPanel.add(Constants.IMAGE_CRYSTAL);
 
         bottomPanel.add(redButton);
-        redButton.setFont(Constants.BUTTON_FONT);
-        redButton.setBackground(Constants.BUTTON_COLOR);
-        redButton.setForeground(Constants.BUTTON_TEXT_COLOR);
+
+        revalidateRepaint();
+    }
+
+    public void updateRedLevel(HealthPoolPanel healthPoolPanel) {
+
+        System.out.println("channeling crystal");
+
+        centerPanel.removeAll();
+        centerPanel.setBorder(new EmptyBorder(40, 100, 20, 100));
+        centerPanel.setLayout(new GridLayout(2,2, 5, 5));
+        centerPanel.add(Constants.IMAGE_DRAGON);
+        centerPanel.add(Constants.IMAGE_RED_MONSTER);
+        centerPanel.add(Constants.IMAGE_CRYSTAL);
+        centerPanel.add(healthPoolPanel, BorderLayout.WEST);
+
+        bottomPanel.removeAll();
+        healthLabel.setText("Health is: " );
+        bottomPanel.add(healthLabel);
 
         revalidateRepaint();
     }
 
     public void greenLevel() {
+
+        System.out.println("you're in green");
 
         clearAll();
 
@@ -219,7 +212,7 @@ public class StartView extends JFrame {
         gbc.fill= GridBagConstraints.HORIZONTAL;
         gbc.gridx = 0;
         gbc.gridy = 0;
-        centerPanel.add(greenMonsterImg, gbc);
+        centerPanel.add(Constants.IMAGE_GREEN_MONSTER, gbc);
         gbc.gridx = 0;
         gbc.gridy = 1;
         centerPanel.add(radioButton1, gbc);
@@ -235,10 +228,6 @@ public class StartView extends JFrame {
         buttonGroup.add(radioButton3);
 
         bottomPanel.add(greenButton);
-        greenButton.setFont(Constants.BUTTON_FONT);
-        greenButton.setBackground(Constants.BUTTON_COLOR);
-        greenButton.setForeground(Constants.BUTTON_TEXT_COLOR);
-
         revalidateRepaint();
     }
 
@@ -278,9 +267,9 @@ public class StartView extends JFrame {
         bucket1.setFont(Constants.TITLE_FONT);
         bucket2.setFont(Constants.TITLE_FONT);
         bucket3.setFont(Constants.TITLE_FONT);
-        centerPanel.add(yellowMonsterImg);
-        centerPanel.add(appleImg);
-        centerPanel.add(bucketImg);
+        centerPanel.add(Constants.IMAGE_YELLOW_MONSTER);
+        centerPanel.add(Constants.IMAGE_APPLE);
+        centerPanel.add(Constants.IMAGE_BUCKET);
         centerPanel.add(bucket1Label);
         centerPanel.add(bucket2Label);
         centerPanel.add(bucket3Label);
@@ -289,9 +278,6 @@ public class StartView extends JFrame {
         centerPanel.add(bucket3);
 
         bottomPanel.add(yellowButton);
-        yellowButton.setFont(Constants.BUTTON_FONT);
-        yellowButton.setBackground(Constants.BUTTON_COLOR);
-        yellowButton.setForeground(Constants.BUTTON_TEXT_COLOR);
 
         revalidateRepaint();
     }
@@ -316,6 +302,12 @@ public class StartView extends JFrame {
         yellowButton.addActionListener(listener);
     }
 
+    public void addNextButtonListener(ActionListener listener) {
+        nextButton.addActionListener(listener);
+    }
+
+
+
     public void displayErrorMsg (String errorMsg) {
         JOptionPane.showMessageDialog(this, errorMsg);
     }
@@ -331,5 +323,4 @@ public class StartView extends JFrame {
     public int getNumb3Yellow() {
         return Integer.parseInt(bucket3.getText());
     }
-
 }
