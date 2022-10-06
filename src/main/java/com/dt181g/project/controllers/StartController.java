@@ -27,76 +27,28 @@ public class StartController implements Observer {
         this.startView.addYellowButtonListener(new YellowButtonListener());
         this.startView.addBlueButtonListener(new BlueButtonListener());
         this.startView.addNextButtonListener(new NextButtonListener());
-
-
-
-        System.out.println(startModel.getRandomMonster().getName());
-        System.out.println(startModel.getRandomMonster().getName());
-        System.out.println(startModel.getRandomMonster().getName());
-        System.out.println(startModel.getRandomMonster().getName());
-        System.out.println(startModel.getRandomMonster().getName());
-        System.out.println(startModel.getRandomMonster().getName());
-        System.out.println(startModel.getRandomMonster().getName());
-        System.out.println(startModel.getRandomMonster().getName());
-        System.out.println(startModel.getRandomMonster().getName());
-        System.out.println(startModel.getRandomMonster().getName());
     }
 
-
     class NextButtonListener implements ActionListener {
-
         @Override
         public void actionPerformed(ActionEvent e) {
-            try {
-                startView.greenLevel();
-            } catch (NumberFormatException exception) {
-                System.out.println(exception);
-                startView.displayErrorMsg("hej.");
-            }
+            startView.greenLevel(startModel.getRandomMonster().getMonsterImg());
         }
     }
 
     class StartButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            try {
-                startView.blueLevel();
-            } catch (NumberFormatException exception) {
-                System.out.println(exception);
-                startView.displayErrorMsg("hej.");
-            }
+            startView.blueLevel(startModel.getRandomMonster().getMonsterImg());
         }
     }
 
     class RedButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            try {
+            GUITimer();
+            init();
 
-                //ObserverThing observerThing = ObserverThing.INSTANCE;
-                GUITimer();
-                init();
-
-                //observerThing.updateGUI();
-                //ObserverThing.INSTANCE
-                //startView.updateRedLevel(observerThing.updateGUI());
-                //try {
-                    //Thread.sleep(5000);
-                //} catch (Exception ex) {
-                    //System.out.println(ex);
-                //}
-                //startView.updateRedLevel(observerThing.updateGUI());
-
-
-                //observerThing.terminateThreads();
-                //observerThing.stopTimer();
-
-                //startView.greenLevel();
-
-            } catch (NumberFormatException exception) {
-                System.out.println(exception);
-                startView.displayErrorMsg("hej.");
-            }
         }
     }
 
@@ -104,7 +56,7 @@ public class StartController implements Observer {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (startView.rightAnswerFrank()) {
-                startView.yellowLevel();
+                startView.yellowLevel(startModel.getRandomMonster().getMonsterImg());
             } else {
                 startView.displayErrorMsg("Wrong answer, try again.");
             }
@@ -115,7 +67,7 @@ public class StartController implements Observer {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                startView.redLevel();
+                startView.redLevel(startModel.getRandomMonster().getMonsterImg());
             } catch (NumberFormatException exception) {
                 System.out.println(exception);
                 startView.displayErrorMsg("Please fill in all boxes, and only with numbers.");
@@ -204,7 +156,7 @@ public class StartController implements Observer {
     }
 
     @Override
-    public void update() {
+    public synchronized void update() {
         int amountOfHealth = this.healPool.getHealth();
 
         if (amountOfHealth > 170) {

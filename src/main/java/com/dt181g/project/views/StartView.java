@@ -1,6 +1,5 @@
 package com.dt181g.project.views;
 
-import com.dt181g.project.HealPool;
 import com.dt181g.project.support.Constants;
 
 import javax.swing.*;
@@ -66,7 +65,6 @@ public class StartView extends JFrame {
 
         //lägga till hero selection? så får man en till Jcomponent
 
-
         // Top panel
         topPanel.setBorder(new EmptyBorder(40, 0, 0, 0));
         JLabel title = new JLabel("The Monster Game");
@@ -119,10 +117,7 @@ public class StartView extends JFrame {
         revalidateRepaint();
     }
 
-    public void blueLevel() {
-
-
-
+    public void blueLevel(JLabel monster) {
         clearAll();
 
         JLabel redLabel = new JLabel("HEJ");
@@ -130,15 +125,16 @@ public class StartView extends JFrame {
         redLabel.setForeground(Constants.TEXT_COLOR);
         topPanel.add(redLabel);
 
-        centerPanel.add(Constants.IMAGE_BLUE_MONSTER);
+        centerPanel.add(monster);
 
         bottomPanel.add(blueButton);
         blueButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         revalidateRepaint();
 
     }
 
-    public void redLevel() {
+    public void redLevel(JLabel monster) {
 
         //observer och producer/consumer
 
@@ -156,7 +152,7 @@ public class StartView extends JFrame {
         centerPanel.setBorder(new EmptyBorder(40, 100, 20, 100));
         centerPanel.setLayout(new GridLayout(2,2, 5, 5));
         centerPanel.add(Constants.IMAGE_DRAGON);
-        centerPanel.add(Constants.IMAGE_RED_MONSTER);
+        centerPanel.add(monster);
         centerPanel.add(Constants.IMAGE_CRYSTAL);
 
         //lägg till fler monsterbilder här
@@ -183,8 +179,7 @@ public class StartView extends JFrame {
         revalidateRepaint();
     }
 
-    public void greenLevel() {
-
+    public void greenLevel(JLabel monster) {
 
         clearAll();
 
@@ -217,7 +212,7 @@ public class StartView extends JFrame {
         gbc.fill= GridBagConstraints.HORIZONTAL;
         gbc.gridx = 0;
         gbc.gridy = 0;
-        centerPanel.add(Constants.IMAGE_GREEN_MONSTER, gbc);
+        centerPanel.add(monster, gbc);
         gbc.gridx = 0;
         gbc.gridy = 1;
         centerPanel.add(radioButton1, gbc);
@@ -241,9 +236,7 @@ public class StartView extends JFrame {
         return radioButton2.isSelected();
     }
 
-    public void yellowLevel() {
-        //denna är för streams.reduce()
-
+    public void yellowLevel(JLabel monster) {
         clearAll();
 
         JLabel row1 = new JLabel("Well hello there Hero. I might look super scary but I'm a nice monster. You look like a smart");
@@ -273,7 +266,7 @@ public class StartView extends JFrame {
         bucket1.setFont(Constants.TITLE_FONT);
         bucket2.setFont(Constants.TITLE_FONT);
         bucket3.setFont(Constants.TITLE_FONT);
-        centerPanel.add(Constants.IMAGE_YELLOW_MONSTER);
+        centerPanel.add(monster);
         centerPanel.add(Constants.IMAGE_APPLE);
         centerPanel.add(Constants.IMAGE_BUCKET);
         centerPanel.add(bucket1Label);
@@ -315,8 +308,6 @@ public class StartView extends JFrame {
     public void addNextButtonListener(ActionListener listener) {
         nextButton.addActionListener(listener);
     }
-
-
 
     public void displayErrorMsg (String errorMsg) {
         JOptionPane.showMessageDialog(this, errorMsg);

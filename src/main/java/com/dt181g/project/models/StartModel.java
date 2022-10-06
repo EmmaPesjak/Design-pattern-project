@@ -12,12 +12,7 @@ public class StartModel {
 
     MonsterFactory monsterFactory = new MonsterFactory();
 
-    public StartModel() {
-
-        //detta kan man nog ta bort, skriver bara ut ett minster i loggen
-        BaseMonster monster = monsterFactory.createMonster(2);
-        System.out.println(monster.getName());
-    }
+    public StartModel() {}
 
     public void calculateYellow(List<Integer> numbs) {
         yellowResult = numbs.stream().reduce(0, Integer::sum);
