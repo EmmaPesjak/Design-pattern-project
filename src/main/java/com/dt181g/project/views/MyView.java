@@ -1,7 +1,5 @@
 package com.dt181g.project.views;
 
-
-import com.dt181g.project.models.monsters.BaseMonster;
 import com.dt181g.project.support.Constants;
 
 import javax.swing.*;
@@ -9,7 +7,6 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-// denna till typ template method?
 public class MyView extends JFrame {
 
     JPanel topPanel = new JPanel();
@@ -18,21 +15,7 @@ public class MyView extends JFrame {
 
     MyButton infoButton = new MyButton("Info");
     MyButton startButton = new MyButton("Start");
-    MyButton lvlBbtn = new MyButton("Channel crystal");
-    MyButton lvlAbtn = new MyButton("NÄSTA");
-    MyButton lvlDbtn = new MyButton("Help the monster");
-    MyButton lvlCbtn = new MyButton("Check answer");
-    MyButton nextButton = new MyButton("Continue your journey");
-
-    //JTextField bucket1 = new JTextField(8);
-   // JTextField bucket2 = new JTextField(8);
-  //  JTextField bucket3 = new JTextField(8);
-
-    //JRadioButton radioButton1 = new JRadioButton("Rothead");
-   // JRadioButton radioButton2 = new JRadioButton("Frank-Einstein");
-  //  JRadioButton radioButton3 = new JRadioButton("Partygut");
-
-    JLabel healthLabel = new JLabel();
+    MyButton quitButton = new MyButton("Quit game");
 
     public MyView() {
         initView();
@@ -82,28 +65,26 @@ public class MyView extends JFrame {
         this.add(bottomPanel, BorderLayout.SOUTH);
     }
 
-    public void levelBetween() {
+    public void gameFinished() {
         clearAll();
 
-        JLabel completed = new JLabel("You completed the level! Well done!");
+        JLabel completed = new JLabel("You completed the game! Well done!");
         completed.setFont(Constants.TITLE_FONT);
         completed.setForeground(Constants.TEXT_COLOR);
         topPanel.add(completed);
 
         centerPanel.add(Constants.IMAGE_STAR);
 
-        bottomPanel.add(nextButton);
-        nextButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        bottomPanel.add(quitButton);
+        quitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         revalidateRepaint();
     }
 
-    public void updateView(JPanel topPanel, JPanel centerPanel, JPanel bottomPanel) {
-        //clearAll();
-        this.add(topPanel, BorderLayout.NORTH);
-        this.add(centerPanel, BorderLayout.CENTER);
-        this.add(bottomPanel, BorderLayout.SOUTH);
-        //revalidateRepaint();
+    public void updateView(Level1 level1) {
+        clearAll();
+        this.add(level1, BorderLayout.CENTER);
+        revalidateRepaint();
     }
 
     public void clearAll() {
@@ -127,42 +108,9 @@ public class MyView extends JFrame {
 
     public void addStartButtonListener(ActionListener listener) {
         startButton.addActionListener(listener);
-        nextButton.addActionListener(listener);
     }
 
-    public void addlvlAButtonListener(ActionListener listener) {
-        lvlAbtn.addActionListener(listener);
-    }
-
-    public void addlvlBButtonListener(ActionListener listener) {
-        lvlBbtn.addActionListener(listener);
-    }
-
-    public void addlvlCButtonListener(ActionListener listener) {
-        lvlCbtn.addActionListener(listener);
-    }
-
-    public void addlvlDButtonListener(ActionListener listener) {
-        lvlDbtn.addActionListener(listener);
-    }
-
-    //public void addNextButtonListener(ActionListener listener) {
-       // nextButton.addActionListener(listener);
-    //}
-
-    public MyButton getLvlAbtn() {
-        return lvlAbtn;
-    }
-
-    public MyButton getLvlBbtn(){
-        return lvlBbtn;
-    }
-
-    public MyButton getLvlCbtn() {
-        return lvlCbtn;
-    }
-
-    public MyButton getLvlDbtn() {
-        return lvlDbtn;
+    public void addQuitButtonListener(ActionListener listener) {
+        quitButton.addActionListener(listener);
     }
 }

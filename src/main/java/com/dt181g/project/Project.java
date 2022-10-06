@@ -1,10 +1,8 @@
 package com.dt181g.project;
 
 import com.dt181g.project.controllers.NewController;
-import com.dt181g.project.controllers.StartController;
 import com.dt181g.project.models.StartModel;
 import com.dt181g.project.views.MyView;
-import com.dt181g.project.views.StartView;
 
 public final class Project {
 

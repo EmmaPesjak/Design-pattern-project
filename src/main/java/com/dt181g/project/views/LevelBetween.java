@@ -17,8 +17,8 @@ public class LevelBetween extends MyView {
 
         centerPanel.add(Constants.IMAGE_STAR);
 
-        bottomPanel.add(nextButton);
-        nextButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        bottomPanel.add(quitButton);
+        quitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         revalidateRepaint();
     }

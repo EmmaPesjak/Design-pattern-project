@@ -2,36 +2,28 @@ package com.dt181g.project.views;
 
 import javax.swing.*;
 
-public abstract class BaseLevel extends JFrame {
+public abstract class BaseLevel extends JPanel {
 
-    private JPanel topPanel;
-    private JPanel centerPanel;
-    private JPanel bottomPanel;
+    private JPanel panel;
+//    private MyButton button;
 
 
-    public JPanel getTopPanel() {
-        return topPanel;
+    public JPanel getPanel() {
+        return panel;
     }
 
-    public void setTopPanel(JPanel topPanel) {
-        this.topPanel = topPanel;
+    public void setPanel(JPanel panel) {
+        this.panel = panel;
     }
+//
+//    public MyButton getButton() {
+//        return button;
+//    }
+//
+//    public void setButton(MyButton button) {
+//        this.button = button;
+//    }
 
-    public JPanel getCenterPanel() {
-        return centerPanel;
-    }
-
-    public void setCenterPanel(JPanel centerPanel) {
-        this.centerPanel = centerPanel;
-    }
-
-    public JPanel getBottomPanel() {
-        return bottomPanel;
-    }
-
-    public void setBottomPanel(JPanel bottomPanel) {
-        this.bottomPanel = bottomPanel;
-    }
 
 
 }

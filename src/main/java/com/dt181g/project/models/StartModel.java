@@ -8,18 +8,18 @@ import java.util.Random;
 
 public class StartModel {
 
-    private int yellowResult;
+    private int level2Result;
 
     MonsterFactory monsterFactory = new MonsterFactory();
 
     public StartModel() {}
 
-    public void calculateYellow(List<Integer> numbs) {
-        yellowResult = numbs.stream().reduce(0, Integer::sum);
+    public void calculateLevel2(List<Integer> numbs) {
+        level2Result = numbs.stream().reduce(0, Integer::sum);
     }
 
-    public boolean yellowSuccess() {
-        return yellowResult == 15;
+    public boolean level2Success() {
+        return level2Result == 15;
     }
 
     public BaseMonster getRandomMonster() {

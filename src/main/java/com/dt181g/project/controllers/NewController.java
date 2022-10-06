@@ -18,137 +18,97 @@ public class NewController implements Observer {
     private final MyView myView;
     private final StartModel startModel;
 
-    //LevelFactory levelFactory = new LevelFactory();
+    private final Level1 level1;
+    private final Level2 level2;
+    private final Level3 level3;
+    private final Level4 level4;
 
 
-    public NewController (MyView myView, StartModel startModel) {
+    public NewController(MyView myView, StartModel startModel) {
         this.myView = myView;
         this.startModel = startModel;
 
         this.myView.addStartButtonListener(new StartButtonListener());
-        //this.myView.addNextButtonListener(new NextButtonListener());
-        this.myView.addlvlBButtonListener(new RedButtonListener());
-        this.myView.addlvlCButtonListener(new LvlCListener());
-        this.myView.addlvlDButtonListener(new YellowButtonListener());
-        this.myView.addlvlAButtonListener(new BlueButtonListener());
-    }
+        this.myView.addQuitButtonListener(new QuitButtonListener());
 
+        BaseMonster monster1 = startModel.getRandomMonster();
+        BaseMonster monster2 = startModel.getRandomMonster();
+        BaseMonster monster3 = startModel.getRandomMonster();
+        BaseMonster monster4 = startModel.getRandomMonster();
 
-    //detta kan man kanske göra i model
-    public BaseLevel createLevel(int nmb){
+        level1 = new Level1(monster1.getMonsterImg(), monster1.getName());
+        level2 = new Level2(monster2.getMonsterImg(), monster2.getName());
+        level3 = new Level3(monster3.getMonsterImg(), monster3.getName());
+        level4 = new Level4(monster4.getMonsterImg(), monster4.getName());
 
-        BaseMonster monster = startModel.getRandomMonster();
-
-        if (nmb == 1) {
-            return new LevelA(monster, myView.getLvlAbtn());
-        } else if (nmb == 2) {
-            return new LevelB(monster, myView.getLvlBbtn());
-        } else if (nmb == 3) {
-            return new LevelC(monster, myView.getLvlCbtn());
-        } else {
-            return new LevelD(monster, myView.getLvlDbtn());
-        }
-
-    }
-
-    public void getNextLevel(){
-        int nmb = new Random().nextInt(4) + 1;
-        BaseLevel baseLevel = createLevel(nmb);
-        myView.clearAll();
-        myView.updateView(baseLevel.getTopPanel(), baseLevel.getCenterPanel(), baseLevel.getBottomPanel());
-        myView.revalidateRepaint();
+        level1.addLvl1ButtonListener(new Level1ButtonListener());
+        level2.addLvl2ButtonListener(new Level2ButtonListener());
+        level3.addLvl3ButtonListener(new Level3ButtonListener());
+        level4.addLvl4ButtonListener(new Level4ButtonListener());
     }
 
 
     class StartButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            myView.updateView(level1);
+        }
+    }
+
+    class Level1ButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            myView.updateView(level1);
+        }
+    }
+
+    class Level2ButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
             try {
-                getNextLevel();
+                List<Integer> numbs = new ArrayList<>(Arrays.asList(level2.getBucket1(),
+                        level2.getBucket2(), level2.getBucket3()));
+                startModel.calculateLevel2(numbs);
+
+                if (startModel.level2Success()) {
+                    myView.updateView(level1);
+                } else {
+                    myView.displayErrorMsg("Does not add up to 15, try again!");
+                }
+
             } catch (NumberFormatException exception) {
                 System.out.println(exception);
-                myView.displayErrorMsg("hej.");
+                myView.displayErrorMsg("Please fill in all boxes, and only with numbers.");
             }
         }
     }
 
-//    class NextButtonListener implements ActionListener {
-//
-//        @Override
-//        public void actionPerformed(ActionEvent e) {
-//            try {
-//                int nmb = new Random().nextInt(4) + 1;
-//                BaseLevelView baseLevelView = createLevel(nmb);
-//                myView.updateView(baseLevelView.getTopPanel(), baseLevelView.getCenterPanel(), baseLevelView.getBottomPanel());
-//            } catch (NumberFormatException exception) {
-//                System.out.println(exception);
-//                myView.displayErrorMsg("hej.");
-//            }
-//        }
-//    }
-
-    class RedButtonListener implements ActionListener {
+    class Level3ButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            try {
-
-                GUITimer();
-                init();
-                getNextLevel();
-
-            } catch (NumberFormatException exception) {
-                System.out.println(exception);
-                myView.displayErrorMsg("hej.");
-            }
-        }
-    }
-
-    class LvlCListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (true) {
-                getNextLevel();
+            if (level3.rightAnswerFrank()) {
+                myView.updateView(level1);
             } else {
                 myView.displayErrorMsg("Wrong answer, try again.");
             }
         }
     }
 
-    class BlueButtonListener implements ActionListener {
+    class Level4ButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            try {
-                getNextLevel();
-            } catch (NumberFormatException exception) {
-                System.out.println(exception);
-                myView.displayErrorMsg("Please fill in all boxes, and only with numbers.");
-            }
+            GUITimer();
+            init();
         }
     }
 
-    class YellowButtonListener implements ActionListener {
+    class QuitButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            try {
-//                List<Integer> numbs = new ArrayList<>(Arrays.asList(startView.getNumb1Yellow(),
-//                        startView.getNumb2Yellow(), startView.getNumb3Yellow()));
-//                startModel.calculateYellow(numbs);
-//
-//                if (startModel.yellowSuccess()) {
-//                    startView.levelComplete();
-//                } else {
-//                    startView.displayErrorMsg("Does not add up to 15, try again!");
-//                }
-
-                getNextLevel();
-
-            } catch (NumberFormatException exception) {
-                System.out.println(exception);
-                myView.displayErrorMsg("Please fill in all boxes, and only with numbers.");
-            }
+            //quitta spelet
+            System.out.println("hej nu är det slut i rutan");
         }
     }
-
 
 
 
@@ -216,7 +176,7 @@ public class NewController implements Observer {
         if (amountOfHealth > 170) {
             terminateThreads();
             stopTimer();
-            myView.levelBetween();
+            myView.gameFinished();
         }
     }
 }

@@ -1,22 +1,26 @@
 package com.dt181g.project.views;
 
-import com.dt181g.project.models.monsters.BaseMonster;
 import com.dt181g.project.support.Constants;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
-public class LevelB extends BaseLevel {
+public class Level4 extends JPanel {
 
-    JPanel bottomPanel = new JPanel();
+    MyButton myButton = new MyButton("Channel crystal");
+
     JLabel healthLabel = new JLabel();
 
-    public LevelB(BaseMonster monster, MyButton myButton) {
+    JPanel topPanel = new JPanel();
+    JPanel centerPanel = new JPanel();
+    JPanel bottomPanel = new JPanel();
+
+    public Level4 (JLabel monsterImg, String name) {
 
         //observer och producer/consumer
 
-        JPanel topPanel = new JPanel();
         JLabel row1 = new JLabel("Hero! I am Vaelarya Vision Walker, the mighty dragon. Some monsters are attacking me!");
         row1.setFont(Constants.TEXT_FONT);
         row1.setForeground(Constants.TEXT_COLOR);
@@ -25,25 +29,21 @@ public class LevelB extends BaseLevel {
         row2.setForeground(Constants.TEXT_COLOR);
         topPanel.add(row1);
         topPanel.add(row2);
-        setTopPanel(topPanel);
 
-        JPanel centerPanel = new JPanel();
         centerPanel.setBorder(new EmptyBorder(40, 100, 20, 100));
         centerPanel.setLayout(new GridLayout(2,2, 5, 5));
         centerPanel.add(Constants.IMAGE_DRAGON);
-        centerPanel.add(monster.getMonsterImg());
+        centerPanel.add(monsterImg);
         centerPanel.add(Constants.IMAGE_CRYSTAL);
-        setCenterPanel(centerPanel);
 
 
         //lägg till fler monsterbilder här
 
         bottomPanel.add(myButton);
         myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        setBottomPanel(bottomPanel);
     }
 
-    public void updateLevelB(HealthPoolPanel healthPoolPanel, int health) {
+    public void updateLevel4(HealthPoolPanel healthPoolPanel, int health) {
 
         // skriva ut monsternas skada?
 
@@ -57,6 +57,22 @@ public class LevelB extends BaseLevel {
         bottomPanel.add(healthPoolPanel);
 
         //revalidateRepaint();
+    }
+
+    public void addLvl4ButtonListener(ActionListener listener) {
+        myButton.addActionListener(listener);
+    }
+
+    public JPanel getTopPanel(){
+        return topPanel;
+    }
+
+    public JPanel getCenterPanel(){
+        return centerPanel;
+    }
+
+    public JPanel getBottomPanel() {
+        return bottomPanel;
     }
 
 }
