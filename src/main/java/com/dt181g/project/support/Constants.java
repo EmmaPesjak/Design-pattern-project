@@ -11,6 +11,7 @@ public interface Constants {
     JLabel IMAGE_GREEN_MONSTER = new JLabel(new ImageIcon("img/monsters/greenMonster.png"));
     JLabel IMAGE_RED_MONSTER = new JLabel(new ImageIcon("img/monsters/redMonster.png"));
     JLabel IMAGE_ORANGE_MONSTER = new JLabel(new ImageIcon("img/monsters/orangeMonster.png"));
+    JLabel IMAGE_PURPLE_MONSTER = new JLabel(new ImageIcon("img/monsters/purpleMonster.png"));
     JLabel IMAGE_GREY_MONSTER = new JLabel(new ImageIcon("img/monsters/greyMonster.png"));
     JLabel IMAGE_SLIME_MONSTER = new JLabel(new ImageIcon("img/monsters/slimeMonster.png"));
     JLabel IMAGE_APPLE = new JLabel(new ImageIcon("img/misc/apple.png"));

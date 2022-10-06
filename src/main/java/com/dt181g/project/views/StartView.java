@@ -121,6 +121,8 @@ public class StartView extends JFrame {
 
     public void blueLevel() {
 
+
+
         clearAll();
 
         JLabel redLabel = new JLabel("HEJ");
@@ -131,6 +133,7 @@ public class StartView extends JFrame {
         centerPanel.add(Constants.IMAGE_BLUE_MONSTER);
 
         bottomPanel.add(blueButton);
+        blueButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         revalidateRepaint();
 
     }
@@ -159,14 +162,14 @@ public class StartView extends JFrame {
         //lägg till fler monsterbilder här
 
         bottomPanel.add(redButton);
+        redButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         revalidateRepaint();
     }
 
     public void updateRedLevel(HealthPoolPanel healthPoolPanel, int health) {
 
-        //kanske lägger den i bottompanel istället så slipper man så mycket dubbel kod,
-        // gör en healthbar istället för en cirkel. ta en boxlayout så får jag en till Jlayout
+        // skriva ut monsternas skada?
 
         bottomPanel.removeAll();
         healthLabel.setText("Vaelarya's health: " + health);
@@ -230,6 +233,7 @@ public class StartView extends JFrame {
         buttonGroup.add(radioButton3);
 
         bottomPanel.add(greenButton);
+        greenButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         revalidateRepaint();
     }
 
@@ -280,7 +284,7 @@ public class StartView extends JFrame {
         centerPanel.add(bucket3);
 
         bottomPanel.add(yellowButton);
-
+        yellowButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         revalidateRepaint();
     }
 

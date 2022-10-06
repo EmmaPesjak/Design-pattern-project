@@ -30,9 +30,17 @@ public class StartController implements Observer {
 
 
 
+        System.out.println(startModel.getRandomMonster().getName());
+        System.out.println(startModel.getRandomMonster().getName());
+        System.out.println(startModel.getRandomMonster().getName());
+        System.out.println(startModel.getRandomMonster().getName());
+        System.out.println(startModel.getRandomMonster().getName());
+        System.out.println(startModel.getRandomMonster().getName());
+        System.out.println(startModel.getRandomMonster().getName());
+        System.out.println(startModel.getRandomMonster().getName());
+        System.out.println(startModel.getRandomMonster().getName());
+        System.out.println(startModel.getRandomMonster().getName());
     }
-
-
 
 
     class NextButtonListener implements ActionListener {
@@ -139,7 +147,7 @@ public class StartController implements Observer {
 
 
 
-    //observerskit
+    //observerskit, flytta mög till model???
     HealPool healPool = HealPool.INSTANCE;
 
     //public static final ObserverThing INSTANCE = new ObserverThing(HealPool.INSTANCE);
