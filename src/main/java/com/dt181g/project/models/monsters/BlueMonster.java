@@ -6,7 +6,7 @@ public class BlueMonster extends BaseMonster {
 
     public BlueMonster() {
 
-        setName("BlueMonster");
+        setName("Blightstrike");
         setMonsterImg(Constants.IMAGE_BLUE_MONSTER);
     }
 }

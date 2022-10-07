@@ -36,18 +36,11 @@ public class Level3 extends JPanel {
 
 
 
-        JLabel row1 = new JLabel("Hi, my name is " + name + " the Ugly Flesh Beast, long name I know. I lost my brother");
-        row1.setFont(Constants.TEXT_FONT);
-        row1.setForeground(Constants.TEXT_COLOR);
-        JLabel row2 = new JLabel("Rothead so now I'm sad. Can you cheer me up by solving my riddle?");
-        row2.setFont(Constants.TEXT_FONT);
-        row2.setForeground(Constants.TEXT_COLOR);
-        JLabel row3 = new JLabel("What do you call a monster with a high IQ?");
-        row3.setFont(Constants.TEXT_FONT);
-        row3.setForeground(Constants.TEXT_COLOR);
-        topPanel.add(row1);
-        topPanel.add(row2);
-        topPanel.add(row3);
+        JLabel label = new JLabel("<html>Hi, my name is " + name + " the Ugly Flesh Beast, long name I know. I lost my brother<br>" +
+                "Rothead so now I'm sad. Can you cheer me up by solving my riddle? What do you call a monster <br>with a high IQ? </html>");
+        label.setFont(Constants.TEXT_FONT);
+        label.setForeground(Constants.TEXT_COLOR);
+        topPanel.add(label);
 
         radioButton1.setBackground(Constants.COLOR_MIDNIGHT);
         radioButton1.setForeground(Constants.TEXT_COLOR);

@@ -31,19 +31,13 @@ public class Level2 extends JPanel {
 
         //denna är för streams.reduce()
 
-        JLabel row1 = new JLabel("Well hello there Hero. I might look super scary but I'm a nice monster named " + name + ".");
-        row1.setFont(Constants.TEXT_FONT);
-        row1.setForeground(Constants.TEXT_COLOR);
-        JLabel row2 = new JLabel("Can you help me with a problem? I've got three buckets to carry my apples in, I need a total");
-        row2.setFont(Constants.TEXT_FONT);
-        row2.setForeground(Constants.TEXT_COLOR);
-        JLabel row3 = new JLabel("amount of 15 apples, no more, no less. How many apples should I place in each bucket?");
-        row3.setFont(Constants.TEXT_FONT);
-        row3.setForeground(Constants.TEXT_COLOR);
+        JLabel label = new JLabel("<html>Well hello there Hero. I might look super scary but I'm a nice monster named " + name + ".<br> " +
+                "Can you help me with a problem? I've got three buckets to carry my apples in, I need a total <br>" +
+                "amount of 15 apples, no more, no less. How many apples should I place in each bucket? </html>");
+        label.setFont(Constants.TEXT_FONT);
+        label.setForeground(Constants.TEXT_COLOR);
         topPanel.setBorder(new EmptyBorder(5, 5, 5,5));
-        topPanel.add(row1);
-        topPanel.add(row2);
-        topPanel.add(row3);
+        topPanel.add(label);
 
         JLabel bucket1Label = new JLabel("Bucket 1:");
         bucket1Label.setForeground(Constants.TEXT_COLOR);

@@ -16,7 +16,7 @@ public class StartView extends JFrame {
     MyButton startButton = new MyButton("Start");
     MyButton quitButton = new MyButton("Quit game");
 
-    JLabel healthLabel = new JLabel();
+
 
 
     public StartView() {
@@ -32,9 +32,9 @@ public class StartView extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        topPanel.setPreferredSize(new Dimension(1000, 160));
-        centerPanel.setPreferredSize(new Dimension(1000, 460));
-        bottomPanel.setPreferredSize(new Dimension(1000, 80));
+        //topPanel.setPreferredSize(new Dimension(1000, 160));
+        //centerPanel.setPreferredSize(new Dimension(1000, 460));
+        //bottomPanel.setPreferredSize(new Dimension(1000, 80));
 
         topPanel.setBackground(Constants.COLOR_MIDNIGHT);
         centerPanel.setBackground(Constants.COLOR_MIDNIGHT);
@@ -79,32 +79,6 @@ public class StartView extends JFrame {
 
         bottomPanel.add(quitButton);
         quitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        revalidateRepaint();
-    }
-
-    public void updateLevel1(String hej) {
-
-        JLabel hejsan = new JLabel(hej);
-        hejsan.setFont(Constants.TEXT_FONT);
-        hejsan.setForeground(Constants.TEXT_COLOR);
-        //hejsan.setAlignmentX(Component.CENTER_ALIGNMENT);
-        centerPanel.add(hejsan);
-        revalidateRepaint();
-    }
-
-    public void updateLevel4(HealthPoolPanel healthPoolPanel, int health) {
-
-        // skriva ut monsternas skada?
-
-        bottomPanel.removeAll();
-        healthLabel.setText("Vaelarya's health: " + health);
-        healthLabel.setFont(Constants.TITLE_FONT);
-        healthLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        healthLabel.setForeground(Constants.TEXT_COLOR);
-        bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS));
-        bottomPanel.add(healthLabel);
-        bottomPanel.add(healthPoolPanel);
 
         revalidateRepaint();
     }

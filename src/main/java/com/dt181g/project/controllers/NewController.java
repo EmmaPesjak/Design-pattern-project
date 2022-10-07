@@ -11,8 +11,6 @@ import com.dt181g.project.views.*;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.*;
 
 public class NewController implements Observer {
@@ -38,7 +36,7 @@ public class NewController implements Observer {
         BaseMonster monster3 = startModel.getRandomMonster();
         BaseMonster monster4 = startModel.getRandomMonster();
 
-        level1 = new Level1(monster1.getMonsterImg(), monster1.getName());
+        level1 = new Level1(monster1.getMonsterImg(), monster1.getName(), startModel.level1RandomWords());
         level2 = new Level2(monster2.getMonsterImg(), monster2.getName());
         level3 = new Level3(monster3.getMonsterImg(), monster3.getName());
         level4 = new Level4(monster4.getMonsterImg(), monster4.getName());
@@ -54,10 +52,12 @@ public class NewController implements Observer {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (Objects.equals(level1.getSelectedItem(), "Sort alphabetically.")) {
-                System.out.println("hej");
-                startView.updateLevel1("yalla");
+                level1.updateLevel1(startModel.sortLevel1Alphabetically());
+            } else if ((Objects.equals(level1.getSelectedItem(), "Count words longer than 5 letters."))) {
+                level1.updateLevel1(startModel.countWords());
+            } else {
+                level1.updateLevel1(startModel.level1RandomWords());
             }
-            System.out.println(level1.getSelectedItem());
         }
     }
 
@@ -159,7 +159,7 @@ public class NewController implements Observer {
     }
 
     public void updateGUI() {
-        startView.updateLevel4(new HealthPoolPanel(healPool.getHealth()), healPool.getHealth());
+        level4.updateLevel4(new HealthPoolPanel(healPool.getHealth()), healPool.getHealth());
     }
 
     public void createHealer () {

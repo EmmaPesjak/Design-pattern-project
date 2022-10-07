@@ -37,4 +37,7 @@ public interface Constants {
 
     // Dimensions
 
+
+    //lägga in alla listor och strings här med motivationen att man endast måste ändra dessa om det skulle vara?
+
 }
