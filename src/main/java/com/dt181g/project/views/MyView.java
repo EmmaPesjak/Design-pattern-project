@@ -17,6 +17,8 @@ public class MyView extends JFrame {
     MyButton startButton = new MyButton("Start");
     MyButton quitButton = new MyButton("Quit game");
 
+    StartPanel startPanel = new StartPanel();
+
     public MyView() {
         initView();
     }
@@ -81,9 +83,18 @@ public class MyView extends JFrame {
         revalidateRepaint();
     }
 
-    public void updateView(Level1 level1) {
+    public void updateView(JPanel top, JPanel center, JPanel bottom) {
         clearAll();
-        this.add(level1, BorderLayout.CENTER);
+
+        topPanel.add(top);
+        this.add(topPanel, BorderLayout.NORTH);
+
+        centerPanel.add(center);
+        this.add(centerPanel, BorderLayout.CENTER);
+
+        bottomPanel.add(bottom);
+        this.add(bottomPanel, BorderLayout.SOUTH);
+
         revalidateRepaint();
     }
 

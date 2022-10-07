@@ -6,19 +6,19 @@ import java.awt.*;
 public interface Constants {
 
     //Images
-    JLabel IMAGE_YELLOW_MONSTER = new JLabel(new ImageIcon("img/monsters/yellowMonster.png"));
-    JLabel IMAGE_BLUE_MONSTER = new JLabel(new ImageIcon("img/monsters/blueMonster.png"));
-    JLabel IMAGE_GREEN_MONSTER = new JLabel(new ImageIcon("img/monsters/greenMonster.png"));
-    JLabel IMAGE_RED_MONSTER = new JLabel(new ImageIcon("img/monsters/redMonster.png"));
-    JLabel IMAGE_ORANGE_MONSTER = new JLabel(new ImageIcon("img/monsters/orangeMonster.png"));
-    JLabel IMAGE_PURPLE_MONSTER = new JLabel(new ImageIcon("img/monsters/purpleMonster.png"));
-    JLabel IMAGE_GREY_MONSTER = new JLabel(new ImageIcon("img/monsters/greyMonster.png"));
-    JLabel IMAGE_SLIME_MONSTER = new JLabel(new ImageIcon("img/monsters/slimeMonster.png"));
-    JLabel IMAGE_APPLE = new JLabel(new ImageIcon("img/misc/apple.png"));
-    JLabel IMAGE_BUCKET = new JLabel(new ImageIcon("img/misc/bucket.png"));
-    JLabel IMAGE_DRAGON = new JLabel( new ImageIcon("img/misc/dragon.png"));
-    JLabel IMAGE_CRYSTAL = new JLabel(new ImageIcon("img/misc/crystal.png"));
-    JLabel IMAGE_STAR = new JLabel(new ImageIcon("img/misc/star.png"));
+    JLabel IMAGE_YELLOW_MONSTER = new JLabel(new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\yellowMonster.png"));
+    JLabel IMAGE_BLUE_MONSTER = new JLabel(new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\blueMonster.png"));
+    JLabel IMAGE_GREEN_MONSTER = new JLabel(new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\greenMonster.png"));
+    JLabel IMAGE_RED_MONSTER = new JLabel(new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\redMonster.png"));
+    JLabel IMAGE_ORANGE_MONSTER = new JLabel(new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\orangeMonster.png"));
+    JLabel IMAGE_PURPLE_MONSTER = new JLabel(new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\purpleMonster.png"));
+    JLabel IMAGE_GREY_MONSTER = new JLabel(new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\greyMonster.png"));
+    JLabel IMAGE_SLIME_MONSTER = new JLabel(new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\slimeMonster.png"));
+    JLabel IMAGE_APPLE = new JLabel(new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\misc\\apple.png"));
+    JLabel IMAGE_BUCKET = new JLabel(new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\misc\\bucket.png"));
+    JLabel IMAGE_DRAGON = new JLabel( new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\misc\\dragon.png"));
+    JLabel IMAGE_CRYSTAL = new JLabel(new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\misc\\crystal.png"));
+    JLabel IMAGE_STAR = new JLabel(new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\misc\\star.png"));
 
     // Fonts
     Font TITLE_FONT = new Font(Font.MONOSPACED, Font.BOLD, 28);

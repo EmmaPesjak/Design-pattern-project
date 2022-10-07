@@ -51,14 +51,15 @@ public class NewController implements Observer {
     class StartButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            myView.updateView(level1);
+            new LevelBetween();
+            //myView.updateView(level1.getTopPanel(), level1.getCenterPanel(), level1.getBottomPanel());
         }
     }
 
     class Level1ButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            myView.updateView(level1);
+            myView.updateView(level2.getTopPanel(), level2.getCenterPanel(), level2.getBottomPanel());
         }
     }
 
@@ -71,7 +72,7 @@ public class NewController implements Observer {
                 startModel.calculateLevel2(numbs);
 
                 if (startModel.level2Success()) {
-                    myView.updateView(level1);
+                    myView.updateView(level3.getTopPanel(), level3.getCenterPanel(), level3.getBottomPanel());
                 } else {
                     myView.displayErrorMsg("Does not add up to 15, try again!");
                 }
@@ -87,7 +88,7 @@ public class NewController implements Observer {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (level3.rightAnswerFrank()) {
-                myView.updateView(level1);
+                myView.updateView(level4.getTopPanel(), level4.getCenterPanel(), level4.getBottomPanel());
             } else {
                 myView.displayErrorMsg("Wrong answer, try again.");
             }
