@@ -11,7 +11,7 @@ public class Level4 extends JPanel {
 
     MyButton myButton = new MyButton("Channel crystal");
 
-    JLabel healthLabel = new JLabel();
+    //JLabel healthLabel = new JLabel();
 
     JPanel topPanel = new JPanel();
     JPanel centerPanel = new JPanel();
@@ -19,12 +19,23 @@ public class Level4 extends JPanel {
 
     public Level4 (JLabel monsterImg, String name) {
 
+
+        topPanel.setPreferredSize(new Dimension(1000, 160));
+        centerPanel.setPreferredSize(new Dimension(1000, 460));
+        bottomPanel.setPreferredSize(new Dimension(1000, 80));
+        topPanel.setBackground(Constants.COLOR_MIDNIGHT);
+        centerPanel.setBackground(Constants.COLOR_MIDNIGHT);
+        bottomPanel.setBackground(Constants.COLOR_MIDNIGHT);
+
+
+
+
         //observer och producer/consumer
 
-        JLabel row1 = new JLabel("Hero! I am Vaelarya Vision Walker, the mighty dragon. Some monsters are attacking me!");
+        JLabel row1 = new JLabel("Hero! I am Vaelarya Vision Walker, the mighty dragon. A monster named " + name + " and his");
         row1.setFont(Constants.TEXT_FONT);
         row1.setForeground(Constants.TEXT_COLOR);
-        JLabel row2 = new JLabel("Grab that healing crystal and start channeling to heal me, quickly!");
+        JLabel row2 = new JLabel("friends are attacking me! Grab that healing crystal and start channeling to heal me, quickly!");
         row2.setFont(Constants.TEXT_FONT);
         row2.setForeground(Constants.TEXT_COLOR);
         topPanel.add(row1);
@@ -43,21 +54,21 @@ public class Level4 extends JPanel {
         myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     }
 
-    public void updateLevel4(HealthPoolPanel healthPoolPanel, int health) {
-
-        // skriva ut monsternas skada?
-
-        bottomPanel.removeAll();
-        healthLabel.setText("Vaelarya's health: " + health);
-        healthLabel.setFont(Constants.TITLE_FONT);
-        healthLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        healthLabel.setForeground(Constants.TEXT_COLOR);
-        bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS));
-        bottomPanel.add(healthLabel);
-        bottomPanel.add(healthPoolPanel);
-
-        //revalidateRepaint();
-    }
+//    public void updateLevel4(HealthPoolPanel healthPoolPanel, int health) {
+//
+//        // skriva ut monsternas skada?
+//
+//        bottomPanel.removeAll();
+//        healthLabel.setText("Vaelarya's health: " + health);
+//        healthLabel.setFont(Constants.TITLE_FONT);
+//        healthLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+//        healthLabel.setForeground(Constants.TEXT_COLOR);
+//        bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS));
+//        bottomPanel.add(healthLabel);
+//        bottomPanel.add(healthPoolPanel);
+//
+//        //revalidateRepaint();
+//    }
 
     public void addLvl4ButtonListener(ActionListener listener) {
         myButton.addActionListener(listener);

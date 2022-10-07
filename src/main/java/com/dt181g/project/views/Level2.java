@@ -20,12 +20,21 @@ public class Level2 extends JPanel {
     JPanel bottomPanel = new JPanel();
 
     public Level2(JLabel monsterImg, String name) {
+
+        topPanel.setPreferredSize(new Dimension(1000, 160));
+        centerPanel.setPreferredSize(new Dimension(1000, 460));
+        bottomPanel.setPreferredSize(new Dimension(1000, 80));
+        topPanel.setBackground(Constants.COLOR_MIDNIGHT);
+        centerPanel.setBackground(Constants.COLOR_MIDNIGHT);
+        bottomPanel.setBackground(Constants.COLOR_MIDNIGHT);
+
+
         //denna är för streams.reduce()
 
-        JLabel row1 = new JLabel("Well hello there Hero. I might look super scary but I'm a nice monster. You look like a smart");
+        JLabel row1 = new JLabel("Well hello there Hero. I might look super scary but I'm a nice monster named " + name + ".");
         row1.setFont(Constants.TEXT_FONT);
         row1.setForeground(Constants.TEXT_COLOR);
-        JLabel row2 = new JLabel("one, can you help me with a problem? I've got three buckets to carry my apples in, I need a total");
+        JLabel row2 = new JLabel("Can you help me with a problem? I've got three buckets to carry my apples in, I need a total");
         row2.setFont(Constants.TEXT_FONT);
         row2.setForeground(Constants.TEXT_COLOR);
         JLabel row3 = new JLabel("amount of 15 apples, no more, no less. How many apples should I place in each bucket?");

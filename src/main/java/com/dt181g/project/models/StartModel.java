@@ -25,4 +25,13 @@ public class StartModel {
     public BaseMonster getRandomMonster() {
         return monsterFactory.createMonster(new Random().nextInt(8) + 1);
     }
+
+
+    public List<String> sortLevel1Alphabetically(List<String> words) {
+        return words.stream().sorted().toList();
+    }
+
+    public long countWords(List<String> words) {
+        return words.stream().filter(word -> word.length() > 5).count();
+    }
 }

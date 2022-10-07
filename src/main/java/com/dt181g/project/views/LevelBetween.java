@@ -5,7 +5,7 @@ import com.dt181g.project.support.Constants;
 import javax.swing.*;
 import java.awt.*;
 
-public class LevelBetween extends MyView {
+public class LevelBetween extends StartView {
 
     public LevelBetween() {
         clearAll();

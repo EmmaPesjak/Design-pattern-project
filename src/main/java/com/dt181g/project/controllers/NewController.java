@@ -11,11 +11,13 @@ import com.dt181g.project.views.*;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.*;
 
 public class NewController implements Observer {
 
-    private final MyView myView;
+    private final StartView startView;
     private final StartModel startModel;
 
     private final Level1 level1;
@@ -24,12 +26,12 @@ public class NewController implements Observer {
     private final Level4 level4;
 
 
-    public NewController(MyView myView, StartModel startModel) {
-        this.myView = myView;
+    public NewController(StartView startView, StartModel startModel) {
+        this.startView = startView;
         this.startModel = startModel;
 
-        this.myView.addStartButtonListener(new StartButtonListener());
-        this.myView.addQuitButtonListener(new QuitButtonListener());
+        this.startView.addStartButtonListener(new StartButtonListener());
+        this.startView.addQuitButtonListener(new QuitButtonListener());
 
         BaseMonster monster1 = startModel.getRandomMonster();
         BaseMonster monster2 = startModel.getRandomMonster();
@@ -42,24 +44,34 @@ public class NewController implements Observer {
         level4 = new Level4(monster4.getMonsterImg(), monster4.getName());
 
         level1.addLvl1ButtonListener(new Level1ButtonListener());
+        level1.addLvl1ComboboxListener(new Level1ComboboxListener());
         level2.addLvl2ButtonListener(new Level2ButtonListener());
         level3.addLvl3ButtonListener(new Level3ButtonListener());
         level4.addLvl4ButtonListener(new Level4ButtonListener());
     }
 
+    class Level1ComboboxListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (Objects.equals(level1.getSelectedItem(), "Sort alphabetically.")) {
+                System.out.println("hej");
+                startView.updateLevel1("yalla");
+            }
+            System.out.println(level1.getSelectedItem());
+        }
+    }
 
     class StartButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            new LevelBetween();
-            //myView.updateView(level1.getTopPanel(), level1.getCenterPanel(), level1.getBottomPanel());
+            startView.updateView(level1.getTopPanel(), level1.getCenterPanel(), level1.getBottomPanel());
         }
     }
 
     class Level1ButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            myView.updateView(level2.getTopPanel(), level2.getCenterPanel(), level2.getBottomPanel());
+            startView.updateView(level2.getTopPanel(), level2.getCenterPanel(), level2.getBottomPanel());
         }
     }
 
@@ -72,14 +84,14 @@ public class NewController implements Observer {
                 startModel.calculateLevel2(numbs);
 
                 if (startModel.level2Success()) {
-                    myView.updateView(level3.getTopPanel(), level3.getCenterPanel(), level3.getBottomPanel());
+                    startView.updateView(level3.getTopPanel(), level3.getCenterPanel(), level3.getBottomPanel());
                 } else {
-                    myView.displayErrorMsg("Does not add up to 15, try again!");
+                    startView.displayErrorMsg("Does not add up to 15, try again!");
                 }
 
             } catch (NumberFormatException exception) {
                 System.out.println(exception);
-                myView.displayErrorMsg("Please fill in all boxes, and only with numbers.");
+                startView.displayErrorMsg("Please fill in all boxes, and only with numbers.");
             }
         }
     }
@@ -88,9 +100,9 @@ public class NewController implements Observer {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (level3.rightAnswerFrank()) {
-                myView.updateView(level4.getTopPanel(), level4.getCenterPanel(), level4.getBottomPanel());
+                startView.updateView(level4.getTopPanel(), level4.getCenterPanel(), level4.getBottomPanel());
             } else {
-                myView.displayErrorMsg("Wrong answer, try again.");
+                startView.displayErrorMsg("Wrong answer, try again.");
             }
         }
     }
@@ -107,7 +119,7 @@ public class NewController implements Observer {
         @Override
         public void actionPerformed(ActionEvent e) {
             //quitta spelet
-            System.out.println("hej nu är det slut i rutan");
+            System.exit(0);
         }
     }
 
@@ -147,7 +159,7 @@ public class NewController implements Observer {
     }
 
     public void updateGUI() {
-        //startView.updateRedLevel(new HealthPoolPanel(healPool.getHealth()), healPool.getHealth());
+        startView.updateLevel4(new HealthPoolPanel(healPool.getHealth()), healPool.getHealth());
     }
 
     public void createHealer () {
@@ -177,7 +189,7 @@ public class NewController implements Observer {
         if (amountOfHealth > 170) {
             terminateThreads();
             stopTimer();
-            myView.gameFinished();
+            startView.gameFinished();
         }
     }
 }

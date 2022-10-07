@@ -25,6 +25,17 @@ public class Level3 extends JPanel {
 
     public Level3(JLabel monsterImg, String name) {
 
+
+        topPanel.setPreferredSize(new Dimension(1000, 160));
+        centerPanel.setPreferredSize(new Dimension(1000, 460));
+        bottomPanel.setPreferredSize(new Dimension(1000, 80));
+        topPanel.setBackground(Constants.COLOR_MIDNIGHT);
+        centerPanel.setBackground(Constants.COLOR_MIDNIGHT);
+        bottomPanel.setBackground(Constants.COLOR_MIDNIGHT);
+
+
+
+
         JLabel row1 = new JLabel("Hi, my name is " + name + " the Ugly Flesh Beast, long name I know. I lost my brother");
         row1.setFont(Constants.TEXT_FONT);
         row1.setForeground(Constants.TEXT_COLOR);
