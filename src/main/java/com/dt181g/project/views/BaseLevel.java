@@ -2,35 +2,33 @@ package com.dt181g.project.views;
 
 import javax.swing.*;
 
-
-//template method
+//detta är ju template typ
 public abstract class BaseLevel extends JPanel {
 
-    private JPanel topPanel;
-    private JPanel centerPanel;
-    private JPanel bottomPanel;
+    public final void makePanel() {
 
-    public JPanel getTopPanel() {
-        return topPanel;
+        if (topPanelIsUsed()) {
+            addTopPanel();
+        }
+        if (centerPanelIsUsed()) {
+            addCenterPanel();
+        }
+        if (bottomPanelIsUsed()) {
+            addBottomPanel();
+        }
+
+        updatePanel();
     }
 
-    public void setTopPanel(JPanel topPanel) {
-        this.topPanel = topPanel;
-    }
+    abstract void addTopPanel();
+    abstract void addCenterPanel();
+    abstract void addBottomPanel();
 
-    public JPanel getCenterPanel() {
-        return centerPanel;
-    }
+    //the hooks, can be overridden if top panel is not used, kanske ta bort dessa och sen skriva om hooks i readmen
+    boolean topPanelIsUsed() { return true; }
+    boolean centerPanelIsUsed() { return true; }
+    boolean bottomPanelIsUsed() { return true; }
 
-    public void setCenterPanel(JPanel centerPanel) {
-        this.centerPanel = centerPanel;
-    }
+    abstract void updatePanel();
 
-    public JPanel getBottomPanel() {
-        return bottomPanel;
-    }
-
-    public void setBottomPanel(JPanel bottomPanel) {
-        this.bottomPanel = bottomPanel;
-    }
 }

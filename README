@@ -1,0 +1,2 @@
+problem tat occured: mosterna ritas inte ut, någon form av race condition?? efersom de randomas fram.
+fixades med revalidate/repaint i updatePanel()

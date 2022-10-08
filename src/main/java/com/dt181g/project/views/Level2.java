@@ -10,27 +10,41 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Level2 extends JPanel {
-
+public class Level2 extends BaseLevel {
+    ViewFrame viewFrame;
+    JPanel bigPanel = new JPanel();
+    JPanel topPanel = new JPanel();
+    JPanel centerPanel = new JPanel();
+    JPanel bottomPanel = new JPanel();
     MyButton myButton = new MyButton("Help the monster");
-
+    JLabel monsterImg;
+    String name;
     JTextField bucket1 = new JTextField(8);
     JTextField bucket2 = new JTextField(8);
     JTextField bucket3 = new JTextField(8);
 
-    JPanel topPanel = new JPanel();
-    JPanel centerPanel = new JPanel();
-    JPanel bottomPanel = new JPanel();
+    public Level2(ViewFrame viewFrame, JLabel monsterImg, String name) {
 
-    public Level2(JLabel monsterImg, String name) {
+        this.viewFrame = viewFrame;
+        this.monsterImg = monsterImg;
+        this.name = name;
 
+        bigPanel.setLayout(new BorderLayout());
+    }
+
+    public List<Integer> getBuckets() {
+        List<Integer> numbs = new ArrayList<>(Arrays.asList(Integer.parseInt(bucket1.getText()),
+                Integer.parseInt(bucket2.getText()), Integer.parseInt(bucket3.getText())));
+        return numbs;
+    }
+
+    public void addLvl2ButtonListener(ActionListener listener) {
+        myButton.addActionListener(listener);
+    }
+
+    @Override
+    void addTopPanel() {
         topPanel.setBackground(Constants.COLOR_MIDNIGHT);
-        centerPanel.setBackground(Constants.COLOR_MIDNIGHT);
-        bottomPanel.setBackground(Constants.COLOR_MIDNIGHT);
-
-
-        //denna är för streams.reduce()
-
         JLabel label = new JLabel("<html>Well hello there Hero. I might look super scary but I'm a nice monster named " + name + ".<br> " +
                 "Can you help me with a problem? I've got three buckets to carry my apples in, I need a total <br>" +
                 "amount of 15 apples, no more, no less. How many apples should I place in each bucket? </html>");
@@ -38,7 +52,12 @@ public class Level2 extends JPanel {
         label.setForeground(Constants.TEXT_COLOR);
         topPanel.setBorder(new EmptyBorder(5, 5, 5,5));
         topPanel.add(label);
+        bigPanel.add(topPanel, BorderLayout.NORTH);
+    }
 
+    @Override
+    void addCenterPanel() {
+        centerPanel.setBackground(Constants.COLOR_MIDNIGHT);
         JLabel bucket1Label = new JLabel("Bucket 1:");
         bucket1Label.setForeground(Constants.TEXT_COLOR);
         bucket1Label.setFont(Constants.TEXT_FONT);
@@ -61,30 +80,21 @@ public class Level2 extends JPanel {
         centerPanel.add(bucket1);
         centerPanel.add(bucket2);
         centerPanel.add(bucket3);
+        bigPanel.add(centerPanel, BorderLayout.CENTER);
+    }
 
+    @Override
+    void addBottomPanel() {
+        bottomPanel.setBackground(Constants.COLOR_MIDNIGHT);
         bottomPanel.add(myButton);
         myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        bigPanel.add(bottomPanel, BorderLayout.SOUTH);
     }
 
-    public List<Integer> getBuckets() {
-        List<Integer> numbs = new ArrayList<>(Arrays.asList(Integer.parseInt(bucket1.getText()),
-                Integer.parseInt(bucket2.getText()), Integer.parseInt(bucket3.getText())));
-        return numbs;
-    }
-
-    public void addLvl2ButtonListener(ActionListener listener) {
-        myButton.addActionListener(listener);
-    }
-
-    public JPanel getTopPanel(){
-        return topPanel;
-    }
-
-    public JPanel getCenterPanel(){
-        return centerPanel;
-    }
-
-    public JPanel getBottomPanel() {
-        return bottomPanel;
+    @Override
+    public void updatePanel() {
+        this.revalidate();
+        this.repaint();
+        viewFrame.updateView(bigPanel);
     }
 }

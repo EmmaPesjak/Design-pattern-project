@@ -22,24 +22,22 @@ public class NewController implements Observer {
     private final Level2 level2;
     private final Level3 level3;
     private final Level4 level4;
-    private final GameFinished gameFinished = new GameFinished();
+    private final PostLevel postLevel;
 
 
     public NewController(ViewFrame viewFrame, StartModel startModel) {
         this.viewFrame = viewFrame;
         this.startModel = startModel;
 
-
-
         BaseMonster monster1 = startModel.getRandomMonster();
         BaseMonster monster2 = startModel.getRandomMonster();
         BaseMonster monster3 = startModel.getRandomMonster();
         BaseMonster monster4 = startModel.getRandomMonster();
 
-        level1 = new Level1(monster1.getMonsterImg(), monster1.getName(), startModel.level1RandomWords());
-        level2 = new Level2(monster2.getMonsterImg(), monster2.getName());
-        level3 = new Level3(monster3.getMonsterImg(), monster3.getName());
-        level4 = new Level4(monster4.getMonsterImg(), monster4.getName());
+        level1 = new Level1(viewFrame, monster1.getMonsterImg(), monster1.getName(), startModel.level1RandomWords());
+        level2 = new Level2(viewFrame, monster2.getMonsterImg(), monster2.getName());
+        level3 = new Level3(viewFrame, monster3.getMonsterImg(), monster3.getName());
+        level4 = new Level4(viewFrame, monster4.getMonsterImg(), monster4.getName());
 
         level1.addLvl1ButtonListener(new Level1ButtonListener());
         level1.addLvl1ComboboxListener(new Level1ComboboxListener());
@@ -47,11 +45,13 @@ public class NewController implements Observer {
         level3.addLvl3ButtonListener(new Level3ButtonListener());
         level4.addLvl4ButtonListener(new Level4ButtonListener());
 
-        FirstPage firstPage = new FirstPage();
-        viewFrame.updateView(firstPage.getTopPanel(), firstPage.getCenterPanel(), firstPage.getBottomPanel());
+        PreLevel preLevel = new PreLevel(viewFrame);
+        preLevel.makePanel();
 
-        firstPage.addStartButtonListener(new StartButtonListener());
-        gameFinished.addQuitButtonListener(new QuitButtonListener());
+        postLevel = new PostLevel(viewFrame);
+
+        preLevel.addStartButtonListener(new StartButtonListener());
+        postLevel.addQuitButtonListener(new QuitButtonListener());
 
     }
 
@@ -71,14 +71,14 @@ public class NewController implements Observer {
     class StartButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            viewFrame.updateView(level1.getTopPanel(), level1.getCenterPanel(), level1.getBottomPanel());
+            level1.makePanel();
         }
     }
 
     class Level1ButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            viewFrame.updateView(level2.getTopPanel(), level2.getCenterPanel(), level2.getBottomPanel());
+            level2.makePanel();
         }
     }
 
@@ -89,7 +89,7 @@ public class NewController implements Observer {
                 startModel.calculateLevel2(level2.getBuckets());
 
                 if (startModel.level2Success()) {
-                    viewFrame.updateView(level3.getTopPanel(), level3.getCenterPanel(), level3.getBottomPanel());
+                    level3.makePanel();
                 } else {
                     viewFrame.displayErrorMsg("Does not add up to 15, try again!");
                 }
@@ -105,7 +105,7 @@ public class NewController implements Observer {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (level3.rightAnswerFrank()) {
-                viewFrame.updateView(level4.getTopPanel(), level4.getCenterPanel(), level4.getBottomPanel());
+                level4.makePanel();
             } else {
                 viewFrame.displayErrorMsg("Wrong answer, try again.");
             }
@@ -194,7 +194,7 @@ public class NewController implements Observer {
         if (amountOfHealth > 170) {
             terminateThreads();
             stopTimer();
-            viewFrame.updateView(gameFinished.getTopPanel(), gameFinished.getCenterPanel(), gameFinished.getBottomPanel());
+            postLevel.makePanel();
         }
     }
 }
