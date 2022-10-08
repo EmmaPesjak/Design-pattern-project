@@ -29,11 +29,8 @@ public class Level1 extends JPanel {
 
         sentence.setText(words);
 
-        topPanel.setPreferredSize(new Dimension(1000, 160));
-        centerPanel.setPreferredSize(new Dimension(1000, 460));
-        bottomPanel.setPreferredSize(new Dimension(1000, 80));
         topPanel.setBackground(Constants.COLOR_MIDNIGHT);
-        centerPanel.setBackground(Constants.COLOR_MIDNIGHT);
+        centerPanel.setBackground(Color.pink);
         bottomPanel.setBackground(Constants.COLOR_MIDNIGHT);
 
 
@@ -43,13 +40,16 @@ public class Level1 extends JPanel {
         topPanel.setBorder(new EmptyBorder(5, 5, 5,5));
         topPanel.add(label);
 
+        centerPanel.setPreferredSize(new Dimension(1000, 400));
         centerPanel.add(comboBox);
         centerPanel.add(monsterImg);
+        centerPanel.setBorder(new EmptyBorder(100, 5, 5,5));
 
         sentence.setFont(Constants.TEXT_FONT);
         sentence.setForeground(Constants.TEXT_COLOR);
         centerPanel.add(sentence);
 
+        //bottomPanel.setPreferredSize(new Dimension(1000, 120));
         bottomPanel.add(myButton);
         myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     }
@@ -69,7 +69,6 @@ public class Level1 extends JPanel {
         centerPanel.repaint();
     }
 
-    //behövs denna??
     public String getSelectedItem() {
         return Objects.requireNonNull(comboBox.getSelectedItem()).toString();
     }

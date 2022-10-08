@@ -19,9 +19,6 @@ public class Level4 extends JPanel {
     public Level4 (JLabel monsterImg, String name) {
 
 
-        topPanel.setPreferredSize(new Dimension(1000, 160));
-        centerPanel.setPreferredSize(new Dimension(1000, 460));
-        bottomPanel.setPreferredSize(new Dimension(1000, 80));
         topPanel.setBackground(Constants.COLOR_MIDNIGHT);
         centerPanel.setBackground(Constants.COLOR_MIDNIGHT);
         bottomPanel.setBackground(Constants.COLOR_MIDNIGHT);
@@ -36,16 +33,15 @@ public class Level4 extends JPanel {
         label.setForeground(Constants.TEXT_COLOR);
         topPanel.add(label);
 
-        //centerPanel.setBorder(new EmptyBorder(40, 100, 20, 100));
 
+        //fixa större bild på vaelarya
         centerPanel.setLayout(new GridLayout(2,2, 5, 5));
         centerPanel.add(Constants.IMAGE_DRAGON);
         centerPanel.add(monsterImg);
         centerPanel.add(Constants.IMAGE_CRYSTAL);
 
 
-        //lägg till fler monsterbilder här
-
+        bottomPanel.setPreferredSize(new Dimension(1000, 120));
         bottomPanel.add(myButton);
         myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     }

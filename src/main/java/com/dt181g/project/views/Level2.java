@@ -6,6 +6,9 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Level2 extends JPanel {
 
@@ -21,9 +24,6 @@ public class Level2 extends JPanel {
 
     public Level2(JLabel monsterImg, String name) {
 
-        topPanel.setPreferredSize(new Dimension(1000, 160));
-        centerPanel.setPreferredSize(new Dimension(1000, 460));
-        bottomPanel.setPreferredSize(new Dimension(1000, 80));
         topPanel.setBackground(Constants.COLOR_MIDNIGHT);
         centerPanel.setBackground(Constants.COLOR_MIDNIGHT);
         bottomPanel.setBackground(Constants.COLOR_MIDNIGHT);
@@ -66,16 +66,10 @@ public class Level2 extends JPanel {
         myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     }
 
-    public int getBucket1() {
-        return Integer.parseInt(bucket1.getText());
-    }
-
-    public int getBucket2() {
-        return Integer.parseInt(bucket2.getText());
-    }
-
-    public int getBucket3() {
-        return Integer.parseInt(bucket3.getText());
+    public List<Integer> getBuckets() {
+        List<Integer> numbs = new ArrayList<>(Arrays.asList(Integer.parseInt(bucket1.getText()),
+                Integer.parseInt(bucket2.getText()), Integer.parseInt(bucket3.getText())));
+        return numbs;
     }
 
     public void addLvl2ButtonListener(ActionListener listener) {

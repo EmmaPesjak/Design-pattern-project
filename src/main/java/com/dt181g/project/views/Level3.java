@@ -26,9 +26,6 @@ public class Level3 extends JPanel {
     public Level3(JLabel monsterImg, String name) {
 
 
-        topPanel.setPreferredSize(new Dimension(1000, 160));
-        centerPanel.setPreferredSize(new Dimension(1000, 460));
-        bottomPanel.setPreferredSize(new Dimension(1000, 80));
         topPanel.setBackground(Constants.COLOR_MIDNIGHT);
         centerPanel.setBackground(Constants.COLOR_MIDNIGHT);
         bottomPanel.setBackground(Constants.COLOR_MIDNIGHT);
