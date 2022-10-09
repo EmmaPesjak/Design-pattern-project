@@ -16,11 +16,13 @@ public class Level4 extends BaseLevel {
     JLabel monsterImg;
     String name;
     MyButton myButton = new MyButton("Channel crystal");
+    ActionListener listener;
 
-    public Level4 (ViewFrame viewFrame, JLabel monsterImg, String name) {
+    public Level4 (ViewFrame viewFrame, JLabel monsterImg, String name, ActionListener listener) {
         this.viewFrame = viewFrame;
         this.monsterImg = monsterImg;
         this.name = name;
+        this.listener = listener;
         bigPanel.setLayout(new BorderLayout());
     }
 
@@ -38,13 +40,9 @@ public class Level4 extends BaseLevel {
         bottomPanel.repaint();
     }
 
-    public void addLvl4ButtonListener(ActionListener listener) {
-        myButton.addActionListener(listener);
-    }
-
     @Override
     void addTopPanel() {
-        topPanel.setBackground(Constants.COLOR_MIDNIGHT);
+        topPanel.setBackground(Constants.COLOR_BACKGROUND);
         JLabel label = new JLabel("<html>Hero! I am Vaelarya Vision Walker, the mighty dragon. A monster " +
                 "named " + name + " and his <br> " +
                 "friends are attacking me! Grab that healing crystal and start channeling to heal me, quickly!</html>");
@@ -56,7 +54,7 @@ public class Level4 extends BaseLevel {
 
     @Override
     void addCenterPanel() {
-        centerPanel.setBackground(Constants.COLOR_MIDNIGHT);
+        centerPanel.setBackground(Constants.COLOR_BACKGROUND);
         //fixa större bild på vaelarya
         centerPanel.setLayout(new GridLayout(2,2, 5, 5));
         centerPanel.add(Constants.IMAGE_DRAGON);
@@ -67,7 +65,7 @@ public class Level4 extends BaseLevel {
 
     @Override
     void addBottomPanel() {
-        bottomPanel.setBackground(Constants.COLOR_MIDNIGHT);
+        bottomPanel.setBackground(Constants.COLOR_BACKGROUND);
         bottomPanel.setPreferredSize(new Dimension(1000, 120));
         bottomPanel.add(myButton);
         myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -79,6 +77,11 @@ public class Level4 extends BaseLevel {
         this.revalidate();
         this.repaint();
         viewFrame.updateView(bigPanel);
+    }
+
+    @Override
+    void addButtonListener() {
+        myButton.addActionListener(listener);
     }
 
 }

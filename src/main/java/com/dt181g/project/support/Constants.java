@@ -2,6 +2,9 @@ package com.dt181g.project.support;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public interface Constants {
 
@@ -14,6 +17,15 @@ public interface Constants {
     JLabel IMAGE_PURPLE_MONSTER = new JLabel(new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\purpleMonster.png"));
     JLabel IMAGE_GREY_MONSTER = new JLabel(new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\greyMonster.png"));
     JLabel IMAGE_SLIME_MONSTER = new JLabel(new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\slimeMonster.png"));
+
+    JLabel IMAGE_ANGRYCORN = new JLabel(new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\Angrycorn.png"));
+    JLabel IMAGE_FANCYCORN = new JLabel(new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\Fancycorn.png"));
+    JLabel IMAGE_GLAMCORN = new JLabel(new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\Glamcorn.png"));
+    JLabel IMAGE_HAPPYCORN = new JLabel(new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\Happycorn.png"));
+    JLabel IMAGE_KITTYCORN = new JLabel(new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\Kittycorn.png"));
+    JLabel IMAGE_RAINBOWCORN = new JLabel(new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\Rainbowcorn.png"));
+    JLabel IMAGE_SLEEPYCORN = new JLabel(new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\Sleepycorn.png"));
+
     JLabel IMAGE_APPLE = new JLabel(new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\misc\\apple.png"));
     JLabel IMAGE_BUCKET = new JLabel(new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\misc\\bucket.png"));
     JLabel IMAGE_DRAGON = new JLabel( new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\misc\\dragon.png"));
@@ -26,7 +38,7 @@ public interface Constants {
     Font BUTTON_FONT = new Font(Font.MONOSPACED, Font.BOLD, 20);
 
     // Colours
-    Color COLOR_MIDNIGHT = new Color(2, 2, 40);
+    Color COLOR_BACKGROUND = new Color(2, 2, 40);
     Color TEXT_COLOR = new Color(241, 241, 230);
     Color BUTTON_COLOR = new Color(152, 62, 92);
     Color BUTTON_TEXT_COLOR = new Color(234, 211, 193);
@@ -39,5 +51,14 @@ public interface Constants {
 
 
     //lägga in alla listor och strings här med motivationen att man endast måste ändra dessa om det skulle vara?
+
+
+
+    //grejor som används till model
+    int AMOUNT_OF_UNICORNS = 7;
+    int AMOUNT_OF_MONSTERS = 8;
+    int RESULT_LVL2 = 15;
+    List<String> STRING_LIST = new ArrayList<>(Arrays.asList("mango", "elderberry", "apple", "lime", "banana", "orange", "strawberry", "cherry", "durian", "fig", "grapes"));
+
 
 }

@@ -6,55 +6,64 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class PostLevel extends BaseLevel {
+public class Level2andAHalf extends BaseLevel {
+
     ViewFrame viewFrame;
     JPanel bigPanel = new JPanel();
     JPanel topPanel = new JPanel();
     JPanel centerPanel = new JPanel();
     JPanel bottomPanel = new JPanel();
-    MyButton myButton = new MyButton("Quit game");
+    MyButton myButton = new MyButton("YOLO");
+    JLabel monsterImg;
+    String name;
     ActionListener listener;
 
-    public PostLevel(ViewFrame viewFrame, ActionListener listener) {
+    public Level2andAHalf (ViewFrame viewFrame, JLabel monsterImg, String name, ActionListener listener) {
         this.viewFrame = viewFrame;
+        this.monsterImg = monsterImg;
+        this.name = name;
         this.listener = listener;
+
         bigPanel.setLayout(new BorderLayout());
     }
 
+    public void updateLevel2andahalf(JLabel char1, JLabel char2, JLabel char3) {
+        centerPanel.add(char1);
+        centerPanel.add(char2);
+        centerPanel.add(char3);
+        bottomPanel.add(Constants.IMAGE_ANGRYCORN);
+        revalidate();
+        repaint();
+    }
+
+
     @Override
     void addTopPanel() {
-        topPanel.setBackground(Constants.COLOR_BACKGROUND);
-        JLabel completed = new JLabel("You completed the level! Well done!");
-        completed.setFont(Constants.TITLE_FONT);
-        completed.setForeground(Constants.TEXT_COLOR);
-        topPanel.add(completed);
+        topPanel.add(monsterImg);
         bigPanel.add(topPanel, BorderLayout.NORTH);
     }
 
     @Override
     void addCenterPanel() {
-        centerPanel.setBackground(Constants.COLOR_BACKGROUND);
-        centerPanel.add(Constants.IMAGE_STAR);
         bigPanel.add(centerPanel, BorderLayout.CENTER);
     }
 
     @Override
     void addBottomPanel() {
-        bottomPanel.setBackground(Constants.COLOR_BACKGROUND);
-        bottomPanel.add(myButton);
-        myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        bottomPanel.add(Constants.IMAGE_GLAMCORN);
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);
-    }
 
-    @Override
-    public void updatePanel() {
-        this.revalidate();
-        this.repaint();
-        viewFrame.updateView(bigPanel);
     }
 
     @Override
     void addButtonListener() {
         myButton.addActionListener(listener);
+    }
+
+    @Override
+    void updatePanel() {
+        this.revalidate();
+        this.repaint();
+        viewFrame.updateView(bigPanel);
     }
 }

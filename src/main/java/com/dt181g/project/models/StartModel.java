@@ -2,9 +2,10 @@ package com.dt181g.project.models;
 
 import com.dt181g.project.models.monsters.BaseMonster;
 import com.dt181g.project.models.monsters.MonsterFactory;
+import com.dt181g.project.models.unicorns.BaseUnicorn;
+import com.dt181g.project.models.unicorns.UnicornFactory;
+import com.dt181g.project.support.Constants;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -12,10 +13,10 @@ import java.util.stream.Collectors;
 public class StartModel {
 
     private int level2Result;
+    List<String> words = Constants.STRING_LIST;
 
     MonsterFactory monsterFactory = new MonsterFactory();
-
-    List<String> words = new ArrayList<>(Arrays.asList("mango", "elderberry", "apple", "lime", "banana", "orange", "strawberry", "cherry", "durian", "fig", "grapes"));
+    UnicornFactory unicornFactory = new UnicornFactory();
 
     public StartModel() {}
 
@@ -24,11 +25,15 @@ public class StartModel {
     }
 
     public boolean level2Success() {
-        return level2Result == 15;
+        return level2Result == Constants.RESULT_LVL2;
     }
 
     public BaseMonster getRandomMonster() {
-        return monsterFactory.createMonster(new Random().nextInt(8) + 1);
+        return monsterFactory.createMonster(new Random().nextInt(Constants.AMOUNT_OF_MONSTERS) + 1);
+    }
+
+    public BaseUnicorn getRandomUnicorn() {
+        return unicornFactory.createUnicorn(new Random().nextInt(Constants.AMOUNT_OF_UNICORNS) + 1);
     }
 
     public String level1RandomWords() {
@@ -40,7 +45,7 @@ public class StartModel {
         return String.join(" ", sorted);
     }
 
-    public String countWords() {
+    public String countWordsLvl1() {
         long amountOfWords = words.stream().filter(word -> word.length() > 5).count();
         return Long.toString(amountOfWords);
     }

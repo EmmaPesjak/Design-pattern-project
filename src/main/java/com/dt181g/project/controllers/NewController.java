@@ -17,13 +17,13 @@ public class NewController implements Observer {
 
     private final ViewFrame viewFrame;
     private final StartModel startModel;
-
+    private final PreLevel preLevel;
     private final Level1 level1;
     private final Level2 level2;
+    private final Level2andAHalf level2andAHalf;
     private final Level3 level3;
     private final Level4 level4;
     private final PostLevel postLevel;
-
 
     public NewController(ViewFrame viewFrame, StartModel startModel) {
         this.viewFrame = viewFrame;
@@ -31,28 +31,19 @@ public class NewController implements Observer {
 
         BaseMonster monster1 = startModel.getRandomMonster();
         BaseMonster monster2 = startModel.getRandomMonster();
+        BaseMonster monster2andahalf = startModel.getRandomMonster();
         BaseMonster monster3 = startModel.getRandomMonster();
         BaseMonster monster4 = startModel.getRandomMonster();
 
-        level1 = new Level1(viewFrame, monster1.getMonsterImg(), monster1.getName(), startModel.level1RandomWords());
-        level2 = new Level2(viewFrame, monster2.getMonsterImg(), monster2.getName());
-        level3 = new Level3(viewFrame, monster3.getMonsterImg(), monster3.getName());
-        level4 = new Level4(viewFrame, monster4.getMonsterImg(), monster4.getName());
-
-        level1.addLvl1ButtonListener(new Level1ButtonListener());
-        level1.addLvl1ComboboxListener(new Level1ComboboxListener());
-        level2.addLvl2ButtonListener(new Level2ButtonListener());
-        level3.addLvl3ButtonListener(new Level3ButtonListener());
-        level4.addLvl4ButtonListener(new Level4ButtonListener());
-
-        PreLevel preLevel = new PreLevel(viewFrame);
+        preLevel = new PreLevel(viewFrame, new StartButtonListener());
         preLevel.makePanel();
-
-        postLevel = new PostLevel(viewFrame);
-
-        preLevel.addStartButtonListener(new StartButtonListener());
-        postLevel.addQuitButtonListener(new QuitButtonListener());
-
+        level1 = new Level1(viewFrame, monster1.getMonsterImg(), monster1.getName(), startModel.level1RandomWords(), new Level1ButtonListener());
+        level1.addLvl1ComboboxListener(new Level1ComboboxListener());
+        level2 = new Level2(viewFrame, monster2.getMonsterImg(), monster2.getName(), new Level2ButtonListener());
+        level2andAHalf = new Level2andAHalf(viewFrame, monster2andahalf.getMonsterImg(), monster2andahalf.getName(), new Level2andAHalfButtonListener());
+        level3 = new Level3(viewFrame, monster3.getMonsterImg(), monster3.getName(), new Level3ButtonListener());
+        level4 = new Level4(viewFrame, monster4.getMonsterImg(), monster4.getName(), new Level4ButtonListener());
+        postLevel = new PostLevel(viewFrame, new QuitButtonListener());
     }
 
     class Level1ComboboxListener implements ActionListener {
@@ -61,7 +52,7 @@ public class NewController implements Observer {
             if (Objects.equals(level1.getSelectedItem(), "Sort alphabetically.")) {
                 level1.updateLevel1(startModel.sortLevel1Alphabetically());
             } else if ((Objects.equals(level1.getSelectedItem(), "Count words longer than 5 letters."))) {
-                level1.updateLevel1(startModel.countWords());
+                level1.updateLevel1(startModel.countWordsLvl1());
             } else {
                 level1.updateLevel1(startModel.level1RandomWords());
             }
@@ -89,7 +80,10 @@ public class NewController implements Observer {
                 startModel.calculateLevel2(level2.getBuckets());
 
                 if (startModel.level2Success()) {
-                    level3.makePanel();
+                    level2andAHalf.makePanel();
+
+                    //detta ska ju bort sen
+                    level2andAHalf.updateLevel2andahalf(startModel.getRandomUnicorn().getUnicornImg(), startModel.getRandomUnicorn().getUnicornImg(), startModel.getRandomUnicorn().getUnicornImg());
                 } else {
                     viewFrame.displayErrorMsg("Does not add up to 15, try again!");
                 }
@@ -98,6 +92,14 @@ public class NewController implements Observer {
                 System.out.println(exception);
                 viewFrame.displayErrorMsg("Please fill in all boxes, and only with numbers.");
             }
+        }
+    }
+
+    class Level2andAHalfButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            level3.makePanel();
         }
     }
 
@@ -123,7 +125,6 @@ public class NewController implements Observer {
     class QuitButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //quitta spelet
             System.exit(0);
         }
     }

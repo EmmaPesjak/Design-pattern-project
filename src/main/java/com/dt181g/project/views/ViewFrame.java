@@ -15,7 +15,7 @@ public class ViewFrame extends JFrame {
         setSize(1000, 650);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        panel.setBackground(Constants.COLOR_MIDNIGHT);
+        panel.setBackground(Constants.COLOR_BACKGROUND);
     }
 
     public void updateView(JPanel top) {

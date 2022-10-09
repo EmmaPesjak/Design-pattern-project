@@ -18,11 +18,13 @@ public class Level3 extends BaseLevel {
     JRadioButton radioButton1 = new JRadioButton("Rothead");
     JRadioButton radioButton2 = new JRadioButton("Frank-Einstein");
     JRadioButton radioButton3 = new JRadioButton("Partygut");
+    ActionListener listener;
 
-    public Level3(ViewFrame viewFrame, JLabel monsterImg, String name) {
+    public Level3(ViewFrame viewFrame, JLabel monsterImg, String name, ActionListener listener) {
         this.viewFrame = viewFrame;
         this.monsterImg = monsterImg;
         this.name = name;
+        this.listener = listener;
         bigPanel.setLayout(new BorderLayout());
     }
 
@@ -30,13 +32,9 @@ public class Level3 extends BaseLevel {
         return radioButton2.isSelected();
     }
 
-    public void addLvl3ButtonListener(ActionListener listener) {
-        myButton.addActionListener(listener);
-    }
-
     @Override
     void addTopPanel() {
-        topPanel.setBackground(Constants.COLOR_MIDNIGHT);
+        topPanel.setBackground(Constants.COLOR_BACKGROUND);
         JLabel label = new JLabel("<html>Hi, my name is " + name + " the Ugly Flesh Beast, long name I know. I lost my brother<br>" +
                 "Rothead so now I'm sad. Can you cheer me up by solving my riddle? What do you call a monster <br>with a high IQ? </html>");
         label.setFont(Constants.TEXT_FONT);
@@ -47,14 +45,14 @@ public class Level3 extends BaseLevel {
 
     @Override
     void addCenterPanel() {
-        centerPanel.setBackground(Constants.COLOR_MIDNIGHT);
-        radioButton1.setBackground(Constants.COLOR_MIDNIGHT);
+        centerPanel.setBackground(Constants.COLOR_BACKGROUND);
+        radioButton1.setBackground(Constants.COLOR_BACKGROUND);
         radioButton1.setForeground(Constants.TEXT_COLOR);
         radioButton1.setFont(Constants.TEXT_FONT);
-        radioButton2.setBackground(Constants.COLOR_MIDNIGHT);
+        radioButton2.setBackground(Constants.COLOR_BACKGROUND);
         radioButton2.setForeground(Constants.TEXT_COLOR);
         radioButton2.setFont(Constants.TEXT_FONT);
-        radioButton3.setBackground(Constants.COLOR_MIDNIGHT);
+        radioButton3.setBackground(Constants.COLOR_BACKGROUND);
         radioButton3.setForeground(Constants.TEXT_COLOR);
         radioButton3.setFont(Constants.TEXT_FONT);
         GridBagLayout gridBagLayout = new GridBagLayout();
@@ -82,11 +80,17 @@ public class Level3 extends BaseLevel {
 
     @Override
     void addBottomPanel() {
-        bottomPanel.setBackground(Constants.COLOR_MIDNIGHT);
+        bottomPanel.setBackground(Constants.COLOR_BACKGROUND);
         bottomPanel.add(myButton);
         myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);
     }
+
+    @Override
+    void addButtonListener() {
+        myButton.addActionListener(listener);
+    }
+
 
     @Override
     public void updatePanel() {

@@ -14,20 +14,18 @@ public class PreLevel extends BaseLevel {
     JPanel bottomPanel = new JPanel();
 
     MyButton infoButton = new MyButton("Info");
-    MyButton startButton = new MyButton("Start");
+    MyButton myButton = new MyButton("Start");
+    ActionListener listener;
 
-    public PreLevel(ViewFrame viewFrame) {
+    public PreLevel(ViewFrame viewFrame, ActionListener listener) {
         this.viewFrame = viewFrame;
+        this.listener = listener;
         bigPanel.setLayout(new BorderLayout());
-    }
-
-    public void addStartButtonListener(ActionListener listener) {
-        startButton.addActionListener(listener);
     }
 
     @Override
     void addTopPanel() {
-        topPanel.setBackground(Constants.COLOR_MIDNIGHT);
+        topPanel.setBackground(Constants.COLOR_BACKGROUND);
         JLabel title = new JLabel("The Monster Game");
         title.setFont(Constants.TITLE_FONT);
         title.setForeground(Constants.TEXT_COLOR);
@@ -37,7 +35,7 @@ public class PreLevel extends BaseLevel {
 
     @Override
     void addCenterPanel() {
-        centerPanel.setBackground(Constants.COLOR_MIDNIGHT);
+        centerPanel.setBackground(Constants.COLOR_BACKGROUND);
         centerPanel.setPreferredSize(new Dimension(1000, 470));
         centerPanel.setLayout(new GridLayout(2,2, 5, 5));
         centerPanel.add(Constants.IMAGE_YELLOW_MONSTER);
@@ -49,11 +47,16 @@ public class PreLevel extends BaseLevel {
 
     @Override
     void addBottomPanel() {
-        bottomPanel.setBackground(Constants.COLOR_MIDNIGHT);
+        bottomPanel.setBackground(Constants.COLOR_BACKGROUND);
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
         bottomPanel.add(infoButton);
-        bottomPanel.add(startButton);
+        bottomPanel.add(myButton);
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);
+    }
+
+    @Override
+    void addButtonListener() {
+        myButton.addActionListener(listener);
     }
 
     @Override

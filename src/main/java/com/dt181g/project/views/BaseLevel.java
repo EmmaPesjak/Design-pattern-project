@@ -1,6 +1,7 @@
 package com.dt181g.project.views;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
 
 //detta är ju template typ
 public abstract class BaseLevel extends JPanel {
@@ -16,6 +17,9 @@ public abstract class BaseLevel extends JPanel {
         if (bottomPanelIsUsed()) {
             addBottomPanel();
         }
+        if (buttonIsUsed()) {
+            addButtonListener();
+        }
 
         updatePanel();
     }
@@ -23,11 +27,13 @@ public abstract class BaseLevel extends JPanel {
     abstract void addTopPanel();
     abstract void addCenterPanel();
     abstract void addBottomPanel();
+    abstract void addButtonListener();
 
-    //the hooks, can be overridden if top panel is not used, kanske ta bort dessa och sen skriva om hooks i readmen
+    //the hooks, can be overridden panels/buttons not used, kanske ta bort dessa och sen skriva om hooks i readmen
     boolean topPanelIsUsed() { return true; }
     boolean centerPanelIsUsed() { return true; }
     boolean bottomPanelIsUsed() { return true; }
+    boolean buttonIsUsed() { return true; }
 
     abstract void updatePanel();
 

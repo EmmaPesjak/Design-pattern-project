@@ -19,7 +19,7 @@ public class HealthPoolPanel extends JPanel {
         Graphics2D g2D = (Graphics2D) g;
 
         // Draw a black rectangle in the background.
-        g2D.setColor(Constants.COLOR_MIDNIGHT);
+        g2D.setColor(Constants.COLOR_BACKGROUND);
         g2D.fillRect(0, 0, getWidth(), getHeight());
 
         // Set colour of pool depending on the resource amount.

@@ -1,2 +1,6 @@
 problem tat occured: mosterna ritas inte ut, någon form av race condition?? efersom de randomas fram.
 fixades med revalidate/repaint i updatePanel()
+
+
+lägger in allt som kan ändras i spelet i constants för att det ska finnas på ett ställe och vara lätt
+har dock namnen på monsterna i sina klasser

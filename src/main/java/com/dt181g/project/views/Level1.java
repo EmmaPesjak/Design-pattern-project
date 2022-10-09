@@ -14,21 +14,21 @@ public class Level1 extends BaseLevel {
     JPanel topPanel = new JPanel();
     JPanel centerPanel = new JPanel();
     JPanel bottomPanel = new JPanel();
-    MyButton myButton = new MyButton("NÄSTA");
+    MyButton myButton = new MyButton("Next level");
     JLabel sentence = new JLabel();
     JLabel monsterImg;
     String name;
     String words;
     String[] sortFunctions = new String[] {"All words", "Sort alphabetically.", "Count words longer than 5 letters."};
     JComboBox<String> comboBox = new JComboBox<>(sortFunctions);
+    ActionListener listener;
 
-    public Level1(ViewFrame viewFrame, JLabel monsterImg, String name, String words) {
-
+    public Level1(ViewFrame viewFrame, JLabel monsterImg, String name, String words, ActionListener listener) {
         this.viewFrame = viewFrame;
         this.monsterImg = monsterImg;
         this.name = name;
         this.words = words;
-
+        this.listener = listener;
         bigPanel.setLayout(new BorderLayout());
     }
 
@@ -54,14 +54,9 @@ public class Level1 extends BaseLevel {
         comboBox.addActionListener(listener);
     }
 
-    public void addLvl1ButtonListener(ActionListener listener) {
-        myButton.addActionListener(listener);
-    }
-
-
     @Override
     void addTopPanel() {
-        topPanel.setBackground(Constants.COLOR_MIDNIGHT);
+        topPanel.setBackground(Constants.COLOR_BACKGROUND);
         JLabel label = new JLabel("Hi, I'm " + name + ". I like words. These are my words. Want to play with them?");
         label.setFont(Constants.TEXT_FONT);
         label.setForeground(Constants.TEXT_COLOR);
@@ -72,7 +67,7 @@ public class Level1 extends BaseLevel {
 
     @Override
     void addCenterPanel() {
-        centerPanel.setBackground(Constants.COLOR_MIDNIGHT);
+        centerPanel.setBackground(Constants.COLOR_BACKGROUND);
         centerPanel.setPreferredSize(new Dimension(1000, 400));
         centerPanel.add(comboBox);
         centerPanel.add(monsterImg);
@@ -87,11 +82,16 @@ public class Level1 extends BaseLevel {
     @Override
     void addBottomPanel() {
 
-        bottomPanel.setBackground(Constants.COLOR_MIDNIGHT);
+        bottomPanel.setBackground(Constants.COLOR_BACKGROUND);
         //bottomPanel.setPreferredSize(new Dimension(1000, 120));
         bottomPanel.add(myButton);
         myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);
+    }
+
+    @Override
+    void addButtonListener() {
+        myButton.addActionListener(listener);
     }
 
     @Override

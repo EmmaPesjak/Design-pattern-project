@@ -3,7 +3,7 @@ package com.dt181g.project.models.monsters;
 
 import javax.swing.*;
 
-//factory pattern?
+//factory pattern
 public abstract class BaseMonster {
 
     private String name;
