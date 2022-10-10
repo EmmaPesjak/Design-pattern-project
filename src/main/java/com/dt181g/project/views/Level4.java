@@ -18,6 +18,10 @@ public class Level4 extends BaseLevel {
     MyButton myButton = new MyButton("Channel crystal");
     ActionListener listener;
 
+
+    //OBS MÅSTE FIXA NÅGON OM HON SKULLE DÖ
+
+
     public Level4 (ViewFrame viewFrame, ImageIcon monsterImg, String name, ActionListener listener) {
         this.viewFrame = viewFrame;
         this.monsterImg = monsterImg;

@@ -4,3 +4,6 @@ fixades med revalidate/repaint i updatePanel()
 
 lägger in allt som kan ändras i spelet i constants för att det ska finnas på ett ställe och vara lätt
 har dock namnen på monsterna i sina klasser
+
+
+problem: duplicate images could not be displayed since the Jlabel was created in Constants interface, by instead only setting it to imageicons and making new labels when needed this was fixed

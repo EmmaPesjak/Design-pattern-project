@@ -43,10 +43,11 @@ public class Level2andAHalf extends BaseLevel {
         topPanel.setBackground(Constants.COLOR_BACKGROUND);
         topPanel.add(new JLabel(monsterImg));
         JLabel label = new JLabel("<html>" + name + " is my name, nice to meet you hero. This is my abstract factory<br>" +
-                "Want to create stuff? You can either get unicorns or monsters, totally random since my <br>" +
-                "abstract factory is creating factories. </html>");
+                "It creates factories which can create unicorns or monsters.<br>" +
+                "Want to create some totally random characters? </html>");
         label.setFont(Constants.TEXT_FONT);
         label.setForeground(Constants.TEXT_COLOR);
+        topPanel.add(new JLabel(Constants.IMAGE_FACTORY));
         topPanel.add(label);
 
         bigPanel.add(topPanel, BorderLayout.NORTH);
@@ -62,6 +63,7 @@ public class Level2andAHalf extends BaseLevel {
     void addBottomPanel() {
         bottomPanel.setBackground(Constants.COLOR_BACKGROUND);
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);
+        bottomPanel.add(myButton);
 
     }
 
