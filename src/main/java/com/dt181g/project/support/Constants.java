@@ -32,6 +32,7 @@ public interface Constants {
     ImageIcon IMAGE_CRYSTAL = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\misc\\crystal.png");
     ImageIcon IMAGE_STAR = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\misc\\star.png");
     ImageIcon IMAGE_FACTORY = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\misc\\factory.png");
+    ImageIcon IMAGE_WEAPONS = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\misc\\weapons.png");
 
     // Fonts
     Font TITLE_FONT = new Font(Font.MONOSPACED, Font.BOLD, 28);

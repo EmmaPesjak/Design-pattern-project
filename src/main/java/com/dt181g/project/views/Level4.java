@@ -49,7 +49,8 @@ public class Level4 extends BaseLevel {
         topPanel.setBackground(Constants.COLOR_BACKGROUND);
         JLabel label = new JLabel("<html>Hero! I am Vaelarya Vision Walker, the mighty dragon. A monster " +
                 "named " + name + " and his <br> " +
-                "friends are attacking me! Grab that healing crystal and start channeling to heal me, quickly!</html>");
+                "five friends are attacking me! Luckily they only have a pool of three weapons to share <br>" +
+                " and take turns. Grab that healing crystal and start channeling to heal me, quickly!</html>");
         label.setFont(Constants.TEXT_FONT);
         label.setForeground(Constants.TEXT_COLOR);
         topPanel.add(label);
@@ -64,6 +65,7 @@ public class Level4 extends BaseLevel {
         centerPanel.add(new JLabel(Constants.IMAGE_DRAGON));
         centerPanel.add(new JLabel(monsterImg));
         centerPanel.add(new JLabel(Constants.IMAGE_CRYSTAL));
+        centerPanel.add(new JLabel(Constants.IMAGE_WEAPONS));
         bigPanel.add(centerPanel, BorderLayout.CENTER);
     }
 

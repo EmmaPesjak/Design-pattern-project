@@ -1,15 +1,15 @@
-package com.dt181g.project;
+package com.dt181g.project.models;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HealPool implements Observable {
+public class HealthMeter implements Observable {
 
-    public static final HealPool INSTANCE = new HealPool();
+    public static final HealthMeter INSTANCE = new HealthMeter();
     public List<Observer> observers = new ArrayList<>();
     public int health = 50;
 
-    public HealPool() {}
+    public HealthMeter() {}
 
     @Override
     public void addObserver(Observer observer) {

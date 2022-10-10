@@ -1,14 +1,13 @@
 package com.dt181g.project.controllers;
 
-import com.dt181g.project.DamageThread;
-import com.dt181g.project.HealPool;
-import com.dt181g.project.HealThread;
-import com.dt181g.project.Observer;
+import com.dt181g.project.models.DamageThread;
+import com.dt181g.project.models.HealthMeter;
+import com.dt181g.project.models.HealThread;
+import com.dt181g.project.models.Observer;
 import com.dt181g.project.models.StartModel;
 import com.dt181g.project.models.monsters.BaseMonster;
 import com.dt181g.project.views.*;
 
-import javax.swing.*;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -132,8 +131,8 @@ public class NewController implements Observer {
 
 
 
-    //observerskit, flytta mög till model???
-    HealPool healPool = HealPool.INSTANCE;
+    //observerskit, var ska detta vara??????
+    HealthMeter healthMeter = HealthMeter.INSTANCE;
 
     //public static final ObserverThing INSTANCE = new ObserverThing(HealPool.INSTANCE);
     private final HealThread healThread = new HealThread();
@@ -150,7 +149,7 @@ public class NewController implements Observer {
             createDamageMonster();
         }
         createHealer();
-        healPool.addObserver(this);
+        healthMeter.addObserver(this);
     }
 
     public void GUITimer() {
@@ -165,7 +164,7 @@ public class NewController implements Observer {
     }
 
     public void updateGUI() {
-        level4.updateLevel4(new HealthPoolPanel(healPool.getHealth()), healPool.getHealth());
+        level4.updateLevel4(new HealthPoolPanel(healthMeter.getHealth()), healthMeter.getHealth());
     }
 
     public void createHealer () {
@@ -190,7 +189,7 @@ public class NewController implements Observer {
 
     @Override
     public synchronized void update() {
-        int amountOfHealth = this.healPool.getHealth();
+        int amountOfHealth = this.healthMeter.getHealth();
 
         if (amountOfHealth > 170) {
             terminateThreads();
