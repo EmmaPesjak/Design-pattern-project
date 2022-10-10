@@ -1,12 +1,16 @@
 package com.dt181g.project.models.unicorns;
 
-import com.dt181g.project.models.AbstractFactory;
+import com.dt181g.project.models.CharacterFactory;
+import com.dt181g.project.support.Constants;
 
-public class UnicornFactory implements AbstractFactory {
+import java.util.Random;
 
+public class UnicornFactory implements CharacterFactory<BaseUnicorn> {
 
     // skapa dessa på annat sätt? användaren väljer?
-    public BaseUnicorn createUnicorn(int randomNmb) {
+    @Override
+    public BaseUnicorn createChar() {
+        int randomNmb = new Random().nextInt(Constants.AMOUNT_OF_UNICORNS) + 1;
 
         if (randomNmb == 1) {
             return new Angrycorn();

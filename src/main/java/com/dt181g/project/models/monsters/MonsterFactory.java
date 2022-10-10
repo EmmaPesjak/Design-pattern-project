@@ -1,10 +1,18 @@
 package com.dt181g.project.models.monsters;
 
 
-//bra för att randomiza fram monster på flera ställen i koden...
-public class MonsterFactory {
+import com.dt181g.project.models.CharacterFactory;
+import com.dt181g.project.support.Constants;
 
-    public BaseMonster createMonster(int randomNmb){
+import java.util.Random;
+
+//bra för att randomiza fram monster på flera ställen i koden...
+public class MonsterFactory implements CharacterFactory<BaseMonster> {
+
+    @Override
+    public BaseMonster createChar() {
+
+        int randomNmb = new Random().nextInt(Constants.AMOUNT_OF_MONSTERS) + 1;
 
         if (randomNmb == 1) {
             return new BlueMonster();
@@ -23,6 +31,5 @@ public class MonsterFactory {
         } else {
             return new YellowMonster();
         }
-
     }
 }

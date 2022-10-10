@@ -2,10 +2,10 @@ package com.dt181g.project.models;
 
 import com.dt181g.project.models.monsters.BaseMonster;
 import com.dt181g.project.models.monsters.MonsterFactory;
-import com.dt181g.project.models.unicorns.BaseUnicorn;
 import com.dt181g.project.models.unicorns.UnicornFactory;
 import com.dt181g.project.support.Constants;
 
+import javax.swing.*;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -16,7 +16,6 @@ public class StartModel {
     List<String> words = Constants.STRING_LIST;
 
     MonsterFactory monsterFactory = new MonsterFactory();
-    UnicornFactory unicornFactory = new UnicornFactory();
 
     public StartModel() {}
 
@@ -29,11 +28,20 @@ public class StartModel {
     }
 
     public BaseMonster getRandomMonster() {
-        return monsterFactory.createMonster(new Random().nextInt(Constants.AMOUNT_OF_MONSTERS) + 1);
+        return monsterFactory.createChar();
     }
 
-    public BaseUnicorn getRandomUnicorn() {
-        return unicornFactory.createUnicorn(new Random().nextInt(Constants.AMOUNT_OF_UNICORNS) + 1);
+    public JLabel getRandomCharImg() {
+
+        int randomNmb = new Random().nextInt(2) + 1;
+
+        if (randomNmb == 1) {
+            MonsterFactory factory1 = (MonsterFactory) FactoryProvider.getFactory(1);
+            return factory1.createChar().getMonsterImg();
+        } else {
+            UnicornFactory factory2 = (UnicornFactory) FactoryProvider.getFactory(2);
+            return factory2.createChar().getUnicornImg();
+        }
     }
 
     public String level1RandomWords() {

@@ -8,6 +8,7 @@ import com.dt181g.project.models.StartModel;
 import com.dt181g.project.models.monsters.BaseMonster;
 import com.dt181g.project.views.*;
 
+import javax.swing.*;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -82,8 +83,16 @@ public class NewController implements Observer {
                 if (startModel.level2Success()) {
                     level2andAHalf.makePanel();
 
-                    //detta ska ju bort sen
-                    level2andAHalf.updateLevel2andahalf(startModel.getRandomUnicorn().getUnicornImg(), startModel.getRandomUnicorn().getUnicornImg(), startModel.getRandomUnicorn().getUnicornImg());
+
+                    // här blir det bajs för det blir fel om det görs likadana grejor
+                    JLabel char1 = startModel.getRandomCharImg();
+                    System.out.println(char1);
+                    JLabel char2 = startModel.getRandomCharImg();
+                    System.out.println(char2);
+                    JLabel char3 = startModel.getRandomCharImg();
+                    System.out.println(char3);
+
+                    level2andAHalf.updateLevel2andahalf(char1, char2, char3);
                 } else {
                     viewFrame.displayErrorMsg("Does not add up to 15, try again!");
                 }
