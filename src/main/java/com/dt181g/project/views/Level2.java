@@ -17,14 +17,14 @@ public class Level2 extends BaseLevel {
     JPanel centerPanel = new JPanel();
     JPanel bottomPanel = new JPanel();
     MyButton myButton = new MyButton("Help the monster");
-    JLabel monsterImg;
+    ImageIcon monsterImg;
     String name;
     JTextField bucket1 = new JTextField(8);
     JTextField bucket2 = new JTextField(8);
     JTextField bucket3 = new JTextField(8);
     ActionListener listener;
 
-    public Level2(ViewFrame viewFrame, JLabel monsterImg, String name, ActionListener listener) {
+    public Level2(ViewFrame viewFrame, ImageIcon monsterImg, String name, ActionListener listener) {
 
         this.viewFrame = viewFrame;
         this.monsterImg = monsterImg;
@@ -69,9 +69,9 @@ public class Level2 extends BaseLevel {
         bucket1.setFont(Constants.TITLE_FONT);
         bucket2.setFont(Constants.TITLE_FONT);
         bucket3.setFont(Constants.TITLE_FONT);
-        centerPanel.add(monsterImg);
-        centerPanel.add(Constants.IMAGE_APPLE);
-        centerPanel.add(Constants.IMAGE_BUCKET);
+        centerPanel.add(new JLabel(monsterImg));
+        centerPanel.add(new JLabel(Constants.IMAGE_APPLE));
+        centerPanel.add(new JLabel(Constants.IMAGE_BUCKET));
         centerPanel.add(bucket1Label);
         centerPanel.add(bucket2Label);
         centerPanel.add(bucket3Label);

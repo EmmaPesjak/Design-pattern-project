@@ -15,11 +15,11 @@ public class Level2andAHalf extends BaseLevel {
     JPanel centerPanel = new JPanel();
     JPanel bottomPanel = new JPanel();
     MyButton myButton = new MyButton("YOLO");
-    JLabel monsterImg;
+    ImageIcon monsterImg;
     String name;
     ActionListener listener;
 
-    public Level2andAHalf (ViewFrame viewFrame, JLabel monsterImg, String name, ActionListener listener) {
+    public Level2andAHalf (ViewFrame viewFrame, ImageIcon monsterImg, String name, ActionListener listener) {
         this.viewFrame = viewFrame;
         this.monsterImg = monsterImg;
         this.name = name;
@@ -28,17 +28,11 @@ public class Level2andAHalf extends BaseLevel {
         bigPanel.setLayout(new BorderLayout());
     }
 
-    public void updateLevel2andahalf(JLabel char1, JLabel char2, JLabel char3) {
+    public void updateLevel2andahalf(ImageIcon char1, ImageIcon char2, ImageIcon char3) {
 
-        JLabel hej = new JLabel();
-        char1 = hej;
-        JLabel hej2 = new JLabel();
-        char2 = hej2;
-        JLabel hej3 = new JLabel();
-        char3 = hej3;
-        centerPanel.add(hej);
-        centerPanel.add(hej2);
-        centerPanel.add(hej3);
+        centerPanel.add(new JLabel(char1));
+        centerPanel.add(new JLabel(char2));
+        centerPanel.add(new JLabel(char3));
         centerPanel.revalidate();
         centerPanel.repaint();
     }
@@ -47,7 +41,7 @@ public class Level2andAHalf extends BaseLevel {
     @Override
     void addTopPanel() {
         topPanel.setBackground(Constants.COLOR_BACKGROUND);
-        topPanel.add(monsterImg);
+        topPanel.add(new JLabel(monsterImg));
         JLabel label = new JLabel("<html>" + name + " is my name, nice to meet you hero. This is my abstract factory<br>" +
                 "Want to create stuff? You can either get unicorns or monsters, totally random since my <br>" +
                 "abstract factory is creating factories. </html>");

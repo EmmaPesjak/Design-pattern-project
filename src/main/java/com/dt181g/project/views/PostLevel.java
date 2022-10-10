@@ -34,7 +34,7 @@ public class PostLevel extends BaseLevel {
     @Override
     void addCenterPanel() {
         centerPanel.setBackground(Constants.COLOR_BACKGROUND);
-        centerPanel.add(Constants.IMAGE_STAR);
+        centerPanel.add(new JLabel(Constants.IMAGE_STAR));
         bigPanel.add(centerPanel, BorderLayout.CENTER);
     }
 

@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public abstract class BaseUnicorn {
 
-    private JLabel unicornImg;
+    private ImageIcon unicornImg;
     private String power;
 
     public String getPower() {
@@ -15,11 +15,11 @@ public abstract class BaseUnicorn {
         this.power = power;
     }
 
-    public JLabel getUnicornImg() {
+    public ImageIcon getUnicornImg() {
         return unicornImg;
     }
 
-    public void setUnicornImg(JLabel unicornImg) {
+    public void setUnicornImg(ImageIcon unicornImg) {
         this.unicornImg = unicornImg;
     }
 }

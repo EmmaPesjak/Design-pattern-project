@@ -12,7 +12,7 @@ public class Level3 extends BaseLevel {
     JPanel topPanel = new JPanel();
     JPanel centerPanel = new JPanel();
     JPanel bottomPanel = new JPanel();
-    JLabel monsterImg;
+    ImageIcon monsterImg;
     String name;
     MyButton myButton = new MyButton("Check answer");
     JRadioButton radioButton1 = new JRadioButton("Rothead");
@@ -20,7 +20,7 @@ public class Level3 extends BaseLevel {
     JRadioButton radioButton3 = new JRadioButton("Partygut");
     ActionListener listener;
 
-    public Level3(ViewFrame viewFrame, JLabel monsterImg, String name, ActionListener listener) {
+    public Level3(ViewFrame viewFrame, ImageIcon monsterImg, String name, ActionListener listener) {
         this.viewFrame = viewFrame;
         this.monsterImg = monsterImg;
         this.name = name;
@@ -61,7 +61,7 @@ public class Level3 extends BaseLevel {
         gbc.fill= GridBagConstraints.HORIZONTAL;
         gbc.gridx = 0;
         gbc.gridy = 0;
-        centerPanel.add(monsterImg, gbc);
+        centerPanel.add(new JLabel(monsterImg), gbc);
         gbc.gridx = 0;
         gbc.gridy = 1;
         centerPanel.add(radioButton1, gbc);

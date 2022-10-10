@@ -38,10 +38,10 @@ public class PreLevel extends BaseLevel {
         centerPanel.setBackground(Constants.COLOR_BACKGROUND);
         centerPanel.setPreferredSize(new Dimension(1000, 470));
         centerPanel.setLayout(new GridLayout(2,2, 5, 5));
-        centerPanel.add(Constants.IMAGE_YELLOW_MONSTER);
-        centerPanel.add(Constants.IMAGE_BLUE_MONSTER);
-        centerPanel.add(Constants.IMAGE_RED_MONSTER);
-        centerPanel.add(Constants.IMAGE_GREEN_MONSTER);
+        centerPanel.add(new JLabel(Constants.IMAGE_YELLOW_MONSTER));
+        centerPanel.add(new JLabel(Constants.IMAGE_BLUE_MONSTER));
+        centerPanel.add(new JLabel(Constants.IMAGE_RED_MONSTER));
+        centerPanel.add(new JLabel(Constants.IMAGE_GREEN_MONSTER));
         bigPanel.add(centerPanel, BorderLayout.CENTER);
     }
 

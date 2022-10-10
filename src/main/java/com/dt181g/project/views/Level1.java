@@ -16,16 +16,18 @@ public class Level1 extends BaseLevel {
     JPanel bottomPanel = new JPanel();
     MyButton myButton = new MyButton("Next level");
     JLabel sentence = new JLabel();
-    JLabel monsterImg;
+    ImageIcon monsterImg;
+    JLabel hej;
     String name;
     String words;
     String[] sortFunctions = new String[] {"All words", "Sort alphabetically.", "Count words longer than 5 letters."};
     JComboBox<String> comboBox = new JComboBox<>(sortFunctions);
     ActionListener listener;
 
-    public Level1(ViewFrame viewFrame, JLabel monsterImg, String name, String words, ActionListener listener) {
+    public Level1(ViewFrame viewFrame, ImageIcon monsterImg, String name, String words, ActionListener listener) {
         this.viewFrame = viewFrame;
         this.monsterImg = monsterImg;
+        hej = new JLabel(monsterImg);
         this.name = name;
         this.words = words;
         this.listener = listener;
@@ -35,7 +37,9 @@ public class Level1 extends BaseLevel {
     public void updateLevel1(String words) {
         centerPanel.removeAll();
         centerPanel.add(comboBox);
-        centerPanel.add(monsterImg);
+
+
+        centerPanel.add(hej);
 
         JLabel wordLabel = new JLabel(words);
         wordLabel.setFont(Constants.TEXT_FONT);
@@ -70,7 +74,7 @@ public class Level1 extends BaseLevel {
         centerPanel.setBackground(Constants.COLOR_BACKGROUND);
         centerPanel.setPreferredSize(new Dimension(1000, 400));
         centerPanel.add(comboBox);
-        centerPanel.add(monsterImg);
+        centerPanel.add(hej);
         centerPanel.setBorder(new EmptyBorder(100, 5, 5,5));
         sentence.setText(words);
         sentence.setFont(Constants.TEXT_FONT);

@@ -31,7 +31,7 @@ public class StartModel {
         return monsterFactory.createChar();
     }
 
-    public JLabel getRandomCharImg() {
+    public ImageIcon getRandomCharImg() {
 
         int randomNmb = new Random().nextInt(2) + 1;
 

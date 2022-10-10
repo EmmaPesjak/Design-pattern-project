@@ -13,12 +13,12 @@ public class Level4 extends BaseLevel {
     JPanel centerPanel = new JPanel();
     JPanel bottomPanel = new JPanel();
     JLabel healthLabel = new JLabel();
-    JLabel monsterImg;
+    ImageIcon monsterImg;
     String name;
     MyButton myButton = new MyButton("Channel crystal");
     ActionListener listener;
 
-    public Level4 (ViewFrame viewFrame, JLabel monsterImg, String name, ActionListener listener) {
+    public Level4 (ViewFrame viewFrame, ImageIcon monsterImg, String name, ActionListener listener) {
         this.viewFrame = viewFrame;
         this.monsterImg = monsterImg;
         this.name = name;
@@ -57,9 +57,9 @@ public class Level4 extends BaseLevel {
         centerPanel.setBackground(Constants.COLOR_BACKGROUND);
         //fixa större bild på vaelarya
         centerPanel.setLayout(new GridLayout(2,2, 5, 5));
-        centerPanel.add(Constants.IMAGE_DRAGON);
-        centerPanel.add(monsterImg);
-        centerPanel.add(Constants.IMAGE_CRYSTAL);
+        centerPanel.add(new JLabel(Constants.IMAGE_DRAGON));
+        centerPanel.add(new JLabel(monsterImg));
+        centerPanel.add(new JLabel(Constants.IMAGE_CRYSTAL));
         bigPanel.add(centerPanel, BorderLayout.CENTER);
     }
 

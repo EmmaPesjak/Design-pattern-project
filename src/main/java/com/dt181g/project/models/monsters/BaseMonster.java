@@ -7,7 +7,7 @@ import javax.swing.*;
 public abstract class BaseMonster {
 
     private String name;
-    private JLabel monsterImg;
+    private ImageIcon monsterImg;
 
     public String getName() {
         return name;
@@ -17,11 +17,11 @@ public abstract class BaseMonster {
         this.name = name;
     }
 
-    public JLabel getMonsterImg() {
+    public ImageIcon getMonsterImg() {
         return monsterImg;
     }
 
-    public void setMonsterImg(JLabel monsterImg) {
+    public void setMonsterImg(ImageIcon monsterImg) {
         this.monsterImg = monsterImg;
     }
 
