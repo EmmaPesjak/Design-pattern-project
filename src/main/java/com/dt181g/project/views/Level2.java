@@ -13,9 +13,9 @@ import java.util.List;
 public class Level2 extends BaseLevel {
     ViewFrame viewFrame;
     JPanel bigPanel = new JPanel();
-    JPanel topPanel = new JPanel();
-    JPanel centerPanel = new JPanel();
-    JPanel bottomPanel = new JPanel();
+    MyPanel topPanel = new MyPanel();
+    MyPanel centerPanel = new MyPanel();
+    MyPanel bottomPanel = new MyPanel();
     MyButton myButton = new MyButton("Help the monster");
     ImageIcon monsterImg;
     String name;
@@ -42,20 +42,21 @@ public class Level2 extends BaseLevel {
 
     @Override
     void addTopPanel() {
-        topPanel.setBackground(Constants.COLOR_BACKGROUND);
-        JLabel label = new JLabel("<html>Well hello there Hero. I might look super scary but I'm a nice monster named " + name + ".<br> " +
-                "Can you help me with a problem? I've got three buckets to carry my apples in, I need a total <br>" +
-                "amount of 15 apples, no more, no less. How many apples should I place in each bucket?</html>");
+        JLabel label = new JLabel("<html>Well hello there Hero. I might look super scary but I'm a nice monster<br>named " + name + ". " +
+                "Can you help me with a problem? I've got three buckets<br> to carry my apples in, I need a total " +
+                "amount of 15 apples, no more, no less.<br>How many apples should I place in each bucket?</html>");
+        //label.setHorizontalAlignment(SwingConstants.CENTER);
+        //label.setVerticalAlignment(SwingConstants.CENTER);
         label.setFont(Constants.FONT_TEXT);
         label.setForeground(Constants.COLOR_TEXT);
-        topPanel.setBorder(new EmptyBorder(5, 5, 5,5));
+        //topPanel.setBorder(new EmptyBorder(5, 5, 5,5));
         topPanel.add(label);
         bigPanel.add(topPanel, BorderLayout.NORTH);
     }
 
     @Override
     void addCenterPanel() {
-        centerPanel.setBackground(Constants.COLOR_BACKGROUND);
+        centerPanel.setPreferredSize(new Dimension(900, 400));
         JLabel bucket1Label = new JLabel("Bucket 1:");
         bucket1Label.setForeground(Constants.COLOR_TEXT);
         bucket1Label.setFont(Constants.FONT_TEXT);
@@ -83,7 +84,6 @@ public class Level2 extends BaseLevel {
 
     @Override
     void addBottomPanel() {
-        bottomPanel.setBackground(Constants.COLOR_BACKGROUND);
         bottomPanel.add(myButton);
         myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);

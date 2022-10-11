@@ -54,13 +54,15 @@ public interface Constants {
 
     //lägga in alla listor och strings här med motivationen att man endast måste ändra dessa om det skulle vara?
 
+    //LEVEL 1 specific till comboboxen level 1
+    String[] LVL1_SORT_LIST = new String[] {"All words", "Sort alphabetically.", "Count words longer than 5 letters."};
 
 
     //grejor som används till model
     int AMOUNT_OF_UNICORNS = 7;
     int AMOUNT_OF_MONSTERS = 8;
     int RESULT_LVL2 = 15;
-    List<String> STRING_LIST = new ArrayList<>(Arrays.asList("mango", "elderberry", "apple", "lime", "banana", "orange", "strawberry", "cherry", "durian", "fig", "grapes"));
+    List<String> STRING_LIST_LVL1 = new ArrayList<>(Arrays.asList("mango", "elderberry", "apple", "lime", "banana", "orange", "strawberry", "cherry", "durian", "fig", "grapes"));
 
 
 }

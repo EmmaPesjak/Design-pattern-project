@@ -9,10 +9,9 @@ import java.awt.event.ActionListener;
 public class PreLevel extends BaseLevel {
     ViewFrame viewFrame;
     JPanel bigPanel = new JPanel();
-    JPanel topPanel = new JPanel();
-    JPanel centerPanel = new JPanel();
-    JPanel bottomPanel = new JPanel();
-
+    MyPanel topPanel = new MyPanel();
+    MyPanel centerPanel = new MyPanel();
+    MyPanel bottomPanel = new MyPanel();
     MyButton myButton = new MyButton("Start");
     ActionListener listener;
 
@@ -24,7 +23,6 @@ public class PreLevel extends BaseLevel {
 
     @Override
     void addTopPanel() {
-        topPanel.setBackground(Constants.COLOR_BACKGROUND);
         JLabel title = new JLabel("The Monster Game");
         title.setFont(Constants.FONT_BIG);
         title.setForeground(Constants.COLOR_TEXT);
@@ -34,7 +32,6 @@ public class PreLevel extends BaseLevel {
 
     @Override
     void addCenterPanel() {
-        centerPanel.setBackground(Constants.COLOR_BACKGROUND);
         centerPanel.setPreferredSize(new Dimension(1000, 470));
         centerPanel.setLayout(new GridLayout(2,2, 5, 5));
         centerPanel.add(new JLabel(Constants.IMAGE_YELLOW_MONSTER));
@@ -46,7 +43,6 @@ public class PreLevel extends BaseLevel {
 
     @Override
     void addBottomPanel() {
-        bottomPanel.setBackground(Constants.COLOR_BACKGROUND);
         bottomPanel.add(myButton);
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);
     }

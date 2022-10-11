@@ -9,9 +9,9 @@ import java.awt.event.ActionListener;
 public class PostLevel extends BaseLevel {
     ViewFrame viewFrame;
     JPanel bigPanel = new JPanel();
-    JPanel topPanel = new JPanel();
-    JPanel centerPanel = new JPanel();
-    JPanel bottomPanel = new JPanel();
+    MyPanel topPanel = new MyPanel();
+    MyPanel centerPanel = new MyPanel();
+    MyPanel bottomPanel = new MyPanel();
     MyButton myButton = new MyButton("Quit game");
     ActionListener listener;
 
@@ -23,7 +23,6 @@ public class PostLevel extends BaseLevel {
 
     @Override
     void addTopPanel() {
-        topPanel.setBackground(Constants.COLOR_BACKGROUND);
         JLabel completed = new JLabel("You completed the game! Well done!");
         completed.setFont(Constants.FONT_BIG);
         completed.setForeground(Constants.COLOR_TEXT);
@@ -33,14 +32,13 @@ public class PostLevel extends BaseLevel {
 
     @Override
     void addCenterPanel() {
-        centerPanel.setBackground(Constants.COLOR_BACKGROUND);
+        centerPanel.setPreferredSize(new Dimension(1000, 470));
         centerPanel.add(new JLabel(Constants.IMAGE_STAR));
         bigPanel.add(centerPanel, BorderLayout.CENTER);
     }
 
     @Override
     void addBottomPanel() {
-        bottomPanel.setBackground(Constants.COLOR_BACKGROUND);
         bottomPanel.add(myButton);
         myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);

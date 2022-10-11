@@ -9,9 +9,9 @@ import java.awt.event.ActionListener;
 public class Level4 extends BaseLevel {
     ViewFrame viewFrame;
     JPanel bigPanel = new JPanel();
-    JPanel topPanel = new JPanel();
-    JPanel centerPanel = new JPanel();
-    JPanel bottomPanel = new JPanel();
+    MyPanel topPanel = new MyPanel();
+    MyPanel centerPanel = new MyPanel();
+    MyPanel bottomPanel = new MyPanel();
     JLabel healthLabel = new JLabel();
     ImageIcon monsterImg;
     String name;
@@ -46,11 +46,10 @@ public class Level4 extends BaseLevel {
 
     @Override
     void addTopPanel() {
-        topPanel.setBackground(Constants.COLOR_BACKGROUND);
-        JLabel label = new JLabel("<html>Hero! I am Vaelarya Vision Walker, the mighty dragon. A monster " +
-                "named " + name + " and his <br> " +
-                "five friends are attacking me! Luckily they only have a pool of three weapons to share <br>" +
-                " and take turns. Grab that healing crystal and start channeling to heal me, quickly!</html>");
+        JLabel label = new JLabel("<html>Hero! I am Vaelarya Vision Walker, the mighty dragon.<br> A monster " +
+                "named " + name + " and his " +
+                "five friends are attacking me! <br>Luckily they only have a pool of three weapons to share <br>" +
+                " and take turns. Grab that healing crystal and start<br>channeling to heal me, quickly!</html>");
         label.setFont(Constants.FONT_TEXT);
         label.setForeground(Constants.COLOR_TEXT);
         topPanel.add(label);
@@ -59,7 +58,6 @@ public class Level4 extends BaseLevel {
 
     @Override
     void addCenterPanel() {
-        centerPanel.setBackground(Constants.COLOR_BACKGROUND);
         //fixa större bild på vaelarya
         centerPanel.setLayout(new GridLayout(2,2, 5, 5));
         centerPanel.add(new JLabel(Constants.IMAGE_DRAGON));
@@ -71,7 +69,6 @@ public class Level4 extends BaseLevel {
 
     @Override
     void addBottomPanel() {
-        bottomPanel.setBackground(Constants.COLOR_BACKGROUND);
         bottomPanel.setPreferredSize(new Dimension(1000, 120));
         bottomPanel.add(myButton);
         myButton.setAlignmentX(Component.CENTER_ALIGNMENT);

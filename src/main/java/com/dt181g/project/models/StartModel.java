@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class StartModel {
 
     private int level2Result;
-    List<String> words = Constants.STRING_LIST;
+    List<String> words = Constants.STRING_LIST_LVL1;
 
     MonsterFactory monsterFactory = new MonsterFactory();
 
@@ -58,7 +58,7 @@ public class StartModel {
 
     public String countWordsLvl1() {
         long amountOfWords = words.stream().filter(word -> word.length() > 5).count();
-        return Long.toString(amountOfWords);
+        return "There are " + Long.toString(amountOfWords) + " words containing more than 5 letters. That is awesome!";
     }
 
 

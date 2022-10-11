@@ -9,9 +9,9 @@ import java.awt.event.ActionListener;
 public class Level3 extends BaseLevel {
     ViewFrame viewFrame;
     JPanel bigPanel = new JPanel();
-    JPanel topPanel = new JPanel();
-    JPanel centerPanel = new JPanel();
-    JPanel bottomPanel = new JPanel();
+    MyPanel topPanel = new MyPanel();
+    MyPanel centerPanel = new MyPanel();
+    MyPanel bottomPanel = new MyPanel();
     ImageIcon monsterImg;
     String name;
     MyButton myButton = new MyButton("Check answer");
@@ -34,9 +34,8 @@ public class Level3 extends BaseLevel {
 
     @Override
     void addTopPanel() {
-        topPanel.setBackground(Constants.COLOR_BACKGROUND);
-        JLabel label = new JLabel("<html>Hi, my name is " + name + " the Ugly Flesh Beast, long name I know. I lost my brother<br>" +
-                "Rothead so now I'm sad. Can you cheer me up by solving my riddle? What do you call a monster <br>with a high IQ? </html>");
+        JLabel label = new JLabel("<html>Hi, my name is " + name + " the Ugly Flesh Beast, long name I know.<br>I lost my brother" +
+                " Rothead so now I'm sad.<br>Can you cheer me up by solving my riddle?<br>What do you call a monster with a high IQ? </html>");
         label.setFont(Constants.FONT_TEXT);
         label.setForeground(Constants.COLOR_TEXT);
         topPanel.add(label);
@@ -45,7 +44,6 @@ public class Level3 extends BaseLevel {
 
     @Override
     void addCenterPanel() {
-        centerPanel.setBackground(Constants.COLOR_BACKGROUND);
         radioButton1.setBackground(Constants.COLOR_BACKGROUND);
         radioButton1.setForeground(Constants.COLOR_TEXT);
         radioButton1.setFont(Constants.FONT_TEXT);
@@ -80,7 +78,6 @@ public class Level3 extends BaseLevel {
 
     @Override
     void addBottomPanel() {
-        bottomPanel.setBackground(Constants.COLOR_BACKGROUND);
         bottomPanel.add(myButton);
         myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);

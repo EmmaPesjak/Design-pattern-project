@@ -10,10 +10,11 @@ public class Level2andAHalf extends BaseLevel {
 
     ViewFrame viewFrame;
     JPanel bigPanel = new JPanel();
-    JPanel topPanel = new JPanel();
-    JPanel centerPanel = new JPanel();
-    JPanel bottomPanel = new JPanel();
-    MyButton myButton = new MyButton("YOLO");
+    MyPanel topPanel = new MyPanel();
+    MyPanel centerPanel = new MyPanel();
+    MyPanel bottomPanel = new MyPanel();
+    MyButton nextLevelBtn = new MyButton("Next level");
+    MyButton produceBtn = new MyButton("Produce!");
     ImageIcon monsterImg;
     String name;
     ActionListener listener;
@@ -42,11 +43,10 @@ public class Level2andAHalf extends BaseLevel {
 
     @Override
     void addTopPanel() {
-        topPanel.setBackground(Constants.COLOR_BACKGROUND);
         topPanel.add(new JLabel(monsterImg));
-        JLabel label = new JLabel("<html>" + name + " is my name, nice to meet you hero. This is my abstract factory<br>" +
-                "It creates factories which can create unicorns or monsters.<br>" +
-                "Want to create some totally random characters? </html>");
+        JLabel label = new JLabel("<html>" + name + " is my name, nice to meet you hero. <br>This is my abstract factory. " +
+                "It creates factories <br>which can create unicorns or monsters. " +
+                "Want to create<br> some totally random characters? </html>");
         label.setFont(Constants.FONT_TEXT);
         label.setForeground(Constants.COLOR_TEXT);
         topPanel.add(new JLabel(Constants.IMAGE_FACTORY));
@@ -56,26 +56,27 @@ public class Level2andAHalf extends BaseLevel {
 
 
 
-        //bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
+
     }
 
     @Override
     void addCenterPanel() {
-        centerPanel.setBackground(Constants.COLOR_BACKGROUND);
         bigPanel.add(centerPanel, BorderLayout.CENTER);
     }
 
     @Override
     void addBottomPanel() {
-        bottomPanel.setBackground(Constants.COLOR_BACKGROUND);
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);
-        bottomPanel.add(myButton);
+
+        bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
+        bottomPanel.add(produceBtn);
+        bottomPanel.add(nextLevelBtn);
 
     }
 
     @Override
     void addButtonListener() {
-        myButton.addActionListener(listener);
+        nextLevelBtn.addActionListener(listener);
     }
 
     @Override
