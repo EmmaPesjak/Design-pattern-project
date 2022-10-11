@@ -25,8 +25,8 @@ public class PostLevel extends BaseLevel {
     void addTopPanel() {
         topPanel.setBackground(Constants.COLOR_BACKGROUND);
         JLabel completed = new JLabel("You completed the game! Well done!");
-        completed.setFont(Constants.TITLE_FONT);
-        completed.setForeground(Constants.TEXT_COLOR);
+        completed.setFont(Constants.FONT_BIG);
+        completed.setForeground(Constants.COLOR_TEXT);
         topPanel.add(completed);
         bigPanel.add(topPanel, BorderLayout.NORTH);
     }

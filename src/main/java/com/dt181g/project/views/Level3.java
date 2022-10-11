@@ -37,8 +37,8 @@ public class Level3 extends BaseLevel {
         topPanel.setBackground(Constants.COLOR_BACKGROUND);
         JLabel label = new JLabel("<html>Hi, my name is " + name + " the Ugly Flesh Beast, long name I know. I lost my brother<br>" +
                 "Rothead so now I'm sad. Can you cheer me up by solving my riddle? What do you call a monster <br>with a high IQ? </html>");
-        label.setFont(Constants.TEXT_FONT);
-        label.setForeground(Constants.TEXT_COLOR);
+        label.setFont(Constants.FONT_TEXT);
+        label.setForeground(Constants.COLOR_TEXT);
         topPanel.add(label);
         bigPanel.add(topPanel, BorderLayout.NORTH);
     }
@@ -47,14 +47,14 @@ public class Level3 extends BaseLevel {
     void addCenterPanel() {
         centerPanel.setBackground(Constants.COLOR_BACKGROUND);
         radioButton1.setBackground(Constants.COLOR_BACKGROUND);
-        radioButton1.setForeground(Constants.TEXT_COLOR);
-        radioButton1.setFont(Constants.TEXT_FONT);
+        radioButton1.setForeground(Constants.COLOR_TEXT);
+        radioButton1.setFont(Constants.FONT_TEXT);
         radioButton2.setBackground(Constants.COLOR_BACKGROUND);
-        radioButton2.setForeground(Constants.TEXT_COLOR);
-        radioButton2.setFont(Constants.TEXT_FONT);
+        radioButton2.setForeground(Constants.COLOR_TEXT);
+        radioButton2.setFont(Constants.FONT_TEXT);
         radioButton3.setBackground(Constants.COLOR_BACKGROUND);
-        radioButton3.setForeground(Constants.TEXT_COLOR);
-        radioButton3.setFont(Constants.TEXT_FONT);
+        radioButton3.setForeground(Constants.COLOR_TEXT);
+        radioButton3.setFont(Constants.FONT_TEXT);
         GridBagLayout gridBagLayout = new GridBagLayout();
         centerPanel.setLayout(gridBagLayout);
         GridBagConstraints gbc = new GridBagConstraints();

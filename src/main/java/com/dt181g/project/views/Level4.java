@@ -34,9 +34,9 @@ public class Level4 extends BaseLevel {
         // skriva ut monsternas skada?
         bottomPanel.removeAll();
         healthLabel.setText("Vaelarya's health: " + health);
-        healthLabel.setFont(Constants.TITLE_FONT);
+        healthLabel.setFont(Constants.FONT_BIG);
         healthLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        healthLabel.setForeground(Constants.TEXT_COLOR);
+        healthLabel.setForeground(Constants.COLOR_TEXT);
         bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS));
         bottomPanel.add(healthLabel);
         bottomPanel.add(healthPoolPanel);
@@ -51,8 +51,8 @@ public class Level4 extends BaseLevel {
                 "named " + name + " and his <br> " +
                 "five friends are attacking me! Luckily they only have a pool of three weapons to share <br>" +
                 " and take turns. Grab that healing crystal and start channeling to heal me, quickly!</html>");
-        label.setFont(Constants.TEXT_FONT);
-        label.setForeground(Constants.TEXT_COLOR);
+        label.setFont(Constants.FONT_TEXT);
+        label.setForeground(Constants.COLOR_TEXT);
         topPanel.add(label);
         bigPanel.add(topPanel, BorderLayout.NORTH);
     }

@@ -46,8 +46,8 @@ public class Level2 extends BaseLevel {
         JLabel label = new JLabel("<html>Well hello there Hero. I might look super scary but I'm a nice monster named " + name + ".<br> " +
                 "Can you help me with a problem? I've got three buckets to carry my apples in, I need a total <br>" +
                 "amount of 15 apples, no more, no less. How many apples should I place in each bucket?</html>");
-        label.setFont(Constants.TEXT_FONT);
-        label.setForeground(Constants.TEXT_COLOR);
+        label.setFont(Constants.FONT_TEXT);
+        label.setForeground(Constants.COLOR_TEXT);
         topPanel.setBorder(new EmptyBorder(5, 5, 5,5));
         topPanel.add(label);
         bigPanel.add(topPanel, BorderLayout.NORTH);
@@ -57,18 +57,18 @@ public class Level2 extends BaseLevel {
     void addCenterPanel() {
         centerPanel.setBackground(Constants.COLOR_BACKGROUND);
         JLabel bucket1Label = new JLabel("Bucket 1:");
-        bucket1Label.setForeground(Constants.TEXT_COLOR);
-        bucket1Label.setFont(Constants.TEXT_FONT);
+        bucket1Label.setForeground(Constants.COLOR_TEXT);
+        bucket1Label.setFont(Constants.FONT_TEXT);
         JLabel bucket2Label = new JLabel("Bucket 2:");
-        bucket2Label.setForeground(Constants.TEXT_COLOR);
-        bucket2Label.setFont(Constants.TEXT_FONT);
+        bucket2Label.setForeground(Constants.COLOR_TEXT);
+        bucket2Label.setFont(Constants.FONT_TEXT);
         JLabel bucket3Label = new JLabel("Bucket 3:");
-        bucket3Label.setForeground(Constants.TEXT_COLOR);
-        bucket3Label.setFont(Constants.TEXT_FONT);
+        bucket3Label.setForeground(Constants.COLOR_TEXT);
+        bucket3Label.setFont(Constants.FONT_TEXT);
         centerPanel.setLayout(new GridLayout(3,3, 5, 0));
-        bucket1.setFont(Constants.TITLE_FONT);
-        bucket2.setFont(Constants.TITLE_FONT);
-        bucket3.setFont(Constants.TITLE_FONT);
+        bucket1.setFont(Constants.FONT_BIG);
+        bucket2.setFont(Constants.FONT_BIG);
+        bucket3.setFont(Constants.FONT_BIG);
         centerPanel.add(new JLabel(monsterImg));
         centerPanel.add(new JLabel(Constants.IMAGE_APPLE));
         centerPanel.add(new JLabel(Constants.IMAGE_BUCKET));

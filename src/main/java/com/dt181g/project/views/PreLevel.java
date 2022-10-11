@@ -13,7 +13,6 @@ public class PreLevel extends BaseLevel {
     JPanel centerPanel = new JPanel();
     JPanel bottomPanel = new JPanel();
 
-    MyButton infoButton = new MyButton("Info");
     MyButton myButton = new MyButton("Start");
     ActionListener listener;
 
@@ -27,8 +26,8 @@ public class PreLevel extends BaseLevel {
     void addTopPanel() {
         topPanel.setBackground(Constants.COLOR_BACKGROUND);
         JLabel title = new JLabel("The Monster Game");
-        title.setFont(Constants.TITLE_FONT);
-        title.setForeground(Constants.TEXT_COLOR);
+        title.setFont(Constants.FONT_BIG);
+        title.setForeground(Constants.COLOR_TEXT);
         topPanel.add(title);
         bigPanel.add(topPanel, BorderLayout.NORTH);
     }
@@ -48,8 +47,6 @@ public class PreLevel extends BaseLevel {
     @Override
     void addBottomPanel() {
         bottomPanel.setBackground(Constants.COLOR_BACKGROUND);
-        bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
-        bottomPanel.add(infoButton);
         bottomPanel.add(myButton);
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);
     }

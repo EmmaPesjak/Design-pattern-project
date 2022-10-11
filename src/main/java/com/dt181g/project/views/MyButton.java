@@ -8,8 +8,8 @@ public class MyButton extends JButton {
 
     public MyButton(String text) {
         this.setText(text);
-        this.setBackground(Constants.BUTTON_COLOR);
-        this.setFont(Constants.BUTTON_FONT);
-        this.setForeground(Constants.BUTTON_TEXT_COLOR);
+        this.setBackground(Constants.COLOR_BUTTON);
+        this.setFont(Constants.FONT_BUTTON);
+        this.setForeground(Constants.COLOR_BUTTON_TEXT);
     }
 }

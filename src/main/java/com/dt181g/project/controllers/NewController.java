@@ -82,7 +82,8 @@ public class NewController implements Observer {
                 if (startModel.level2Success()) {
                     level2andAHalf.makePanel();
 
-                    level2andAHalf.updateLevel2andahalf(startModel.getRandomCharImg(), startModel.getRandomCharImg(), startModel.getRandomCharImg());
+                    level2andAHalf.updateLevel2andahalf(startModel.getRandomCharImg(), startModel.getRandomCharImg(),
+                            startModel.getRandomCharImg(), startModel.getRandomCharImg(), startModel.getRandomCharImg());
                 } else {
                     viewFrame.displayErrorMsg("Does not add up to 15, try again!");
                 }

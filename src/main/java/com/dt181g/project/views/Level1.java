@@ -19,6 +19,7 @@ public class Level1 extends BaseLevel {
     ImageIcon monsterImg;
     String name;
     String words;
+    //lägga denna lista i constants?
     String[] sortFunctions = new String[] {"All words", "Sort alphabetically.", "Count words longer than 5 letters."};
     JComboBox<String> comboBox = new JComboBox<>(sortFunctions);
     ActionListener listener;
@@ -40,8 +41,8 @@ public class Level1 extends BaseLevel {
         centerPanel.add(new JLabel(monsterImg));
 
         JLabel wordLabel = new JLabel(words);
-        wordLabel.setFont(Constants.TEXT_FONT);
-        wordLabel.setForeground(Constants.TEXT_COLOR);
+        wordLabel.setFont(Constants.FONT_TEXT);
+        wordLabel.setForeground(Constants.COLOR_TEXT);
         //wordLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         centerPanel.add(wordLabel);
         centerPanel.revalidate();
@@ -60,8 +61,8 @@ public class Level1 extends BaseLevel {
     void addTopPanel() {
         topPanel.setBackground(Constants.COLOR_BACKGROUND);
         JLabel label = new JLabel("Hi, I'm " + name + ". I like words. These are my words. Want to play with them?");
-        label.setFont(Constants.TEXT_FONT);
-        label.setForeground(Constants.TEXT_COLOR);
+        label.setFont(Constants.FONT_TEXT);
+        label.setForeground(Constants.COLOR_TEXT);
         topPanel.setBorder(new EmptyBorder(5, 5, 5,5));
         topPanel.add(label);
         bigPanel.add(topPanel, BorderLayout.NORTH);
@@ -75,8 +76,8 @@ public class Level1 extends BaseLevel {
         centerPanel.add(new JLabel(monsterImg));
         centerPanel.setBorder(new EmptyBorder(100, 5, 5,5));
         sentence.setText(words);
-        sentence.setFont(Constants.TEXT_FONT);
-        sentence.setForeground(Constants.TEXT_COLOR);
+        sentence.setFont(Constants.FONT_TEXT);
+        sentence.setForeground(Constants.COLOR_TEXT);
         centerPanel.add(sentence);
         bigPanel.add(centerPanel, BorderLayout.CENTER);
     }

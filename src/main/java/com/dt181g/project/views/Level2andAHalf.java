@@ -3,7 +3,6 @@ package com.dt181g.project.views;
 import com.dt181g.project.support.Constants;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -28,11 +27,14 @@ public class Level2andAHalf extends BaseLevel {
         bigPanel.setLayout(new BorderLayout());
     }
 
-    public void updateLevel2andahalf(ImageIcon char1, ImageIcon char2, ImageIcon char3) {
+    public void updateLevel2andahalf(ImageIcon char1, ImageIcon char2, ImageIcon char3, ImageIcon char4, ImageIcon char5) {
 
         centerPanel.add(new JLabel(char1));
         centerPanel.add(new JLabel(char2));
         centerPanel.add(new JLabel(char3));
+        centerPanel.add(new JLabel(char4));
+        centerPanel.add(new JLabel(char5));
+
         centerPanel.revalidate();
         centerPanel.repaint();
     }
@@ -45,12 +47,16 @@ public class Level2andAHalf extends BaseLevel {
         JLabel label = new JLabel("<html>" + name + " is my name, nice to meet you hero. This is my abstract factory<br>" +
                 "It creates factories which can create unicorns or monsters.<br>" +
                 "Want to create some totally random characters? </html>");
-        label.setFont(Constants.TEXT_FONT);
-        label.setForeground(Constants.TEXT_COLOR);
+        label.setFont(Constants.FONT_TEXT);
+        label.setForeground(Constants.COLOR_TEXT);
         topPanel.add(new JLabel(Constants.IMAGE_FACTORY));
         topPanel.add(label);
 
         bigPanel.add(topPanel, BorderLayout.NORTH);
+
+
+
+        //bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
     }
 
     @Override

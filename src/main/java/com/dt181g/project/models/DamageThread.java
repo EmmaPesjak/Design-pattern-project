@@ -18,7 +18,7 @@ public class DamageThread implements Runnable {
             if (distributor.hasAnotherWeapon()) {
                 try {
 
-                    DragonWeapon weapon = distributor.getWeapon();
+                    DragonWeapon weapon = distributor.borrowWeapon();
                     System.out.println(Thread.currentThread().getName() + " is using " + weapon.toString());
                     //här får jag ju fixa något bra random
                     HealthMeter.INSTANCE.removeHealth(new Random().nextInt(3) + 1);

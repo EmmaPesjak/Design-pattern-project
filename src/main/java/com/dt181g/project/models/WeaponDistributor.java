@@ -15,7 +15,7 @@ public class WeaponDistributor {
         }
     }
 
-    public DragonWeapon getWeapon() {
+    public synchronized DragonWeapon borrowWeapon() {
         return weapons.pollLast();
     }
 
@@ -23,5 +23,5 @@ public class WeaponDistributor {
         weapons.add(dragonWeapon);
     }
 
-    public boolean hasAnotherWeapon() { return !weapons.isEmpty(); }
+    public synchronized boolean hasAnotherWeapon() { return !weapons.isEmpty(); }
 }
