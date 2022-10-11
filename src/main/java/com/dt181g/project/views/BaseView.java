@@ -1,10 +1,9 @@
 package com.dt181g.project.views;
 
 import javax.swing.*;
-import java.awt.event.ActionListener;
 
 //detta är ju template typ
-public abstract class BaseLevel extends JPanel {
+public abstract class BaseView extends JPanel {
 
     public final void makePanel() {
 

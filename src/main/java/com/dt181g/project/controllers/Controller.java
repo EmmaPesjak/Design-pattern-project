@@ -13,48 +13,50 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
-public class NewController implements Observer {
+public class Controller implements Observer {
 
     private final ViewFrame viewFrame;
     private final StartModel startModel;
-    private final PreLevel preLevel;
-    private final Level1 level1;
-    private final Level2 level2;
-    private final Level2andAHalf level2andAHalf;
-    private final Level3 level3;
-    private final Level4 level4;
-    private final PostLevel postLevel;
+    private final Level1View level1View;
+    private final Level2View level2View;
+    private final Level3View level3View;
+    private final Level4View level4View;
+    private final Level5View level5View;
+    private final EndView endView;
+    private final GameOverView gameOverView;
 
-    public NewController(ViewFrame viewFrame, StartModel startModel) {
+    public Controller(ViewFrame viewFrame, StartModel startModel) {
         this.viewFrame = viewFrame;
         this.startModel = startModel;
 
         BaseMonster monster1 = startModel.getRandomMonster();
         BaseMonster monster2 = startModel.getRandomMonster();
-        BaseMonster monster2andahalf = startModel.getRandomMonster();
         BaseMonster monster3 = startModel.getRandomMonster();
         BaseMonster monster4 = startModel.getRandomMonster();
+        BaseMonster monster5 = startModel.getRandomMonster();
 
-        preLevel = new PreLevel(viewFrame, new StartButtonListener());
-        preLevel.makePanel();
-        level1 = new Level1(viewFrame, monster1.getMonsterImg(), monster1.getName(), startModel.level1RandomWords(), new Level1ButtonListener());
-        level1.addLvl1ComboboxListener(new Level1ComboboxListener());
-        level2 = new Level2(viewFrame, monster2.getMonsterImg(), monster2.getName(), new Level2ButtonListener());
-        level2andAHalf = new Level2andAHalf(viewFrame, monster2andahalf.getMonsterImg(), monster2andahalf.getName(), new Level2andAHalfButtonListener());
-        level3 = new Level3(viewFrame, monster3.getMonsterImg(), monster3.getName(), new Level3ButtonListener());
-        level4 = new Level4(viewFrame, monster4.getMonsterImg(), monster4.getName(), new Level4ButtonListener());
-        postLevel = new PostLevel(viewFrame, new QuitButtonListener());
+        StartView startView = new StartView(viewFrame, new StartButtonListener());
+        startView.makePanel();
+        level1View = new Level1View(viewFrame, monster1.getMonsterImg(), monster1.getName(), startModel.level1RandomWords(), new Level1ButtonListener());
+        level1View.addLvl1ComboboxListener(new Level1ComboboxListener());
+        level2View = new Level2View(viewFrame, monster2.getMonsterImg(), monster2.getName(), new Level2ButtonListener());
+        level3View = new Level3View(viewFrame, monster3.getMonsterImg(), monster3.getName(), new Level3ButtonListenerNext());
+        level3View.addProduceButtonListener(new Level3ButtonListenerProduce());
+        level4View = new Level4View(viewFrame, monster4.getMonsterImg(), monster4.getName(), new Level4ButtonListener());
+        level5View = new Level5View(viewFrame, monster5.getMonsterImg(), monster5.getName(), new Level5ButtonListener());
+        endView = new EndView(viewFrame, new QuitButtonListener());
+        gameOverView = new GameOverView(viewFrame, new RestartButtonListener());
     }
 
     class Level1ComboboxListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (Objects.equals(level1.getSelectedItem(), "Sort alphabetically.")) {
-                level1.updateLevel1(startModel.sortLevel1Alphabetically());
-            } else if ((Objects.equals(level1.getSelectedItem(), "Count words longer than 5 letters."))) {
-                level1.updateLevel1(startModel.countWordsLvl1());
+            if (Objects.equals(level1View.getSelectedItem(), "Sort alphabetically.")) {
+                level1View.updateLevel1(startModel.sortLevel1Alphabetically());
+            } else if ((Objects.equals(level1View.getSelectedItem(), "Count words longer than 5 letters."))) {
+                level1View.updateLevel1(startModel.countWordsLvl1());
             } else {
-                level1.updateLevel1(startModel.level1RandomWords());
+                level1View.updateLevel1(startModel.level1RandomWords());
             }
         }
     }
@@ -62,14 +64,14 @@ public class NewController implements Observer {
     class StartButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            level1.makePanel();
+            level1View.makePanel();
         }
     }
 
     class Level1ButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            level2.makePanel();
+            level2View.makePanel();
         }
     }
 
@@ -77,13 +79,11 @@ public class NewController implements Observer {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                startModel.calculateLevel2(level2.getBuckets());
+                startModel.calculateLevel2(level2View.getBuckets());
 
                 if (startModel.level2Success()) {
-                    level2andAHalf.makePanel();
+                    level3View.makePanel();
 
-                    level2andAHalf.updateLevel2andahalf(startModel.getRandomCharImg(), startModel.getRandomCharImg(),
-                            startModel.getRandomCharImg(), startModel.getRandomCharImg(), startModel.getRandomCharImg());
                 } else {
                     viewFrame.displayErrorMsg("Does not add up to 15, try again!");
                 }
@@ -95,26 +95,35 @@ public class NewController implements Observer {
         }
     }
 
-    class Level2andAHalfButtonListener implements ActionListener {
+    class Level3ButtonListenerNext implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            level3.makePanel();
+            level4View.makePanel();
         }
     }
 
-    class Level3ButtonListener implements ActionListener {
+    class Level3ButtonListenerProduce implements ActionListener {
+
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (level3.rightAnswerFrank()) {
-                level4.makePanel();
+            level3View.updateLevel3(startModel.getRandomCharImg(), startModel.getRandomCharImg(),
+                    startModel.getRandomCharImg(), startModel.getRandomCharImg(), startModel.getRandomCharImg());
+        }
+    }
+
+    class Level4ButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (level4View.rightAnswerFrank()) {
+                level5View.makePanel();
             } else {
                 viewFrame.displayErrorMsg("Wrong answer, try again.");
             }
         }
     }
 
-    class Level4ButtonListener implements ActionListener {
+    class Level5ButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             GUITimer();
@@ -122,13 +131,21 @@ public class NewController implements Observer {
         }
     }
 
-    class QuitButtonListener implements ActionListener {
+    static class QuitButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.exit(0);
         }
     }
 
+    class RestartButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            //här blir det bajsdubbelt, måste clearall som fan
+            level5View.makePanel();
+        }
+    }
 
 
 
@@ -165,7 +182,7 @@ public class NewController implements Observer {
     }
 
     public void updateGUI() {
-        level4.updateLevel4(new HealthPoolPanel(healthMeter.getHealth()), healthMeter.getHealth());
+        level5View.updateLevel5(new HealthPoolPanel(healthMeter.getHealth()), healthMeter.getHealth());
     }
 
     public void createHealer () {
@@ -195,7 +212,11 @@ public class NewController implements Observer {
         if (amountOfHealth > 170) {
             terminateThreads();
             stopTimer();
-            postLevel.makePanel();
+            endView.makePanel();
+        } else if (amountOfHealth <= 0) {
+            terminateThreads();
+            stopTimer();
+            gameOverView.makePanel();
         }
     }
 }

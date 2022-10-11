@@ -3,19 +3,20 @@ package com.dt181g.project.views;
 import com.dt181g.project.support.Constants;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class PreLevel extends BaseLevel {
+public class EndView extends BaseView {
     ViewFrame viewFrame;
     JPanel bigPanel = new JPanel();
     MyPanel topPanel = new MyPanel();
     MyPanel centerPanel = new MyPanel();
     MyPanel bottomPanel = new MyPanel();
-    MyButton myButton = new MyButton("Start");
+    MyButton myButton = new MyButton("Quit game");
     ActionListener listener;
 
-    public PreLevel(ViewFrame viewFrame, ActionListener listener) {
+    public EndView(ViewFrame viewFrame, ActionListener listener) {
         this.viewFrame = viewFrame;
         this.listener = listener;
         bigPanel.setLayout(new BorderLayout());
@@ -23,33 +24,26 @@ public class PreLevel extends BaseLevel {
 
     @Override
     void addTopPanel() {
-        JLabel title = new JLabel("The Monster Game");
-        title.setFont(Constants.FONT_BIG);
-        title.setForeground(Constants.COLOR_TEXT);
-        topPanel.add(title);
+        JLabel completed = new JLabel("You completed the game! Well done!");
+        completed.setFont(Constants.FONT_BIG);
+        completed.setForeground(Constants.COLOR_TEXT);
+        topPanel.add(completed);
         bigPanel.add(topPanel, BorderLayout.NORTH);
     }
 
     @Override
     void addCenterPanel() {
         centerPanel.setPreferredSize(new Dimension(1000, 470));
-        centerPanel.setLayout(new GridLayout(2,2, 5, 5));
-        centerPanel.add(new JLabel(Constants.IMAGE_YELLOW_MONSTER));
-        centerPanel.add(new JLabel(Constants.IMAGE_BLUE_MONSTER));
-        centerPanel.add(new JLabel(Constants.IMAGE_RED_MONSTER));
-        centerPanel.add(new JLabel(Constants.IMAGE_GREEN_MONSTER));
+        centerPanel.setBorder(new EmptyBorder(120, 5, 5,5));
+        centerPanel.add(new JLabel(Constants.IMAGE_STAR));
         bigPanel.add(centerPanel, BorderLayout.CENTER);
     }
 
     @Override
     void addBottomPanel() {
         bottomPanel.add(myButton);
+        myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);
-    }
-
-    @Override
-    void addButtonListener() {
-        myButton.addActionListener(listener);
     }
 
     @Override
@@ -59,4 +53,8 @@ public class PreLevel extends BaseLevel {
         viewFrame.updateView(bigPanel);
     }
 
+    @Override
+    void addButtonListener() {
+        myButton.addActionListener(listener);
+    }
 }

@@ -13,7 +13,7 @@ public class HealThread implements Runnable {
     public void run() {
         while (!terminate) {
             try {
-                HealthMeter.INSTANCE.addHealth(new Random().nextInt(20) + 1);
+                HealthMeter.INSTANCE.addHealth(new Random().nextInt(1) + 1);  //ta bound 20
                 Thread.sleep((new Random().nextInt(2) + 1) * 1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();

@@ -3,14 +3,13 @@ package com.dt181g.project.views;
 import com.dt181g.project.support.Constants;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Level2 extends BaseLevel {
+public class Level2View extends BaseView {
     ViewFrame viewFrame;
     JPanel bigPanel = new JPanel();
     MyPanel topPanel = new MyPanel();
@@ -24,7 +23,7 @@ public class Level2 extends BaseLevel {
     JTextField bucket3 = new JTextField(8);
     ActionListener listener;
 
-    public Level2(ViewFrame viewFrame, ImageIcon monsterImg, String name, ActionListener listener) {
+    public Level2View(ViewFrame viewFrame, ImageIcon monsterImg, String name, ActionListener listener) {
 
         this.viewFrame = viewFrame;
         this.monsterImg = monsterImg;

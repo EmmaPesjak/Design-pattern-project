@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
-public class Level1 extends BaseLevel {
+public class Level1View extends BaseView {
     ViewFrame viewFrame;
     JPanel bigPanel = new JPanel();
     MyPanel topPanel = new MyPanel();
@@ -23,7 +23,7 @@ public class Level1 extends BaseLevel {
     JComboBox<String> comboBox = new JComboBox<>(sortFunctions);
     ActionListener listener;
 
-    public Level1(ViewFrame viewFrame, ImageIcon monsterImg, String name, String words, ActionListener listener) {
+    public Level1View(ViewFrame viewFrame, ImageIcon monsterImg, String name, String words, ActionListener listener) {
         this.viewFrame = viewFrame;
         this.monsterImg = monsterImg;
         this.name = name;

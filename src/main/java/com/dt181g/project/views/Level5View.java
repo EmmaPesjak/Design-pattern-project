@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class Level4 extends BaseLevel {
+public class Level5View extends BaseView {
     ViewFrame viewFrame;
     JPanel bigPanel = new JPanel();
     MyPanel topPanel = new MyPanel();
@@ -22,7 +22,7 @@ public class Level4 extends BaseLevel {
     //OBS MÅSTE FIXA NÅGON OM HON SKULLE DÖ
 
 
-    public Level4 (ViewFrame viewFrame, ImageIcon monsterImg, String name, ActionListener listener) {
+    public Level5View(ViewFrame viewFrame, ImageIcon monsterImg, String name, ActionListener listener) {
         this.viewFrame = viewFrame;
         this.monsterImg = monsterImg;
         this.name = name;
@@ -30,7 +30,7 @@ public class Level4 extends BaseLevel {
         bigPanel.setLayout(new BorderLayout());
     }
 
-    public void updateLevel4(HealthPoolPanel healthPoolPanel, int health) {
+    public void updateLevel5(HealthPoolPanel healthPoolPanel, int health) {
         // skriva ut monsternas skada?
         bottomPanel.removeAll();
         healthLabel.setText("Vaelarya's health: " + health);
@@ -58,7 +58,7 @@ public class Level4 extends BaseLevel {
 
     @Override
     void addCenterPanel() {
-        //fixa större bild på vaelarya
+        centerPanel.setPreferredSize(new Dimension(1000, 300));
         centerPanel.setLayout(new GridLayout(2,2, 5, 5));
         centerPanel.add(new JLabel(Constants.IMAGE_DRAGON));
         centerPanel.add(new JLabel(monsterImg));

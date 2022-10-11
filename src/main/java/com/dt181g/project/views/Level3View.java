@@ -3,10 +3,11 @@ package com.dt181g.project.views;
 import com.dt181g.project.support.Constants;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class Level2andAHalf extends BaseLevel {
+public class Level3View extends BaseView {
 
     ViewFrame viewFrame;
     JPanel bigPanel = new JPanel();
@@ -14,22 +15,27 @@ public class Level2andAHalf extends BaseLevel {
     MyPanel centerPanel = new MyPanel();
     MyPanel bottomPanel = new MyPanel();
     MyButton nextLevelBtn = new MyButton("Next level");
-    MyButton produceBtn = new MyButton("Produce!");
+    MyButton produceBtn = new MyButton("Produce");
     ImageIcon monsterImg;
     String name;
-    ActionListener listener;
+    ActionListener nextListener;
 
-    public Level2andAHalf (ViewFrame viewFrame, ImageIcon monsterImg, String name, ActionListener listener) {
+    public Level3View(ViewFrame viewFrame, ImageIcon monsterImg, String name, ActionListener nextListener) {
         this.viewFrame = viewFrame;
         this.monsterImg = monsterImg;
         this.name = name;
-        this.listener = listener;
+        this.nextListener = nextListener;
 
         bigPanel.setLayout(new BorderLayout());
     }
 
-    public void updateLevel2andahalf(ImageIcon char1, ImageIcon char2, ImageIcon char3, ImageIcon char4, ImageIcon char5) {
+    public void addProduceButtonListener(ActionListener listener) {
+        produceBtn.addActionListener(listener);
+    }
 
+    public void updateLevel3(ImageIcon char1, ImageIcon char2, ImageIcon char3, ImageIcon char4, ImageIcon char5) {
+
+        centerPanel.removeAll();
         centerPanel.add(new JLabel(char1));
         centerPanel.add(new JLabel(char2));
         centerPanel.add(new JLabel(char3));
@@ -43,18 +49,17 @@ public class Level2andAHalf extends BaseLevel {
 
     @Override
     void addTopPanel() {
-        topPanel.add(new JLabel(monsterImg));
+
         JLabel label = new JLabel("<html>" + name + " is my name, nice to meet you hero. <br>This is my abstract factory. " +
                 "It creates factories <br>which can create unicorns or monsters. " +
-                "Want to create<br> some totally random characters? </html>");
+                "Want to create<br> some totally random characters? Press the 'Produce' button<br>as many times as you want, " +
+                "each time 5 new characters<br>will be produced, so cool!</html>");
         label.setFont(Constants.FONT_TEXT);
         label.setForeground(Constants.COLOR_TEXT);
-        topPanel.add(new JLabel(Constants.IMAGE_FACTORY));
         topPanel.add(label);
-
+        topPanel.add(new JLabel(monsterImg));
+        topPanel.add(new JLabel(Constants.IMAGE_FACTORY));
         bigPanel.add(topPanel, BorderLayout.NORTH);
-
-
 
 
     }
@@ -62,6 +67,8 @@ public class Level2andAHalf extends BaseLevel {
     @Override
     void addCenterPanel() {
         bigPanel.add(centerPanel, BorderLayout.CENTER);
+        centerPanel.setPreferredSize(new Dimension(1000, 300));
+        centerPanel.setBorder(new EmptyBorder(150, 5, 5,5));
     }
 
     @Override
@@ -76,7 +83,7 @@ public class Level2andAHalf extends BaseLevel {
 
     @Override
     void addButtonListener() {
-        nextLevelBtn.addActionListener(listener);
+        nextLevelBtn.addActionListener(nextListener);
     }
 
     @Override

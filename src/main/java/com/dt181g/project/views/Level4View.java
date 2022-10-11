@@ -3,10 +3,11 @@ package com.dt181g.project.views;
 import com.dt181g.project.support.Constants;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class Level3 extends BaseLevel {
+public class Level4View extends BaseView {
     ViewFrame viewFrame;
     JPanel bigPanel = new JPanel();
     MyPanel topPanel = new MyPanel();
@@ -20,7 +21,7 @@ public class Level3 extends BaseLevel {
     JRadioButton radioButton3 = new JRadioButton("Partygut");
     ActionListener listener;
 
-    public Level3(ViewFrame viewFrame, ImageIcon monsterImg, String name, ActionListener listener) {
+    public Level4View(ViewFrame viewFrame, ImageIcon monsterImg, String name, ActionListener listener) {
         this.viewFrame = viewFrame;
         this.monsterImg = monsterImg;
         this.name = name;
@@ -35,7 +36,7 @@ public class Level3 extends BaseLevel {
     @Override
     void addTopPanel() {
         JLabel label = new JLabel("<html>Hi, my name is " + name + " the Ugly Flesh Beast, long name I know.<br>I lost my brother" +
-                " Rothead so now I'm sad.<br>Can you cheer me up by solving my riddle?<br>What do you call a monster with a high IQ? </html>");
+                " Rothead so now I'm sad. Can you cheer me up<br>by solving my riddle? What do you call a monster with a high IQ? </html>");
         label.setFont(Constants.FONT_TEXT);
         label.setForeground(Constants.COLOR_TEXT);
         topPanel.add(label);
@@ -44,6 +45,8 @@ public class Level3 extends BaseLevel {
 
     @Override
     void addCenterPanel() {
+        centerPanel.setPreferredSize(new Dimension(1000, 400));
+        centerPanel.setBorder(new EmptyBorder(120, 5, 5,5));
         radioButton1.setBackground(Constants.COLOR_BACKGROUND);
         radioButton1.setForeground(Constants.COLOR_TEXT);
         radioButton1.setFont(Constants.FONT_TEXT);

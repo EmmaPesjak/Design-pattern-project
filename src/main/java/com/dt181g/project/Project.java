@@ -1,6 +1,6 @@
 package com.dt181g.project;
 
-import com.dt181g.project.controllers.NewController;
+import com.dt181g.project.controllers.Controller;
 import com.dt181g.project.models.StartModel;
 import com.dt181g.project.views.ViewFrame;
 
@@ -16,7 +16,7 @@ public final class Project {
 
         ViewFrame viewFrame = new ViewFrame();
         StartModel startModel = new StartModel();
-        NewController newController = new NewController(viewFrame, startModel);
+        Controller controller = new Controller(viewFrame, startModel);
 
 
     }
