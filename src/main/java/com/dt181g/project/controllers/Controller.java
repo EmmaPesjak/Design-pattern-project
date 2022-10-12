@@ -1,7 +1,7 @@
 package com.dt181g.project.controllers;
 
 import com.dt181g.project.models.DamageThread;
-import com.dt181g.project.models.HealthMeter;
+import com.dt181g.project.models.Vaelarya;
 import com.dt181g.project.models.HealThread;
 import com.dt181g.project.models.MainModel;
 import com.dt181g.project.models.monsters.BaseMonster;
@@ -207,7 +207,7 @@ public class Controller implements Observer {
 
 
     //observerskit, var ska detta vara??????
-    HealthMeter healthMeter = HealthMeter.INSTANCE;
+    Vaelarya vaelarya = Vaelarya.INSTANCE;
 
     //public static final ObserverThing INSTANCE = new ObserverThing(HealPool.INSTANCE);
     private final HealThread healThread = new HealThread();
@@ -226,7 +226,7 @@ public class Controller implements Observer {
         // Create a healThread representing the player.
         createHealer();
 
-        healthMeter.addObserver(this);
+        vaelarya.addObserver(this);
         timer.start();
     }
 
@@ -235,7 +235,7 @@ public class Controller implements Observer {
     }
 
     public void updateGUI() {
-        level5View.updateLevel5(new HealthPoolPanel(healthMeter.getHealth()), healthMeter.getHealth());
+        level5View.updateLevel5(new HealthBarPanel(vaelarya.getHealth()), vaelarya.getHealth());
     }
 
     public void createHealer () {
@@ -260,7 +260,7 @@ public class Controller implements Observer {
 
     @Override
     public synchronized void update() {
-        int amountOfHealth = this.healthMeter.getHealth();
+        int amountOfHealth = this.vaelarya.getHealth();
 
         if (amountOfHealth > 170) {
             terminateThreads();

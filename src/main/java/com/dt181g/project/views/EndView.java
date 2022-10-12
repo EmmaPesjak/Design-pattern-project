@@ -36,6 +36,7 @@ public class EndView extends BaseView {
      */
     @Override
     void addTopPanel() {
+        topPanel.removeAll();
         JLabel completed = new JLabel("You completed the game! Well done!");
         completed.setFont(Constants.FONT_BIG);
         completed.setForeground(Constants.COLOR_TEXT);
@@ -48,6 +49,7 @@ public class EndView extends BaseView {
      */
     @Override
     void addCenterPanel() {
+        centerPanel.removeAll();
         centerPanel.setPreferredSize(new Dimension(1000, 470));
         centerPanel.setBorder(new EmptyBorder(120, 5, 5,5));
         centerPanel.add(new JLabel(Constants.IMAGE_STAR));
@@ -59,6 +61,7 @@ public class EndView extends BaseView {
      */
     @Override
     void addBottomPanel() {
+        bottomPanel.removeAll();
         bottomPanel.add(myButton);
         myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);

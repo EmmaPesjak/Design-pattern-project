@@ -41,10 +41,10 @@ public class Level5View extends BaseView {
     }
 
     /**
-     * @param healthPoolPanel
+     * @param healthBarPanel
      * @param health
      */
-    public void updateLevel5 (HealthPoolPanel healthPoolPanel, int health) {
+    public void updateLevel5 (HealthBarPanel healthBarPanel, int health) {
         // skriva ut monsternas skada?
         bottomPanel.removeAll();
         healthLabel.setText("Vaelarya's health: " + health);
@@ -53,7 +53,7 @@ public class Level5View extends BaseView {
         healthLabel.setForeground(Constants.COLOR_TEXT);
         bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS));
         bottomPanel.add(healthLabel);
-        bottomPanel.add(healthPoolPanel);
+        bottomPanel.add(healthBarPanel);
         bottomPanel.revalidate();
         bottomPanel.repaint();
     }

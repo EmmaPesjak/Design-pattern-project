@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface Constants {
 
-    //Images
+    //Images.
     ImageIcon IMAGE_YELLOW_MONSTER = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\yellowMonster.png");
     ImageIcon IMAGE_BLUE_MONSTER = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\blueMonster.png");
     ImageIcon IMAGE_GREEN_MONSTER = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\greenMonster.png");
@@ -38,12 +38,12 @@ public interface Constants {
     ImageIcon IMAGE_FACTORY = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\misc\\factory.png");
     ImageIcon IMAGE_WEAPONS = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\misc\\weapons.png");
 
-    // Fonts
+    // Fonts.
     Font FONT_BIG = new Font(Font.MONOSPACED, Font.BOLD, 32);
     Font FONT_TEXT = new Font(Font.MONOSPACED, Font.PLAIN, 20);
     Font FONT_BUTTON = new Font(Font.MONOSPACED, Font.BOLD, 22);
 
-    // Colours
+    // Colours.
     Color COLOR_BACKGROUND = new Color(2, 2, 40);
     Color COLOR_TEXT = new Color(241, 241, 230);
     Color COLOR_BUTTON = new Color(152, 62, 92);
@@ -53,18 +53,15 @@ public interface Constants {
     Color COLOR_MEDIUM_HEALTH = new Color(249,248, 113);
     Color COLOR_HIGH_HEALTH = new Color(155,222, 126);
 
-
     //lägga in alla listor och strings här med motivationen att man endast måste ändra dessa om det skulle vara?
 
     //LEVEL 1 specific till comboboxen level 1
     String[] LVL1_SORT_LIST = new String[] {"All words", "Sort alphabetically.", "Count words longer than 5 letters."};
 
-
     //grejor som används till model
     int AMOUNT_OF_UNICORNS = 7;
     int AMOUNT_OF_MONSTERS = 8;
     int RESULT_LVL2 = 15;
-    List<String> STRING_LIST_LVL1 = new ArrayList<>(Arrays.asList("mango", "elderberry", "apple", "lime", "banana", "orange", "strawberry", "cherry", "durian", "fig", "grapes"));
-
-
+    List<String> STRING_LIST_LVL1 = new ArrayList<>(Arrays.asList("mango", "elderberry", "apple", "lime",
+            "banana", "orange", "strawberry", "cherry", "durian", "fig", "grapes"));
 }

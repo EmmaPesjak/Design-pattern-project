@@ -24,6 +24,8 @@ public class MainModel {
 
     MonsterFactory monsterFactory = (MonsterFactory) FactoryProvider.getFactory(1);
     UnicornFactory unicornFactory = (UnicornFactory) FactoryProvider.getFactory(2);
+
+
     /**
      *
      */

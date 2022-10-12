@@ -7,10 +7,6 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-
-//ska denna fixas på något annat sätt?
-
-
 /**
  *
  * @author Emma Pesjak
@@ -62,7 +58,6 @@ public class GameOverView extends BaseView {
      */
     @Override
     void addBottomPanel() {
-
         bottomPanel.add(myButton);
         myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);

@@ -3,12 +3,12 @@ package com.dt181g.project.views;
 import com.dt181g.project.support.Constants;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
 /**
- *
+ * Concrete view of {@link com.dt181g.project.views.BaseView} responsible for setting up the
+ * start panel displayed in the GUI frame.
  * @author Emma Pesjak
  */
 public class StartView extends BaseView {
@@ -21,8 +21,9 @@ public class StartView extends BaseView {
     ActionListener listener;
 
     /**
-     * @param viewFrame
-     * @param listener
+     * Constructor
+     * @param viewFrame is the frame to display the panel in.
+     * @param listener is the action listener for the button.
      */
     public StartView(ViewFrame viewFrame, ActionListener listener) {
         this.viewFrame = viewFrame;
@@ -62,21 +63,15 @@ public class StartView extends BaseView {
     @Override
     void addBottomPanel() {
         bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS));
-
         JLabel info = new JLabel("<html>This game takes you through 5 thrilling levels where you<br>encounter monsters, some are friendly and some are very<br>dangerous. Thread carefully hero. </html>");
         info.setFont(Constants.FONT_TEXT);
         info.setForeground(Constants.COLOR_TEXT);
-
-
         bottomPanel.add(info);
         bottomPanel.add(myButton);
-
         info.setAlignmentX(Component.CENTER_ALIGNMENT);
         info.setHorizontalAlignment(SwingConstants.CENTER);
         info.setVerticalAlignment(SwingConstants.CENTER);
-
         myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);
     }
 

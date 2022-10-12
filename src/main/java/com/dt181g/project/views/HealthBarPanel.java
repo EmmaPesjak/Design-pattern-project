@@ -1,30 +1,28 @@
 package com.dt181g.project.views;
 
-
 import com.dt181g.project.support.Constants;
 
 import javax.swing.*;
 import java.awt.*;
 
 /**
- *
+ * Panel component class, used to represent the health bar of Vaelarya the dragon.
  * @author Emma Pesjak
  */
-public class HealthPoolPanel extends JPanel {
+public class HealthBarPanel extends JPanel {
 
     int amountOfHealth;
 
     /**
-     *
-     * @param amountOfHealth
+     * Constructor that sets the amount of health.
+     * @param amountOfHealth is the current amount of health Vaelarya has.
      */
-    public HealthPoolPanel (int amountOfHealth) {
+    public HealthBarPanel(int amountOfHealth) {
         this.amountOfHealth = amountOfHealth;
     }
 
     /**
-     * skriva egen kommentar här`?????????????????
-     * {@inheritDoc}
+     * Overridden method responsible for painting the health bar with the current health.
      */
     @Override
     public void paint(Graphics g) {

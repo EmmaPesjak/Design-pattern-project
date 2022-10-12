@@ -6,7 +6,7 @@ import com.dt181g.project.support.Constants;
 import java.util.Random;
 
 /**
- *
+ * Factory for producing random monsters in the game.
  * @author Emma Pesjak
  */
 public class MonsterFactory implements CharacterFactory<BaseMonster> {

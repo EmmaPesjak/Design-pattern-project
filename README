@@ -11,6 +11,8 @@ problem: duplicate images could not be displayed since the Jlabel was created in
 
 
 
+egna button och panel klasser för att spara massa rader kod eftersom alla bakgrunder är likadana och alla butttons är likadana.
+
 
 
 Factory pattern: monsters/unicorns

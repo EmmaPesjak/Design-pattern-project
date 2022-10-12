@@ -1,11 +1,9 @@
 package com.dt181g.project.models;
 
-
 import java.util.Random;
 
-//producer
 /**
- *
+ * Thread class representing the player healing (producer) in the game.
  * @author Emma Pesjak
  */
 public class HealThread implements Runnable {
@@ -14,13 +12,13 @@ public class HealThread implements Runnable {
     private volatile boolean terminate = false;
 
     /**
-     *
+     * Overridden method that simulates healing in the game.
      */
     @Override
     public void run() {
         while (!terminate) {
             try {
-                HealthMeter.INSTANCE.addHealth(new Random().nextInt(20) + 1);
+                Vaelarya.INSTANCE.addHealth(new Random().nextInt(20) + 1);
                 Thread.sleep((new Random().nextInt(2) + 1) * 1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -29,7 +27,7 @@ public class HealThread implements Runnable {
     }
 
     /**
-     *
+     * Method that will make the HealThread terminate.
      */
     public void stopThread() {
         terminate = true;

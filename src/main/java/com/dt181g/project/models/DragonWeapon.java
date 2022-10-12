@@ -1,8 +1,7 @@
 package com.dt181g.project.models;
 
-//resource for object pool
 /**
- *
+ * Class representing the weapons used by monsters to fight the dragon.
  * @author Emma Pesjak
  */
 public class DragonWeapon {
