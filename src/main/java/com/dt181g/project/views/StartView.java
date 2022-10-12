@@ -6,6 +6,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ *
+ * @author Emma Pesjak
+ */
 public class StartView extends BaseView {
     ViewFrame viewFrame;
     JPanel bigPanel = new JPanel();
@@ -15,12 +19,19 @@ public class StartView extends BaseView {
     MyButton myButton = new MyButton("Start");
     ActionListener listener;
 
+    /**
+     * @param viewFrame
+     * @param listener
+     */
     public StartView(ViewFrame viewFrame, ActionListener listener) {
         this.viewFrame = viewFrame;
         this.listener = listener;
         bigPanel.setLayout(new BorderLayout());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addTopPanel() {
         JLabel title = new JLabel("The Monster Game");
@@ -30,6 +41,9 @@ public class StartView extends BaseView {
         bigPanel.add(topPanel, BorderLayout.NORTH);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addCenterPanel() {
         centerPanel.setPreferredSize(new Dimension(1000, 470));
@@ -41,17 +55,26 @@ public class StartView extends BaseView {
         bigPanel.add(centerPanel, BorderLayout.CENTER);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addBottomPanel() {
         bottomPanel.add(myButton);
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addButtonListener() {
         myButton.addActionListener(listener);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updatePanel() {
         this.revalidate();

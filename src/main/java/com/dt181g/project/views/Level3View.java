@@ -7,6 +7,10 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ *
+ * @author Emma Pesjak
+ */
 public class Level3View extends BaseView {
 
     ViewFrame viewFrame;
@@ -20,6 +24,12 @@ public class Level3View extends BaseView {
     String name;
     ActionListener nextListener;
 
+    /**
+     * @param viewFrame
+     * @param monsterImg
+     * @param name
+     * @param nextListener
+     */
     public Level3View(ViewFrame viewFrame, ImageIcon monsterImg, String name, ActionListener nextListener) {
         this.viewFrame = viewFrame;
         this.monsterImg = monsterImg;
@@ -29,10 +39,20 @@ public class Level3View extends BaseView {
         bigPanel.setLayout(new BorderLayout());
     }
 
+    /**
+     * @param listener
+     */
     public void addProduceButtonListener(ActionListener listener) {
         produceBtn.addActionListener(listener);
     }
 
+    /**
+     * @param char1
+     * @param char2
+     * @param char3
+     * @param char4
+     * @param char5
+     */
     public void updateLevel3(ImageIcon char1, ImageIcon char2, ImageIcon char3, ImageIcon char4, ImageIcon char5) {
 
         centerPanel.removeAll();
@@ -46,7 +66,9 @@ public class Level3View extends BaseView {
         centerPanel.repaint();
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addTopPanel() {
 
@@ -64,6 +86,9 @@ public class Level3View extends BaseView {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addCenterPanel() {
         bigPanel.add(centerPanel, BorderLayout.CENTER);
@@ -71,6 +96,9 @@ public class Level3View extends BaseView {
         centerPanel.setBorder(new EmptyBorder(150, 5, 5,5));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addBottomPanel() {
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);
@@ -81,11 +109,17 @@ public class Level3View extends BaseView {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addButtonListener() {
         nextLevelBtn.addActionListener(nextListener);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void updatePanel() {
         this.revalidate();

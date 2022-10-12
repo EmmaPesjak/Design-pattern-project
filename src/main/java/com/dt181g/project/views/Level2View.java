@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ *
+ * @author Emma Pesjak
+ */
 public class Level2View extends BaseView {
     ViewFrame viewFrame;
     JPanel bigPanel = new JPanel();
@@ -23,6 +27,12 @@ public class Level2View extends BaseView {
     JTextField bucket3 = new JTextField(8);
     ActionListener listener;
 
+    /**
+     * @param viewFrame
+     * @param monsterImg
+     * @param name
+     * @param listener
+     */
     public Level2View(ViewFrame viewFrame, ImageIcon monsterImg, String name, ActionListener listener) {
 
         this.viewFrame = viewFrame;
@@ -33,14 +43,20 @@ public class Level2View extends BaseView {
         bigPanel.setLayout(new BorderLayout());
     }
 
+    /**
+     * @return
+     */
     public List<Integer> getBuckets() {
         List<Integer> numbs = new ArrayList<>(Arrays.asList(Integer.parseInt(bucket1.getText()),
                 Integer.parseInt(bucket2.getText()), Integer.parseInt(bucket3.getText())));
         return numbs;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    void addTopPanel() {
+     void addTopPanel() {
         JLabel label = new JLabel("<html>Well hello there Hero. I might look super scary but I'm a nice monster<br>named " + name + ". " +
                 "Can you help me with a problem? I've got three buckets<br> to carry my apples in, I need a total " +
                 "amount of 15 apples, no more, no less.<br>How many apples should I place in each bucket?</html>");
@@ -53,6 +69,9 @@ public class Level2View extends BaseView {
         bigPanel.add(topPanel, BorderLayout.NORTH);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addCenterPanel() {
         centerPanel.setPreferredSize(new Dimension(900, 400));
@@ -81,6 +100,9 @@ public class Level2View extends BaseView {
         bigPanel.add(centerPanel, BorderLayout.CENTER);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addBottomPanel() {
         bottomPanel.add(myButton);
@@ -88,11 +110,17 @@ public class Level2View extends BaseView {
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addButtonListener() {
         myButton.addActionListener(listener);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updatePanel() {
         this.revalidate();

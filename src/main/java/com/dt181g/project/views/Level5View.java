@@ -6,6 +6,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ *
+ * @author Emma Pesjak
+ */
 public class Level5View extends BaseView {
     ViewFrame viewFrame;
     JPanel bigPanel = new JPanel();
@@ -22,6 +26,12 @@ public class Level5View extends BaseView {
     //OBS MÅSTE FIXA NÅGON OM HON SKULLE DÖ
 
 
+    /**
+     * @param viewFrame
+     * @param monsterImg
+     * @param name
+     * @param listener
+     */
     public Level5View(ViewFrame viewFrame, ImageIcon monsterImg, String name, ActionListener listener) {
         this.viewFrame = viewFrame;
         this.monsterImg = monsterImg;
@@ -30,7 +40,11 @@ public class Level5View extends BaseView {
         bigPanel.setLayout(new BorderLayout());
     }
 
-    public void updateLevel5(HealthPoolPanel healthPoolPanel, int health) {
+    /**
+     * @param healthPoolPanel
+     * @param health
+     */
+    public void updateLevel5 (HealthPoolPanel healthPoolPanel, int health) {
         // skriva ut monsternas skada?
         bottomPanel.removeAll();
         healthLabel.setText("Vaelarya's health: " + health);
@@ -44,8 +58,12 @@ public class Level5View extends BaseView {
         bottomPanel.repaint();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addTopPanel() {
+        topPanel.removeAll();
         JLabel label = new JLabel("<html>Hero! I am Vaelarya Vision Walker, the mighty dragon.<br> A monster " +
                 "named " + name + " and his " +
                 "five friends are attacking me! <br>Luckily they only have a pool of three weapons to share <br>" +
@@ -56,8 +74,12 @@ public class Level5View extends BaseView {
         bigPanel.add(topPanel, BorderLayout.NORTH);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addCenterPanel() {
+        centerPanel.removeAll();
         centerPanel.setPreferredSize(new Dimension(1000, 300));
         centerPanel.setLayout(new GridLayout(2,2, 5, 5));
         centerPanel.add(new JLabel(Constants.IMAGE_DRAGON));
@@ -67,14 +89,21 @@ public class Level5View extends BaseView {
         bigPanel.add(centerPanel, BorderLayout.CENTER);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addBottomPanel() {
+        bottomPanel.removeAll();
         bottomPanel.setPreferredSize(new Dimension(1000, 120));
         bottomPanel.add(myButton);
         myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updatePanel() {
         this.revalidate();
@@ -82,6 +111,9 @@ public class Level5View extends BaseView {
         viewFrame.updateView(bigPanel);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addButtonListener() {
         myButton.addActionListener(listener);

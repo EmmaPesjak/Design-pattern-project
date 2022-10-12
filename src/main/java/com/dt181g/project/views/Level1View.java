@@ -8,6 +8,10 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
+/**
+ *
+ * @author Emma Pesjak
+ */
 public class Level1View extends BaseView {
     ViewFrame viewFrame;
     JPanel bigPanel = new JPanel();
@@ -23,6 +27,13 @@ public class Level1View extends BaseView {
     JComboBox<String> comboBox = new JComboBox<>(sortFunctions);
     ActionListener listener;
 
+    /**
+     * @param viewFrame
+     * @param monsterImg
+     * @param name
+     * @param words
+     * @param listener
+     */
     public Level1View(ViewFrame viewFrame, ImageIcon monsterImg, String name, String words, ActionListener listener) {
         this.viewFrame = viewFrame;
         this.monsterImg = monsterImg;
@@ -32,6 +43,9 @@ public class Level1View extends BaseView {
         bigPanel.setLayout(new BorderLayout());
     }
 
+    /**
+     * @param words
+     */
     public void updateLevel1(String words) {
         centerPanel.removeAll();
         centerPanel.add(new JLabel(monsterImg));
@@ -44,14 +58,23 @@ public class Level1View extends BaseView {
         centerPanel.repaint();
     }
 
+    /**
+     * @return
+     */
     public String getSelectedItem() {
         return Objects.requireNonNull(comboBox.getSelectedItem()).toString();
     }
 
+    /**
+     * @param listener
+     */
     public void addLvl1ComboboxListener(ActionListener listener) {
         comboBox.addActionListener(listener);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addTopPanel() {
         JLabel label = new JLabel("Hi, I'm " + name + ". I like words. These are my words. Want to play with them?");
@@ -62,6 +85,9 @@ public class Level1View extends BaseView {
         bigPanel.add(topPanel, BorderLayout.NORTH);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addCenterPanel() {
 
@@ -79,6 +105,9 @@ public class Level1View extends BaseView {
         bigPanel.add(centerPanel, BorderLayout.CENTER);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addBottomPanel() {
 
@@ -88,11 +117,17 @@ public class Level1View extends BaseView {
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addButtonListener() {
         myButton.addActionListener(listener);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updatePanel() {
         this.revalidate();

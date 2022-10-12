@@ -7,8 +7,16 @@ import com.dt181g.project.support.Constants;
 import java.util.Random;
 
 //bra för att randomiza fram monster på flera ställen i koden...
+/**
+ *
+ * @author Emma Pesjak
+ */
 public class MonsterFactory implements CharacterFactory<BaseMonster> {
 
+    /**
+     *
+     * @return
+     */
     @Override
     public BaseMonster createChar() {
 

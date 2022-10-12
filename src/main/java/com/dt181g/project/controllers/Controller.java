@@ -13,6 +13,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
+/**
+ *
+ * @author Emma Pesjak
+ */
 public class Controller implements Observer {
 
     private final ViewFrame viewFrame;
@@ -25,6 +29,10 @@ public class Controller implements Observer {
     private final EndView endView;
     private final GameOverView gameOverView;
 
+    /**
+     * @param viewFrame
+     * @param startModel
+     */
     public Controller(ViewFrame viewFrame, StartModel startModel) {
         this.viewFrame = viewFrame;
         this.startModel = startModel;
@@ -45,10 +53,16 @@ public class Controller implements Observer {
         level4View = new Level4View(viewFrame, monster4.getMonsterImg(), monster4.getName(), new Level4ButtonListener());
         level5View = new Level5View(viewFrame, monster5.getMonsterImg(), monster5.getName(), new Level5ButtonListener());
         endView = new EndView(viewFrame, new QuitButtonListener());
-        gameOverView = new GameOverView(viewFrame, new RestartButtonListener());
+        gameOverView = new GameOverView(viewFrame, new QuitButtonListener());
     }
 
+    /**
+     *
+     */
     class Level1ComboboxListener implements ActionListener {
+        /**
+         * @param e
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             if (Objects.equals(level1View.getSelectedItem(), "Sort alphabetically.")) {
@@ -61,21 +75,40 @@ public class Controller implements Observer {
         }
     }
 
+    /**
+     *
+     */
     class StartButtonListener implements ActionListener {
+        /**
+         * @param e
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             level1View.makePanel();
         }
     }
 
+    /**
+     *
+     */
     class Level1ButtonListener implements ActionListener {
+        /**
+         * @param e
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             level2View.makePanel();
         }
     }
 
+    /**
+     *
+     */
     class Level2ButtonListener implements ActionListener {
+        /**
+         *
+         * @param e
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
@@ -95,16 +128,29 @@ public class Controller implements Observer {
         }
     }
 
+    /**
+     *
+     */
     class Level3ButtonListenerNext implements ActionListener {
 
+        /**
+         *
+         * @param e
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             level4View.makePanel();
         }
     }
 
+    /**
+     *
+     */
     class Level3ButtonListenerProduce implements ActionListener {
-
+        /**
+         *
+         * @param e
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             level3View.updateLevel3(startModel.getRandomCharImg(), startModel.getRandomCharImg(),
@@ -112,7 +158,15 @@ public class Controller implements Observer {
         }
     }
 
+    /**
+     *
+     */
     class Level4ButtonListener implements ActionListener {
+
+        /**
+         *
+         * @param e
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             if (level4View.rightAnswerFrank()) {
@@ -123,7 +177,14 @@ public class Controller implements Observer {
         }
     }
 
+    /**
+     *
+     */
     class Level5ButtonListener implements ActionListener {
+        /**
+         *
+         * @param e
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             GUITimer();
@@ -131,19 +192,17 @@ public class Controller implements Observer {
         }
     }
 
+    /**
+     *
+     */
     static class QuitButtonListener implements ActionListener {
+        /**
+         *
+         * @param e
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             System.exit(0);
-        }
-    }
-
-    class RestartButtonListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-            //här blir det bajsdubbelt, måste clearall som fan
-            level5View.makePanel();
         }
     }
 
@@ -213,6 +272,7 @@ public class Controller implements Observer {
             terminateThreads();
             stopTimer();
             endView.makePanel();
+
         } else if (amountOfHealth <= 0) {
             terminateThreads();
             stopTimer();

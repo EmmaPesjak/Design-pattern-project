@@ -7,6 +7,10 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ *
+ * @author Emma Pesjak
+ */
 public class EndView extends BaseView {
     ViewFrame viewFrame;
     JPanel bigPanel = new JPanel();
@@ -16,12 +20,20 @@ public class EndView extends BaseView {
     MyButton myButton = new MyButton("Quit game");
     ActionListener listener;
 
+    /**
+     *
+     * @param viewFrame
+     * @param listener
+     */
     public EndView(ViewFrame viewFrame, ActionListener listener) {
         this.viewFrame = viewFrame;
         this.listener = listener;
         bigPanel.setLayout(new BorderLayout());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addTopPanel() {
         JLabel completed = new JLabel("You completed the game! Well done!");
@@ -31,6 +43,9 @@ public class EndView extends BaseView {
         bigPanel.add(topPanel, BorderLayout.NORTH);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addCenterPanel() {
         centerPanel.setPreferredSize(new Dimension(1000, 470));
@@ -39,6 +54,9 @@ public class EndView extends BaseView {
         bigPanel.add(centerPanel, BorderLayout.CENTER);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addBottomPanel() {
         bottomPanel.add(myButton);
@@ -46,6 +64,9 @@ public class EndView extends BaseView {
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updatePanel() {
         this.revalidate();
@@ -53,6 +74,9 @@ public class EndView extends BaseView {
         viewFrame.updateView(bigPanel);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addButtonListener() {
         myButton.addActionListener(listener);

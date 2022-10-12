@@ -4,8 +4,15 @@ import com.dt181g.project.support.Constants;
 
 import javax.swing.*;
 
+/**
+ *
+ * @author Emma Pesjak
+ */
 public class MyPanel extends JPanel {
 
+    /**
+     *
+     */
     public MyPanel() {
         this.setBackground(Constants.COLOR_BACKGROUND);
     }

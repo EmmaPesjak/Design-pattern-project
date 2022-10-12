@@ -7,6 +7,10 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ *
+ * @author Emma Pesjak
+ */
 public class Level4View extends BaseView {
     ViewFrame viewFrame;
     JPanel bigPanel = new JPanel();
@@ -21,6 +25,12 @@ public class Level4View extends BaseView {
     JRadioButton radioButton3 = new JRadioButton("Partygut");
     ActionListener listener;
 
+    /**
+     * @param viewFrame
+     * @param monsterImg
+     * @param name
+     * @param listener
+     */
     public Level4View(ViewFrame viewFrame, ImageIcon monsterImg, String name, ActionListener listener) {
         this.viewFrame = viewFrame;
         this.monsterImg = monsterImg;
@@ -29,10 +39,16 @@ public class Level4View extends BaseView {
         bigPanel.setLayout(new BorderLayout());
     }
 
+    /**
+     * @return
+     */
     public boolean rightAnswerFrank() {
         return radioButton2.isSelected();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addTopPanel() {
         JLabel label = new JLabel("<html>Hi, my name is " + name + " the Ugly Flesh Beast, long name I know.<br>I lost my brother" +
@@ -43,6 +59,9 @@ public class Level4View extends BaseView {
         bigPanel.add(topPanel, BorderLayout.NORTH);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addCenterPanel() {
         centerPanel.setPreferredSize(new Dimension(1000, 400));
@@ -79,6 +98,9 @@ public class Level4View extends BaseView {
         bigPanel.add(centerPanel, BorderLayout.CENTER);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addBottomPanel() {
         bottomPanel.add(myButton);
@@ -86,12 +108,17 @@ public class Level4View extends BaseView {
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     void addButtonListener() {
         myButton.addActionListener(listener);
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updatePanel() {
         this.revalidate();

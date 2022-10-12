@@ -5,10 +5,17 @@ import com.dt181g.project.support.Constants;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ *
+ * @author Emma Pesjak
+ */
 public class ViewFrame extends JFrame {
 
     JPanel panel = new JPanel();
 
+    /**
+     *
+     */
     public ViewFrame() {
         this.setLayout(new BorderLayout());
         setResizable(false);
@@ -18,6 +25,9 @@ public class ViewFrame extends JFrame {
         panel.setBackground(Constants.COLOR_BACKGROUND);
     }
 
+    /**
+     * @param top
+     */
     public void updateView(JPanel top) {
         panel.removeAll();
         panel.add(top);
@@ -26,6 +36,9 @@ public class ViewFrame extends JFrame {
         this.repaint();
     }
 
+    /**
+     * @param errorMsg
+     */
     public void displayErrorMsg (String errorMsg) {
         JOptionPane.showMessageDialog(this, errorMsg);
     }

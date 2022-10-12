@@ -2,18 +2,13 @@ package com.dt181g.project.models.unicorns;
 
 import javax.swing.*;
 
+/**
+ *
+ * @author Emma Pesjak
+ */
 public abstract class BaseUnicorn {
 
     private ImageIcon unicornImg;
-    private String power;
-
-    public String getPower() {
-        return power;
-    }
-
-    public void setPower(String power) {
-        this.power = power;
-    }
 
     public ImageIcon getUnicornImg() {
         return unicornImg;

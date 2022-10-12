@@ -12,7 +12,10 @@ import java.util.stream.Collectors;
 
 
 //dela upp dessa i olika beroende på level?
-
+/**
+ *
+ * @author Emma Pesjak
+ */
 public class StartModel {
 
     private int level2Result;
@@ -20,20 +23,39 @@ public class StartModel {
 
     MonsterFactory monsterFactory = new MonsterFactory();
 
+    /**
+     *
+     */
     public StartModel() {}
 
+    /**
+     *
+     * @param numbs
+     */
     public void calculateLevel2(List<Integer> numbs) {
         level2Result = numbs.stream().reduce(0, Integer::sum);
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean level2Success() {
         return level2Result == Constants.RESULT_LVL2;
     }
 
+    /**
+     *
+     * @return
+     */
     public BaseMonster getRandomMonster() {
         return monsterFactory.createChar();
     }
 
+    /**
+     *
+     * @return
+     */
     public ImageIcon getRandomCharImg() {
 
         int randomNmb = new Random().nextInt(2) + 1;
@@ -47,21 +69,29 @@ public class StartModel {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String level1RandomWords() {
         return String.join(" ", words);
     }
 
+    /**
+     *
+     * @return
+     */
     public String sortLevel1Alphabetically() {
         List<String> sorted = words.stream().sorted().collect(Collectors.toList());
         return String.join(" ", sorted);
     }
 
+    /**
+     *
+     * @return
+     */
     public String countWordsLvl1() {
         long amountOfWords = words.stream().filter(word -> word.length() > 5).count();
         return "There are " + Long.toString(amountOfWords) + " words containing more than 5 letters. That is awesome!";
     }
-
-
-
-
 }

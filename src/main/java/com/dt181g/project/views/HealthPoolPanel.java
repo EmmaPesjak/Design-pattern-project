@@ -6,14 +6,26 @@ import com.dt181g.project.support.Constants;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ *
+ * @author Emma Pesjak
+ */
 public class HealthPoolPanel extends JPanel {
 
     int amountOfHealth;
 
+    /**
+     *
+     * @param amountOfHealth
+     */
     public HealthPoolPanel (int amountOfHealth) {
         this.amountOfHealth = amountOfHealth;
     }
 
+    /**
+     * skriva egen kommentar här`?????????????????
+     * {@inheritDoc}
+     */
     @Override
     public void paint(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
