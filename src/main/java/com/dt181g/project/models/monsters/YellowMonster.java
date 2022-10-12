@@ -9,7 +9,7 @@ import com.dt181g.project.support.Constants;
 public class YellowMonster extends BaseMonster {
 
     /**
-     *
+     * Constructor for initializing YellowMonsters, sets the name and ImageIcon.
      */
     public YellowMonster() {
         setName("Bloopie");

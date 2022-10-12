@@ -20,7 +20,7 @@ public class HealThread implements Runnable {
     public void run() {
         while (!terminate) {
             try {
-                HealthMeter.INSTANCE.addHealth(new Random().nextInt(3) + 1);  //ta bound 20, 1 om hon ska dö
+                HealthMeter.INSTANCE.addHealth(new Random().nextInt(20) + 1);
                 Thread.sleep((new Random().nextInt(2) + 1) * 1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();

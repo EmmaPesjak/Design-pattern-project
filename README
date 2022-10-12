@@ -10,6 +10,23 @@ problem: duplicate images could not be displayed since the Jlabel was created in
 
 
 
+
+
+
+Factory pattern: monsters/unicorns
+Abstract factory: characterfactory
+Template pattern: the views
+Object pool: dragon weapons/distributor
+producer/consumer: heal/damage theads
+observer: healthpool
+MVC
+
+5 layouts, 8 Jcomponents
+6 concurrent synchronized processes
+3 streams API
+GUI event driven
+
+
 # Project Report
 Emma Pesjak
 

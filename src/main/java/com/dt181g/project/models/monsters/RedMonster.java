@@ -9,7 +9,7 @@ import com.dt181g.project.support.Constants;
 public class RedMonster extends BaseMonster {
 
     /**
-     *
+     * Constructor for initializing RedMonsters, sets the name and ImageIcon.
      */
     public RedMonster() {
         setName("Razorteeth");

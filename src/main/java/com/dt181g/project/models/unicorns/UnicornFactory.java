@@ -11,11 +11,8 @@ import java.util.Random;
  */
 public class UnicornFactory implements CharacterFactory<BaseUnicorn> {
 
-    // skapa dessa på annat sätt? användaren väljer?
-
     /**
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public BaseUnicorn createChar() {

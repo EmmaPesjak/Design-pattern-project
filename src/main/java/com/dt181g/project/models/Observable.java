@@ -1,5 +1,7 @@
 package com.dt181g.project.models;
 
+import com.dt181g.project.controllers.Observer;
+
 /**
  *
  * @author Emma Pesjak

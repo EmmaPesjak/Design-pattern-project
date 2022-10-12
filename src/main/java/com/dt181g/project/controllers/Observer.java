@@ -1,4 +1,4 @@
-package com.dt181g.project.models;
+package com.dt181g.project.controllers;
 
 /**
  *

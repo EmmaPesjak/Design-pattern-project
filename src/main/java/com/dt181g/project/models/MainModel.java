@@ -16,32 +16,33 @@ import java.util.stream.Collectors;
  *
  * @author Emma Pesjak
  */
-public class StartModel {
+public class MainModel {
 
-    private int level2Result;
     List<String> words = Constants.STRING_LIST_LVL1;
 
-    MonsterFactory monsterFactory = new MonsterFactory();
+    private int lvl2Result;
 
+    MonsterFactory monsterFactory = (MonsterFactory) FactoryProvider.getFactory(1);
+    UnicornFactory unicornFactory = (UnicornFactory) FactoryProvider.getFactory(2);
     /**
      *
      */
-    public StartModel() {}
+    public MainModel() {}
 
     /**
      *
      * @param numbs
      */
-    public void calculateLevel2(List<Integer> numbs) {
-        level2Result = numbs.stream().reduce(0, Integer::sum);
+    public void calculateLvl2(List<Integer> numbs) {
+        lvl2Result = numbs.stream().reduce(0, Integer::sum);
     }
 
     /**
      *
      * @return
      */
-    public boolean level2Success() {
-        return level2Result == Constants.RESULT_LVL2;
+    public boolean lvl2Success() {
+        return lvl2Result == Constants.RESULT_LVL2;
     }
 
     /**
@@ -61,11 +62,9 @@ public class StartModel {
         int randomNmb = new Random().nextInt(2) + 1;
 
         if (randomNmb == 1) {
-            MonsterFactory factory1 = (MonsterFactory) FactoryProvider.getFactory(1);
-            return factory1.createChar().getMonsterImg();
+            return monsterFactory.createChar().getMonsterImg();
         } else {
-            UnicornFactory factory2 = (UnicornFactory) FactoryProvider.getFactory(2);
-            return factory2.createChar().getUnicornImg();
+            return unicornFactory.createChar().getUnicornImg();
         }
     }
 
@@ -73,7 +72,7 @@ public class StartModel {
      *
      * @return
      */
-    public String level1RandomWords() {
+    public String lvl1RandomWords() {
         return String.join(" ", words);
     }
 
@@ -81,7 +80,7 @@ public class StartModel {
      *
      * @return
      */
-    public String sortLevel1Alphabetically() {
+    public String sortLvl1Alphabetically() {
         List<String> sorted = words.stream().sorted().collect(Collectors.toList());
         return String.join(" ", sorted);
     }

@@ -7,6 +7,10 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+
+//ska denna fixas på något annat sätt?
+
+
 /**
  *
  * @author Emma Pesjak

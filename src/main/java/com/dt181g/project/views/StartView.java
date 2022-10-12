@@ -3,6 +3,7 @@ package com.dt181g.project.views;
 import com.dt181g.project.support.Constants;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -46,7 +47,7 @@ public class StartView extends BaseView {
      */
     @Override
     void addCenterPanel() {
-        centerPanel.setPreferredSize(new Dimension(1000, 470));
+        centerPanel.setPreferredSize(new Dimension(1000, 400));
         centerPanel.setLayout(new GridLayout(2,2, 5, 5));
         centerPanel.add(new JLabel(Constants.IMAGE_YELLOW_MONSTER));
         centerPanel.add(new JLabel(Constants.IMAGE_BLUE_MONSTER));
@@ -60,7 +61,22 @@ public class StartView extends BaseView {
      */
     @Override
     void addBottomPanel() {
+        bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS));
+
+        JLabel info = new JLabel("<html>This game takes you through 5 thrilling levels where you<br>encounter monsters, some are friendly and some are very<br>dangerous. Thread carefully hero. </html>");
+        info.setFont(Constants.FONT_TEXT);
+        info.setForeground(Constants.COLOR_TEXT);
+
+
+        bottomPanel.add(info);
         bottomPanel.add(myButton);
+
+        info.setAlignmentX(Component.CENTER_ALIGNMENT);
+        info.setHorizontalAlignment(SwingConstants.CENTER);
+        info.setVerticalAlignment(SwingConstants.CENTER);
+
+        myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);
     }
 

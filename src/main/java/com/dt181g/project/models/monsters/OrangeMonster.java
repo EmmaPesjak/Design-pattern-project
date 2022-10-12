@@ -9,7 +9,7 @@ import com.dt181g.project.support.Constants;
 public class OrangeMonster extends BaseMonster {
 
     /**
-     *
+     * Constructor for initializing OrangeMonsters, sets the name and ImageIcon.
      */
     public OrangeMonster() {
         setName("Thagloth");

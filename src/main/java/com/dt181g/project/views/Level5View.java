@@ -64,10 +64,10 @@ public class Level5View extends BaseView {
     @Override
     void addTopPanel() {
         topPanel.removeAll();
-        JLabel label = new JLabel("<html>Hero! I am Vaelarya Vision Walker, the mighty dragon.<br> A monster " +
-                "named " + name + " and his " +
-                "five friends are attacking me! <br>Luckily they only have a pool of three weapons to share <br>" +
-                " and take turns. Grab that healing crystal and start<br>channeling to heal me, quickly!</html>");
+        JLabel label = new JLabel("<html>Hero! I am Vaelarya Vision Walker, the mighty dragon. A monster<br>" +
+                "named " + name + " and his five friends are attacking me! Luckily<br>they only have a pool of three " +
+                "weapons to share and take turns.<br>Grab that healing crystal and start channeling to heal me above<br>" +
+                "170 hp, quickly!</html>");
         label.setFont(Constants.FONT_TEXT);
         label.setForeground(Constants.COLOR_TEXT);
         topPanel.add(label);

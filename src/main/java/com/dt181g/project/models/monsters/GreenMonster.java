@@ -9,7 +9,7 @@ import com.dt181g.project.support.Constants;
 public class GreenMonster extends BaseMonster {
 
     /**
-     *
+     * Constructor for initializing GreenMonsters, sets the name and ImageIcon.
      */
     public GreenMonster() {
         setName("Ashflayer");

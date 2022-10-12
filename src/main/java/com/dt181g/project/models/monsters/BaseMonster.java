@@ -1,11 +1,9 @@
 package com.dt181g.project.models.monsters;
 
-
 import javax.swing.*;
 
-//factory pattern
 /**
- *
+ * Abstract base class for all monsters in the game.
  * @author Emma Pesjak
  */
 public abstract class BaseMonster {
@@ -14,38 +12,34 @@ public abstract class BaseMonster {
     private ImageIcon monsterImg;
 
     /**
-     *
-     * @return
+     * Getter for the monster's name.
+     * @return the name of the monster.
      */
     public String getName() {
         return name;
     }
 
     /**
-     *
-     * @param name
+     * Setter for the monster's name.
+     * @param name is the name of the monster.
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     *
-     * @return
+     * Getter for the monster's ImageIcon.
+     * @return the ImageIcon of the monster.
      */
     public ImageIcon getMonsterImg() {
         return monsterImg;
     }
 
     /**
-     *
-     * @param monsterImg
+     * Setter for the monster's ImageIcon.
+     * @param monsterImg is the ImageIcon of the monster.
      */
     public void setMonsterImg(ImageIcon monsterImg) {
         this.monsterImg = monsterImg;
     }
-
-
-    //lägg till grejor som monsterna gör??
-
 }

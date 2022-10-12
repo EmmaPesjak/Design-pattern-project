@@ -29,7 +29,7 @@ public class DamageThread implements Runnable {
                 if (weapon != null) {
                     System.out.println(Thread.currentThread().getName() + " is using " + weapon);
                     //här får jag ju fixa något bra random
-                    HealthMeter.INSTANCE.removeHealth(new Random().nextInt(20) + 1);  //ta bound 3, 20 om jag vill att hon ska dö
+                    HealthMeter.INSTANCE.removeHealth(new Random().nextInt(3) + 1);  //ta bound 3, 20 om jag vill att hon ska dö
                     Thread.sleep((new Random().nextInt(10) + 1) * 1000);
 
                     System.out.println(Thread.currentThread().getName() + " is returning " + weapon);

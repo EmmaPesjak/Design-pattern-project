@@ -9,7 +9,7 @@ import com.dt181g.project.support.Constants;
 public class SlimeMonster extends BaseMonster {
 
     /**
-     *
+     * Constructor for initializing SlimeMonsters, sets the name and ImageIcon.
      */
     public SlimeMonster() {
         setName("Gutscream");

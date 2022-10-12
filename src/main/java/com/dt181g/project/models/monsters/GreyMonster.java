@@ -9,7 +9,7 @@ import com.dt181g.project.support.Constants;
 public class GreyMonster extends BaseMonster {
 
     /**
-     *
+     * Constructor for initializing GreyMonsters, sets the name and ImageIcon.
      */
     public GreyMonster() {
         setName("Dorranoth");

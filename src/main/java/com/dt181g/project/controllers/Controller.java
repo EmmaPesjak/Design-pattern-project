@@ -3,8 +3,7 @@ package com.dt181g.project.controllers;
 import com.dt181g.project.models.DamageThread;
 import com.dt181g.project.models.HealthMeter;
 import com.dt181g.project.models.HealThread;
-import com.dt181g.project.models.Observer;
-import com.dt181g.project.models.StartModel;
+import com.dt181g.project.models.MainModel;
 import com.dt181g.project.models.monsters.BaseMonster;
 import com.dt181g.project.views.*;
 
@@ -19,8 +18,8 @@ import java.util.*;
  */
 public class Controller implements Observer {
 
+    private final MainModel mainModel;
     private final ViewFrame viewFrame;
-    private final StartModel startModel;
     private final Level1View level1View;
     private final Level2View level2View;
     private final Level3View level3View;
@@ -31,21 +30,21 @@ public class Controller implements Observer {
 
     /**
      * @param viewFrame
-     * @param startModel
+     * @param mainModel
      */
-    public Controller(ViewFrame viewFrame, StartModel startModel) {
+    public Controller(ViewFrame viewFrame, MainModel mainModel) {
         this.viewFrame = viewFrame;
-        this.startModel = startModel;
+        this.mainModel = mainModel;
 
-        BaseMonster monster1 = startModel.getRandomMonster();
-        BaseMonster monster2 = startModel.getRandomMonster();
-        BaseMonster monster3 = startModel.getRandomMonster();
-        BaseMonster monster4 = startModel.getRandomMonster();
-        BaseMonster monster5 = startModel.getRandomMonster();
+        BaseMonster monster1 = mainModel.getRandomMonster();
+        BaseMonster monster2 = mainModel.getRandomMonster();
+        BaseMonster monster3 = mainModel.getRandomMonster();
+        BaseMonster monster4 = mainModel.getRandomMonster();
+        BaseMonster monster5 = mainModel.getRandomMonster();
 
         StartView startView = new StartView(viewFrame, new StartButtonListener());
         startView.makePanel();
-        level1View = new Level1View(viewFrame, monster1.getMonsterImg(), monster1.getName(), startModel.level1RandomWords(), new Level1ButtonListener());
+        level1View = new Level1View(viewFrame, monster1.getMonsterImg(), monster1.getName(), mainModel.lvl1RandomWords(), new Level1ButtonListener());
         level1View.addLvl1ComboboxListener(new Level1ComboboxListener());
         level2View = new Level2View(viewFrame, monster2.getMonsterImg(), monster2.getName(), new Level2ButtonListener());
         level3View = new Level3View(viewFrame, monster3.getMonsterImg(), monster3.getName(), new Level3ButtonListenerNext());
@@ -66,11 +65,11 @@ public class Controller implements Observer {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (Objects.equals(level1View.getSelectedItem(), "Sort alphabetically.")) {
-                level1View.updateLevel1(startModel.sortLevel1Alphabetically());
+                level1View.updateLevel1(mainModel.sortLvl1Alphabetically());
             } else if ((Objects.equals(level1View.getSelectedItem(), "Count words longer than 5 letters."))) {
-                level1View.updateLevel1(startModel.countWordsLvl1());
+                level1View.updateLevel1(mainModel.countWordsLvl1());
             } else {
-                level1View.updateLevel1(startModel.level1RandomWords());
+                level1View.updateLevel1(mainModel.lvl1RandomWords());
             }
         }
     }
@@ -112,9 +111,9 @@ public class Controller implements Observer {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                startModel.calculateLevel2(level2View.getBuckets());
+                mainModel.calculateLvl2(level2View.getBuckets());
 
-                if (startModel.level2Success()) {
+                if (mainModel.lvl2Success()) {
                     level3View.makePanel();
 
                 } else {
@@ -153,8 +152,8 @@ public class Controller implements Observer {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-            level3View.updateLevel3(startModel.getRandomCharImg(), startModel.getRandomCharImg(),
-                    startModel.getRandomCharImg(), startModel.getRandomCharImg(), startModel.getRandomCharImg());
+            level3View.updateLevel3(mainModel.getRandomCharImg(), mainModel.getRandomCharImg(),
+                    mainModel.getRandomCharImg(), mainModel.getRandomCharImg(), mainModel.getRandomCharImg());
         }
     }
 
@@ -187,7 +186,6 @@ public class Controller implements Observer {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-            GUITimer();
             init();
         }
     }
@@ -214,25 +212,21 @@ public class Controller implements Observer {
     //public static final ObserverThing INSTANCE = new ObserverThing(HealPool.INSTANCE);
     private final HealThread healThread = new HealThread();
     private final DamageThread damageThread = new DamageThread();
-
+    private final Deque<DamageThread> damageThreads = new LinkedList<>();
     Timer timer = new Timer(150, e -> {
         updateGUI();
     });
 
-    private final Deque<DamageThread> damageThreads = new LinkedList<>();
-
     public void init() {
+        // Create damageThreads representing the monsters.
         for (int i = 1; i <= 6; i++) {
-            createDamageMonster();
+            createDamageThread();
         }
-        createHealer();
-        healthMeter.addObserver(this);
-    }
 
-    public void GUITimer() {
-        //Timer timer = new Timer(1000, e -> {
-        //updateGUI();
-        //});
+        // Create a healThread representing the player.
+        createHealer();
+
+        healthMeter.addObserver(this);
         timer.start();
     }
 
@@ -249,7 +243,7 @@ public class Controller implements Observer {
         thread.start();
     }
 
-    public void createDamageMonster() {
+    public void createDamageThread() {
 
         Thread thread = new Thread(damageThread);
         damageThreads.add(damageThread);

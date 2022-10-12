@@ -50,13 +50,16 @@ public abstract class BaseView extends JPanel {
      */
     abstract void addButtonListener();
 
-
+    /**
+     *
+     */
+    abstract void updatePanel();
 
 
     //the hooks, can be overridden panels/buttons not used, kanske ta bort dessa och sen skriva om hooks i readmen
     /**
      *
-      * @return
+     * @return
      */
     boolean topPanelIsUsed() { return true; }
 
@@ -78,9 +81,6 @@ public abstract class BaseView extends JPanel {
      */
     boolean buttonIsUsed() { return true; }
 
-    /**
-     *
-     */
-    abstract void updatePanel();
+
 
 }

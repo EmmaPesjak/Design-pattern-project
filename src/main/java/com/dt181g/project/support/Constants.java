@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
+ * Interface that define constant values.
  * @author Emma Pesjak
  */
 public interface Constants {
@@ -52,8 +52,6 @@ public interface Constants {
     Color COLOR_MEDIUM_LOW_HEALTH = new Color(249,173, 88);
     Color COLOR_MEDIUM_HEALTH = new Color(249,248, 113);
     Color COLOR_HIGH_HEALTH = new Color(155,222, 126);
-
-    // Dimensions
 
 
     //lägga in alla listor och strings här med motivationen att man endast måste ändra dessa om det skulle vara?

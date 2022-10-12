@@ -9,7 +9,7 @@ import com.dt181g.project.support.Constants;
 public class BlueMonster extends BaseMonster {
 
     /**
-     *
+     * Constructor for initializing BlueMonsters, sets the name and ImageIcon.
      */
     public BlueMonster() {
         setName("Blightstrike");
