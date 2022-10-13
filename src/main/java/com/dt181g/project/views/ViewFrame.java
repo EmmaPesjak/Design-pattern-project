@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- *
+ * Frame component class, used for the GUI of the application.
  * @author Emma Pesjak
  */
 public class ViewFrame extends JFrame {
@@ -14,7 +14,7 @@ public class ViewFrame extends JFrame {
     JPanel panel = new JPanel();
 
     /**
-     *
+     * Constructor which sets the layout, size, background, and enabling program shut down of the GUI frame.
      */
     public ViewFrame() {
         this.setLayout(new BorderLayout());
@@ -26,18 +26,20 @@ public class ViewFrame extends JFrame {
     }
 
     /**
-     * @param top
+     * Method for updating the frame with a new panel.
+     * @param jPanel is the panel to be put in the frame.
      */
-    public void updateView(JPanel top) {
+    public void updateView(JPanel jPanel) {
         panel.removeAll();
-        panel.add(top);
+        panel.add(jPanel);
         this.add(panel);
         this.revalidate();
         this.repaint();
     }
 
     /**
-     * @param errorMsg
+     * Method for displaying error messages.
+     * @param errorMsg is the error message string.
      */
     public void displayErrorMsg (String errorMsg) {
         JOptionPane.showMessageDialog(this, errorMsg);

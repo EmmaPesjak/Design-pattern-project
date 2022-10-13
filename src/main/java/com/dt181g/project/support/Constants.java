@@ -22,13 +22,13 @@ public interface Constants {
     ImageIcon IMAGE_GREY_MONSTER = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\greyMonster.png");
     ImageIcon IMAGE_SLIME_MONSTER = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\slimeMonster.png");
 
-    ImageIcon IMAGE_ANGRYCORN = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\Angrycorn.png");
-    ImageIcon IMAGE_FANCYCORN = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\Fancycorn.png");
-    ImageIcon IMAGE_GLAMCORN = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\Glamcorn.png");
-    ImageIcon IMAGE_HAPPYCORN = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\Happycorn.png");
-    ImageIcon IMAGE_KITTYCORN = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\Kittycorn.png");
-    ImageIcon IMAGE_RAINBOWCORN = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\Rainbowcorn.png");
-    ImageIcon IMAGE_SLEEPYCORN = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\Sleepycorn.png");
+    ImageIcon IMAGE_ANGRYCORN = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\angrycorn.png");
+    ImageIcon IMAGE_FANCYCORN = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\fancycorn.png");
+    ImageIcon IMAGE_GLAMCORN = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\glamcorn.png");
+    ImageIcon IMAGE_HAPPYCORN = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\happycorn.png");
+    ImageIcon IMAGE_KITTYCORN = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\kittycorn.png");
+    ImageIcon IMAGE_RAINBOWCORN = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\rainbowcorn.png");
+    ImageIcon IMAGE_SLEEPYCORN = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\sleepycorn.png");
 
     ImageIcon IMAGE_APPLE = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\misc\\apple.png");
     ImageIcon IMAGE_BUCKET = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\misc\\bucket.png");

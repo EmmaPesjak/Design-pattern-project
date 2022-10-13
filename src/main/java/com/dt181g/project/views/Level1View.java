@@ -9,7 +9,8 @@ import java.awt.event.ActionListener;
 import java.util.Objects;
 
 /**
- *
+ * Concrete view of {@link com.dt181g.project.views.BaseView} responsible for setting up the
+ * level 1 panel displayed in the GUI frame.
  * @author Emma Pesjak
  */
 public class Level1View extends BaseView {
@@ -28,11 +29,12 @@ public class Level1View extends BaseView {
     ActionListener listener;
 
     /**
-     * @param viewFrame
-     * @param monsterImg
-     * @param name
-     * @param words
-     * @param listener
+     * Constructor which sets the layout and takes needed arguments for the GUI.
+     * @param viewFrame is the frame to display the panel in.
+     * @param monsterImg is the ImageIcon of the monster.
+     * @param name is the name of the monster.
+     * @param words is the string of words to be displayed and used by the user.
+     * @param listener is the action listener for the button.
      */
     public Level1View(ViewFrame viewFrame, ImageIcon monsterImg, String name, String words, ActionListener listener) {
         this.viewFrame = viewFrame;
@@ -44,7 +46,8 @@ public class Level1View extends BaseView {
     }
 
     /**
-     * @param words
+     * Method for updating level 1 displaying the altered words.
+     * @param words is the string of words that has been altered.
      */
     public void updateLevel1(String words) {
         centerPanel.removeAll();
@@ -59,17 +62,19 @@ public class Level1View extends BaseView {
     }
 
     /**
-     * @return
-     */
-    public String getSelectedItem() {
-        return Objects.requireNonNull(comboBox.getSelectedItem()).toString();
-    }
-
-    /**
-     * @param listener
+     * Method for adding an action listener to the combobox.
+     * @param listener is the action listener.
      */
     public void addLvl1ComboboxListener(ActionListener listener) {
         comboBox.addActionListener(listener);
+    }
+
+    /**
+     * Method for getting the selected item from the combobox.
+     * @return the string of the selected item.
+     */
+    public String getSelectedItem() {
+        return Objects.requireNonNull(comboBox.getSelectedItem()).toString();
     }
 
     /**
@@ -80,7 +85,6 @@ public class Level1View extends BaseView {
         JLabel label = new JLabel("Hi, I'm " + name + ". I like words. These are my words. Want to play with them?");
         label.setFont(Constants.FONT_TEXT);
         label.setForeground(Constants.COLOR_TEXT);
-        //topPanel.setBorder(new EmptyBorder(5, 5, 5,5));
         topPanel.add(label);
         bigPanel.add(topPanel, BorderLayout.NORTH);
     }
@@ -90,13 +94,9 @@ public class Level1View extends BaseView {
      */
     @Override
     void addCenterPanel() {
-
-
         centerPanel.setPreferredSize(new Dimension(1000, 470));
-
         centerPanel.add(new JLabel(monsterImg));
         centerPanel.add(comboBox);
-
         centerPanel.setBorder(new EmptyBorder(150, 5, 5,5));
         sentence.setText(words);
         sentence.setFont(Constants.FONT_TEXT);
@@ -110,8 +110,6 @@ public class Level1View extends BaseView {
      */
     @Override
     void addBottomPanel() {
-
-        //bottomPanel.setPreferredSize(new Dimension(1000, 120));
         bottomPanel.add(myButton);
         myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);

@@ -8,7 +8,8 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 /**
- *
+ * Concrete view of {@link com.dt181g.project.views.BaseView} responsible for setting up the
+ * end of game panel displayed in the GUI frame.
  * @author Emma Pesjak
  */
 public class EndView extends BaseView {
@@ -19,15 +20,19 @@ public class EndView extends BaseView {
     MyPanel bottomPanel = new MyPanel();
     MyButton myButton = new MyButton("Quit game");
     ActionListener listener;
+    String text;
+    ImageIcon img;
 
     /**
-     *
-     * @param viewFrame
-     * @param listener
+     * Constructor which sets the layout and takes needed GUI arguments.
+     * @param viewFrame is the frame to display the panel in.
+     * @param listener is the action listener for the button.
      */
-    public EndView(ViewFrame viewFrame, ActionListener listener) {
+    public EndView(ViewFrame viewFrame, ActionListener listener, String text, ImageIcon img) {
         this.viewFrame = viewFrame;
         this.listener = listener;
+        this.text = text;
+        this.img = img;
         bigPanel.setLayout(new BorderLayout());
     }
 
@@ -37,7 +42,7 @@ public class EndView extends BaseView {
     @Override
     void addTopPanel() {
         topPanel.removeAll();
-        JLabel completed = new JLabel("You completed the game! Well done!");
+        JLabel completed = new JLabel(text);
         completed.setFont(Constants.FONT_BIG);
         completed.setForeground(Constants.COLOR_TEXT);
         topPanel.add(completed);
@@ -52,7 +57,7 @@ public class EndView extends BaseView {
         centerPanel.removeAll();
         centerPanel.setPreferredSize(new Dimension(1000, 470));
         centerPanel.setBorder(new EmptyBorder(120, 5, 5,5));
-        centerPanel.add(new JLabel(Constants.IMAGE_STAR));
+        centerPanel.add(new JLabel(img));
         bigPanel.add(centerPanel, BorderLayout.CENTER);
     }
 

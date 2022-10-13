@@ -21,7 +21,7 @@ public class StartView extends BaseView {
     ActionListener listener;
 
     /**
-     * Constructor
+     * Constructor which sets the layout and takes needed GUI arguments.
      * @param viewFrame is the frame to display the panel in.
      * @param listener is the action listener for the button.
      */

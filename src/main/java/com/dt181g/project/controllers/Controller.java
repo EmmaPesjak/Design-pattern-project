@@ -5,6 +5,7 @@ import com.dt181g.project.models.Vaelarya;
 import com.dt181g.project.models.HealThread;
 import com.dt181g.project.models.MainModel;
 import com.dt181g.project.models.monsters.BaseMonster;
+import com.dt181g.project.support.Constants;
 import com.dt181g.project.views.*;
 
 import javax.swing.Timer;
@@ -25,8 +26,6 @@ public class Controller implements Observer {
     private final Level3View level3View;
     private final Level4View level4View;
     private final Level5View level5View;
-    private final EndView endView;
-    private final GameOverView gameOverView;
 
     /**
      * @param viewFrame
@@ -51,8 +50,6 @@ public class Controller implements Observer {
         level3View.addProduceButtonListener(new Level3ButtonListenerProduce());
         level4View = new Level4View(viewFrame, monster4.getMonsterImg(), monster4.getName(), new Level4ButtonListener());
         level5View = new Level5View(viewFrame, monster5.getMonsterImg(), monster5.getName(), new Level5ButtonListener());
-        endView = new EndView(viewFrame, new QuitButtonListener());
-        gameOverView = new GameOverView(viewFrame, new QuitButtonListener());
     }
 
     /**
@@ -222,7 +219,6 @@ public class Controller implements Observer {
         for (int i = 1; i <= 6; i++) {
             createDamageThread();
         }
-
         // Create a healThread representing the player.
         createHealer();
 
@@ -265,12 +261,14 @@ public class Controller implements Observer {
         if (amountOfHealth > 170) {
             terminateThreads();
             stopTimer();
+            EndView endView = new EndView(viewFrame, new QuitButtonListener(), "You completed the game! Well done!", Constants.IMAGE_STAR);
             endView.makePanel();
 
         } else if (amountOfHealth <= 0) {
             terminateThreads();
             stopTimer();
-            gameOverView.makePanel();
+            EndView endView = new EndView(viewFrame, new QuitButtonListener(), "Game Over!", Constants.IMAGE_RED_MONSTER);
+            endView.makePanel();
         }
     }
 }

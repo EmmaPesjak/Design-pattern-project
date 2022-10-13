@@ -25,7 +25,6 @@ public class MainModel {
     MonsterFactory monsterFactory = (MonsterFactory) FactoryProvider.getFactory(1);
     UnicornFactory unicornFactory = (UnicornFactory) FactoryProvider.getFactory(2);
 
-
     /**
      *
      */
@@ -93,6 +92,6 @@ public class MainModel {
      */
     public String countWordsLvl1() {
         long amountOfWords = words.stream().filter(word -> word.length() > 5).count();
-        return "There are " + Long.toString(amountOfWords) + " words containing more than 5 letters. That is awesome!";
+        return "There are " + amountOfWords + " words containing more than 5 letters. That is awesome!";
     }
 }

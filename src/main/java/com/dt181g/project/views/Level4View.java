@@ -8,7 +8,8 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 /**
- *
+ * Concrete view of {@link com.dt181g.project.views.BaseView} responsible for setting up the
+ * level 4 panel displayed in the GUI frame.
  * @author Emma Pesjak
  */
 public class Level4View extends BaseView {
@@ -26,10 +27,11 @@ public class Level4View extends BaseView {
     ActionListener listener;
 
     /**
-     * @param viewFrame
-     * @param monsterImg
-     * @param name
-     * @param listener
+     * Constructor which sets the layout and takes needed arguments for the GUI.
+     * @param viewFrame is the frame to display the panel in.
+     * @param monsterImg is the ImageIcon of the monster.
+     * @param name is the name of the monster.
+     * @param listener is the action listener for the button.
      */
     public Level4View(ViewFrame viewFrame, ImageIcon monsterImg, String name, ActionListener listener) {
         this.viewFrame = viewFrame;
@@ -40,7 +42,8 @@ public class Level4View extends BaseView {
     }
 
     /**
-     * @return
+     * Method for checking if the user has selected the correct answer.
+     * @return boolean if the radio button is checked.
      */
     public boolean rightAnswerFrank() {
         return radioButton2.isSelected();

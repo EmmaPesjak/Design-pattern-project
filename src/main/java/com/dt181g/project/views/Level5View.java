@@ -7,7 +7,8 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 /**
- *
+ * Concrete view of {@link com.dt181g.project.views.BaseView} responsible for setting up the
+ * level 5 panel displayed in the GUI frame.
  * @author Emma Pesjak
  */
 public class Level5View extends BaseView {
@@ -22,15 +23,12 @@ public class Level5View extends BaseView {
     MyButton myButton = new MyButton("Channel crystal");
     ActionListener listener;
 
-
-    //OBS MÅSTE FIXA NÅGON OM HON SKULLE DÖ
-
-
     /**
-     * @param viewFrame
-     * @param monsterImg
-     * @param name
-     * @param listener
+     * Constructor which sets the layout and takes needed arguments for the GUI.
+     * @param viewFrame is the frame to display the panel in.
+     * @param monsterImg is the ImageIcon of the monster.
+     * @param name is the name of the monster.
+     * @param listener is the action listener for the button.
      */
     public Level5View(ViewFrame viewFrame, ImageIcon monsterImg, String name, ActionListener listener) {
         this.viewFrame = viewFrame;
@@ -41,11 +39,11 @@ public class Level5View extends BaseView {
     }
 
     /**
-     * @param healthBarPanel
-     * @param health
+     * Method for updating level 5 displaying the health and health bar of Vaelarya.
+     * @param healthBarPanel is Vaelarya's health bar.
+     * @param health is the amount of health represented by an integer.
      */
     public void updateLevel5 (HealthBarPanel healthBarPanel, int health) {
-        // skriva ut monsternas skada?
         bottomPanel.removeAll();
         healthLabel.setText("Vaelarya's health: " + health);
         healthLabel.setFont(Constants.FONT_BIG);

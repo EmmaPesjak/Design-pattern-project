@@ -10,7 +10,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
+ * Concrete view of {@link com.dt181g.project.views.BaseView} responsible for setting up the
+ * level 2 panel displayed in the GUI frame.
  * @author Emma Pesjak
  */
 public class Level2View extends BaseView {
@@ -28,23 +29,23 @@ public class Level2View extends BaseView {
     ActionListener listener;
 
     /**
-     * @param viewFrame
-     * @param monsterImg
-     * @param name
-     * @param listener
+     * Constructor which sets the layout and takes needed arguments for the GUI.
+     * @param viewFrame is the frame to display the panel in.
+     * @param monsterImg is the ImageIcon of the monster.
+     * @param name is the name of the monster.
+     * @param listener is the action listener for the button.
      */
     public Level2View(ViewFrame viewFrame, ImageIcon monsterImg, String name, ActionListener listener) {
-
         this.viewFrame = viewFrame;
         this.monsterImg = monsterImg;
         this.name = name;
         this.listener = listener;
-
         bigPanel.setLayout(new BorderLayout());
     }
 
     /**
-     * @return
+     * Method for accessing the user text field input.
+     * @return a list of the text field inputs.
      */
     public List<Integer> getBuckets() {
         List<Integer> numbs = new ArrayList<>(Arrays.asList(Integer.parseInt(bucket1.getText()),
@@ -60,11 +61,8 @@ public class Level2View extends BaseView {
         JLabel label = new JLabel("<html>Well hello there Hero. I might look super scary but I'm a nice monster<br>named " + name + ". " +
                 "Can you help me with a problem? I've got three buckets<br> to carry my apples in, I need a total " +
                 "amount of 15 apples, no more, no less.<br>How many apples should I place in each bucket?</html>");
-        //label.setHorizontalAlignment(SwingConstants.CENTER);
-        //label.setVerticalAlignment(SwingConstants.CENTER);
         label.setFont(Constants.FONT_TEXT);
         label.setForeground(Constants.COLOR_TEXT);
-        //topPanel.setBorder(new EmptyBorder(5, 5, 5,5));
         topPanel.add(label);
         bigPanel.add(topPanel, BorderLayout.NORTH);
     }
