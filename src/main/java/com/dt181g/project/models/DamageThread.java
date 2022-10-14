@@ -26,7 +26,7 @@ public class DamageThread implements Runnable {
                     // If a weapon is available, sleep representing the time it takes to swing the weapon.
                     Thread.sleep((new Random().nextInt(10) + 1) * 1000);
                     // Remove health from the health meter.
-                    Vaelarya.INSTANCE.removeHealth(new Random().nextInt(3) + 1);
+                    Vaelarya.INSTANCE.removeHealth(weapon.getDamage());
                     // Return the weapon.
                     distributor.returnWeapon(weapon);
                     // Sleep representing rest time, fighting is exhausting.

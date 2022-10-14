@@ -18,7 +18,7 @@ public class WeaponDistributor {
      */
     private WeaponDistributor() {
         for (int i = 1; i <= 3; i++) {
-            weapons.add(new DragonWeapon(i));
+            weapons.add(new DragonWeapon());
         }
     }
 

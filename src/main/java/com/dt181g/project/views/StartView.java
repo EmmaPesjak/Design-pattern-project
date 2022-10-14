@@ -70,7 +70,6 @@ public class StartView extends BaseView {
         bottomPanel.add(myButton);
         info.setAlignmentX(Component.CENTER_ALIGNMENT);
         info.setHorizontalAlignment(SwingConstants.CENTER);
-        info.setVerticalAlignment(SwingConstants.CENTER);
         myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);
     }

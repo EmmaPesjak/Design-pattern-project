@@ -8,6 +8,7 @@ import com.dt181g.project.models.monsters.BaseMonster;
 import com.dt181g.project.support.Constants;
 import com.dt181g.project.views.*;
 
+import javax.swing.*;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,15 +42,15 @@ public class Controller implements Observer {
         BaseMonster monster4 = mainModel.getRandomMonster();
         BaseMonster monster5 = mainModel.getRandomMonster();
 
-        StartView startView = new StartView(viewFrame, new StartButtonListener());
-        startView.makePanel();
-        level1View = new Level1View(viewFrame, monster1.getMonsterImg(), monster1.getName(), mainModel.lvl1RandomWords(), new Level1ButtonListener());
-        level1View.addLvl1ComboboxListener(new Level1ComboboxListener());
-        level2View = new Level2View(viewFrame, monster2.getMonsterImg(), monster2.getName(), new Level2ButtonListener());
-        level3View = new Level3View(viewFrame, monster3.getMonsterImg(), monster3.getName(), new Level3ButtonListenerNext());
-        level3View.addProduceButtonListener(new Level3ButtonListenerProduce());
-        level4View = new Level4View(viewFrame, monster4.getMonsterImg(), monster4.getName(), new Level4ButtonListener());
         level5View = new Level5View(viewFrame, monster5.getMonsterImg(), monster5.getName(), new Level5ButtonListener());
+        level4View = new Level4View(viewFrame, monster4.getMonsterImg(), monster4.getName(), new Level4ButtonListener());
+        level3View = new Level3View(viewFrame, monster3.getMonsterImg(), monster3.getName(), new NextLevelButtonListener(level4View));
+        level3View.addProduceButtonListener(new Level3ButtonListenerProduce());
+        level2View = new Level2View(viewFrame, monster2.getMonsterImg(), monster2.getName(), new Level2ButtonListener());
+        level1View = new Level1View(viewFrame, monster1.getMonsterImg(), monster1.getName(), mainModel.lvl1RandomWords(), new NextLevelButtonListener(level2View));
+        level1View.addLvl1ComboboxListener(new Level1ComboboxListener());
+        StartView startView = new StartView(viewFrame, new NextLevelButtonListener(level1View));
+        startView.makePanel();
     }
 
     /**
@@ -68,32 +69,6 @@ public class Controller implements Observer {
             } else {
                 level1View.updateLevel1(mainModel.lvl1RandomWords());
             }
-        }
-    }
-
-    /**
-     *
-     */
-    class StartButtonListener implements ActionListener {
-        /**
-         * @param e
-         */
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            level1View.makePanel();
-        }
-    }
-
-    /**
-     *
-     */
-    class Level1ButtonListener implements ActionListener {
-        /**
-         * @param e
-         */
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            level2View.makePanel();
         }
     }
 
@@ -127,21 +102,6 @@ public class Controller implements Observer {
     /**
      *
      */
-    class Level3ButtonListenerNext implements ActionListener {
-
-        /**
-         *
-         * @param e
-         */
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            level4View.makePanel();
-        }
-    }
-
-    /**
-     *
-     */
     class Level3ButtonListenerProduce implements ActionListener {
         /**
          *
@@ -149,8 +109,10 @@ public class Controller implements Observer {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-            level3View.updateLevel3(mainModel.getRandomCharImg(), mainModel.getRandomCharImg(),
-                    mainModel.getRandomCharImg(), mainModel.getRandomCharImg(), mainModel.getRandomCharImg());
+            Deque<ImageIcon> imageIcons = new LinkedList<>(Arrays.asList(mainModel.getRandomCharImg(),
+                    mainModel.getRandomCharImg(), mainModel.getRandomCharImg(),
+                    mainModel.getRandomCharImg(), mainModel.getRandomCharImg()));
+            level3View.updateLevel3(imageIcons);
         }
     }
 
@@ -165,7 +127,7 @@ public class Controller implements Observer {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (level4View.rightAnswerFrank()) {
+            if (level4View.rightAnswerLevel4()) {
                 level5View.makePanel();
             } else {
                 viewFrame.displayErrorMsg("Wrong answer, try again.");
@@ -183,23 +145,10 @@ public class Controller implements Observer {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-            init();
+            initLevel5();
         }
     }
 
-    /**
-     *
-     */
-    static class QuitButtonListener implements ActionListener {
-        /**
-         *
-         * @param e
-         */
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            System.exit(0);
-        }
-    }
 
 
 
@@ -214,38 +163,34 @@ public class Controller implements Observer {
         updateGUI();
     });
 
-    public void init() {
+    /**
+     *
+     */
+    public void initLevel5() {
         // Create damageThreads representing the monsters.
         for (int i = 1; i <= 6; i++) {
-            createDamageThread();
+            Thread dThread = new Thread(damageThread);
+            damageThreads.add(damageThread);
+            dThread.start();
         }
         // Create a healThread representing the player.
-        createHealer();
+        Thread hThread = new Thread(healThread);
+        hThread.start();
 
         vaelarya.addObserver(this);
         timer.start();
     }
 
-    public void stopTimer() {
-        timer.stop();
-    }
-
+    /**
+     *
+     */
     public void updateGUI() {
         level5View.updateLevel5(new HealthBarPanel(vaelarya.getHealth()), vaelarya.getHealth());
     }
 
-    public void createHealer () {
-        Thread thread = new Thread(healThread);
-        thread.start();
-    }
-
-    public void createDamageThread() {
-
-        Thread thread = new Thread(damageThread);
-        damageThreads.add(damageThread);
-        thread.start();
-    }
-
+    /**
+     *
+     */
     public void terminateThreads() {
         healThread.stopThread();
 
@@ -254,20 +199,25 @@ public class Controller implements Observer {
         }
     }
 
+    /**
+     *
+     */
     @Override
     public synchronized void update() {
         int amountOfHealth = this.vaelarya.getHealth();
 
         if (amountOfHealth > 170) {
             terminateThreads();
-            stopTimer();
-            EndView endView = new EndView(viewFrame, new QuitButtonListener(), "You completed the game! Well done!", Constants.IMAGE_STAR);
+            timer.stop();
+            EndView endView = new EndView(viewFrame, new QuitButtonListener(),
+                    "You completed the game! Well done!", Constants.IMAGE_STAR);
             endView.makePanel();
 
         } else if (amountOfHealth <= 0) {
             terminateThreads();
-            stopTimer();
-            EndView endView = new EndView(viewFrame, new QuitButtonListener(), "Game Over!", Constants.IMAGE_RED_MONSTER);
+            timer.stop();
+            EndView endView = new EndView(viewFrame, new QuitButtonListener(),
+                    "Game Over!", Constants.IMAGE_RED_MONSTER);
             endView.makePanel();
         }
     }

@@ -1,22 +1,18 @@
 package com.dt181g.project.models;
 
+import java.util.Random;
+
 /**
  * Class representing the weapons used by monsters to fight the dragon.
  * @author Emma Pesjak
  */
 public class DragonWeapon {
 
-
-    //vad ska nmb göra??
-
-
-    private final int nmb;
-
     /**
-     *
-     * @param nmb
+     * Method for getting the amount of damage the weapon does.
+     * @return the weapon's damage as an integer.
      */
-    public DragonWeapon(int nmb) {
-        this.nmb = nmb;
+    public int getDamage() {
+        return new Random().nextInt(3) + 1;
     }
 }

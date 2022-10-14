@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.Deque;
 
 /**
  * Concrete view of {@link com.dt181g.project.views.BaseView} responsible for setting up the
@@ -49,19 +50,13 @@ public class Level3View extends BaseView {
 
     /**
      * Method for updating level 3 displaying the five produced characters.
-     * @param char1 is the image of character 1.
-     * @param char2 is the image of character 2.
-     * @param char3 is the image of character 3.
-     * @param char4 is the image of character 4.
-     * @param char5 is the image of character 5.
+     * @param imageIcons is the Deque of images of the produced characters.
      */
-    public void updateLevel3(ImageIcon char1, ImageIcon char2, ImageIcon char3, ImageIcon char4, ImageIcon char5) {
+    public void updateLevel3(Deque<ImageIcon> imageIcons) {
         centerPanel.removeAll();
-        centerPanel.add(new JLabel(char1));
-        centerPanel.add(new JLabel(char2));
-        centerPanel.add(new JLabel(char3));
-        centerPanel.add(new JLabel(char4));
-        centerPanel.add(new JLabel(char5));
+        for (ImageIcon i: imageIcons) {
+            centerPanel.add(new JLabel(i));
+        }
         centerPanel.revalidate();
         centerPanel.repaint();
     }

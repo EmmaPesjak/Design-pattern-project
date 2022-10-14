@@ -5,8 +5,7 @@ import com.dt181g.project.support.Constants;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 import java.util.List;
 
 /**
@@ -23,9 +22,8 @@ public class Level2View extends BaseView {
     MyButton myButton = new MyButton("Help the monster");
     ImageIcon monsterImg;
     String name;
-    JTextField bucket1 = new JTextField(8);
-    JTextField bucket2 = new JTextField(8);
-    JTextField bucket3 = new JTextField(8);
+    Deque<JTextField> buckets = new LinkedList<>(Arrays.asList(
+            new JTextField(8), new JTextField(8), new JTextField(8)));
     ActionListener listener;
 
     /**
@@ -45,12 +43,14 @@ public class Level2View extends BaseView {
 
     /**
      * Method for accessing the user text field input.
-     * @return a list of the text field inputs.
+     * @return a list of the text field inputs as integers.
      */
     public List<Integer> getBuckets() {
-        List<Integer> numbs = new ArrayList<>(Arrays.asList(Integer.parseInt(bucket1.getText()),
-                Integer.parseInt(bucket2.getText()), Integer.parseInt(bucket3.getText())));
-        return numbs;
+        List<Integer> integers = new ArrayList<>();
+        for (JTextField bucket : buckets) {
+            integers.add(Integer.parseInt(bucket.getText()));
+        }
+        return integers;
     }
 
     /**
@@ -73,28 +73,20 @@ public class Level2View extends BaseView {
     @Override
     void addCenterPanel() {
         centerPanel.setPreferredSize(new Dimension(900, 400));
-        JLabel bucket1Label = new JLabel("Bucket 1:");
-        bucket1Label.setForeground(Constants.COLOR_TEXT);
-        bucket1Label.setFont(Constants.FONT_TEXT);
-        JLabel bucket2Label = new JLabel("Bucket 2:");
-        bucket2Label.setForeground(Constants.COLOR_TEXT);
-        bucket2Label.setFont(Constants.FONT_TEXT);
-        JLabel bucket3Label = new JLabel("Bucket 3:");
-        bucket3Label.setForeground(Constants.COLOR_TEXT);
-        bucket3Label.setFont(Constants.FONT_TEXT);
         centerPanel.setLayout(new GridLayout(3,3, 5, 0));
-        bucket1.setFont(Constants.FONT_BIG);
-        bucket2.setFont(Constants.FONT_BIG);
-        bucket3.setFont(Constants.FONT_BIG);
         centerPanel.add(new JLabel(monsterImg));
         centerPanel.add(new JLabel(Constants.IMAGE_APPLE));
         centerPanel.add(new JLabel(Constants.IMAGE_BUCKET));
-        centerPanel.add(bucket1Label);
-        centerPanel.add(bucket2Label);
-        centerPanel.add(bucket3Label);
-        centerPanel.add(bucket1);
-        centerPanel.add(bucket2);
-        centerPanel.add(bucket3);
+        for (int i = 1; i <= 3; i++) {
+            JLabel bucketLabel = new JLabel("Bucket " + i + ":");
+            bucketLabel.setForeground(Constants.COLOR_TEXT);
+            bucketLabel.setFont(Constants.FONT_TEXT);
+            centerPanel.add(bucketLabel);
+        }
+        for (JTextField bucket : buckets) {
+            bucket.setFont(Constants.FONT_BIG);
+            centerPanel.add(bucket);
+        }
         bigPanel.add(centerPanel, BorderLayout.CENTER);
     }
 

@@ -45,7 +45,7 @@ public class Level4View extends BaseView {
      * Method for checking if the user has selected the correct answer.
      * @return boolean if the radio button is checked.
      */
-    public boolean rightAnswerFrank() {
+    public boolean rightAnswerLevel4() {
         return radioButton2.isSelected();
     }
 
