@@ -58,7 +58,7 @@ public class Controller implements Observer {
      */
     class Level1ComboboxListener implements ActionListener {
         /**
-         * @param e
+         * @param e is the action event of a click on the button.
          */
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -76,9 +76,10 @@ public class Controller implements Observer {
      *
      */
     class Level2ButtonListener implements ActionListener {
+
         /**
          *
-         * @param e
+         * @param e is the action event of a click on the button.
          */
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -103,9 +104,10 @@ public class Controller implements Observer {
      *
      */
     class Level3ButtonListenerProduce implements ActionListener {
+
         /**
          *
-         * @param e
+         * @param e is the action event of a click on the button.
          */
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -123,7 +125,7 @@ public class Controller implements Observer {
 
         /**
          *
-         * @param e
+         * @param e is the action event of a click on the button.
          */
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -141,7 +143,7 @@ public class Controller implements Observer {
     class Level5ButtonListener implements ActionListener {
         /**
          *
-         * @param e
+         * @param e is the action event of a click on the button.
          */
         @Override
         public void actionPerformed(ActionEvent e) {

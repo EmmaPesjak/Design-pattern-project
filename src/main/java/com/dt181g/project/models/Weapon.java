@@ -6,7 +6,7 @@ import java.util.Random;
  * Class representing the weapons used by monsters to fight the dragon.
  * @author Emma Pesjak
  */
-public class DragonWeapon {
+public class Weapon {
 
     /**
      * Method for getting the amount of damage the weapon does.

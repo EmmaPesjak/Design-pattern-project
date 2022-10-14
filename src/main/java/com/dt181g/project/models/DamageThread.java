@@ -21,7 +21,7 @@ public class DamageThread implements Runnable {
         while (!terminate) {
             try {
                 // Try to borrow a weapon from the distributor.
-                DragonWeapon weapon = distributor.borrowWeapon();
+                Weapon weapon = distributor.borrowWeapon();
                 if (weapon != null) {
                     // If a weapon is available, sleep representing the time it takes to swing the weapon.
                     Thread.sleep((new Random().nextInt(10) + 1) * 1000);

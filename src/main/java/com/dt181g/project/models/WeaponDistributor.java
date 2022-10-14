@@ -11,14 +11,14 @@ import java.util.LinkedList;
 public class WeaponDistributor {
 
     public static final WeaponDistributor INSTANCE = new WeaponDistributor();
-    private final Deque<DragonWeapon> weapons = new LinkedList<>();
+    private final Deque<Weapon> weapons = new LinkedList<>();
 
     /**
      * Constructor responsible for creating the three available weapons.
      */
     private WeaponDistributor() {
         for (int i = 1; i <= 3; i++) {
-            weapons.add(new DragonWeapon());
+            weapons.add(new Weapon());
         }
     }
 
@@ -26,7 +26,7 @@ public class WeaponDistributor {
      * Method responsible for lending weapons.
      * @return is the weapon that is borrowed, returns null if no weapon is available.
      */
-    public synchronized DragonWeapon borrowWeapon() {
+    public synchronized Weapon borrowWeapon() {
         if (!weapons.isEmpty()) {
             return weapons.pollLast();
         } else {
@@ -36,9 +36,9 @@ public class WeaponDistributor {
 
     /**
      * Method responsible for enabling return of weapons.
-     * @param dragonWeapon is the weapon that is returned.
+     * @param weapon is the weapon that is returned.
      */
-    public synchronized void returnWeapon(DragonWeapon dragonWeapon) {
-        weapons.add(dragonWeapon);
+    public synchronized void returnWeapon(Weapon weapon) {
+        weapons.add(weapon);
     }
 }

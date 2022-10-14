@@ -6,6 +6,9 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.Deque;
+import java.util.LinkedList;
 
 /**
  * Concrete view of {@link com.dt181g.project.views.BaseView} responsible for setting up the
@@ -24,6 +27,7 @@ public class Level4View extends BaseView {
     JRadioButton radioButton1 = new JRadioButton("Rothead");
     JRadioButton radioButton2 = new JRadioButton("Frank-Einstein");
     JRadioButton radioButton3 = new JRadioButton("Partygut");
+    Deque<JRadioButton> radioButtons = new LinkedList<>(Arrays.asList(radioButton1, radioButton2, radioButton3));
     ActionListener listener;
 
     /**
@@ -69,15 +73,13 @@ public class Level4View extends BaseView {
     void addCenterPanel() {
         centerPanel.setPreferredSize(new Dimension(1000, 400));
         centerPanel.setBorder(new EmptyBorder(120, 5, 5,5));
-        radioButton1.setBackground(Constants.COLOR_BACKGROUND);
-        radioButton1.setForeground(Constants.COLOR_TEXT);
-        radioButton1.setFont(Constants.FONT_TEXT);
-        radioButton2.setBackground(Constants.COLOR_BACKGROUND);
-        radioButton2.setForeground(Constants.COLOR_TEXT);
-        radioButton2.setFont(Constants.FONT_TEXT);
-        radioButton3.setBackground(Constants.COLOR_BACKGROUND);
-        radioButton3.setForeground(Constants.COLOR_TEXT);
-        radioButton3.setFont(Constants.FONT_TEXT);
+        ButtonGroup buttonGroup = new ButtonGroup();
+        for (JRadioButton button : radioButtons) {
+            button.setBackground(Constants.COLOR_BACKGROUND);
+            button.setForeground(Constants.COLOR_TEXT);
+            button.setFont(Constants.FONT_TEXT);
+            buttonGroup.add(button);
+        }
         GridBagLayout gridBagLayout = new GridBagLayout();
         centerPanel.setLayout(gridBagLayout);
         GridBagConstraints gbc = new GridBagConstraints();
@@ -94,10 +96,6 @@ public class Level4View extends BaseView {
         gbc.gridx = 0;
         gbc.gridy = 3;
         centerPanel.add(radioButton3, gbc);
-        ButtonGroup buttonGroup = new ButtonGroup();
-        buttonGroup.add(radioButton1);
-        buttonGroup.add(radioButton2);
-        buttonGroup.add(radioButton3);
         bigPanel.add(centerPanel, BorderLayout.CENTER);
     }
 
