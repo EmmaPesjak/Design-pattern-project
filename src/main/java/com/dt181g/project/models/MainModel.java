@@ -39,7 +39,7 @@ public class MainModel {
     }
 
     /**
-     *
+     * Method that checks whether.......
      * @return
      */
     public boolean lvl2Success() {
@@ -70,15 +70,15 @@ public class MainModel {
     }
 
     /**
-     *
-     * @return
+     * Method that ........
+     * @return a joint string.
      */
     public String lvl1RandomWords() {
         return String.join(" ", words);
     }
 
     /**
-     *
+     * Method for level 1,
      * @return
      */
     public String sortLvl1Alphabetically() {
@@ -87,8 +87,8 @@ public class MainModel {
     }
 
     /**
-     *
-     * @return
+     * Method level 1, responsible for counting the amount of words with more than 5 letters.
+     * @return the amount in a string.
      */
     public String countWordsLvl1() {
         long amountOfWords = words.stream().filter(word -> word.length() > 5).count();

@@ -54,7 +54,7 @@ public class Controller implements Observer {
     }
 
     /**
-     *
+     *  Inner class
      */
     class Level1ComboboxListener implements ActionListener {
         /**
@@ -202,7 +202,7 @@ public class Controller implements Observer {
     }
 
     /**
-     *
+     * Overridden method
      */
     @Override
     public synchronized void update() {

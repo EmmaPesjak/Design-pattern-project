@@ -1,34 +1,3 @@
-problem tat occured: mosterna ritas inte ut, någon form av race condition?? efersom de randomas fram.
-fixades med revalidate/repaint i updatePanel()
-
-
-lägger in allt som kan ändras i spelet i constants för att det ska finnas på ett ställe och vara lätt
-har dock namnen på monsterna i sina klasser
-
-
-problem: duplicate images could not be displayed since the Jlabel was created in Constants interface, by instead only setting it to imageicons and making new labels when needed this was fixed
-
-
-
-
-egna button och panel klasser för att spara massa rader kod eftersom alla bakgrunder är likadana och alla butttons är likadana.
-
-
-
-Factory pattern: monsters/unicorns
-Abstract factory: characterfactory
-Template pattern: the views
-Object pool: dragon weapons/distributor
-producer/consumer: heal/damage theads
-observer: healthpool
-MVC
-
-5 layouts, 8 Jcomponents
-6 concurrent synchronized processes
-3 streams API
-GUI event driven
-
-
 # Project Report
 Emma Pesjak
 
@@ -37,7 +6,126 @@ The project was performed on a Windows 10 PC with IntelliJ version 2021.3.3, Jav
 3.8.5, and Git version 2.33.0.windows.2.
 
 ## Purpose
+The purpose of this project was to demonstrate a comprehensive understanding of the course's learning
+objectives. Specifically to create an event driven application with a Graphical User Interface (GUI) using 
+Java Swing.
+
+The goal was to achieve a grade as high as possible and thereby ...
+
+To showcase utilization of the Swing library and implement different layouts and components.
+
+How to incorporate Streams API...
+
+To blablabla...
+rabbla alla objectives 
+designpatterns under MVC
+goals
+
+Minimum amount of concurrent processes 2 2 3 4 5
+Synchronization of amount of concurrent processes - - 2 3 3
+Amount of design patterns 2 3 4 5 6
+MVC Pattern
+
 
 ## Procedures
 
+problem that occured: mosterna ritas inte ut, någon form av race condition?? efersom de randomas fram.
+fixades med revalidate/repaint i updatePanel()
+
+lägger in allt som kan ändras i spelet i constants för att det ska finnas på ett ställe och vara lätt
+har dock namnen på monsterna i sina klasser
+
+problem: duplicate images could not be displayed since the Jlabel was created in Constants interface,
+by instead only setting it to imageicons and making new labels when needed this was fixed
+
+egna button och panel klasser för att spara massa rader kod eftersom alla bakgrunder är likadana och
+alla butttons är likadana.
+
+generell kodstruktur
+lite om mvc
+
+streams api lades under model
+### Producer/consumer
+producer/consumer: heal/damage theads
+synch/concurrent processes
+### Observer
+observer: healthpool
+### Object pool
+Object pool: dragon weapons/distributor
+### Factory method
+Factory pattern: monsters/unicorns
+### Abstract factory
+Abstract factory: characterfactory
+### Template method
+Template pattern: the views
+här kom alla swingkomponents in
+
+olika patterns
+
+olika levels
+
+
+
+MVC
+
+uml-diagram?
+
+Perspective: How can the results (solution) be reproduced?
+What kind of problems emerged and how were these resolved?
+
+This section is the study's methodology, which needs to account for HOW the results has been produced.
+I have to say most of you do have a pretty solid understanding of this section, but try to only 
+include relevant information. The reader should be able to create a similar result based on the 
+contents of this section, so the focus should be on information which are relevant for reproducibility.
+Think in terms of a baking recipe, where you present the steps needed in order to produce a delicious 
+cake. However, don't take this metaphor too far. We need to find the information presented in cohesive
+paragraphs, not segmented into separate bullet points.
+
+There's no need to repeat implementation details in this section, unless it's absolutely crucial for 
+the context. We already have full access to the results, and here we only want to see how to produce it. 
+Focus on the matters which objectively should matter to the reader, not details which was only relevant 
+to you. Sure, you had to study reading material and look up something on Google, but you wouldn't need 
+to do that in order to reproduce the results. Emphasise the challenges which arose during construction, 
+how these manifested themselves and how they were resolved in the end. Try to include some justification 
+for approaches, just enough to give the reader a context, but leave analysis for the discussion.
+
 ## Discussion
+
+svårast att få till mvc ordentligt...
+
+hade det varit ett större spel hade man kunnat dela in main model mer på olika levels.
+
+snacka om att det är bra med att ha alla konstanter på ett ställe, att man kanske även kan lägga in alla 
+strängar här, så det endast är ett ställe att uppdatera på om man gör ändringar i spelet.
+
+
+
+Perspective: Has the purpose been fulfilled? Determine the suitability of the implementation...
+should alternative approaches and procedures be considered?
+Personal reflections: What did you learn? What did you find to be particularly difficult? Did the
+learning module(s) prepare you sufficiently for the challenge? What could be improved in regards to
+the assignment? Etc.
+
+So we have finally arrived at the final section, and arguable the most important in terms of evaluation. 
+The content you place here will tie all aspects of the study together in a nice bundle of logic cake. 
+The two most important things we need in this section regards analyses of both success and implementation.
+Has the purpose been fulfilled, and to what extent has it been successful? Remember to argue for such
+success on the basis of actual results. The reader needs to be able to run the thread of logic
+backwards from conclusion to its source in the results, so remember to maintain objectivity. 
+If the statements leading to the conclusion contains any trace of subjectivity (I think... 
+I believe... I feel... etc) it will remove all scientific value, rendering your reasoning void 
+of substance.
+
+Was the approaches and procedures suitable? Only the methodology is considered here, and we expect 
+to see some dissection of the actual procedures. At this point in time you have already conducted 
+the study and should possess more knowledge in comparison to what you had in the beginning. If you 
+or someone else were to redo this study, what should be done differently?
+
+Personal reflections
+As a finale it's always nice to see your personal reflections at the end of the discussion section. 
+This can be completely subjective and regard the assignment, or the learning modules in general. 
+As examiner I cannot evaluate correctness regarding these aspects since they represent your personal 
+opinions, so they offer no scientific value. But I do read your reflections and appreciate the input 
+and perspective you offer. While planning for future updates and changes I often get inspired by the 
+feedback my students has provided.
+
