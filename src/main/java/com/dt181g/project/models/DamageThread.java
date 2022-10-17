@@ -1,5 +1,7 @@
 package com.dt181g.project.models;
 
+import com.dt181g.project.support.Constants;
+
 import java.util.Random;
 
 /**
@@ -24,17 +26,17 @@ public class DamageThread implements Runnable {
                 Weapon weapon = distributor.borrowWeapon();
                 if (weapon != null) {
                     // If a weapon is available, sleep representing the time it takes to swing the weapon.
-                    Thread.sleep((new Random().nextInt(10) + 1) * 1000);
+                    Thread.sleep((new Random().nextInt(Constants.SLEEP_SWING_WEAPON) + 1) * 1000);
                     // Remove health from the health meter.
                     Vaelarya.INSTANCE.removeHealth(weapon.getDamage());
                     // Return the weapon.
                     distributor.returnWeapon(weapon);
                     // Sleep representing rest time, fighting is exhausting.
-                    Thread.sleep(5000);
+                    Thread.sleep(Constants.SLEEP_RESTING * 1000);
                 } else {
                     /* If no weapon is available, sleep representing idle waiting for another weapon,
                     monsters can't focus all the time. */
-                    Thread.sleep(2000);
+                    Thread.sleep(Constants.SLEEP_WAITING * 1000);
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();

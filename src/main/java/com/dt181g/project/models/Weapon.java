@@ -1,5 +1,7 @@
 package com.dt181g.project.models;
 
+import com.dt181g.project.support.Constants;
+
 import java.util.Random;
 
 /**
@@ -13,6 +15,6 @@ public class Weapon {
      * @return the weapon's damage as an integer.
      */
     public int getDamage() {
-        return new Random().nextInt(3) + 1;
+        return new Random().nextInt(Constants.WEAPON_DAMAGE) + 1;
     }
 }

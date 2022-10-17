@@ -87,8 +87,9 @@ hade det varit ett större spel hade man kunnat dela in main model mer på olika
 
 snacka om att det är bra med att ha alla konstanter på ett ställe, att man kanske även kan lägga in alla 
 strängar här, så det endast är ett ställe att uppdatera på om man gör ändringar i spelet.
+notera att man inte kan ge vaelarya hur mycket hälsa som helst eller göra ordlistan för lång utan att fucka UIt.
 
-
+hade velat göra något större med mer user interaction men hade inte tid?
 
 Perspective: Has the purpose been fulfilled? Determine the suitability of the implementation...
 should alternative approaches and procedures be considered?

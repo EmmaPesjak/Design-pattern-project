@@ -1,6 +1,7 @@
 package com.dt181g.project.models;
 
 import com.dt181g.project.controllers.Observer;
+import com.dt181g.project.support.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
 public class Vaelarya implements Observable {
     public static final Vaelarya INSTANCE = new Vaelarya();
     public List<Observer> observers = new ArrayList<>();
-    public int health = 50;
+    public int health = Constants.VAELARYA_START_HEALTH;
 
     /**
      * Private constructor.
@@ -35,7 +36,7 @@ public class Vaelarya implements Observable {
     @Override
     public void notifyObservers() {
         for (Observer o : observers) {
-            o.update();
+            o.updateObservers();
         }
     }
 

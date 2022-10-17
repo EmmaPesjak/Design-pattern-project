@@ -53,15 +53,32 @@ public interface Constants {
     Color COLOR_MEDIUM_HEALTH = new Color(249,248, 113);
     Color COLOR_HIGH_HEALTH = new Color(155,222, 126);
 
-    //lägga in alla listor och strings här med motivationen att man endast måste ändra dessa om det skulle vara?
 
     //LEVEL 1 specific till comboboxen level 1
-    String[] LVL1_SORT_LIST = new String[] {"All words", "Sort alphabetically.", "Count words longer than 5 letters."};
+    ArrayList<String> LVL1_SORT_LIST = new ArrayList<>(Arrays.asList(
+            "All words", "Sort alphabetically.", "Count words longer than 5 letters."));
 
-    //grejor som används till model
+
+
+    //grejor som används till models
     int AMOUNT_OF_UNICORNS = 7;
     int AMOUNT_OF_MONSTERS = 8;
     int RESULT_LVL2 = 15;
     List<String> STRING_LIST_LVL1 = new ArrayList<>(Arrays.asList("mango", "elderberry", "apple", "lime",
             "banana", "orange", "strawberry", "cherry", "durian", "fig", "grapes"));
+
+    int HEALING_AMOUNT = 20;
+    int WEAPON_DAMAGE = 3;
+    int VAELARYA_START_HEALTH = 50;
+    int VAELARYA_UPPER_HEALTH = 200;
+
+    //sleeps i sekunder (under model)
+    int SLEEP_HEAL = 1;
+    int SLEEP_SWING_WEAPON = 10;
+    int SLEEP_RESTING = 5;
+    int SLEEP_WAITING = 2;
+
+
+
+
 }

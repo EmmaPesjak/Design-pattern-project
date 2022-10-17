@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -14,19 +15,18 @@ import java.util.Objects;
  * @author Emma Pesjak
  */
 public class Level1View extends BaseView {
-    ViewFrame viewFrame;
-    JPanel bigPanel = new JPanel();
-    MyPanel topPanel = new MyPanel();
-    MyPanel centerPanel = new MyPanel();
-    MyPanel bottomPanel = new MyPanel();
-    MyButton myButton = new MyButton("Next level");
-    JLabel sentence = new JLabel();
-    ImageIcon monsterImg;
-    String name;
-    String words;
-    String[] sortFunctions = Constants.LVL1_SORT_LIST;
-    JComboBox<String> comboBox = new JComboBox<>(sortFunctions);
-    ActionListener listener;
+    private final ViewFrame viewFrame;
+    private final JPanel bigPanel = new JPanel();
+    private final MyPanel topPanel = new MyPanel();
+    private final MyPanel centerPanel = new MyPanel();
+    private final MyPanel bottomPanel = new MyPanel();
+    private final MyButton myButton = new MyButton("Next level");
+    private final JLabel sentence = new JLabel();
+    private final ImageIcon monsterImg;
+    private final String name;
+    private final String words;
+    private final JComboBox<String> comboBox = new JComboBox<>();
+    private final ActionListener listener;
 
     /**
      * Constructor which sets the layout and takes needed arguments for the GUI.
@@ -43,6 +43,11 @@ public class Level1View extends BaseView {
         this.words = words;
         this.listener = listener;
         bigPanel.setLayout(new BorderLayout());
+
+        ArrayList<String> sortFunctions = Constants.LVL1_SORT_LIST;
+        for (String s : sortFunctions) {
+            comboBox.addItem(s);
+        }
     }
 
     /**
@@ -82,7 +87,8 @@ public class Level1View extends BaseView {
      */
     @Override
     void addTopPanel() {
-        JLabel label = new JLabel("Hi, I'm " + name + ". I like words. These are my words. Want to play with them?");
+        JLabel label = new JLabel("Hi, I'm " + name + ". I like words. " +
+                "These are my words. Want to play with them?");
         label.setFont(Constants.FONT_TEXT);
         label.setForeground(Constants.COLOR_TEXT);
         topPanel.add(label);

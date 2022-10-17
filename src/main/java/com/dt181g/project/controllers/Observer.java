@@ -9,5 +9,5 @@ public interface Observer {
     /**
      * Method for updating.
      */
-    void update();
+    void updateObservers();
 }

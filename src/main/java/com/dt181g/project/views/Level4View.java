@@ -16,19 +16,20 @@ import java.util.LinkedList;
  * @author Emma Pesjak
  */
 public class Level4View extends BaseView {
-    ViewFrame viewFrame;
-    JPanel bigPanel = new JPanel();
-    MyPanel topPanel = new MyPanel();
-    MyPanel centerPanel = new MyPanel();
-    MyPanel bottomPanel = new MyPanel();
-    ImageIcon monsterImg;
-    String name;
-    MyButton myButton = new MyButton("Check answer");
-    JRadioButton radioButton1 = new JRadioButton("Rothead");
-    JRadioButton radioButton2 = new JRadioButton("Frank-Einstein");
-    JRadioButton radioButton3 = new JRadioButton("Partygut");
-    Deque<JRadioButton> radioButtons = new LinkedList<>(Arrays.asList(radioButton1, radioButton2, radioButton3));
-    ActionListener listener;
+    private final ViewFrame viewFrame;
+    private final JPanel bigPanel = new JPanel();
+    private final MyPanel topPanel = new MyPanel();
+    private final MyPanel centerPanel = new MyPanel();
+    private final MyPanel bottomPanel = new MyPanel();
+    private final ImageIcon monsterImg;
+    private final String name;
+    private final MyButton myButton = new MyButton("Check answer");
+    private final JRadioButton radioButton1 = new JRadioButton("Rothead");
+    private final JRadioButton radioButton2 = new JRadioButton("Frank-Einstein");
+    private final JRadioButton radioButton3 = new JRadioButton("Partygut");
+    private final Deque<JRadioButton> radioButtons = new LinkedList<>(Arrays.asList(radioButton1,
+            radioButton2, radioButton3));
+    private final ActionListener listener;
 
     /**
      * Constructor which sets the layout and takes needed arguments for the GUI.
@@ -58,8 +59,9 @@ public class Level4View extends BaseView {
      */
     @Override
     void addTopPanel() {
-        JLabel label = new JLabel("<html>Hi, my name is " + name + " the Ugly Flesh Beast, long name I know.<br>I lost my brother" +
-                " Rothead so now I'm sad. Can you cheer me up<br>by solving my riddle? What do you call a monster with a high IQ? </html>");
+        JLabel label = new JLabel("<html>Hi, my name is " + name + " the Ugly Flesh Beast, long name I know." +
+                "<br>I lost my brother Rothead so now I'm sad. Can you cheer me up<br>by solving my riddle? " +
+                "What do you call a monster with a high IQ? </html>");
         label.setFont(Constants.FONT_TEXT);
         label.setForeground(Constants.COLOR_TEXT);
         topPanel.add(label);

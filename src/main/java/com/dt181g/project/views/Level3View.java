@@ -14,16 +14,16 @@ import java.util.Deque;
  * @author Emma Pesjak
  */
 public class Level3View extends BaseView {
-    ViewFrame viewFrame;
-    JPanel bigPanel = new JPanel();
-    MyPanel topPanel = new MyPanel();
-    MyPanel centerPanel = new MyPanel();
-    MyPanel bottomPanel = new MyPanel();
-    MyButton nextLevelBtn = new MyButton("Next level");
-    MyButton produceBtn = new MyButton("Produce");
-    ImageIcon monsterImg;
-    String name;
-    ActionListener nextListener;
+    private final ViewFrame viewFrame;
+    private final JPanel bigPanel = new JPanel();
+    private final MyPanel topPanel = new MyPanel();
+    private final MyPanel centerPanel = new MyPanel();
+    private final MyPanel bottomPanel = new MyPanel();
+    private final MyButton nextLevelBtn = new MyButton("Next level");
+    private final MyButton produceBtn = new MyButton("Produce");
+    private final ImageIcon monsterImg;
+    private final String name;
+    private final ActionListener nextListener;
 
     /**
      * Constructor which sets the layout and takes needed arguments for the GUI.
@@ -66,10 +66,10 @@ public class Level3View extends BaseView {
      */
     @Override
     void addTopPanel() {
-        JLabel label = new JLabel("<html>" + name + " is my name, nice to meet you hero. <br>This is my abstract factory. " +
-                "It creates factories <br>which can create unicorns or monsters. " +
-                "Want to create<br> some totally random characters? Press the 'Produce' button<br>as many times as you want, " +
-                "each time 5 new characters<br>will be produced, so cool!</html>");
+        JLabel label = new JLabel("<html>" + name + " is my name, nice to meet you hero. " +
+                "<br>This is my abstract factory. It creates factories <br>which can create unicorns or monsters. " +
+                "Want to create<br> some totally random characters? Press the 'Produce' button" +
+                "<br>as many times as you want, each time 5 new characters<br>will be produced, so cool!</html>");
         label.setFont(Constants.FONT_TEXT);
         label.setForeground(Constants.COLOR_TEXT);
         topPanel.add(label);

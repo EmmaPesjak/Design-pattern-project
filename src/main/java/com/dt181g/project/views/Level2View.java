@@ -14,17 +14,17 @@ import java.util.List;
  * @author Emma Pesjak
  */
 public class Level2View extends BaseView {
-    ViewFrame viewFrame;
-    JPanel bigPanel = new JPanel();
-    MyPanel topPanel = new MyPanel();
-    MyPanel centerPanel = new MyPanel();
-    MyPanel bottomPanel = new MyPanel();
-    MyButton myButton = new MyButton("Help the monster");
-    ImageIcon monsterImg;
-    String name;
-    Deque<JTextField> buckets = new LinkedList<>(Arrays.asList(
+    private final ViewFrame viewFrame;
+    private final JPanel bigPanel = new JPanel();
+    private final MyPanel topPanel = new MyPanel();
+    private final MyPanel centerPanel = new MyPanel();
+    private final MyPanel bottomPanel = new MyPanel();
+    private final MyButton myButton = new MyButton("Help the monster");
+    private final ImageIcon monsterImg;
+    private final String name;
+    private final Deque<JTextField> buckets = new LinkedList<>(Arrays.asList(
             new JTextField(8), new JTextField(8), new JTextField(8)));
-    ActionListener listener;
+    private final ActionListener listener;
 
     /**
      * Constructor which sets the layout and takes needed arguments for the GUI.
@@ -58,9 +58,10 @@ public class Level2View extends BaseView {
      */
     @Override
      void addTopPanel() {
-        JLabel label = new JLabel("<html>Well hello there Hero. I might look super scary but I'm a nice monster<br>named " + name + ". " +
-                "Can you help me with a problem? I've got three buckets<br> to carry my apples in, I need a total " +
-                "amount of 15 apples, no more, no less.<br>How many apples should I place in each bucket?</html>");
+        JLabel label = new JLabel("<html>Well hello there Hero. I might look super scary but I'm a nice monster" +
+                "<br>named " + name + ". Can you help me with a problem? I've got three buckets" +
+                "<br> to carry my apples in, I need a total amount of " + Constants.RESULT_LVL2 +
+                " apples, no more, no less.<br>How many apples should I place in each bucket?</html>");
         label.setFont(Constants.FONT_TEXT);
         label.setForeground(Constants.COLOR_TEXT);
         topPanel.add(label);

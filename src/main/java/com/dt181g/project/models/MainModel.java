@@ -32,22 +32,6 @@ public class MainModel {
 
     /**
      *
-     * @param numbs is a list of integers.
-     */
-    public void calculateLvl2(List<Integer> numbs) {
-        lvl2Result = numbs.stream().reduce(0, Integer::sum);
-    }
-
-    /**
-     * Method that checks whether.......
-     * @return
-     */
-    public boolean lvl2Success() {
-        return lvl2Result == Constants.RESULT_LVL2;
-    }
-
-    /**
-     *
      * @return
      */
     public BaseMonster getRandomMonster() {
@@ -93,5 +77,21 @@ public class MainModel {
     public String countWordsLvl1() {
         long amountOfWords = words.stream().filter(word -> word.length() > 5).count();
         return "There are " + amountOfWords + " words containing more than 5 letters. That is awesome!";
+    }
+
+    /**
+     *
+     * @param numbs is a list of integers.
+     */
+    public void calculateLvl2(List<Integer> numbs) {
+        lvl2Result = numbs.stream().reduce(0, Integer::sum);
+    }
+
+    /**
+     * Method that checks whether.......
+     * @return
+     */
+    public boolean lvl2Success() {
+        return lvl2Result == Constants.RESULT_LVL2;
     }
 }

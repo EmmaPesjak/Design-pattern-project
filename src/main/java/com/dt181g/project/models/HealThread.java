@@ -1,5 +1,7 @@
 package com.dt181g.project.models;
 
+import com.dt181g.project.support.Constants;
+
 import java.util.Random;
 
 /**
@@ -18,8 +20,8 @@ public class HealThread implements Runnable {
     public void run() {
         while (!terminate) {
             try {
-                Vaelarya.INSTANCE.addHealth(new Random().nextInt(20) + 1);
-                Thread.sleep((new Random().nextInt(2) + 1) * 1000);
+                Vaelarya.INSTANCE.addHealth(new Random().nextInt(Constants.HEALING_AMOUNT) + 1);
+                Thread.sleep(Constants.SLEEP_HEAL * 1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

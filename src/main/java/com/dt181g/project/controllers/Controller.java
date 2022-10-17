@@ -27,6 +27,13 @@ public class Controller implements Observer {
     private final Level3View level3View;
     private final Level4View level4View;
     private final Level5View level5View;
+    private final Vaelarya vaelarya = Vaelarya.INSTANCE;
+    private final HealThread healThread = new HealThread();
+    private final DamageThread damageThread = new DamageThread();
+    private final Deque<DamageThread> damageThreads = new LinkedList<>();
+    private final Timer timer = new Timer(150, e -> {
+        updateGUI();
+    });
 
     /**
      * @param viewFrame
@@ -52,118 +59,6 @@ public class Controller implements Observer {
         StartView startView = new StartView(viewFrame, new NextLevelButtonListener(level1View));
         startView.makePanel();
     }
-
-    /**
-     *  Inner class
-     */
-    class Level1ComboboxListener implements ActionListener {
-        /**
-         * @param e is the action event of a click on the button.
-         */
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (Objects.equals(level1View.getSelectedItem(), "Sort alphabetically.")) {
-                level1View.updateLevel1(mainModel.sortLvl1Alphabetically());
-            } else if ((Objects.equals(level1View.getSelectedItem(), "Count words longer than 5 letters."))) {
-                level1View.updateLevel1(mainModel.countWordsLvl1());
-            } else {
-                level1View.updateLevel1(mainModel.lvl1RandomWords());
-            }
-        }
-    }
-
-    /**
-     *
-     */
-    class Level2ButtonListener implements ActionListener {
-
-        /**
-         *
-         * @param e is the action event of a click on the button.
-         */
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            try {
-                mainModel.calculateLvl2(level2View.getBuckets());
-
-                if (mainModel.lvl2Success()) {
-                    level3View.makePanel();
-
-                } else {
-                    viewFrame.displayErrorMsg("Does not add up to 15, try again!");
-                }
-
-            } catch (NumberFormatException exception) {
-                System.out.println(exception);
-                viewFrame.displayErrorMsg("Please fill in all boxes, and only with numbers.");
-            }
-        }
-    }
-
-    /**
-     *
-     */
-    class Level3ButtonListenerProduce implements ActionListener {
-
-        /**
-         *
-         * @param e is the action event of a click on the button.
-         */
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            Deque<ImageIcon> imageIcons = new LinkedList<>(Arrays.asList(mainModel.getRandomCharImg(),
-                    mainModel.getRandomCharImg(), mainModel.getRandomCharImg(),
-                    mainModel.getRandomCharImg(), mainModel.getRandomCharImg()));
-            level3View.updateLevel3(imageIcons);
-        }
-    }
-
-    /**
-     *
-     */
-    class Level4ButtonListener implements ActionListener {
-
-        /**
-         *
-         * @param e is the action event of a click on the button.
-         */
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (level4View.rightAnswerLevel4()) {
-                level5View.makePanel();
-            } else {
-                viewFrame.displayErrorMsg("Wrong answer, try again.");
-            }
-        }
-    }
-
-    /**
-     *
-     */
-    class Level5ButtonListener implements ActionListener {
-        /**
-         *
-         * @param e is the action event of a click on the button.
-         */
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            initLevel5();
-        }
-    }
-
-
-
-
-    //observerskit, var ska detta vara??????
-    Vaelarya vaelarya = Vaelarya.INSTANCE;
-
-    //public static final ObserverThing INSTANCE = new ObserverThing(HealPool.INSTANCE);
-    private final HealThread healThread = new HealThread();
-    private final DamageThread damageThread = new DamageThread();
-    private final Deque<DamageThread> damageThreads = new LinkedList<>();
-    Timer timer = new Timer(150, e -> {
-        updateGUI();
-    });
 
     /**
      *
@@ -205,10 +100,10 @@ public class Controller implements Observer {
      * Overridden method
      */
     @Override
-    public synchronized void update() {
+    public synchronized void updateObservers() {
         int amountOfHealth = this.vaelarya.getHealth();
 
-        if (amountOfHealth > 170) {
+        if (amountOfHealth > Constants.VAELARYA_UPPER_HEALTH) {
             terminateThreads();
             timer.stop();
             EndView endView = new EndView(viewFrame, new QuitButtonListener(),
@@ -221,6 +116,100 @@ public class Controller implements Observer {
             EndView endView = new EndView(viewFrame, new QuitButtonListener(),
                     "Game Over!", Constants.IMAGE_RED_MONSTER);
             endView.makePanel();
+        }
+    }
+
+    /**
+     * Inner class
+     */
+    class Level1ComboboxListener implements ActionListener {
+        /**
+         * @param e is the action event of a click on the button.
+         */
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (Objects.equals(level1View.getSelectedItem(), Constants.LVL1_SORT_LIST.get(1))) {
+                level1View.updateLevel1(mainModel.sortLvl1Alphabetically());
+            } else if (Objects.equals(level1View.getSelectedItem(), Constants.LVL1_SORT_LIST.get(2))) {
+                level1View.updateLevel1(mainModel.countWordsLvl1());
+            } else {
+                level1View.updateLevel1(mainModel.lvl1RandomWords());
+            }
+        }
+    }
+
+    /**
+     *
+     */
+    class Level2ButtonListener implements ActionListener {
+
+        /**
+         * @param e is the action event of a click on the button.
+         */
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                mainModel.calculateLvl2(level2View.getBuckets());
+
+                if (mainModel.lvl2Success()) {
+                    level3View.makePanel();
+
+                } else {
+                    viewFrame.displayErrorMsg("Does not add up to " + Constants.RESULT_LVL2 + ", try again!");
+                }
+
+            } catch (NumberFormatException exception) {
+                System.out.println(exception);
+                viewFrame.displayErrorMsg("Please fill in all boxes, and only with numbers.");
+            }
+        }
+    }
+
+    /**
+     *
+     */
+    class Level3ButtonListenerProduce implements ActionListener {
+
+        /**
+         * @param e is the action event of a click on the button.
+         */
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Deque<ImageIcon> imageIcons = new LinkedList<>(Arrays.asList(mainModel.getRandomCharImg(),
+                    mainModel.getRandomCharImg(), mainModel.getRandomCharImg(),
+                    mainModel.getRandomCharImg(), mainModel.getRandomCharImg()));
+            level3View.updateLevel3(imageIcons);
+        }
+    }
+
+    /**
+     *
+     */
+    class Level4ButtonListener implements ActionListener {
+
+        /**
+         * @param e is the action event of a click on the button.
+         */
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (level4View.rightAnswerLevel4()) {
+                level5View.makePanel();
+            } else {
+                viewFrame.displayErrorMsg("Wrong answer, try again.");
+            }
+        }
+    }
+
+    /**
+     *
+     */
+    class Level5ButtonListener implements ActionListener {
+        /**
+         * @param e is the action event of a click on the button.
+         */
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            initLevel5();
         }
     }
 }

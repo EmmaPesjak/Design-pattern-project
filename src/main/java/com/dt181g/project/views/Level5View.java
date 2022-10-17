@@ -12,16 +12,16 @@ import java.awt.event.ActionListener;
  * @author Emma Pesjak
  */
 public class Level5View extends BaseView {
-    ViewFrame viewFrame;
-    JPanel bigPanel = new JPanel();
-    MyPanel topPanel = new MyPanel();
-    MyPanel centerPanel = new MyPanel();
-    MyPanel bottomPanel = new MyPanel();
-    JLabel healthLabel = new JLabel();
-    ImageIcon monsterImg;
-    String name;
-    MyButton myButton = new MyButton("Channel crystal");
-    ActionListener listener;
+    private final ViewFrame viewFrame;
+    private final JPanel bigPanel = new JPanel();
+    private final MyPanel topPanel = new MyPanel();
+    private final MyPanel centerPanel = new MyPanel();
+    private final MyPanel bottomPanel = new MyPanel();
+    private final JLabel healthLabel = new JLabel();
+    private final ImageIcon monsterImg;
+    private final String name;
+    private final MyButton myButton = new MyButton("Channel crystal");
+    private final ActionListener listener;
 
     /**
      * Constructor which sets the layout and takes needed arguments for the GUI.
@@ -64,8 +64,8 @@ public class Level5View extends BaseView {
         topPanel.removeAll();
         JLabel label = new JLabel("<html>Hero! I am Vaelarya Vision Walker, the mighty dragon. A monster<br>" +
                 "named " + name + " and his five friends are attacking me! Luckily<br>they only have a pool of three " +
-                "weapons to share and take turns.<br>Grab that healing crystal and start channeling to heal me above<br>" +
-                "170 hp, quickly!</html>");
+                "weapons to share and take turns.<br>Grab that healing crystal and start channeling to heal me " +
+                "above<br>" + Constants.VAELARYA_UPPER_HEALTH + " hp, quickly!</html>");
         label.setFont(Constants.FONT_TEXT);
         label.setForeground(Constants.COLOR_TEXT);
         topPanel.add(label);
