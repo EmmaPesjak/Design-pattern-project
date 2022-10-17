@@ -1,17 +1,17 @@
 package com.dt181g.project.models;
 
-import java.util.Deque;
-import java.util.LinkedList;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Distributor of the three weapons used by monsters to fight the dragon,
- * implemented with the object pool pattern.
+ * implemented with the object pool pattern and as a singleton.
  * @author Emma Pesjak
  */
 public class WeaponDistributor {
 
     public static final WeaponDistributor INSTANCE = new WeaponDistributor();
-    private final Deque<Weapon> weapons = new LinkedList<>();
+    private final BlockingQueue<Weapon> weapons = new LinkedBlockingQueue<>();
 
     /**
      * Constructor responsible for creating the three available weapons.
@@ -26,9 +26,9 @@ public class WeaponDistributor {
      * Method responsible for lending weapons.
      * @return is the weapon that is borrowed, returns null if no weapon is available.
      */
-    public synchronized Weapon borrowWeapon() {
+    public Weapon borrowWeapon() {
         if (!weapons.isEmpty()) {
-            return weapons.pollLast();
+            return weapons.poll();
         } else {
             return null;
         }
@@ -38,7 +38,7 @@ public class WeaponDistributor {
      * Method responsible for enabling return of weapons.
      * @param weapon is the weapon that is returned.
      */
-    public synchronized void returnWeapon(Weapon weapon) {
+    public void returnWeapon(Weapon weapon) {
         weapons.add(weapon);
     }
 }

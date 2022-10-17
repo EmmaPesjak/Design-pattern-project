@@ -7,27 +7,17 @@ The project was performed on a Windows 10 PC with IntelliJ version 2021.3.3, Jav
 
 ## Purpose
 The purpose of this project was to demonstrate a comprehensive understanding of the course's learning
-objectives. Specifically to create an event driven application with a Graphical User Interface (GUI) using 
-Java Swing.
-
-The goal was to achieve a grade as high as possible and thereby ...
-
-To showcase utilization of the Swing library and implement different layouts and components.
-
-How to incorporate Streams API...
-
-To blablabla...
-rabbla alla objectives 
-designpatterns under MVC
-goals
-
-Minimum amount of concurrent processes 2 2 3 4 5
-Synchronization of amount of concurrent processes - - 2 3 3
-Amount of design patterns 2 3 4 5 6
-MVC Pattern
-
+objectives. Specifically, to create an event-driven application with a Graphical User Interface (GUI) using 
+Java Swing. The goal was to achieve a grade as high as possible and thereby showcase the utilization of the
+Swing library and implement a range of different layouts and components. Furthermore, to incorporate the use of 
+Streams API and to use concurrent synchronized processes in an atomic fashion. Lastly also to demonstrate the 
+use of design patterns. While having the entire code structured according to the Model View Controller (MVC) 
+pattern, also incorporating the observer, object pool, producer/consumer, factory method, abstract factory,
+and template method patterns.
 
 ## Procedures
+problem: concurrent modificationexception men jag hade tagi en vanlig deque till min weapons list, att använda
+en blockig queue fixade alla problem.
 
 problem that occured: mosterna ritas inte ut, någon form av race condition?? efersom de randomas fram.
 fixades med revalidate/repaint i updatePanel()

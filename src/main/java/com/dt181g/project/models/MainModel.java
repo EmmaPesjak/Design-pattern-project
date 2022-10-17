@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 //dela upp dessa i olika beroende på level?
 /**
- *
+ * Main model class, responsible for
  * @author Emma Pesjak
  */
 public class MainModel {
@@ -26,13 +26,13 @@ public class MainModel {
     UnicornFactory unicornFactory = (UnicornFactory) FactoryProvider.getFactory(2);
 
     /**
-     *
+     * Constructor.........
      */
     public MainModel() {}
 
     /**
      *
-     * @param numbs
+     * @param numbs is a list of integers.
      */
     public void calculateLvl2(List<Integer> numbs) {
         lvl2Result = numbs.stream().reduce(0, Integer::sum);
@@ -70,7 +70,7 @@ public class MainModel {
     }
 
     /**
-     * Method that ........
+     * Method for level 1, responsible for joining a list of words to a string to use for output.
      * @return a joint string.
      */
     public String lvl1RandomWords() {
@@ -78,8 +78,8 @@ public class MainModel {
     }
 
     /**
-     * Method for level 1,
-     * @return
+     * Method for level 1, responsible for sorting words in alphabetical order.
+     * @return a string with the ordered words.
      */
     public String sortLvl1Alphabetically() {
         List<String> sorted = words.stream().sorted().collect(Collectors.toList());
@@ -88,7 +88,7 @@ public class MainModel {
 
     /**
      * Method level 1, responsible for counting the amount of words with more than 5 letters.
-     * @return the amount in a string.
+     * @return the amount in a string to use for output.
      */
     public String countWordsLvl1() {
         long amountOfWords = words.stream().filter(word -> word.length() > 5).count();
