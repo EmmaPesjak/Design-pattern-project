@@ -50,6 +50,8 @@ Abstract factory: characterfactory
 Template pattern: the views
 här kom alla swingkomponents in
 
+UML-diagram!
+
 olika patterns
 
 olika levels
@@ -80,6 +82,8 @@ how these manifested themselves and how they were resolved in the end. Try to in
 for approaches, just enough to give the reader a context, but leave analysis for the discussion.
 
 ## Discussion
+
+kunda ha delat upp model i de olika levels?
 
 svårast att få till mvc ordentligt...
 

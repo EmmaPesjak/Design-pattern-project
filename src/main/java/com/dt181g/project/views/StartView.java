@@ -63,7 +63,8 @@ public class StartView extends BaseView {
     @Override
     void addBottomPanel() {
         bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS));
-        JLabel info = new JLabel("<html>This game takes you through 5 thrilling levels where you<br>encounter monsters, some are friendly and some are very<br>dangerous. Thread carefully hero. </html>");
+        JLabel info = new JLabel("<html>This game takes you through 5 thrilling levels where you<br>encounter" +
+                " monsters, some are friendly and some are very<br>dangerous. Thread carefully hero. </html>");
         info.setFont(Constants.FONT_TEXT);
         info.setForeground(Constants.COLOR_TEXT);
         bottomPanel.add(info);

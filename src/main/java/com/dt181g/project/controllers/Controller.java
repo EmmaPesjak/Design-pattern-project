@@ -32,7 +32,7 @@ public class Controller implements Observer {
     private final DamageThread damageThread = new DamageThread();
     private final Deque<DamageThread> damageThreads = new LinkedList<>();
     private final Timer timer = new Timer(150, e -> {
-        updateGUI();
+        updateLevel5();
     });
 
     /**
@@ -54,7 +54,7 @@ public class Controller implements Observer {
         level3View = new Level3View(viewFrame, monster3.getMonsterImg(), monster3.getName(), new NextLevelButtonListener(level4View));
         level3View.addProduceButtonListener(new Level3ButtonListenerProduce());
         level2View = new Level2View(viewFrame, monster2.getMonsterImg(), monster2.getName(), new Level2ButtonListener());
-        level1View = new Level1View(viewFrame, monster1.getMonsterImg(), monster1.getName(), mainModel.lvl1RandomWords(), new NextLevelButtonListener(level2View));
+        level1View = new Level1View(viewFrame, monster1.getMonsterImg(), monster1.getName(), mainModel.level1RandomWords(), new NextLevelButtonListener(level2View));
         level1View.addLvl1ComboboxListener(new Level1ComboboxListener());
         StartView startView = new StartView(viewFrame, new NextLevelButtonListener(level1View));
         startView.makePanel();
@@ -81,7 +81,7 @@ public class Controller implements Observer {
     /**
      *
      */
-    public void updateGUI() {
+    public void updateLevel5() {
         level5View.updateLevel5(new HealthBarPanel(vaelarya.getHealth()), vaelarya.getHealth());
     }
 
@@ -129,11 +129,11 @@ public class Controller implements Observer {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (Objects.equals(level1View.getSelectedItem(), Constants.LVL1_SORT_LIST.get(1))) {
-                level1View.updateLevel1(mainModel.sortLvl1Alphabetically());
+                level1View.updateLevel1(mainModel.sortLevel1Alphabetically());
             } else if (Objects.equals(level1View.getSelectedItem(), Constants.LVL1_SORT_LIST.get(2))) {
-                level1View.updateLevel1(mainModel.countWordsLvl1());
+                level1View.updateLevel1(mainModel.countWordsLevel1());
             } else {
-                level1View.updateLevel1(mainModel.lvl1RandomWords());
+                level1View.updateLevel1(mainModel.level1RandomWords());
             }
         }
     }
@@ -149,9 +149,9 @@ public class Controller implements Observer {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                mainModel.calculateLvl2(level2View.getBuckets());
+                mainModel.calculateLevel2(level2View.getBuckets());
 
-                if (mainModel.lvl2Success()) {
+                if (mainModel.level2Success()) {
                     level3View.makePanel();
 
                 } else {

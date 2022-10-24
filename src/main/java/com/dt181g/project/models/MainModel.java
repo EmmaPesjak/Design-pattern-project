@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-
-//dela upp dessa i olika beroende på level?
 /**
  * Main model class, responsible for
  * @author Emma Pesjak
@@ -24,11 +22,6 @@ public class MainModel {
 
     MonsterFactory monsterFactory = (MonsterFactory) FactoryProvider.getFactory(1);
     UnicornFactory unicornFactory = (UnicornFactory) FactoryProvider.getFactory(2);
-
-    /**
-     * Constructor.........
-     */
-    public MainModel() {}
 
     /**
      *
@@ -57,7 +50,7 @@ public class MainModel {
      * Method for level 1, responsible for joining a list of words to a string to use for output.
      * @return a joint string.
      */
-    public String lvl1RandomWords() {
+    public String level1RandomWords() {
         return String.join(" ", words);
     }
 
@@ -65,7 +58,7 @@ public class MainModel {
      * Method for level 1, responsible for sorting words in alphabetical order.
      * @return a string with the ordered words.
      */
-    public String sortLvl1Alphabetically() {
+    public String sortLevel1Alphabetically() {
         List<String> sorted = words.stream().sorted().collect(Collectors.toList());
         return String.join(" ", sorted);
     }
@@ -74,7 +67,7 @@ public class MainModel {
      * Method level 1, responsible for counting the amount of words with more than 5 letters.
      * @return the amount in a string to use for output.
      */
-    public String countWordsLvl1() {
+    public String countWordsLevel1() {
         long amountOfWords = words.stream().filter(word -> word.length() > 5).count();
         return "There are " + amountOfWords + " words containing more than 5 letters. That is awesome!";
     }
@@ -83,7 +76,7 @@ public class MainModel {
      *
      * @param numbs is a list of integers.
      */
-    public void calculateLvl2(List<Integer> numbs) {
+    public void calculateLevel2(List<Integer> numbs) {
         lvl2Result = numbs.stream().reduce(0, Integer::sum);
     }
 
@@ -91,7 +84,7 @@ public class MainModel {
      * Method that checks whether.......
      * @return
      */
-    public boolean lvl2Success() {
+    public boolean level2Success() {
         return lvl2Result == Constants.RESULT_LVL2;
     }
 }

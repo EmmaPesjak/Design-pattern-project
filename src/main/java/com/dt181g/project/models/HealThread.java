@@ -20,7 +20,7 @@ public class HealThread implements Runnable {
     public void run() {
         while (!terminate) {
             try {
-                Vaelarya.INSTANCE.addHealth(new Random().nextInt(Constants.HEALING_AMOUNT) + 1);
+                Vaelarya.INSTANCE.addHealth(new Random().nextInt(Constants.MAX_HEALING_AMOUNT) + 1);
                 Thread.sleep(Constants.SLEEP_HEAL * 1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();

@@ -88,7 +88,7 @@ public class Level1View extends BaseView {
     @Override
     void addTopPanel() {
         JLabel label = new JLabel("Hi, I'm " + name + ". I like words. " +
-                "These are my words. Want to play with them?");
+                "These are my words. Want to play?");
         label.setFont(Constants.FONT_TEXT);
         label.setForeground(Constants.COLOR_TEXT);
         topPanel.add(label);
