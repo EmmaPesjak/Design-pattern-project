@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 import java.util.*;
 
 /**
- *
+ * Class responsible for communicating with views and models, responding to user input.
  * @author Emma Pesjak
  */
 public class Controller implements Observer {
@@ -32,36 +32,45 @@ public class Controller implements Observer {
     private final DamageThread damageThread = new DamageThread();
     private final Deque<DamageThread> damageThreads = new LinkedList<>();
     private final Timer timer = new Timer(150, e -> {
-        updateLevel5();
+        updateLevel5View();
     });
 
     /**
-     * @param viewFrame
-     * @param mainModel
+     * Controller constructor, responsible for initiating the different level views and displaying the start view.
+     * @param viewFrame is the GUI frame of the application.
+     * @param mainModel is the main model of the application.
      */
     public Controller(ViewFrame viewFrame, MainModel mainModel) {
         this.viewFrame = viewFrame;
         this.mainModel = mainModel;
 
+        // Create monsters for each level.
         BaseMonster monster1 = mainModel.getRandomMonster();
         BaseMonster monster2 = mainModel.getRandomMonster();
         BaseMonster monster3 = mainModel.getRandomMonster();
         BaseMonster monster4 = mainModel.getRandomMonster();
         BaseMonster monster5 = mainModel.getRandomMonster();
 
-        level5View = new Level5View(viewFrame, monster5.getMonsterImg(), monster5.getName(), new Level5ButtonListener());
-        level4View = new Level4View(viewFrame, monster4.getMonsterImg(), monster4.getName(), new Level4ButtonListener());
-        level3View = new Level3View(viewFrame, monster3.getMonsterImg(), monster3.getName(), new NextLevelButtonListener(level4View));
+        // Initiate the different level views.
+        level5View = new Level5View(viewFrame, monster5.getMonsterImg(), monster5.getName(),
+                new Level5ButtonListener());
+        level4View = new Level4View(viewFrame, monster4.getMonsterImg(), monster4.getName(),
+                new Level4ButtonListener());
+        level3View = new Level3View(viewFrame, monster3.getMonsterImg(), monster3.getName(),
+                new NextLevelButtonListener(level4View));
         level3View.addProduceButtonListener(new Level3ButtonListenerProduce());
-        level2View = new Level2View(viewFrame, monster2.getMonsterImg(), monster2.getName(), new Level2ButtonListener());
-        level1View = new Level1View(viewFrame, monster1.getMonsterImg(), monster1.getName(), mainModel.level1RandomWords(), new NextLevelButtonListener(level2View));
+        level2View = new Level2View(viewFrame, monster2.getMonsterImg(), monster2.getName(),
+                new Level2ButtonListener());
+        level1View = new Level1View(viewFrame, monster1.getMonsterImg(), monster1.getName(),
+                mainModel.level1RandomWords(), new NextLevelButtonListener(level2View));
         level1View.addLvl1ComboboxListener(new Level1ComboboxListener());
         StartView startView = new StartView(viewFrame, new NextLevelButtonListener(level1View));
         startView.makePanel();
     }
 
     /**
-     *
+     * Initializes the level 5 simulation, creating and starting 6 DamageThreads (monster) and 1 HealThread
+     * (the player channeling the crystal), starts the timer and observes the dragon Vaelarya.
      */
     public void initLevel5() {
         // Create damageThreads representing the monsters.
@@ -79,14 +88,14 @@ public class Controller implements Observer {
     }
 
     /**
-     *
+     * Method used by the timer for updating the GUI with the current health of Vaelarya.
      */
-    public void updateLevel5() {
+    public void updateLevel5View() {
         level5View.updateLevel5(new HealthBarPanel(vaelarya.getHealth()), vaelarya.getHealth());
     }
 
     /**
-     *
+     * Method for terminating damage and heal threads when the simulation is completed.
      */
     public void terminateThreads() {
         healThread.stopThread();
@@ -97,7 +106,8 @@ public class Controller implements Observer {
     }
 
     /**
-     * Overridden method
+     * Overridden synchronized method responsible for checking the current health of Vaelarya, ends the
+     * simulation if the amount is above the set upper health or equal to or below 0.
      */
     @Override
     public synchronized void updateObservers() {
@@ -120,11 +130,13 @@ public class Controller implements Observer {
     }
 
     /**
-     * Inner class
+     * Inner class responsible for listening to the combobox of level 1 and updating the view
+     * with the help of the model. 
      */
     class Level1ComboboxListener implements ActionListener {
+
         /**
-         * @param e is the action event of a click on the button.
+         * {@inheritDoc}
          */
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -139,12 +151,13 @@ public class Controller implements Observer {
     }
 
     /**
-     *
+     * Inner class responsible for checking if the user has answered correctly and either initiating level 3
+     * or displaying a message telling the user to try again.
      */
     class Level2ButtonListener implements ActionListener {
 
         /**
-         * @param e is the action event of a click on the button.
+         * {@inheritDoc}
          */
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -166,12 +179,12 @@ public class Controller implements Observer {
     }
 
     /**
-     *
+     * Inner class responsible for telling the view to display produced characters from the model.
      */
     class Level3ButtonListenerProduce implements ActionListener {
 
         /**
-         * @param e is the action event of a click on the button.
+         * {@inheritDoc}
          */
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -183,12 +196,13 @@ public class Controller implements Observer {
     }
 
     /**
-     *
+     * Inner class responsible for checking if the user has answered correctly and either initiating level 5
+     * or displaying a message telling the user to try again.
      */
     class Level4ButtonListener implements ActionListener {
 
         /**
-         * @param e is the action event of a click on the button.
+         * {@inheritDoc}
          */
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -201,11 +215,12 @@ public class Controller implements Observer {
     }
 
     /**
-     *
+     * Inner class responsible for initiating the level 5 simulation upon a button click.
      */
     class Level5ButtonListener implements ActionListener {
+
         /**
-         * @param e is the action event of a click on the button.
+         * {@inheritDoc}
          */
         @Override
         public void actionPerformed(ActionEvent e) {

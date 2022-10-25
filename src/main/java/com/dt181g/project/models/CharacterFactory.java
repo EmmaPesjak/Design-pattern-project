@@ -11,5 +11,4 @@ public interface CharacterFactory<T> {
      * @return a character from a factory.
      */
     T createChar();
-
 }

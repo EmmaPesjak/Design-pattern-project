@@ -11,39 +11,22 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
- * Main model class, responsible for
+ * Main model class, responsible for handling the application's data and perform calculations.
  * @author Emma Pesjak
  */
 public class MainModel {
 
-    List<String> words = Constants.STRING_LIST_LVL1;
-
+    private final List<String> words = Constants.STRING_LIST_LVL1;
     private int lvl2Result;
-
-    MonsterFactory monsterFactory = (MonsterFactory) FactoryProvider.getFactory(1);
-    UnicornFactory unicornFactory = (UnicornFactory) FactoryProvider.getFactory(2);
+    private final MonsterFactory monsterFactory = (MonsterFactory) FactoryProvider.getFactory(1);
+    private final UnicornFactory unicornFactory = (UnicornFactory) FactoryProvider.getFactory(2);
 
     /**
-     *
-     * @return
+     * Method for creating a monster from the MonsterFactory.
+     * @return a random Monster.
      */
     public BaseMonster getRandomMonster() {
         return monsterFactory.createChar();
-    }
-
-    /**
-     *
-     * @return
-     */
-    public ImageIcon getRandomCharImg() {
-
-        int randomNmb = new Random().nextInt(2) + 1;
-
-        if (randomNmb == 1) {
-            return monsterFactory.createChar().getMonsterImg();
-        } else {
-            return unicornFactory.createChar().getUnicornImg();
-        }
     }
 
     /**
@@ -73,7 +56,7 @@ public class MainModel {
     }
 
     /**
-     *
+     * Method for level 2, responsible  for calculating the sum of the user's input.
      * @param numbs is a list of integers.
      */
     public void calculateLevel2(List<Integer> numbs) {
@@ -81,10 +64,25 @@ public class MainModel {
     }
 
     /**
-     * Method that checks whether.......
-     * @return
+     * Method for level 2, checks whether the user input is correct.
+     * @return boolean that states if it is correct or not.
      */
     public boolean level2Success() {
         return lvl2Result == Constants.RESULT_LVL2;
+    }
+
+    /**
+     * Method for producing a random character ImageIcon, either a monster or a unicorn.
+     * @return a random character ImageIcon.
+     */
+    public ImageIcon getRandomCharImg() {
+
+        int randomNmb = new Random().nextInt(2) + 1;
+
+        if (randomNmb == 1) {
+            return monsterFactory.createChar().getMonsterImg();
+        } else {
+            return unicornFactory.createChar().getUnicornImg();
+        }
     }
 }
