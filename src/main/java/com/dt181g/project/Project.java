@@ -11,6 +11,10 @@ import javax.swing.*;
  * @author Emma Pesjak
  */
 public final class Project {
+
+    /**
+     * Private constructor.
+     */
     private Project() { }
 
     /**

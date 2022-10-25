@@ -2,7 +2,7 @@
 Emma Pesjak
 
 ## Environment & Tools
-The project was performed on a Windows 10 PC with IntelliJ version 2021.3.3, Java version openjdk 17.0.2, maven version
+The project was performed on a Windows 10 PC with IntelliJ version 2022.2.3, Java version openjdk 17.0.2, maven version
 3.8.5, and Git version 2.33.0.windows.2.
 
 ## Purpose
@@ -35,22 +35,45 @@ generell kodstruktur
 lite om mvc
 
 streams api lades under model
+
+lägg patterns i någon bra ordning sen
 ### Producer/consumer
+
+
+![](ProducerConsumerUML.png)
+
+
 producer/consumer: heal/damage theads
 synch/concurrent processes
+
+
 ### Observer
-observer: healthpool
+![](ObserverUML.png)
+
+observer: vaelarya
+
+notera att controller i UML innehåller fler (metoder)/interna klasser som inte är representerade i UMLen 
+men som inte har med observer att göra
+
+
 ### Object pool
 Object pool: dragon weapons/distributor
+![](ObjectPoolUML.png)
+
+
 ### Factory method
 Factory pattern: monsters/unicorns
+
+![](FactoryUML.png)
+
 ### Abstract factory
 Abstract factory: characterfactory
+![](AbstractFactoryUML.png)
+
 ### Template method
 Template pattern: the views
 här kom alla swingkomponents in
-
-UML-diagram!
+![](TemplateUML.png)
 
 olika patterns
 
@@ -60,7 +83,6 @@ olika levels
 
 MVC
 
-uml-diagram?
 
 Perspective: How can the results (solution) be reproduced?
 What kind of problems emerged and how were these resolved?
@@ -83,7 +105,7 @@ for approaches, just enough to give the reader a context, but leave analysis for
 
 ## Discussion
 
-kunda ha delat upp model i de olika levels?
+kunda ha delat upp model i de olika levels? särskilt om man har mer avancerade levels.
 
 svårast att få till mvc ordentligt...
 

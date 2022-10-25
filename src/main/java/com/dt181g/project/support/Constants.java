@@ -2,6 +2,8 @@ package com.dt181g.project.support;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,9 +14,11 @@ import java.util.List;
  */
 public interface Constants {
 
+
+
     //Images.
     ImageIcon IMAGE_YELLOW_MONSTER =
-            new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\yellowMonster.png");
+            new ImageIcon("src/main/java/com/dt181g/project/img/monsters/yellowMonster.png");
     ImageIcon IMAGE_BLUE_MONSTER =
             new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\blueMonster.png");
     ImageIcon IMAGE_GREEN_MONSTER =

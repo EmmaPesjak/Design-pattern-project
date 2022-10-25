@@ -76,17 +76,17 @@ public class EndView extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    public void updatePanel() {
-        this.revalidate();
-        this.repaint();
-        viewFrame.updateView(bigPanel);
+    void addButtonListener() {
+        myButton.addActionListener(listener);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    void addButtonListener() {
-        myButton.addActionListener(listener);
+    public void updatePanel() {
+        this.revalidate();
+        this.repaint();
+        viewFrame.updateView(bigPanel);
     }
 }

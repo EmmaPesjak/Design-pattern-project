@@ -5,6 +5,8 @@ import com.dt181g.project.support.Constants;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.io.InputStream;
+import java.net.URL;
 
 /**
  * Concrete view of {@link com.dt181g.project.views.BaseView} responsible for setting up the
@@ -29,6 +31,8 @@ public class StartView extends BaseView {
         this.viewFrame = viewFrame;
         this.listener = listener;
         bigPanel.setLayout(new BorderLayout());
+
+
     }
 
     /**
@@ -36,10 +40,23 @@ public class StartView extends BaseView {
      */
     @Override
     void addTopPanel() {
+
+       // URL imageurl = getClass().getResource("/src/main/java/com/dt181g/project/img/monsters/yellowMonster.png");//assuming your package name is images
+       // Image myPicture = Toolkit.getDefaultToolkit().getImage(imageurl);
+       // JLabel piclabel = new JLabel(new ImageIcon( myPicture ));
+
+        //ImageIcon hej = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("src/main/java/com/dt181g/project/img/monsters/yellowMonster.png")));
+        //InputStream stream = this.getClass().getResourceAsStream("/src/main/java/com/dt181g/project/img/monsters/yellowMonster.png");
+        //ImageIcon hej = new ImageIcon(stream.toString());
+        //ImageIcon hej = new ImageIcon(getClass().getResource("src/main/java/com/dt181g/project/img/monsters/yellowMonster.png"));
+
         JLabel title = new JLabel("The Monster Game");
         title.setFont(Constants.FONT_BIG);
         title.setForeground(Constants.COLOR_TEXT);
         topPanel.add(title);
+        //topPanel.add(new JLabel(hej));
+        //topPanel.add(piclabel);
+
         bigPanel.add(topPanel, BorderLayout.NORTH);
     }
 
@@ -92,5 +109,4 @@ public class StartView extends BaseView {
         this.repaint();
         viewFrame.updateView(bigPanel);
     }
-
 }
