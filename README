@@ -2,8 +2,8 @@
 Emma Pesjak
 
 ## Environment & Tools
-This project was performed on a Windows 10 PC with IntelliJ version 2022.2.3, Java version openjdk 17.0.2, maven version
-3.8.5, and Git version 2.33.0.windows.2.
+This project was performed on a Windows 10 PC with IntelliJ version 2022.2.3, Java version openjdk 19.0.1, 
+maven version 3.8.5, and Git version 2.33.0.windows.2.
 
 ## Purpose
 The purpose of this project was to demonstrate a comprehensive understanding of the course's learning
@@ -15,40 +15,55 @@ use of design patterns. While having the entire code structured according to the
 pattern, also incorporating the observer, object pool, producer/consumer, factory method, abstract factory,
 and template method patterns.
 
-## Procedures
-problem: concurrent modificationexception men jag hade tagi en vanlig deque till min weapons list, att använda
-en blockig queue fixade alla problem.
+To summarize the concrete goals:
+* Create an event-driven application with a GUI.
+* Have a minimum of five concurrent processes, where at least 3 are synchronized.
+* Include at least six different Swing components and four different layouts.
+* Use the seven design patterns mentioned above.
+* Implement at least three uses of Streams API.
 
+## Procedures
+
+något generellt här
+generell kodstruktur
+
+lite om mvc
+
+MODEL
+här fick jag in streams API och concurrent processes, annars basic fakta eftersom resten tas upp i underrubrikerna
+
+VIEW
+här fick jag in layouts och components och event-driven UI
+problem: duplicate images could not be displayed since the Jlabel was created in Constants interface,
+by instead only setting it to imageicons and making new labels when needed this was fixed
 problem that occured: mosterna ritas inte ut, någon form av race condition?? efersom de randomas fram.
 fixades med revalidate/repaint i updatePanel()
+egna button och panel klasser för att spara massa rader kod eftersom alla bakgrunder är likadana och
+alla butttons är likadana.
+
+
+CONTROLLER
 
 lägger in allt som kan ändras i spelet i constants för att det ska finnas på ett ställe och vara lätt
 har dock namnen på monsterna i sina klasser
 
-problem: duplicate images could not be displayed since the Jlabel was created in Constants interface,
-by instead only setting it to imageicons and making new labels when needed this was fixed
 
-egna button och panel klasser för att spara massa rader kod eftersom alla bakgrunder är likadana och
-alla butttons är likadana.
-
-generell kodstruktur
-lite om mvc
-
-streams api lades under model
 
 lägg patterns i någon bra ordning sen
-### Producer/consumer
+### Producer/consumer pattern
 
 
 ![](ProducerConsumerUML.png)
+Figure X....
 
 
 producer/consumer: heal/damage theads
 synch/concurrent processes
 
 
-### Observer
+### Observer pattern
 ![](ObserverUML.png)
+Figure X....
 
 observer: vaelarya
 
@@ -56,44 +71,41 @@ notera att controller i UML innehåller fler (metoder)/interna klasser som inte 
 men som inte har med observer att göra
 
 
-### Object pool
+### Object pool pattern
 Object pool: dragon weapons/distributor
+
+
+problem: concurrent modificationexception men jag hade tagi en vanlig deque till min weapons list, att använda
+en blockig queue fixade alla problem.
+
 ![](ObjectPoolUML.png)
+Figure X....
 
+client (damagethread) asks for reusable object frpom the objectpool (weapondistributor)
+and uses a weapon from the reuseable pool.
 
-### Factory method
+### Factory method pattern
 Factory pattern: monsters/unicorns
 
 ![](FactoryUML.png)
+Figure X....
 
-### Abstract factory
+### Abstract factory pattern
 Abstract factory: characterfactory
 ![](AbstractFactoryUML.png)
+Figure X....
 
-### Template method
+### Template method pattern
 Template pattern: the views
 här kom alla swingkomponents in
 ![](TemplateUML.png)
-
-olika patterns
-
-olika levels
+Figure X....
 
 
 
-MVC
-
-
-Perspective: How can the results (solution) be reproduced?
 What kind of problems emerged and how were these resolved?
 
 This section is the study's methodology, which needs to account for HOW the results has been produced.
-I have to say most of you do have a pretty solid understanding of this section, but try to only 
-include relevant information. The reader should be able to create a similar result based on the 
-contents of this section, so the focus should be on information which are relevant for reproducibility.
-Think in terms of a baking recipe, where you present the steps needed in order to produce a delicious 
-cake. However, don't take this metaphor too far. We need to find the information presented in cohesive
-paragraphs, not segmented into separate bullet points.
 
 There's no need to repeat implementation details in this section, unless it's absolutely crucial for 
 the context. We already have full access to the results, and here we only want to see how to produce it. 
@@ -104,6 +116,10 @@ how these manifested themselves and how they were resolved in the end. Try to in
 for approaches, just enough to give the reader a context, but leave analysis for the discussion.
 
 ## Discussion
+
+
+
+
 
 kunda ha delat upp model i de olika levels? särskilt om man har mer avancerade levels.
 
@@ -117,11 +133,27 @@ notera att man inte kan ge vaelarya hur mycket hälsa som helst eller göra ordl
 
 hade velat göra något större med mer user interaction men hade inte tid?
 
+
+object pool pattern används ofta med ett annat syfte, när kostnaden av att initiera
+ett object är väldigt hög, och därmed återbrukas dem. Här är kanske kostnaden inte
+så hög för just klassen weapon men det demonstrerar en object pool pattern.
+
+Diskutera:
+To summarize the concrete goals:
+* Create an event-driven application with a GUI. 
+    ja det har ju obv uppnåtts, event-driven där usern klickar på knappar/radiobuttons/combobox för att köra vidare spelet
+* Have a minimum of five concurrent processes, where at least 3 are synchronized.
+    visas i level 5 med simuleringen av draken där 7 trådar accessar health
+* Include at least six different Swing components and four different layouts.
+    jframe, jlabel, jradiobutton, jcombobox, jpanel, imageicon, jbutton, jtextfield
+    gridlayout, borderlayout, gridbag layout, boxlayout, flowlayout
+* Use the seven design patterns mentioned above.
+    japp
+* Implement at least three uses of Streams API.
+    stream.reduce(), stream().sorted().collect(Collectors.toList()), stream().filter()
+
 Perspective: Has the purpose been fulfilled? Determine the suitability of the implementation...
 should alternative approaches and procedures be considered?
-Personal reflections: What did you learn? What did you find to be particularly difficult? Did the
-learning module(s) prepare you sufficiently for the challenge? What could be improved in regards to
-the assignment? Etc.
 
 So we have finally arrived at the final section, and arguable the most important in terms of evaluation. 
 The content you place here will tie all aspects of the study together in a nice bundle of logic cake. 
@@ -138,7 +170,23 @@ to see some dissection of the actual procedures. At this point in time you have 
 the study and should possess more knowledge in comparison to what you had in the beginning. If you 
 or someone else were to redo this study, what should be done differently?
 
-Personal reflections
+
+### Execution of the program
+When running the program, the user first encounters a general start screen with brief information about the game.
+By pressing the 'start' button, the game then takes the user through five different levels, meeting random monsters on
+each level. Level 1 presents the user with a list of words, which can be sorted or counted based on the user's selection 
+in a combo box. By pressing the 'Next level' button, the game moves on to level 2. At this level, the user needs to help
+the monster to place a certain amount of apples into different buckets. If the answer is correct, level 3 starts.
+Here, the user can produce random monsters and unicorns from an abstract factory. Clicking on the 'Produce' button 
+creates five characters. The user can proceed to the next level at any time by pressing the 'Next level' button.
+Level 4 displays a riddle for the user to answer, if they do so correctly, they proceed to level 5. 
+
+level 5 är en simulering där användaren healar en drake vs 6 monster som skadar
+när vaelaryas hälsa aningen är healad eller hon är död kommer användaren automatiskt till en end view där man kan trycka på en knapp för att avsluta.
+
+
+
+### Personal reflections
 As a finale it's always nice to see your personal reflections at the end of the discussion section. 
 This can be completely subjective and regard the assignment, or the learning modules in general. 
 As examiner I cannot evaluate correctness regarding these aspects since they represent your personal 
@@ -146,3 +194,11 @@ opinions, so they offer no scientific value. But I do read your reflections and 
 and perspective you offer. While planning for future updates and changes I often get inspired by the 
 feedback my students has provided.
 
+Personal reflections: What did you learn? What did you find to be particularly difficult? Did the
+learning module(s) prepare you sufficiently for the challenge? What could be improved in regards to
+the assignment? Etc.
+
+deeper knowledge of OOP and Java, dabbeling into POM/JAR/maven, structuring code completely by myself, GUI, 
+tescher's notes bra, bra med read alongs och de där object pool diskussionen. like to look at code written by teachers 
+to understand how to strukture larger programs, how to comment etc. design patterns som kan vara till stor hjälp för
+att optimera sin kod

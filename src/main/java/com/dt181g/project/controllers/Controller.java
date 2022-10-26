@@ -131,7 +131,7 @@ public class Controller implements Observer {
 
     /**
      * Inner class responsible for listening to the combobox of level 1 and updating the view
-     * with the help of the model. 
+     * with the help of the model.
      */
     class Level1ComboboxListener implements ActionListener {
 
