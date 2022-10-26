@@ -21,18 +21,18 @@ public class Level3View extends BaseView {
     private final MyPanel bottomPanel = new MyPanel();
     private final MyButton nextLevelBtn = new MyButton("Next level");
     private final MyButton produceBtn = new MyButton("Produce");
-    private final ImageIcon monsterImg;
+    private final String monsterImg;
     private final String name;
     private final ActionListener nextListener;
 
     /**
      * Constructor which sets the layout and takes needed arguments for the GUI.
      * @param viewFrame is the frame to display the panel in.
-     * @param monsterImg is the ImageIcon of the monster.
+     * @param monsterImg is the String of the monster image path.
      * @param name is the name of the monster.
      * @param nextListener is the action listener for the 'Next' button.
      */
-    public Level3View(ViewFrame viewFrame, ImageIcon monsterImg, String name, ActionListener nextListener) {
+    public Level3View(ViewFrame viewFrame, String monsterImg, String name, ActionListener nextListener) {
         this.viewFrame = viewFrame;
         this.monsterImg = monsterImg;
         this.name = name;
@@ -50,12 +50,12 @@ public class Level3View extends BaseView {
 
     /**
      * Method for updating level 3 displaying the five produced characters.
-     * @param imageIcons is the Deque of images of the produced characters.
+     * @param images is the Deque of string image file paths of the produced characters.
      */
-    public void updateLevel3(Deque<ImageIcon> imageIcons) {
+    public void updateLevel3(Deque<String> images) {
         centerPanel.removeAll();
-        for (ImageIcon i: imageIcons) {
-            centerPanel.add(new JLabel(i));
+        for (String s: images) {
+            centerPanel.add(GetImageFromFile.getImageFromFile(s, this));
         }
         centerPanel.revalidate();
         centerPanel.repaint();
@@ -73,8 +73,8 @@ public class Level3View extends BaseView {
         label.setFont(Constants.FONT_TEXT);
         label.setForeground(Constants.COLOR_TEXT);
         topPanel.add(label);
-        topPanel.add(new JLabel(monsterImg));
-        topPanel.add(new JLabel(Constants.IMAGE_FACTORY));
+        topPanel.add(GetImageFromFile.getImageFromFile(monsterImg, this));
+        topPanel.add(GetImageFromFile.getImageFromFile(Constants.IMAGE_FACTORY, this));
         bigPanel.add(topPanel, BorderLayout.NORTH);
     }
 

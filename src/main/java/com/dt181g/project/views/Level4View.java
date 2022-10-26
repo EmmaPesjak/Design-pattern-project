@@ -21,7 +21,7 @@ public class Level4View extends BaseView {
     private final MyPanel topPanel = new MyPanel();
     private final MyPanel centerPanel = new MyPanel();
     private final MyPanel bottomPanel = new MyPanel();
-    private final ImageIcon monsterImg;
+    private final String monsterImg;
     private final String name;
     private final MyButton myButton = new MyButton("Check answer");
     private final JRadioButton radioButton1 = new JRadioButton("Rothead");
@@ -34,11 +34,11 @@ public class Level4View extends BaseView {
     /**
      * Constructor which sets the layout and takes needed arguments for the GUI.
      * @param viewFrame is the frame to display the panel in.
-     * @param monsterImg is the ImageIcon of the monster.
+     * @param monsterImg is the String of the monster image path.
      * @param name is the name of the monster.
      * @param listener is the action listener for the button.
      */
-    public Level4View(ViewFrame viewFrame, ImageIcon monsterImg, String name, ActionListener listener) {
+    public Level4View(ViewFrame viewFrame, String monsterImg, String name, ActionListener listener) {
         this.viewFrame = viewFrame;
         this.monsterImg = monsterImg;
         this.name = name;
@@ -88,7 +88,7 @@ public class Level4View extends BaseView {
         gbc.fill= GridBagConstraints.HORIZONTAL;
         gbc.gridx = 0;
         gbc.gridy = 0;
-        centerPanel.add(new JLabel(monsterImg), gbc);
+        centerPanel.add(GetImageFromFile.getImageFromFile(monsterImg, this), gbc);
         gbc.gridx = 0;
         gbc.gridy = 1;
         centerPanel.add(radioButton1, gbc);

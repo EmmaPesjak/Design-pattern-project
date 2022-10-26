@@ -1,7 +1,5 @@
 package com.dt181g.project.models.monsters;
 
-import javax.swing.*;
-
 /**
  * Abstract base class for all monsters in the game.
  * @author Emma Pesjak
@@ -9,7 +7,7 @@ import javax.swing.*;
 public abstract class BaseMonster {
 
     private String name;
-    private ImageIcon monsterImg;
+    private String monsterImg;
 
     /**
      * Getter for the monster's name.
@@ -31,7 +29,7 @@ public abstract class BaseMonster {
      * Getter for the monster's ImageIcon.
      * @return the ImageIcon of the monster.
      */
-    public ImageIcon getMonsterImg() {
+    public String getMonsterImg() {
         return monsterImg;
     }
 
@@ -39,7 +37,7 @@ public abstract class BaseMonster {
      * Setter for the monster's ImageIcon.
      * @param monsterImg is the ImageIcon of the monster.
      */
-    public void setMonsterImg(ImageIcon monsterImg) {
+    public void setMonsterImg(String monsterImg) {
         this.monsterImg = monsterImg;
     }
 }

@@ -21,14 +21,16 @@ public class EndView extends BaseView {
     MyButton myButton = new MyButton("Quit game");
     ActionListener listener;
     String text;
-    ImageIcon img;
+    String img;
 
     /**
      * Constructor which sets the layout and takes needed GUI arguments.
      * @param viewFrame is the frame to display the panel in.
      * @param listener is the action listener for the button.
+     * @param text is the text to be displayed.
+     * @param img is the image string file path.
      */
-    public EndView(ViewFrame viewFrame, ActionListener listener, String text, ImageIcon img) {
+    public EndView(ViewFrame viewFrame, ActionListener listener, String text, String img) {
         this.viewFrame = viewFrame;
         this.listener = listener;
         this.text = text;
@@ -57,7 +59,7 @@ public class EndView extends BaseView {
         centerPanel.removeAll();
         centerPanel.setPreferredSize(new Dimension(1000, 470));
         centerPanel.setBorder(new EmptyBorder(120, 5, 5,5));
-        centerPanel.add(new JLabel(img));
+        centerPanel.add(GetImageFromFile.getImageFromFile(img, this));
         bigPanel.add(centerPanel, BorderLayout.CENTER);
     }
 

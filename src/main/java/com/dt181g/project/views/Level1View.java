@@ -22,7 +22,7 @@ public class Level1View extends BaseView {
     private final MyPanel bottomPanel = new MyPanel();
     private final MyButton myButton = new MyButton("Next level");
     private final JLabel sentence = new JLabel();
-    private final ImageIcon monsterImg;
+    private final String monsterImg;
     private final String name;
     private final String words;
     private final JComboBox<String> comboBox = new JComboBox<>();
@@ -31,12 +31,12 @@ public class Level1View extends BaseView {
     /**
      * Constructor which sets the layout and takes needed arguments for the GUI.
      * @param viewFrame is the frame to display the panel in.
-     * @param monsterImg is the ImageIcon of the monster.
+     * @param monsterImg is the String of the monster image path.
      * @param name is the name of the monster.
      * @param words is the string of words to be displayed and used by the user.
      * @param listener is the action listener for the button.
      */
-    public Level1View(ViewFrame viewFrame, ImageIcon monsterImg, String name, String words, ActionListener listener) {
+    public Level1View(ViewFrame viewFrame, String monsterImg, String name, String words, ActionListener listener) {
         this.viewFrame = viewFrame;
         this.monsterImg = monsterImg;
         this.name = name;
@@ -56,7 +56,7 @@ public class Level1View extends BaseView {
      */
     public void updateLevel1(String words) {
         centerPanel.removeAll();
-        centerPanel.add(new JLabel(monsterImg));
+        centerPanel.add(GetImageFromFile.getImageFromFile(monsterImg, this));
         centerPanel.add(comboBox);
         JLabel wordLabel = new JLabel(words);
         wordLabel.setFont(Constants.FONT_TEXT);
@@ -101,7 +101,7 @@ public class Level1View extends BaseView {
     @Override
     void addCenterPanel() {
         centerPanel.setPreferredSize(new Dimension(1000, 470));
-        centerPanel.add(new JLabel(monsterImg));
+        centerPanel.add(GetImageFromFile.getImageFromFile(monsterImg, this));
         centerPanel.add(comboBox);
         centerPanel.setBorder(new EmptyBorder(150, 5, 5,5));
         sentence.setText(words);

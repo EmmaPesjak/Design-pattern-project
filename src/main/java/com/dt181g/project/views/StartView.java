@@ -40,23 +40,10 @@ public class StartView extends BaseView {
      */
     @Override
     void addTopPanel() {
-
-       // URL imageurl = getClass().getResource("/src/main/java/com/dt181g/project/img/monsters/yellowMonster.png");//assuming your package name is images
-       // Image myPicture = Toolkit.getDefaultToolkit().getImage(imageurl);
-       // JLabel piclabel = new JLabel(new ImageIcon( myPicture ));
-
-        //ImageIcon hej = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("src/main/java/com/dt181g/project/img/monsters/yellowMonster.png")));
-        //InputStream stream = this.getClass().getResourceAsStream("/src/main/java/com/dt181g/project/img/monsters/yellowMonster.png");
-        //ImageIcon hej = new ImageIcon(stream.toString());
-        //ImageIcon hej = new ImageIcon(getClass().getResource("src/main/java/com/dt181g/project/img/monsters/yellowMonster.png"));
-
         JLabel title = new JLabel("The Monster Game");
         title.setFont(Constants.FONT_BIG);
         title.setForeground(Constants.COLOR_TEXT);
         topPanel.add(title);
-        //topPanel.add(new JLabel(hej));
-        //topPanel.add(piclabel);
-
         bigPanel.add(topPanel, BorderLayout.NORTH);
     }
 
@@ -67,10 +54,10 @@ public class StartView extends BaseView {
     void addCenterPanel() {
         centerPanel.setPreferredSize(new Dimension(1000, 400));
         centerPanel.setLayout(new GridLayout(2,2, 5, 5));
-        centerPanel.add(new JLabel(Constants.IMAGE_YELLOW_MONSTER));
-        centerPanel.add(new JLabel(Constants.IMAGE_BLUE_MONSTER));
-        centerPanel.add(new JLabel(Constants.IMAGE_RED_MONSTER));
-        centerPanel.add(new JLabel(Constants.IMAGE_GREEN_MONSTER));
+        centerPanel.add(GetImageFromFile.getImageFromFile(Constants.IMAGE_YELLOW_MONSTER, this));
+        centerPanel.add(GetImageFromFile.getImageFromFile(Constants.IMAGE_BLUE_MONSTER, this));
+        centerPanel.add(GetImageFromFile.getImageFromFile(Constants.IMAGE_RED_MONSTER, this));
+        centerPanel.add(GetImageFromFile.getImageFromFile(Constants.IMAGE_GREEN_MONSTER, this));
         bigPanel.add(centerPanel, BorderLayout.CENTER);
     }
 

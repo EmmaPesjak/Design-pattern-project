@@ -18,7 +18,7 @@ public class Level5View extends BaseView {
     private final MyPanel centerPanel = new MyPanel();
     private final MyPanel bottomPanel = new MyPanel();
     private final JLabel healthLabel = new JLabel();
-    private final ImageIcon monsterImg;
+    private final String monsterImg;
     private final String name;
     private final MyButton myButton = new MyButton("Channel crystal");
     private final ActionListener listener;
@@ -26,11 +26,11 @@ public class Level5View extends BaseView {
     /**
      * Constructor which sets the layout and takes needed arguments for the GUI.
      * @param viewFrame is the frame to display the panel in.
-     * @param monsterImg is the ImageIcon of the monster.
+     * @param monsterImg is the String of the monster image path.
      * @param name is the name of the monster.
      * @param listener is the action listener for the button.
      */
-    public Level5View(ViewFrame viewFrame, ImageIcon monsterImg, String name, ActionListener listener) {
+    public Level5View(ViewFrame viewFrame, String monsterImg, String name, ActionListener listener) {
         this.viewFrame = viewFrame;
         this.monsterImg = monsterImg;
         this.name = name;
@@ -80,10 +80,10 @@ public class Level5View extends BaseView {
         centerPanel.removeAll();
         centerPanel.setPreferredSize(new Dimension(1000, 300));
         centerPanel.setLayout(new GridLayout(2,2, 5, 5));
-        centerPanel.add(new JLabel(Constants.IMAGE_DRAGON));
-        centerPanel.add(new JLabel(monsterImg));
-        centerPanel.add(new JLabel(Constants.IMAGE_CRYSTAL));
-        centerPanel.add(new JLabel(Constants.IMAGE_WEAPONS));
+        centerPanel.add(GetImageFromFile.getImageFromFile(Constants.IMAGE_DRAGON, this));
+        centerPanel.add(GetImageFromFile.getImageFromFile(monsterImg, this));
+        centerPanel.add(GetImageFromFile.getImageFromFile(Constants.IMAGE_CRYSTAL, this));
+        centerPanel.add(GetImageFromFile.getImageFromFile(Constants.IMAGE_WEAPONS, this));
         bigPanel.add(centerPanel, BorderLayout.CENTER);
     }
 

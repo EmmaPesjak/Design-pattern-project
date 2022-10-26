@@ -89,11 +89,13 @@ Factory pattern: monsters/unicorns
 
 ![](FactoryUML.png)
 Figure X....
+OBS ÄNDRA IMAGEICON TILL STRING
 
 ### Abstract factory pattern
 Abstract factory: characterfactory
 ![](AbstractFactoryUML.png)
 Figure X....
+OBS ÄNDRA IMAGEICON TILL STRING
 
 ### Template method pattern
 Template pattern: the views
@@ -101,6 +103,10 @@ här kom alla swingkomponents in
 ![](TemplateUML.png)
 Figure X....
 
+
+
+
+FETT PROBLEM IMAGES 
 
 
 What kind of problems emerged and how were these resolved?

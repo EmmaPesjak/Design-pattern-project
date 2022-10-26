@@ -5,7 +5,6 @@ import com.dt181g.project.models.monsters.MonsterFactory;
 import com.dt181g.project.models.unicorns.UnicornFactory;
 import com.dt181g.project.support.Constants;
 
-import javax.swing.*;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -75,7 +74,7 @@ public class MainModel {
      * Method for producing a random character ImageIcon, either a monster or a unicorn.
      * @return a random character ImageIcon.
      */
-    public ImageIcon getRandomCharImg() {
+    public String getRandomCharImg() {
 
         int randomNmb = new Random().nextInt(2) + 1;
 

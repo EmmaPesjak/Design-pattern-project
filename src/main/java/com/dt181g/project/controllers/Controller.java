@@ -8,7 +8,6 @@ import com.dt181g.project.models.monsters.BaseMonster;
 import com.dt181g.project.support.Constants;
 import com.dt181g.project.views.*;
 
-import javax.swing.*;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -188,10 +187,10 @@ public class Controller implements Observer {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-            Deque<ImageIcon> imageIcons = new LinkedList<>(Arrays.asList(mainModel.getRandomCharImg(),
+            Deque<String> imageList = new LinkedList<>(Arrays.asList(mainModel.getRandomCharImg(),
                     mainModel.getRandomCharImg(), mainModel.getRandomCharImg(),
                     mainModel.getRandomCharImg(), mainModel.getRandomCharImg()));
-            level3View.updateLevel3(imageIcons);
+            level3View.updateLevel3(imageList);
         }
     }
 

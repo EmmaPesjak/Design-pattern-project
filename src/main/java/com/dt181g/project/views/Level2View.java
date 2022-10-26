@@ -20,7 +20,7 @@ public class Level2View extends BaseView {
     private final MyPanel centerPanel = new MyPanel();
     private final MyPanel bottomPanel = new MyPanel();
     private final MyButton myButton = new MyButton("Help the monster");
-    private final ImageIcon monsterImg;
+    private final String monsterImg;
     private final String name;
     private final Deque<JTextField> buckets = new LinkedList<>(Arrays.asList(
             new JTextField(8), new JTextField(8), new JTextField(8)));
@@ -29,11 +29,11 @@ public class Level2View extends BaseView {
     /**
      * Constructor which sets the layout and takes needed arguments for the GUI.
      * @param viewFrame is the frame to display the panel in.
-     * @param monsterImg is the ImageIcon of the monster.
+     * @param monsterImg is the String of the monster image path.
      * @param name is the name of the monster.
      * @param listener is the action listener for the button.
      */
-    public Level2View(ViewFrame viewFrame, ImageIcon monsterImg, String name, ActionListener listener) {
+    public Level2View(ViewFrame viewFrame, String monsterImg, String name, ActionListener listener) {
         this.viewFrame = viewFrame;
         this.monsterImg = monsterImg;
         this.name = name;
@@ -75,9 +75,9 @@ public class Level2View extends BaseView {
     void addCenterPanel() {
         centerPanel.setPreferredSize(new Dimension(900, 400));
         centerPanel.setLayout(new GridLayout(3,3, 5, 0));
-        centerPanel.add(new JLabel(monsterImg));
-        centerPanel.add(new JLabel(Constants.IMAGE_APPLE));
-        centerPanel.add(new JLabel(Constants.IMAGE_BUCKET));
+        centerPanel.add(GetImageFromFile.getImageFromFile(monsterImg, this));
+        centerPanel.add(GetImageFromFile.getImageFromFile(Constants.IMAGE_APPLE, this));
+        centerPanel.add(GetImageFromFile.getImageFromFile(Constants.IMAGE_BUCKET, this));
         for (int i = 1; i <= 3; i++) {
             JLabel bucketLabel = new JLabel("Bucket " + i + ":");
             bucketLabel.setForeground(Constants.COLOR_TEXT);

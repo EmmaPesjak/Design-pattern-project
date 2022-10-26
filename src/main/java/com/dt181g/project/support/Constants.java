@@ -1,6 +1,5 @@
 package com.dt181g.project.support;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,46 +11,31 @@ import java.util.List;
  */
 public interface Constants {
 
-    //Images.
-    ImageIcon IMAGE_YELLOW_MONSTER =
-            new ImageIcon("src/main/java/com/dt181g/project/img/monsters/yellowMonster.png");
-    ImageIcon IMAGE_BLUE_MONSTER =
-            new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\blueMonster.png");
-    ImageIcon IMAGE_GREEN_MONSTER =
-            new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\greenMonster.png");
-    ImageIcon IMAGE_RED_MONSTER =
-            new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\redMonster.png");
-    ImageIcon IMAGE_ORANGE_MONSTER =
-            new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\orangeMonster.png");
-    ImageIcon IMAGE_PURPLE_MONSTER =
-            new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\purpleMonster.png");
-    ImageIcon IMAGE_GREY_MONSTER =
-            new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\greyMonster.png");
-    ImageIcon IMAGE_SLIME_MONSTER =
-            new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\monsters\\slimeMonster.png");
+    //Image file names.
+    String IMAGE_YELLOW_MONSTER = "yellowMonster.png";
+    String IMAGE_BLUE_MONSTER = "blueMonster.png";
+    String IMAGE_GREEN_MONSTER = "greenMonster.png";
+    String IMAGE_RED_MONSTER = "redMonster.png";
+    String IMAGE_ORANGE_MONSTER = "orangeMonster.png";
+    String IMAGE_PURPLE_MONSTER = "purpleMonster.png";
+    String IMAGE_GREY_MONSTER = "greyMonster.png";
+    String IMAGE_SLIME_MONSTER = "slimeMonster.png";
 
-    ImageIcon IMAGE_ANGRYCORN =
-            new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\angrycorn.png");
-    ImageIcon IMAGE_FANCYCORN =
-            new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\fancycorn.png");
-    ImageIcon IMAGE_GLAMCORN =
-            new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\glamcorn.png");
-    ImageIcon IMAGE_HAPPYCORN =
-            new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\happycorn.png");
-    ImageIcon IMAGE_KITTYCORN =
-            new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\kittycorn.png");
-    ImageIcon IMAGE_RAINBOWCORN =
-            new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\rainbowcorn.png");
-    ImageIcon IMAGE_SLEEPYCORN =
-            new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\unicorns\\sleepycorn.png");
+    String IMAGE_ANGRYCORN = "angrycorn.png";
+    String IMAGE_FANCYCORN = "fancycorn.png";
+    String IMAGE_GLAMCORN = "glamcorn.png";
+    String IMAGE_HAPPYCORN = "happycorn.png";
+    String IMAGE_KITTYCORN = "kittycorn.png";
+    String IMAGE_RAINBOWCORN = "rainbowcorn.png";
+    String IMAGE_SLEEPYCORN = "sleepycorn.png";
 
-    ImageIcon IMAGE_APPLE = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\misc\\apple.png");
-    ImageIcon IMAGE_BUCKET = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\misc\\bucket.png");
-    ImageIcon IMAGE_DRAGON = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\misc\\dragon.png");
-    ImageIcon IMAGE_CRYSTAL = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\misc\\crystal.png");
-    ImageIcon IMAGE_STAR = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\misc\\star.png");
-    ImageIcon IMAGE_FACTORY = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\misc\\factory.png");
-    ImageIcon IMAGE_WEAPONS = new ImageIcon("src\\main\\java\\com\\dt181g\\project\\img\\misc\\weapons.png");
+    String IMAGE_APPLE = "apple.png";
+    String IMAGE_BUCKET = "bucket.png";
+    String IMAGE_DRAGON = "dragon.png";
+    String IMAGE_CRYSTAL = "crystal.png";
+    String IMAGE_STAR = "star.png";
+    String IMAGE_FACTORY = "factory.png";
+    String IMAGE_WEAPONS = "weapons.png";
 
     // Fonts.
     Font FONT_BIG = new Font(Font.MONOSPACED, Font.BOLD, 32);
