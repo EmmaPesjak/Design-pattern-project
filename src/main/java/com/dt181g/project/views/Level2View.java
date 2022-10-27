@@ -75,9 +75,9 @@ public class Level2View extends BaseView {
     void addCenterPanel() {
         centerPanel.setPreferredSize(new Dimension(900, 400));
         centerPanel.setLayout(new GridLayout(3,3, 5, 0));
-        centerPanel.add(GetImageFromFile.getImageFromFile(monsterImg, this));
-        centerPanel.add(GetImageFromFile.getImageFromFile(Constants.IMAGE_APPLE, this));
-        centerPanel.add(GetImageFromFile.getImageFromFile(Constants.IMAGE_BUCKET, this));
+        centerPanel.add(ImageReader.getImageFromFile(monsterImg, this));
+        centerPanel.add(ImageReader.getImageFromFile(Constants.IMAGE_APPLE, this));
+        centerPanel.add(ImageReader.getImageFromFile(Constants.IMAGE_BUCKET, this));
         for (int i = 1; i <= 3; i++) {
             JLabel bucketLabel = new JLabel("Bucket " + i + ":");
             bucketLabel.setForeground(Constants.COLOR_TEXT);

@@ -80,10 +80,10 @@ public class Level5View extends BaseView {
         centerPanel.removeAll();
         centerPanel.setPreferredSize(new Dimension(1000, 300));
         centerPanel.setLayout(new GridLayout(2,2, 5, 5));
-        centerPanel.add(GetImageFromFile.getImageFromFile(Constants.IMAGE_DRAGON, this));
-        centerPanel.add(GetImageFromFile.getImageFromFile(monsterImg, this));
-        centerPanel.add(GetImageFromFile.getImageFromFile(Constants.IMAGE_CRYSTAL, this));
-        centerPanel.add(GetImageFromFile.getImageFromFile(Constants.IMAGE_WEAPONS, this));
+        centerPanel.add(ImageReader.getImageFromFile(Constants.IMAGE_DRAGON, this));
+        centerPanel.add(ImageReader.getImageFromFile(monsterImg, this));
+        centerPanel.add(ImageReader.getImageFromFile(Constants.IMAGE_CRYSTAL, this));
+        centerPanel.add(ImageReader.getImageFromFile(Constants.IMAGE_WEAPONS, this));
         bigPanel.add(centerPanel, BorderLayout.CENTER);
     }
 

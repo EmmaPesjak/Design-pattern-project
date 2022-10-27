@@ -55,7 +55,7 @@ public class Level3View extends BaseView {
     public void updateLevel3(Deque<String> images) {
         centerPanel.removeAll();
         for (String s: images) {
-            centerPanel.add(GetImageFromFile.getImageFromFile(s, this));
+            centerPanel.add(ImageReader.getImageFromFile(s, this));
         }
         centerPanel.revalidate();
         centerPanel.repaint();
@@ -73,8 +73,8 @@ public class Level3View extends BaseView {
         label.setFont(Constants.FONT_TEXT);
         label.setForeground(Constants.COLOR_TEXT);
         topPanel.add(label);
-        topPanel.add(GetImageFromFile.getImageFromFile(monsterImg, this));
-        topPanel.add(GetImageFromFile.getImageFromFile(Constants.IMAGE_FACTORY, this));
+        topPanel.add(ImageReader.getImageFromFile(monsterImg, this));
+        topPanel.add(ImageReader.getImageFromFile(Constants.IMAGE_FACTORY, this));
         bigPanel.add(topPanel, BorderLayout.NORTH);
     }
 

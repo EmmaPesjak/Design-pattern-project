@@ -8,7 +8,7 @@ import java.net.URL;
  * Class responsible for providing images in JLabels, used by View classes.
  * @author Emma Pesjak
  */
-public class GetImageFromFile {
+public class ImageReader {
 
     /**
      * Static method for loading images into JLabels.

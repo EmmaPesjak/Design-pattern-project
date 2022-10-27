@@ -56,7 +56,7 @@ public class Level1View extends BaseView {
      */
     public void updateLevel1(String words) {
         centerPanel.removeAll();
-        centerPanel.add(GetImageFromFile.getImageFromFile(monsterImg, this));
+        centerPanel.add(ImageReader.getImageFromFile(monsterImg, this));
         centerPanel.add(comboBox);
         JLabel wordLabel = new JLabel(words);
         wordLabel.setFont(Constants.FONT_TEXT);
@@ -101,7 +101,7 @@ public class Level1View extends BaseView {
     @Override
     void addCenterPanel() {
         centerPanel.setPreferredSize(new Dimension(1000, 470));
-        centerPanel.add(GetImageFromFile.getImageFromFile(monsterImg, this));
+        centerPanel.add(ImageReader.getImageFromFile(monsterImg, this));
         centerPanel.add(comboBox);
         centerPanel.setBorder(new EmptyBorder(150, 5, 5,5));
         sentence.setText(words);

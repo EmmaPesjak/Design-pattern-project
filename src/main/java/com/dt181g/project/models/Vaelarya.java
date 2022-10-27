@@ -14,7 +14,7 @@ import java.util.List;
 public class Vaelarya implements Observable {
     public static final Vaelarya INSTANCE = new Vaelarya();
     public List<Observer> observers = new ArrayList<>();
-    public int health = Constants.VAELARYA_START_HEALTH;
+    public volatile int health = Constants.VAELARYA_START_HEALTH;
 
     /**
      * Private constructor.

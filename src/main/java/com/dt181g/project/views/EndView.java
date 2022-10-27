@@ -59,7 +59,7 @@ public class EndView extends BaseView {
         centerPanel.removeAll();
         centerPanel.setPreferredSize(new Dimension(1000, 470));
         centerPanel.setBorder(new EmptyBorder(120, 5, 5,5));
-        centerPanel.add(GetImageFromFile.getImageFromFile(img, this));
+        centerPanel.add(ImageReader.getImageFromFile(img, this));
         bigPanel.add(centerPanel, BorderLayout.CENTER);
     }
 

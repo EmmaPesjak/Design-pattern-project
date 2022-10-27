@@ -88,7 +88,7 @@ public class Level4View extends BaseView {
         gbc.fill= GridBagConstraints.HORIZONTAL;
         gbc.gridx = 0;
         gbc.gridy = 0;
-        centerPanel.add(GetImageFromFile.getImageFromFile(monsterImg, this), gbc);
+        centerPanel.add(ImageReader.getImageFromFile(monsterImg, this), gbc);
         gbc.gridx = 0;
         gbc.gridy = 1;
         centerPanel.add(radioButton1, gbc);

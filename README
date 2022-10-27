@@ -1,9 +1,11 @@
 # Project Report
 Emma Pesjak
 
+
 ## Environment & Tools
 This project was performed on a Windows 10 PC with IntelliJ version 2022.2.3, Java version openjdk 19.0.1, 
 maven version 3.8.5, and Git version 2.33.0.windows.2.
+
 
 ## Purpose
 The purpose of this project was to demonstrate a comprehensive understanding of the course's learning
@@ -11,7 +13,7 @@ objectives. Specifically, to create an event-driven application with a Graphical
 Java Swing. The goal was to achieve a grade as high as possible and thereby showcase the utilization of the
 Swing library and implement a range of different layouts and components. Furthermore, to incorporate the use of 
 Streams API and to use concurrent synchronized processes in an atomic fashion. Lastly also to demonstrate the 
-use of design patterns. While having the entire code structured according to the Model View Controller (MVC) 
+use of design patterns. While having the entire code structured according to the Model-View-Controller (MVC) 
 pattern, also incorporating the observer, object pool, producer/consumer, factory method, abstract factory,
 and template method patterns.
 
@@ -22,17 +24,20 @@ To summarize the concrete goals:
 * Use the seven design patterns mentioned above.
 * Implement at least three uses of Streams API.
 
+
 ## Procedures
+As the MVC pattern was the base structure for this project...
 
 något generellt här
 generell kodstruktur
 
-lite om mvc
 
 MODEL
+mainmodel
 här fick jag in streams API och concurrent processes, annars basic fakta eftersom resten tas upp i underrubrikerna
 
 VIEW
+The view is the front of the application, where the user...
 här fick jag in layouts och components och event-driven UI
 problem: duplicate images could not be displayed since the Jlabel was created in Constants interface,
 by instead only setting it to imageicons and making new labels when needed this was fixed
@@ -40,12 +45,28 @@ problem that occured: mosterna ritas inte ut, någon form av race condition?? ef
 fixades med revalidate/repaint i updatePanel()
 egna button och panel klasser för att spara massa rader kod eftersom alla bakgrunder är likadana och
 alla butttons är likadana.
+Om jag inte skriver tillräckligt specifikt om viewsen här får jag lägga till mer i template method.
 
 
 CONTROLLER
+finns en controller, interface och två buttonlistenerklasser, controllern har många inre listenerklasser men 
+de får vara kvar eftersom man i dem gör val som påverkar view/model. quit och next bröts ut för att koden i controller
+inte skulle bli för lång.
+
 
 lägger in allt som kan ändras i spelet i constants för att det ska finnas på ett ställe och vara lätt
 har dock namnen på monsterna i sina klasser
+
+
+Skriva om JAR och pom?
+A problem that occurred during the creation of JAR file...
+FETT PROBLEM IMAGES -> ImageReader klass
+
+
+What kind of problems emerged and how were these resolved?
+Emphasise the challenges which arose during construction,
+how these manifested themselves and how they were resolved in the end. Try to include some justification
+for approaches, just enough to give the reader a context, but leave analysis for the discussion.
 
 
 
@@ -54,82 +75,139 @@ lägg patterns i någon bra ordning sen
 
 
 ![](ProducerConsumerUML.png)
-Figure X....
-
-
+<br>Figure X....
 producer/consumer: heal/damage theads
 synch/concurrent processes
+chilla med denna tills jag vet om jag får ha singleton
 
+beskriv damage thread här för jag gör inte det i objectpool
 
 ### Observer pattern
 ![](ObserverUML.png)
-Figure X....
-
-observer: vaelarya
+<br>Figure X....
 
 notera att controller i UML innehåller fler (metoder)/interna klasser som inte är representerade i UMLen 
 men som inte har med observer att göra
+chilla med denna tills jag vet om jag får ha singleton
 
 
 ### Object pool pattern
-Object pool: dragon weapons/distributor
+The object pool pattern was implemented as a `WeaponDistributor`, which held a pool of `Weapon`s used by the client
+`DamageThread`, see figure 3 for a UML diagram describing the pattern. The client would ask the distributor for a 
+reusable weapon to use and then return when finished with it. The `WeaponDistributor` class was implemented as a 
+Singleton. In the private constructor, three `Weapon`s were created and added to a blocking queue. Methods for
+borrowing and returning weapons were also added to this class. The `Weapon` class had a single method for getting 
+the weapon damage, this was randomized with the upper limit set in the `Constants` interface.
 
-
-problem: concurrent modificationexception men jag hade tagi en vanlig deque till min weapons list, att använda
-en blockig queue fixade alla problem.
+A concurrency problem that occurred was that during the testing of the program a `ConcurrentModificationException` 
+would sometimes trigger. This was because the weapons list was first implemented as a deque, by using a blocking queue
+instead, which is thread-safe, the problem was fixed.
 
 ![](ObjectPoolUML.png)
-Figure X....
-
-client (damagethread) asks for reusable object frpom the objectpool (weapondistributor)
-and uses a weapon from the reuseable pool.
+<br> Figure 3: UML diagram of the implemented object pool.
 
 ### Factory method pattern
-Factory pattern: monsters/unicorns
+Two factories were implemented in the program; the `MonsterFactory` and the `UnicornFactory`. Figure 4 displays a UML
+diagram of the factory pattern used for creating monsters.
+
+`MonsterFactory`.
+
+DETTA ÄR JU FÖR FAN EN SIMPLE FACTORY!!!
+
 
 ![](FactoryUML.png)
-Figure X....
-OBS ÄNDRA IMAGEICON TILL STRING
+<br>Figure 4: UML diagram of the factory pattern. Note that the `MainModel` class contains several more methods which 
+are not relevant for the factory pattern.
 
 ### Abstract factory pattern
 Abstract factory: characterfactory
 ![](AbstractFactoryUML.png)
-Figure X....
-OBS ÄNDRA IMAGEICON TILL STRING
+<br>Figure 5:
 
 ### Template method pattern
-Template pattern: the views
-här kom alla swingkomponents in
+Since the different views were quite similar when it came to base layout, the template method pattern was implemented 
+to optimize the code. This let the concrete subclasses follow the algorithm in the base class, but each subclass 
+decided how to implement each step. The abstract class `BaseView` was implemented as a base class. This defined the
+method `makePanel()` for creating the panel to be added to the GUI frame. The panel consisted of smaller panels 
+(top, center, and bottom) and an action listener for a button, these all had a method for implementation. They 
+also had hooks in case the concrete views decided not to implement all of them. A method for updating the GUI frame 
+with the panel was also added to the `BaseView`. Each concrete subclass, see figure 6, extended `BaseView` and overrode
+its methods, deciding how the GUI should look, and decided if the hooks should be used.
+
 ![](TemplateUML.png)
-Figure X....
+<br>Figure 6: UML diagram of the template method used for the different views.
 
-
-
-
-FETT PROBLEM IMAGES 
-
-
-What kind of problems emerged and how were these resolved?
-
-This section is the study's methodology, which needs to account for HOW the results has been produced.
-
-There's no need to repeat implementation details in this section, unless it's absolutely crucial for 
-the context. We already have full access to the results, and here we only want to see how to produce it. 
-Focus on the matters which objectively should matter to the reader, not details which was only relevant 
-to you. Sure, you had to study reading material and look up something on Google, but you wouldn't need 
-to do that in order to reproduce the results. Emphasise the challenges which arose during construction, 
-how these manifested themselves and how they were resolved in the end. Try to include some justification 
-for approaches, just enough to give the reader a context, but leave analysis for the discussion.
 
 ## Discussion
 
+"lab2
+The observer pattern was one of the main designs of this assignment. There are slightly different variations of the
+observer pattern, and for this laboration, the pattern described in the course literature was used. What could be
+slightly confusing about the observer pattern is that the observer `Manager` has a `ResourcePool` when the Observable
+interface has an observer interface, see figure 1. But since the object that is being observed is already passed into
+the constructor, we do not have to pass anything in when we call `update()`. Usually, the observer pattern´s observable
+also has a `removeObserver()` method. However, such a method was not necessary for this program since no observer ever
+needs to be removed.
+The producer/consumer pattern is however not implemented in the code exactly as described in the course literature
+since the resource pool consists of an integer, not tasks, which makes a queue or a blockingqueue that is commonly used
+in this pattern redundant.
+As threads are used in the program, the code had to be made thread safe in order to not have concurrency issues.
+This can be done in a few different ways, by adding locks, adding synchronized blocks, synchronizing whole methods etc.
+Declaring methods synchronized adds Java built in locks and this was chosen for the program as the methods with
+possible concurrency risks did not have many lines of code. If they had been larger with more or broader functionality,
+perhaps a synchronized block had been preferable. `Manager:update()`, `ResourcePool:addResources()`,
+`ResourcePool:removeResources()`, and `ResourcePool:getAmountOfResources()` were made synchronized since these are
+dependent on that only one thread at a time run the method, or else concurrency issues may occur, for example the
+amount of resources in the pool will be incorrect if two threads add resources at the same time.
+"
+
+"lab 3
+The MVC pattern was the foundation for this laboration. One of the benefits with using the MVC pattern is that it is
+easily planned. The interface code belongs in the view, the data in the model, and the communication and requests in
+the controller. This increases the scalability of the application.
+The `View` class contains a lot of different sizes, dimensions and a few colours. If this was a larger application
+where they would be reused, they should be put in constants, considering the size of this application, that is not
+necessary. An action listener was chosen for communication between the View and the Controller.  To create the GUI,
+different Swing layouts and components were used.
+Streams API can be used for a range of things, here the `stream.reduce()` method was used which was very convenient
+for calculating the sum of the user input, rather than doing it in a loop. In conclusion, this laboration could have
+been a lot larger with parallel processing, multiple Views etc. Though it is a simple solution, it fulfills the
+concrete goals of the purpose, creating a program using Swing, MVC, and streams API.
+"
+
+object pool pattern:
+object pool pattern används ofta med ett annat syfte, när kostnaden av att initiera
+ett object är väldigt hög, och därmed återbrukas dem. Här är kanske kostnaden inte
+så hög för just klassen weapon men det demonstrerar en object pool pattern.
+så det fulfillar purpose.
+weapon distributor måste vara thread-safe med en blocking queue
+Object pool och producer/consumer från object pool discussion:
+"The other way we could approach this would be to use AtomicInteger rather than primitive
+int or the base Integer object. This will actually guarantee complete thread safety for us
+and make sure that all operations are done atomically, in an ordered fashion. The tradeoff 
+here is that we introduce a little more overhead since it involves Compare and Swap 
+Instructions, but this is a small price to pay for the benefits of atomic abstraction. 
+One could also make a strong case for added cohesion with this approach since all matters
+surrounding concurrency are isolated to one entity rather than spread over multiple. 
+In our case we only have a single method which modifies the value, but you could perhaps 
+imagine having several procedures each making different modifications.
+So by using AtomicInteger we no longer need to declare synchronized blocks explicitly.
+
+Whether to use volatile together with explicit synchronization or use AtomicInteger are for
+the most part arbitrary, but there are some occasions where one should be preferred over the 
+other. The former can become an issue in multi-core systems where each CPU runs in isolation.
+The JVM is rather poor in ensuring visibility between closed subsystems, especially when each 
+one run instructions from cached memory. But at the same time we also have some minor
+overhead with atomic datatypes which could impact performance. For our design we go with 
+the first alternative but the only reason is to get a better separation of concerns, for
+learning purposes."
 
 
+template method: snacka om hooks
 
 
 kunda ha delat upp model i de olika levels? särskilt om man har mer avancerade levels.
 
-svårast att få till mvc ordentligt...
 
 hade det varit ett större spel hade man kunnat dela in main model mer på olika levels.
 
@@ -140,9 +218,16 @@ notera att man inte kan ge vaelarya hur mycket hälsa som helst eller göra ordl
 hade velat göra något större med mer user interaction men hade inte tid?
 
 
-object pool pattern används ofta med ett annat syfte, när kostnaden av att initiera
-ett object är väldigt hög, och därmed återbrukas dem. Här är kanske kostnaden inte
-så hög för just klassen weapon men det demonstrerar en object pool pattern.
+
+factory:
+
+abstract factory:
+
+template:
+
+prod/cons:
+
+observer:
 
 Diskutera:
 To summarize the concrete goals:
@@ -161,8 +246,6 @@ To summarize the concrete goals:
 Perspective: Has the purpose been fulfilled? Determine the suitability of the implementation...
 should alternative approaches and procedures be considered?
 
-So we have finally arrived at the final section, and arguable the most important in terms of evaluation. 
-The content you place here will tie all aspects of the study together in a nice bundle of logic cake. 
 The two most important things we need in this section regards analyses of both success and implementation.
 Has the purpose been fulfilled, and to what extent has it been successful? Remember to argue for such
 success on the basis of actual results. The reader needs to be able to run the thread of logic
@@ -185,26 +268,16 @@ in a combo box. By pressing the 'Next level' button, the game moves on to level 
 the monster to place a certain amount of apples into different buckets. If the answer is correct, level 3 starts.
 Here, the user can produce random monsters and unicorns from an abstract factory. Clicking on the 'Produce' button 
 creates five characters. The user can proceed to the next level at any time by pressing the 'Next level' button.
-Level 4 displays a riddle for the user to answer, if they do so correctly, they proceed to level 5. 
-
-level 5 är en simulering där användaren healar en drake vs 6 monster som skadar
-när vaelaryas hälsa aningen är healad eller hon är död kommer användaren automatiskt till en end view där man kan trycka på en knapp för att avsluta.
-
-
+Level 4 displays a riddle for the user to answer, if they do so correctly, they proceed to level 5. At this level,
+the user meets Vaelarya Vision Walker, a dragon in need of help from evil monsters. By pressing the 'Channel crystal'
+button, a simulation begins where Vaelarya is healed by the user and damaged by the monsters. When Vealarya is either
+dead (0 hp or less) or completely healed to her maximum hp, the simulation ends automatically. The user then comes to 
+an end view where there is a button for quitting the game and thereby shutting down the program. At any time during 
+the game, the user can also quit the program by clicking on the 'X' in the upper right corner.
 
 ### Personal reflections
-As a finale it's always nice to see your personal reflections at the end of the discussion section. 
-This can be completely subjective and regard the assignment, or the learning modules in general. 
-As examiner I cannot evaluate correctness regarding these aspects since they represent your personal 
-opinions, so they offer no scientific value. But I do read your reflections and appreciate the input 
-and perspective you offer. While planning for future updates and changes I often get inspired by the 
-feedback my students has provided.
-
-Personal reflections: What did you learn? What did you find to be particularly difficult? Did the
-learning module(s) prepare you sufficiently for the challenge? What could be improved in regards to
-the assignment? Etc.
-
-deeper knowledge of OOP and Java, dabbeling into POM/JAR/maven, structuring code completely by myself, GUI, 
-tescher's notes bra, bra med read alongs och de där object pool diskussionen. like to look at code written by teachers 
-to understand how to strukture larger programs, how to comment etc. design patterns som kan vara till stor hjälp för
-att optimera sin kod
+This course has given me a deeper knowledge of OOP and Java, dabbling into pom and JAR files, creating GUI 
+applications, etc. The course material has been very helpful, however as I am a big fan of the teacher's notes, more 
+of these would be appreciated. It is always good to read code written by teachers to understand the 
+code/classes/patterns, how to structure larger programs, how to comment etc. The most difficult part of this project 
+was to incorporate all the different design patterns while still conforming to MVC.

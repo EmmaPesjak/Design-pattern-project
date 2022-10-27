@@ -5,8 +5,6 @@ import com.dt181g.project.support.Constants;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.io.InputStream;
-import java.net.URL;
 
 /**
  * Concrete view of {@link com.dt181g.project.views.BaseView} responsible for setting up the
@@ -54,10 +52,10 @@ public class StartView extends BaseView {
     void addCenterPanel() {
         centerPanel.setPreferredSize(new Dimension(1000, 400));
         centerPanel.setLayout(new GridLayout(2,2, 5, 5));
-        centerPanel.add(GetImageFromFile.getImageFromFile(Constants.IMAGE_YELLOW_MONSTER, this));
-        centerPanel.add(GetImageFromFile.getImageFromFile(Constants.IMAGE_BLUE_MONSTER, this));
-        centerPanel.add(GetImageFromFile.getImageFromFile(Constants.IMAGE_RED_MONSTER, this));
-        centerPanel.add(GetImageFromFile.getImageFromFile(Constants.IMAGE_GREEN_MONSTER, this));
+        centerPanel.add(ImageReader.getImageFromFile(Constants.IMAGE_YELLOW_MONSTER, this));
+        centerPanel.add(ImageReader.getImageFromFile(Constants.IMAGE_BLUE_MONSTER, this));
+        centerPanel.add(ImageReader.getImageFromFile(Constants.IMAGE_RED_MONSTER, this));
+        centerPanel.add(ImageReader.getImageFromFile(Constants.IMAGE_GREEN_MONSTER, this));
         bigPanel.add(centerPanel, BorderLayout.CENTER);
     }
 
