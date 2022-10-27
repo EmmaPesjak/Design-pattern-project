@@ -31,10 +31,10 @@ As the MVC pattern was the base structure for this project...
 något generellt här
 generell kodstruktur
 
-
 MODEL
 mainmodel
-här fick jag in streams API och concurrent processes, annars basic fakta eftersom resten tas upp i underrubrikerna
+här fick jag in streams API , annars basic fakta eftersom resten tas upp i underrubrikerna
+the different models (?) are described in greater detail below in each design pattern.
 
 VIEW
 The view is the front of the application, where the user...
@@ -47,49 +47,63 @@ egna button och panel klasser för att spara massa rader kod eftersom alla bakgr
 alla butttons är likadana.
 Om jag inte skriver tillräckligt specifikt om viewsen här får jag lägga till mer i template method.
 
+beskriva att olika levels har olika views...
 
 CONTROLLER
 finns en controller, interface och två buttonlistenerklasser, controllern har många inre listenerklasser men 
 de får vara kvar eftersom man i dem gör val som påverkar view/model. quit och next bröts ut för att koden i controller
 inte skulle bli för lång.
 
-
 lägger in allt som kan ändras i spelet i constants för att det ska finnas på ett ställe och vara lätt
 har dock namnen på monsterna i sina klasser
-
 
 Skriva om JAR och pom?
 A problem that occurred during the creation of JAR file...
 FETT PROBLEM IMAGES -> ImageReader klass
 
-
-What kind of problems emerged and how were these resolved?
-Emphasise the challenges which arose during construction,
-how these manifested themselves and how they were resolved in the end. Try to include some justification
-for approaches, just enough to give the reader a context, but leave analysis for the discussion.
-
-
-
-lägg patterns i någon bra ordning sen
 ### Producer/consumer pattern
+The producer/consumer pattern was used in the healing simulation in level 5. It was also here that the concurrent 
+synchronized processes were implemented by having seven threads, producers and consumers, accessing the shared resource
+of health. Two classes for the different actors were created, one `HealThread` representing the producer and one 
+`DamageThread` representing the consumer, see figure 1. These classes were very similar, they both implemented the 
+`Runnable` interface, and had a private volatile boolean that was used to control the lifetime of the thread. They both 
+had a `stopThread()` method which simply set the boolean to false and thereby terminating the thread in the overridden
+`run()` method. The `run()` method contained a while loop that ran as long as the boolean was set to true. The 
+`HealThread`'s `run()` method simply randomized a healing amount which it communicated to the class `Vaelarya` via the 
+`addHealth(int healAmount)` method, it then slept for a set number of seconds. 
 
+The `Vaelarya` class represented the dragon's health bar in the simulation and was also implemented as a Singleton.
+In addition to the `addHealth()` method, `Vaelarya` also had a `removeHealth()` method which was used by the 
+`DamageThread`. The `DamageThread`'s `run()` method used a `Weapon` from the `WeaponDistributor` as described below 
+in the object pool pattern section.  If a weapon was available, the thread would first sleep for a set amount of
+seconds, representing the time it took the monster to swing the weapon. It would then use the weapon by calling
+`Vaelarya`'s `removeHealth(int damageAmount)` method with the integer damage of the weapon. It would then return the 
+weapon to the distributor and sleep again for a set amount of seconds representing rest time. However, if no weapon 
+was available the thread would simply sleep for a set amount of seconds representing wait time.
 
 ![](ProducerConsumerUML.png)
-<br>Figure X....
-producer/consumer: heal/damage theads
-synch/concurrent processes
-chilla med denna tills jag vet om jag får ha singleton
-
-beskriv damage thread här för jag gör inte det i objectpool
+<br>Figure 1: UML diagram of the producer/consumer pattern.
 
 ### Observer pattern
+The observer pattern was also used for the healing simulation in level 5, see figure 2 for a UML diagram describing it.
+To start the simulation, the user would press a button with an action listener which called the `Controller`s 
+`initLevel5()` method. This method would create and start the `DamageThread`s and `HealThread` used in the simulation, 
+it also added itself as an observer to the `Vaelarya` class and start a timer. The timer called the `updateLevel5View()`
+method every 150ms. This method simply communicated with the view, updating it with a new `HealthBarPanel` depicting 
+the current health of the dragon. To be able to get the current health, two interfaces, `Observer` and `Observable`, 
+were implemented. The `Observable` interface contained methods for adding and notifying observers. This interface was
+implemented by the observable class `Vaelarya`, which overrode the methods of the interface. The method for adding 
+observers simply took an observer as an argument and added this to a list of observers. The method for notifying 
+observers looped over the list of observers and called each observer's update method. This meant that the `Observer` 
+interface needed to have a method for updating, which was its only method. The `Controller` class implemented this 
+interface and overrode the method, checking the current amount of health from an instance of the `Vaelarya` class with 
+the `getHealth()` method. Based on if the current health was above the set upper health or equal to or below 0, the 
+`Controller` would end the simulation, stop the timer, terminate the threads, and set up the end view. If the amount 
+of health was somewhere in between the simulation would continue. 
+
 ![](ObserverUML.png)
-<br>Figure X....
-
-notera att controller i UML innehåller fler (metoder)/interna klasser som inte är representerade i UMLen 
-men som inte har med observer att göra
-chilla med denna tills jag vet om jag får ha singleton
-
+<br>Figure 2: UML diagram of the observer pattern. Note that the `Controller` class contains several more inner 
+classes which are not relevant for the observer pattern.
 
 ### Object pool pattern
 The object pool pattern was implemented as a `WeaponDistributor`, which held a pool of `Weapon`s used by the client
@@ -100,11 +114,11 @@ borrowing and returning weapons were also added to this class. The `Weapon` clas
 the weapon damage, this was randomized with the upper limit set in the `Constants` interface.
 
 A concurrency problem that occurred was that during the testing of the program a `ConcurrentModificationException` 
-would sometimes trigger. This was because the weapons list was first implemented as a deque, by using a blocking queue
-instead, which is thread-safe, the problem was fixed.
+would sometimes trigger. This was because the weapons list was first implemented as an ordinary deque. By using a 
+blocking queue instead, which is thread-safe, the problem was fixed.
 
 ![](ObjectPoolUML.png)
-<br> Figure 3: UML diagram of the implemented object pool.
+<br> Figure 3: UML diagram of the implemented object pool pattern.
 
 ### Factory method pattern
 Two factories were implemented in the program; the `MonsterFactory` and the `UnicornFactory`. Figure 4 displays a UML
@@ -122,7 +136,8 @@ are not relevant for the factory pattern.
 ### Abstract factory pattern
 Abstract factory: characterfactory
 ![](AbstractFactoryUML.png)
-<br>Figure 5:
+<br>Figure 5: UML diagram of the abstract factory pattern. Note that the `MainModel` class contains several more 
+methods which are not relevant for the factory pattern.
 
 ### Template method pattern
 Since the different views were quite similar when it came to base layout, the template method pattern was implemented 
@@ -215,19 +230,17 @@ snacka om att det är bra med att ha alla konstanter på ett ställe, att man ka
 strängar här, så det endast är ett ställe att uppdatera på om man gör ändringar i spelet.
 notera att man inte kan ge vaelarya hur mycket hälsa som helst eller göra ordlistan för lång utan att fucka UIt.
 
-hade velat göra något större med mer user interaction men hade inte tid?
-
-
-
 factory:
 
 abstract factory:
 
-template:
+prod/cons: oftarst delade resurser i en blocking queue men jag kör en int. snacka om volitile boolean i trådarna. kunde skrivit ut mer info
+i consol/till en log/i GUIt om fighten, vilka monster som använde vilket vapen, vilka som vilade etc
 
-prod/cons:
-
-observer:
+observer: har ofta en remove observer men den behövdes inte för programmet. har bara en observer, trots det gör jag en lista
+och loopar ööver den vid uppdatering vilket kan kännas lite onödigt, however det är bra för framtiden om man vill bygga 
+vidare på programmet och lägga till fler. Hade kanske kunnat lägga vaelarya inne i main model 
+istället, men nu blev det tydligt.
 
 Diskutera:
 To summarize the concrete goals:
