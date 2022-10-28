@@ -81,7 +81,7 @@ seconds, representing the time it took the monster to swing the weapon. It would
 weapon to the distributor and sleep again for a set amount of seconds representing rest time. However, if no weapon 
 was available the thread would simply sleep for a set amount of seconds representing wait time.
 
-![](ProducerConsumerUML.png)
+![](UMLProducerConsumer.png)
 <br>Figure 1: UML diagram of the producer/consumer pattern.
 
 ### Observer pattern
@@ -101,7 +101,7 @@ the `getHealth()` method. Based on if the current health was above the set upper
 `Controller` would end the simulation, stop the timer, terminate the threads, and set up the end view. If the amount 
 of health was somewhere in between the simulation would continue. 
 
-![](ObserverUML.png)
+![](UMLObserver.png)
 <br>Figure 2: UML diagram of the observer pattern. Note that the `Controller` class contains several more inner 
 classes which are not relevant for the observer pattern.
 
@@ -117,27 +117,34 @@ A concurrency problem that occurred was that during the testing of the program a
 would sometimes trigger. This was because the weapons list was first implemented as an ordinary deque. By using a 
 blocking queue instead, which is thread-safe, the problem was fixed.
 
-![](ObjectPoolUML.png)
+![](UMLObjectPool.png)
 <br> Figure 3: UML diagram of the implemented object pool pattern.
 
-### Factory method pattern
-Two factories were implemented in the program; the `MonsterFactory` and the `UnicornFactory`. Figure 4 displays a UML
-diagram of the factory pattern used for creating monsters.
+### Factory method and Abstract factory pattern
+Two factories were implemented in the program; the `MonsterFactory` and the `UnicornFactory` both of these extended 
+the AbstractFactory interface. Figure 4 displays a UML diagram of the factory patterns. 
 
 `MonsterFactory`.
 
-DETTA ÄR JU FÖR FAN EN SIMPLE FACTORY!!!
+
+Problem that occured
+DETTA VAR JU FÖR FAN EN SIMPLE FACTORY!!!
 
 
-![](FactoryUML.png)
-<br>Figure 4: UML diagram of the factory pattern. Note that the `MainModel` class contains several more methods which 
-are not relevant for the factory pattern.
+Headfirst: "Is that a factory method lurking inside the
+Abstract Factory?
+Good catch! Yes, often the methods of an Abstract Factory are
+implemented as factory methods. It makes sense, right? The job of an
+Abstract Factory is to define an interface for creating a set of products.
+Each method in that interface is responsible for creating a concrete
+product, and we implement a subclass of the Abstract Factory to
+supply those implementations. So, factory methods are a natural way to
+implement your product methods in your abstract factories."
 
-### Abstract factory pattern
-Abstract factory: characterfactory
-![](AbstractFactoryUML.png)
-<br>Figure 5: UML diagram of the abstract factory pattern. Note that the `MainModel` class contains several more 
-methods which are not relevant for the factory pattern.
+
+![](UMLFactory.png)
+<br>Figure 4: UML diagram of the factory method and abstract factory patterns. Note that the `MainModel` class 
+contains several more methods which are not relevant for the factory patterns.
 
 ### Template method pattern
 Since the different views were quite similar when it came to base layout, the template method pattern was implemented 
@@ -146,11 +153,11 @@ decided how to implement each step. The abstract class `BaseView` was implemente
 method `makePanel()` for creating the panel to be added to the GUI frame. The panel consisted of smaller panels 
 (top, center, and bottom) and an action listener for a button, these all had a method for implementation. They 
 also had hooks in case the concrete views decided not to implement all of them. A method for updating the GUI frame 
-with the panel was also added to the `BaseView`. Each concrete subclass, see figure 6, extended `BaseView` and overrode
+with the panel was also added to the `BaseView`. Each concrete subclass, see figure 5, extended `BaseView` and overrode
 its methods, deciding how the GUI should look, and decided if the hooks should be used.
 
-![](TemplateUML.png)
-<br>Figure 6: UML diagram of the template method used for the different views.
+![](UMLTemplate.png)
+<br>Figure 5: UML diagram of the template method used for the different views.
 
 
 ## Discussion

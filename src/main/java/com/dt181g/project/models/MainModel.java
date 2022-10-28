@@ -1,12 +1,11 @@
 package com.dt181g.project.models;
 
-import com.dt181g.project.models.factories.BaseCharacter;
-import com.dt181g.project.models.factories.FactoryProvider;
-import com.dt181g.project.models.factories.MonsterFactory;
-import com.dt181g.project.models.factories.UnicornFactory;
+import com.dt181g.project.models.factories.*;
 import com.dt181g.project.support.Constants;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -19,14 +18,13 @@ public class MainModel {
 
     private final List<String> words = Constants.STRING_LIST_LVL1;
     private int lvl2Result;
-    private final MonsterFactory monsterFactory = (MonsterFactory) FactoryProvider.getFactory(1);
-    private final UnicornFactory unicornFactory = (UnicornFactory) FactoryProvider.getFactory(2);
 
     /**
      * Method for creating a monster from the MonsterFactory.
      * @return a random Monster.
      */
     public BaseCharacter getRandomMonster() {
+        MonsterFactory monsterFactory = (MonsterFactory) FactoryProvider.getFactory(1);
         return monsterFactory.createChar();
     }
 
@@ -73,32 +71,25 @@ public class MainModel {
     }
 
     /**
-     * Method for producing a random character image, either a monster or a unicorn.
-     * @return a random character image file path.
+     * Method for producing a random character list with image path and name, either a monster or a unicorn
+     * used by level 3.
+     * @return a list with image and name.
      */
-    public String getRandomCharImg() {
-
-        int randomNmb = new Random().nextInt(2) + 1;
-
-        if (randomNmb == 1) {
-            return monsterFactory.createChar().getImg();
-        } else {
-            return unicornFactory.createChar().getImg();
-        }
+    public List<String> getRandomCharImgName() {
+        AbstractFactory factory = FactoryProvider.getFactory(new Random().nextInt(2 + 1));
+        BaseCharacter character = factory.createChar();
+        String img = character.getImg();
+        String name = character.getName();
+        return new ArrayList<>(Arrays.asList(img, name));
     }
 
     /**
-     * Method for producing a random color, either a monster color or a unicorn color.
+     * Method for producing a random color, either a monster color or a unicorn color,
+     * used by level 3.
      * @return a random color.
      */
     public Color getRandomColor() {
-
-        int randomNmb = new Random().nextInt(2) + 1;
-
-        if (randomNmb == 1) {
-            return monsterFactory.createColor().getColor();
-        } else {
-            return unicornFactory.createColor().getColor();
-        }
+        AbstractFactory factory = FactoryProvider.getFactory(new Random().nextInt(2 + 1));
+        return factory.createColor().getColor();
     }
 }

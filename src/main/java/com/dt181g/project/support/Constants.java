@@ -53,8 +53,8 @@ public interface Constants {
     Color COLOR_HIGH_HEALTH = new Color(155,222, 126);
     Color COLOR_MONSTER_BLUE = new Color(24, 59, 81);
     Color COLOR_MONSTER_RED = new Color(80, 20, 25);
-    Color COLOR_UNICORN_BLUE = new Color(202, 221, 255);
-    Color COLOR_UNICORN_RED = new Color(255, 174, 200);
+    Color COLOR_UNICORN_BLUE = new Color(131, 174, 236);
+    Color COLOR_UNICORN_RED = new Color(219, 120, 152);
 
     // Level 1 combobox options.
     ArrayList<String> LVL1_SORT_LIST = new ArrayList<>(Arrays.asList(

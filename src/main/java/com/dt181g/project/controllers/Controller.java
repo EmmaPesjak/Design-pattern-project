@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
+import java.util.List;
 
 /**
  * Class responsible for communicating with views and models, responding to user input.
@@ -185,13 +186,17 @@ public class Controller implements Observer {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-            Deque<String> imageList = new LinkedList<>(Arrays.asList(mainModel.getRandomCharImg(),
-                    mainModel.getRandomCharImg(), mainModel.getRandomCharImg(),
-                    mainModel.getRandomCharImg(), mainModel.getRandomCharImg()));
+
+            // Create a deque of lists with random characters image paths and names.
+            Deque<List<String>> stringLists = new LinkedList<>(Arrays.asList(mainModel.getRandomCharImgName(),
+                    mainModel.getRandomCharImgName(), mainModel.getRandomCharImgName(),
+                    mainModel.getRandomCharImgName(), mainModel.getRandomCharImgName()));
+
+            // Create a deque of colors.
             Deque<Color> colorList = new LinkedList<>(Arrays.asList(mainModel.getRandomColor(),
                     mainModel.getRandomColor(), mainModel.getRandomColor(),
                     mainModel.getRandomColor(), mainModel.getRandomColor()));
-            level3View.updateLevel3(imageList, colorList);
+            level3View.updateLevel3(stringLists, colorList);
         }
     }
 
