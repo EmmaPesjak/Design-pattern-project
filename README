@@ -31,10 +31,19 @@ As the MVC pattern was the base structure for this project...
 något generellt här
 generell kodstruktur
 
+The game consisted of 5 different levels with various different kinds of implementations.
+
 MODEL
-mainmodel
-här fick jag in streams API , annars basic fakta eftersom resten tas upp i underrubrikerna
-the different models (?) are described in greater detail below in each design pattern.
+The `MainModel` class was responsible for handling the application's data and perform calculations, communicating
+with the controller.
+kirrade level 1, 2 och 3. 
+1 streams API stream().sorted().collect(Collectors.toList()),stream().filter(word -> word.length() > 5).count()
+level1RandomWords(), sortLevel1Alphabetically(),countWordsLevel1()
+2 stream().reduce(0, Integer::sum)
+calculateLevel2(List<Integer> numbs), level2Success()
+3 described in greater deatail in factory below.
+the rest of the classes in the models package are described in greater detail in the subcategories of design patterns
+below.
 
 VIEW
 The view is the front of the application, where the user...
@@ -46,7 +55,8 @@ fixades med revalidate/repaint i updatePanel()
 egna button och panel klasser för att spara massa rader kod eftersom alla bakgrunder är likadana och
 alla butttons är likadana.
 Om jag inte skriver tillräckligt specifikt om viewsen här får jag lägga till mer i template method.
-
+jframe, jlabel, jradiobutton, jcombobox, jpanel, imageicon, jbutton, jtextfield
+gridlayout, borderlayout, gridbag layout, boxlayout, flowlayout
 beskriva att olika levels har olika views...
 
 CONTROLLER
@@ -121,26 +131,21 @@ blocking queue instead, which is thread-safe, the problem was fixed.
 <br> Figure 3: UML diagram of the implemented object pool pattern.
 
 ### Factory method and Abstract factory pattern
-Two factories were implemented in the program; the `MonsterFactory` and the `UnicornFactory` both of these extended 
-the AbstractFactory interface. Figure 4 displays a UML diagram of the factory patterns. 
+Two factories were implemented in the program; the `MonsterFactory` and the `UnicornFactory`, both of these implemented 
+the `AbstractFactory` interface. Figure 4 displays a UML diagram of the factory patterns. The `AbstractFactory` was set
+to define an interface for creating a set of products; a character and a color, which defines the abstract factory
+pattern. The `createChar()` and `createColor` methods were both responsible for creating concrete products. This was 
+done by the subclasses with the factory method. Both the `MonsterFactory` class and the `UnicornFactory` class 
+randomized which concrete product to create. Each concrete product extended either the abstract class `BaseCharacter`
+or `BaseColor`, which had getters and setters for names and image paths respectively colors. Four methods were 
+implemented in the `MainModel` class for getting random monsters, getting lists of random characters' image path and 
+name, getting random colors, and getting random factories which were used by the two previous methods. The `MainModel` 
+used the `FactoryProvider` class when creating factories, this class simply created factories with the 
+`getFactory(int nmb)` method.
 
-`MonsterFactory`.
-
-
-Problem that occured
-DETTA VAR JU FÖR FAN EN SIMPLE FACTORY!!!
-
-
-Headfirst: "Is that a factory method lurking inside the
-Abstract Factory?
-Good catch! Yes, often the methods of an Abstract Factory are
-implemented as factory methods. It makes sense, right? The job of an
-Abstract Factory is to define an interface for creating a set of products.
-Each method in that interface is responsible for creating a concrete
-product, and we implement a subclass of the Abstract Factory to
-supply those implementations. So, factory methods are a natural way to
-implement your product methods in your abstract factories."
-
+A design problem that occurred here was that a simple factory was implemented instead of a factory method at first.
+The factory method is often mistaken for the simple factory idiom, and when reviewing the course material this was
+changed and the proper patterns were implemented.
 
 ![](UMLFactory.png)
 <br>Figure 4: UML diagram of the factory method and abstract factory patterns. Note that the `MainModel` class 
@@ -239,7 +244,8 @@ notera att man inte kan ge vaelarya hur mycket hälsa som helst eller göra ordl
 
 factory:
 
-abstract factory:
+abstract factory: fett förvirrande med simple factory, istället för att randomiza fram allt skulle man kunna specificera
+allt.
 
 prod/cons: oftarst delade resurser i en blocking queue men jag kör en int. snacka om volitile boolean i trådarna. kunde skrivit ut mer info
 i consol/till en log/i GUIt om fighten, vilka monster som använde vilket vapen, vilka som vilade etc

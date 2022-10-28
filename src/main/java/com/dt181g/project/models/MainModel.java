@@ -16,6 +16,8 @@ import java.util.stream.Collectors;
  */
 public class MainModel {
 
+    AbstractFactory monsterFactory = FactoryProvider.getFactory(1);
+    AbstractFactory unicornFactory = FactoryProvider.getFactory(2);
     private final List<String> words = Constants.STRING_LIST_LVL1;
     private int lvl2Result;
 
@@ -24,7 +26,6 @@ public class MainModel {
      * @return a random Monster.
      */
     public BaseCharacter getRandomMonster() {
-        MonsterFactory monsterFactory = (MonsterFactory) FactoryProvider.getFactory(1);
         return monsterFactory.createChar();
     }
 
@@ -76,7 +77,7 @@ public class MainModel {
      * @return a list with image and name.
      */
     public List<String> getRandomCharImgName() {
-        AbstractFactory factory = FactoryProvider.getFactory(new Random().nextInt(2 + 1));
+        AbstractFactory factory = getRandomFactory();
         BaseCharacter character = factory.createChar();
         String img = character.getImg();
         String name = character.getName();
@@ -89,7 +90,22 @@ public class MainModel {
      * @return a random color.
      */
     public Color getRandomColor() {
-        AbstractFactory factory = FactoryProvider.getFactory(new Random().nextInt(2 + 1));
+        AbstractFactory factory = getRandomFactory();
         return factory.createColor().getColor();
+    }
+
+    /**
+     * Method for getting a random factory which is used to create random colors and characters by each factory type
+     * by the two methods above. This means that the above two methods does not have to create new factories
+     * each time they're called.
+     * @return a random factory.
+     */
+    public AbstractFactory getRandomFactory() {
+        int random = new Random().nextInt(2 + 1);
+        if (random == 1) {
+            return monsterFactory;
+        } else {
+            return unicornFactory;
+        }
     }
 }
