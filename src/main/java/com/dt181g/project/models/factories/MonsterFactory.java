@@ -1,21 +1,23 @@
-package com.dt181g.project.models.monsters;
+package com.dt181g.project.models.factories;
 
-import com.dt181g.project.models.CharacterFactory;
+import com.dt181g.project.models.factories.colors.ColorMonsterBlue;
+import com.dt181g.project.models.factories.colors.ColorMonsterRed;
+import com.dt181g.project.models.factories.monsters.*;
 import com.dt181g.project.support.Constants;
 
 import java.util.Random;
 
 /**
- * Factory for producing random monsters in the game.
+ * Factory for producing random monster characters and colors in the game.
  * @author Emma Pesjak
  */
-public class MonsterFactory implements CharacterFactory<BaseMonster> {
+public class MonsterFactory implements AbstractFactory {
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public BaseMonster createChar() {
+    public BaseCharacter createChar() {
 
         int randomNmb = new Random().nextInt(Constants.AMOUNT_OF_MONSTERS) + 1;
 
@@ -35,6 +37,20 @@ public class MonsterFactory implements CharacterFactory<BaseMonster> {
             return new SlimeMonster();
         } else {
             return new YellowMonster();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public BaseColor createColor() {
+        int randomNmb = new Random().nextInt(2) + 1;
+
+        if (randomNmb == 1) {
+            return new ColorMonsterRed();
+        } else {
+            return new ColorMonsterBlue();
         }
     }
 }

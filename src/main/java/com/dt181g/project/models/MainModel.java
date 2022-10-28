@@ -1,10 +1,12 @@
 package com.dt181g.project.models;
 
-import com.dt181g.project.models.monsters.BaseMonster;
-import com.dt181g.project.models.monsters.MonsterFactory;
-import com.dt181g.project.models.unicorns.UnicornFactory;
+import com.dt181g.project.models.factories.BaseCharacter;
+import com.dt181g.project.models.factories.FactoryProvider;
+import com.dt181g.project.models.factories.MonsterFactory;
+import com.dt181g.project.models.factories.UnicornFactory;
 import com.dt181g.project.support.Constants;
 
+import java.awt.*;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -24,7 +26,7 @@ public class MainModel {
      * Method for creating a monster from the MonsterFactory.
      * @return a random Monster.
      */
-    public BaseMonster getRandomMonster() {
+    public BaseCharacter getRandomMonster() {
         return monsterFactory.createChar();
     }
 
@@ -71,17 +73,32 @@ public class MainModel {
     }
 
     /**
-     * Method for producing a random character ImageIcon, either a monster or a unicorn.
-     * @return a random character ImageIcon.
+     * Method for producing a random character image, either a monster or a unicorn.
+     * @return a random character image file path.
      */
     public String getRandomCharImg() {
 
         int randomNmb = new Random().nextInt(2) + 1;
 
         if (randomNmb == 1) {
-            return monsterFactory.createChar().getMonsterImg();
+            return monsterFactory.createChar().getImg();
         } else {
-            return unicornFactory.createChar().getUnicornImg();
+            return unicornFactory.createChar().getImg();
+        }
+    }
+
+    /**
+     * Method for producing a random color, either a monster color or a unicorn color.
+     * @return a random color.
+     */
+    public Color getRandomColor() {
+
+        int randomNmb = new Random().nextInt(2) + 1;
+
+        if (randomNmb == 1) {
+            return monsterFactory.createColor().getColor();
+        } else {
+            return unicornFactory.createColor().getColor();
         }
     }
 }

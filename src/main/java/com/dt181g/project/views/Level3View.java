@@ -49,13 +49,17 @@ public class Level3View extends BaseView {
     }
 
     /**
-     * Method for updating level 3 displaying the five produced characters.
-     * @param images is the Deque of string image file paths of the produced characters.
+     * Method for updating level 3 displaying the five produced characters with backgrounds.
+     * @param images is the deque of string image file paths of the produced characters.
+     * @param colors is the deque of colors.
      */
-    public void updateLevel3(Deque<String> images) {
+    public void updateLevel3(Deque<String> images, Deque<Color> colors) {
         centerPanel.removeAll();
-        for (String s: images) {
-            centerPanel.add(ImageReader.getImageFromFile(s, this));
+        for (Color s: colors) {
+            JPanel color = new JPanel();
+            color.setBackground(s);
+            color.add(ImageReader.getImageFromFile(images.pollFirst(), this));
+            centerPanel.add(color);
         }
         centerPanel.revalidate();
         centerPanel.repaint();
@@ -66,10 +70,13 @@ public class Level3View extends BaseView {
      */
     @Override
     void addTopPanel() {
-        JLabel label = new JLabel("<html>" + name + " is my name, nice to meet you hero. " +
-                "<br>This is my abstract factory. It creates factories <br>which can create unicorns or monsters. " +
-                "Want to create<br> some totally random characters? Press the 'Produce' button" +
-                "<br>as many times as you want, each time 5 new characters<br>will be produced, so cool!</html>");
+        JLabel label = new JLabel("<html>" + name + " is my name, nice to meet you hero. This is" +
+                " my<br>abstract factory. It creates moster factories and unicorn<br>factories. " +
+                "Each factory produces colors and characters.<br>" +
+                "Want to create some totally random characters with<br>random background colors? " +
+                "Press the 'Produce' button<br>" +
+                "as many times as you want, each time 5 new characters<br>with different backgrounds " +
+                "will be produced, so cool!</html>");
         label.setFont(Constants.FONT_TEXT);
         label.setForeground(Constants.COLOR_TEXT);
         topPanel.add(label);

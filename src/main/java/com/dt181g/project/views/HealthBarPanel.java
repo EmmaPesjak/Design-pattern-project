@@ -32,7 +32,7 @@ public class HealthBarPanel extends JPanel {
         g2D.setColor(Constants.COLOR_BACKGROUND);
         g2D.fillRect(0, 0, getWidth(), getHeight());
 
-        // Set colour of pool depending on the resource amount.
+        // Set color of pool depending on the resource amount.
         if (amountOfHealth < Constants.VAELARYA_UPPER_HEALTH/4) {
             g2D.setColor(Constants.COLOR_LOW_HEALTH);
         } else if (amountOfHealth < Constants.VAELARYA_UPPER_HEALTH/2) {

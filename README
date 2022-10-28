@@ -180,7 +180,7 @@ amount of resources in the pool will be incorrect if two threads add resources a
 The MVC pattern was the foundation for this laboration. One of the benefits with using the MVC pattern is that it is
 easily planned. The interface code belongs in the view, the data in the model, and the communication and requests in
 the controller. This increases the scalability of the application.
-The `View` class contains a lot of different sizes, dimensions and a few colours. If this was a larger application
+The `View` class contains a lot of different sizes, dimensions and a few colors. If this was a larger application
 where they would be reused, they should be put in constants, considering the size of this application, that is not
 necessary. An action listener was chosen for communication between the View and the Controller.  To create the GUI,
 different Swing layouts and components were used.

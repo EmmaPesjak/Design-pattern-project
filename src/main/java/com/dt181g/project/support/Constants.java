@@ -42,7 +42,7 @@ public interface Constants {
     Font FONT_TEXT = new Font(Font.MONOSPACED, Font.PLAIN, 20);
     Font FONT_BUTTON = new Font(Font.MONOSPACED, Font.BOLD, 22);
 
-    // Colours.
+    // Colors.
     Color COLOR_BACKGROUND = new Color(2, 2, 40);
     Color COLOR_TEXT = new Color(241, 241, 230);
     Color COLOR_BUTTON = new Color(152, 62, 92);
@@ -51,6 +51,10 @@ public interface Constants {
     Color COLOR_MEDIUM_LOW_HEALTH = new Color(249,173, 88);
     Color COLOR_MEDIUM_HEALTH = new Color(249,248, 113);
     Color COLOR_HIGH_HEALTH = new Color(155,222, 126);
+    Color COLOR_MONSTER_BLUE = new Color(24, 59, 81);
+    Color COLOR_MONSTER_RED = new Color(80, 20, 25);
+    Color COLOR_UNICORN_BLUE = new Color(202, 221, 255);
+    Color COLOR_UNICORN_RED = new Color(255, 174, 200);
 
     // Level 1 combobox options.
     ArrayList<String> LVL1_SORT_LIST = new ArrayList<>(Arrays.asList(

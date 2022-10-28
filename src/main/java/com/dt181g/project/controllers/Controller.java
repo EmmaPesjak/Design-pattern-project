@@ -1,14 +1,12 @@
 package com.dt181g.project.controllers;
 
-import com.dt181g.project.models.DamageThread;
-import com.dt181g.project.models.Vaelarya;
-import com.dt181g.project.models.HealThread;
-import com.dt181g.project.models.MainModel;
-import com.dt181g.project.models.monsters.BaseMonster;
+import com.dt181g.project.models.*;
+import com.dt181g.project.models.factories.BaseCharacter;
 import com.dt181g.project.support.Constants;
 import com.dt181g.project.views.*;
 
 import javax.swing.Timer;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
@@ -44,23 +42,23 @@ public class Controller implements Observer {
         this.mainModel = mainModel;
 
         // Create monsters for each level.
-        BaseMonster monster1 = mainModel.getRandomMonster();
-        BaseMonster monster2 = mainModel.getRandomMonster();
-        BaseMonster monster3 = mainModel.getRandomMonster();
-        BaseMonster monster4 = mainModel.getRandomMonster();
-        BaseMonster monster5 = mainModel.getRandomMonster();
+        BaseCharacter monster1 = mainModel.getRandomMonster();
+        BaseCharacter monster2 = mainModel.getRandomMonster();
+        BaseCharacter monster3 = mainModel.getRandomMonster();
+        BaseCharacter monster4 = mainModel.getRandomMonster();
+        BaseCharacter monster5 = mainModel.getRandomMonster();
 
         // Initiate the different level views.
-        level5View = new Level5View(viewFrame, monster5.getMonsterImg(), monster5.getName(),
+        level5View = new Level5View(viewFrame, monster5.getImg(), monster5.getName(),
                 new Level5ButtonListener());
-        level4View = new Level4View(viewFrame, monster4.getMonsterImg(), monster4.getName(),
+        level4View = new Level4View(viewFrame, monster4.getImg(), monster4.getName(),
                 new Level4ButtonListener());
-        level3View = new Level3View(viewFrame, monster3.getMonsterImg(), monster3.getName(),
+        level3View = new Level3View(viewFrame, monster3.getImg(), monster3.getName(),
                 new NextLevelButtonListener(level4View));
         level3View.addProduceButtonListener(new Level3ButtonListenerProduce());
-        level2View = new Level2View(viewFrame, monster2.getMonsterImg(), monster2.getName(),
+        level2View = new Level2View(viewFrame, monster2.getImg(), monster2.getName(),
                 new Level2ButtonListener());
-        level1View = new Level1View(viewFrame, monster1.getMonsterImg(), monster1.getName(),
+        level1View = new Level1View(viewFrame, monster1.getImg(), monster1.getName(),
                 mainModel.level1RandomWords(), new NextLevelButtonListener(level2View));
         level1View.addLvl1ComboboxListener(new Level1ComboboxListener());
         StartView startView = new StartView(viewFrame, new NextLevelButtonListener(level1View));
@@ -190,7 +188,10 @@ public class Controller implements Observer {
             Deque<String> imageList = new LinkedList<>(Arrays.asList(mainModel.getRandomCharImg(),
                     mainModel.getRandomCharImg(), mainModel.getRandomCharImg(),
                     mainModel.getRandomCharImg(), mainModel.getRandomCharImg()));
-            level3View.updateLevel3(imageList);
+            Deque<Color> colorList = new LinkedList<>(Arrays.asList(mainModel.getRandomColor(),
+                    mainModel.getRandomColor(), mainModel.getRandomColor(),
+                    mainModel.getRandomColor(), mainModel.getRandomColor()));
+            level3View.updateLevel3(imageList, colorList);
         }
     }
 

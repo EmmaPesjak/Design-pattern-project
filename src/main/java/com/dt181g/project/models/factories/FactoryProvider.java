@@ -1,7 +1,4 @@
-package com.dt181g.project.models;
-
-import com.dt181g.project.models.monsters.MonsterFactory;
-import com.dt181g.project.models.unicorns.UnicornFactory;
+package com.dt181g.project.models.factories;
 
 /**
  * Class responsible for providing the game with factories.
@@ -14,7 +11,7 @@ public class FactoryProvider {
      * @param nmb represents which factory is to be built.
      * @return a new factory.
      */
-    public static CharacterFactory getFactory(int nmb) {
+    public static AbstractFactory getFactory(int nmb) {
         if (nmb == 1) {
             return new MonsterFactory();
         } else {
