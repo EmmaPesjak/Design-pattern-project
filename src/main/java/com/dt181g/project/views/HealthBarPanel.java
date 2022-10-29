@@ -12,13 +12,15 @@ import java.awt.*;
 public class HealthBarPanel extends JPanel {
 
     int amountOfHealth;
+    Color color;
 
     /**
      * Constructor that sets the amount of health.
      * @param amountOfHealth is the current amount of health Vaelarya has.
      */
-    public HealthBarPanel(int amountOfHealth) {
+    public HealthBarPanel(int amountOfHealth, Color color) {
         this.amountOfHealth = amountOfHealth;
+        this.color = color;
     }
 
     /**
@@ -28,22 +30,12 @@ public class HealthBarPanel extends JPanel {
     public void paint(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
 
-        // Draw a black rectangle in the background.
+        // Draw a background colored rectangle in the background.
         g2D.setColor(Constants.COLOR_BACKGROUND);
         g2D.fillRect(0, 0, getWidth(), getHeight());
 
-        // Set color of pool depending on the resource amount.
-        if (amountOfHealth < Constants.VAELARYA_UPPER_HEALTH/4) {
-            g2D.setColor(Constants.COLOR_LOW_HEALTH);
-        } else if (amountOfHealth < Constants.VAELARYA_UPPER_HEALTH/2) {
-            g2D.setColor(Constants.COLOR_MEDIUM_LOW_HEALTH);
-        } else if (amountOfHealth < Constants.VAELARYA_UPPER_HEALTH*3/4) {
-            g2D.setColor(Constants.COLOR_MEDIUM_HEALTH);
-        } else {
-            g2D.setColor(Constants.COLOR_HIGH_HEALTH);
-        }
-
-        // Draw the pool, size depending on the resource amount.
+        // Draw the health bar, size depending on the resource amount.
+        g2D.setColor(color);
         int x = this.getWidth()/2 - amountOfHealth;
         int y = this.getHeight()/2;
         g2D.fillRect(x, y, amountOfHealth * 2, 20);

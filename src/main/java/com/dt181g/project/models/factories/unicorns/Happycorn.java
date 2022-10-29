@@ -13,7 +13,7 @@ public class Happycorn extends BaseCharacter {
      * Constructor for initializing Happycorns, sets the name and image file path.
      */
     public Happycorn() {
-        setName("Happy");
+        setName(Constants.NAME_HAPPYCORN);
         setImg(Constants.IMAGE_HAPPYCORN);
     }
 }

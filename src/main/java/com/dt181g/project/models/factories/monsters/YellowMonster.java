@@ -13,7 +13,7 @@ public class YellowMonster extends BaseCharacter {
      * Constructor for initializing YellowMonsters sets the name and image file path.
      */
     public YellowMonster() {
-        setName("Bloopie");
+        setName(Constants.NAME_YELLOW_MONSTER);
         setImg(Constants.IMAGE_YELLOW_MONSTER);
     }
 }

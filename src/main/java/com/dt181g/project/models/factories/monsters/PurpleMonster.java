@@ -13,7 +13,7 @@ public class PurpleMonster extends BaseCharacter {
      * Constructor for initializing PurpleMonsters, sets the name and image file path..
      */
     public PurpleMonster() {
-        setName("Vilespawn");
+        setName(Constants.NAME_PURPLE_MONSTER);
         setImg(Constants.IMAGE_PURPLE_MONSTER);
     }
 }

@@ -13,7 +13,7 @@ public class BlueMonster extends BaseCharacter {
      * Constructor for initializing BlueMonsters, sets the name and image file path.
      */
     public BlueMonster() {
-        setName("Blightstrike");
+        setName(Constants.NAME_BLUE_MONSTER);
         setImg(Constants.IMAGE_BLUE_MONSTER);
     }
 }

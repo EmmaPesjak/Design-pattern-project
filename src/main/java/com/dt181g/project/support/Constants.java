@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface Constants {
 
-    //Image file names.
+    // Image file paths for monsters.
     String IMAGE_YELLOW_MONSTER = "yellowMonster.png";
     String IMAGE_BLUE_MONSTER = "blueMonster.png";
     String IMAGE_GREEN_MONSTER = "greenMonster.png";
@@ -21,6 +21,7 @@ public interface Constants {
     String IMAGE_GREY_MONSTER = "greyMonster.png";
     String IMAGE_SLIME_MONSTER = "slimeMonster.png";
 
+    // Image file paths for unicorns.
     String IMAGE_ANGRYCORN = "angrycorn.png";
     String IMAGE_FANCYCORN = "fancycorn.png";
     String IMAGE_GLAMCORN = "glamcorn.png";
@@ -29,6 +30,7 @@ public interface Constants {
     String IMAGE_RAINBOWCORN = "rainbowcorn.png";
     String IMAGE_SLEEPYCORN = "sleepycorn.png";
 
+    // Image file paths for miscellaneous images.
     String IMAGE_APPLE = "apple.png";
     String IMAGE_BUCKET = "bucket.png";
     String IMAGE_DRAGON = "dragon.png";
@@ -36,6 +38,25 @@ public interface Constants {
     String IMAGE_STAR = "star.png";
     String IMAGE_FACTORY = "factory.png";
     String IMAGE_WEAPONS = "weapons.png";
+
+    // Names of monsters.
+    String NAME_YELLOW_MONSTER = "Bloopie";
+    String NAME_BLUE_MONSTER = "Blightstrike";
+    String NAME_GREEN_MONSTER = "Ashflayer";
+    String NAME_RED_MONSTER = "Razorteeth";
+    String NAME_ORANGE_MONSTER = "Thagloth";
+    String NAME_PURPLE_MONSTER = "Vilespawn";
+    String NAME_GREY_MONSTER = "Dorranoth";
+    String NAME_SLIME_MONSTER = "Gutscream";
+
+    // Names of unicorns.
+    String NAME_ANGRYCORN = "Angry";
+    String NAME_FANCYCORN = "Fancy";
+    String NAME_GLAMCORN = "Glammy";
+    String NAME_HAPPYCORN = "Happy";
+    String NAME_KITTYCORN = "Kitty";
+    String NAME_RAINBOWCORN = "Rainbow";
+    String NAME_SLEEPYCORN = "Sleepy";
 
     // Fonts.
     Font FONT_BIG = new Font(Font.MONOSPACED, Font.BOLD, 32);

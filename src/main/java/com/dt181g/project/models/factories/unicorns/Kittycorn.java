@@ -13,7 +13,7 @@ public class Kittycorn extends BaseCharacter {
      * Constructor for initializing Kittycorns, sets the name and image file path.
      */
     public Kittycorn() {
-        setName("Kitty");
+        setName(Constants.NAME_KITTYCORN);
         setImg(Constants.IMAGE_KITTYCORN);
     }
 }

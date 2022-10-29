@@ -13,7 +13,7 @@ public class Angrycorn extends BaseCharacter {
      * Constructor for initializing Angrycorns, sets the name and image file path.
      */
     public Angrycorn(){
-        setName("Angry");
+        setName(Constants.NAME_ANGRYCORN);
         setImg(Constants.IMAGE_ANGRYCORN);
     }
 }

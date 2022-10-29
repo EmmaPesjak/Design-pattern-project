@@ -13,7 +13,7 @@ public class RedMonster extends BaseCharacter {
      * Constructor for initializing RedMonsters, sets the name and image file path.
      */
     public RedMonster() {
-        setName("Razorteeth");
+        setName(Constants.NAME_RED_MONSTER);
         setImg(Constants.IMAGE_RED_MONSTER);
     }
 }

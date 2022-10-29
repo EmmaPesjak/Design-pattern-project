@@ -13,7 +13,7 @@ public class OrangeMonster extends BaseCharacter {
      * Constructor for initializing OrangeMonsters, sets the name and image file path..
      */
     public OrangeMonster() {
-        setName("Thagloth");
+        setName(Constants.NAME_ORANGE_MONSTER);
         setImg(Constants.IMAGE_ORANGE_MONSTER);
     }
 }

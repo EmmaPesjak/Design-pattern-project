@@ -13,7 +13,7 @@ public class Glamcorn extends BaseCharacter {
      * Constructor for initializing Glamcorns, sets the name and image file path.
      */
     public Glamcorn() {
-        setName("Glammy");
+        setName(Constants.NAME_GLAMCORN);
         setImg(Constants.IMAGE_GLAMCORN);
     }
 }

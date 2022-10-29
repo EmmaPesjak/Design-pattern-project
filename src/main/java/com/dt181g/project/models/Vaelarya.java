@@ -3,6 +3,7 @@ package com.dt181g.project.models;
 import com.dt181g.project.controllers.Observer;
 import com.dt181g.project.support.Constants;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,5 +65,21 @@ public class Vaelarya implements Observable {
      */
     public synchronized int getHealth() {
         return health;
+    }
+
+    /**
+     * Accessor for the color the health bar should use.
+     * @return the color.
+     */
+    public synchronized Color getColor() {
+        if (health < Constants.VAELARYA_UPPER_HEALTH/4) {
+            return Constants.COLOR_LOW_HEALTH;
+        } else if (health < Constants.VAELARYA_UPPER_HEALTH/2) {
+            return Constants.COLOR_MEDIUM_LOW_HEALTH;
+        } else if (health < Constants.VAELARYA_UPPER_HEALTH*3/4) {
+            return Constants.COLOR_MEDIUM_HEALTH;
+        } else {
+            return Constants.COLOR_HIGH_HEALTH;
+        }
     }
 }

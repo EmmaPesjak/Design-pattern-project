@@ -13,7 +13,7 @@ public class Rainbowcorn extends BaseCharacter {
      * Constructor for initializing Rainbowcorns, sets the name and image file path.
      */
     public Rainbowcorn() {
-        setName("Rainbow");
+        setName(Constants.NAME_RAINBOWCORN);
         setImg(Constants.IMAGE_RAINBOWCORN);
     }
 

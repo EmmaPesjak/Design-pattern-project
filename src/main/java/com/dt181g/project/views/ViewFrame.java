@@ -3,7 +3,6 @@ package com.dt181g.project.views;
 import com.dt181g.project.support.Constants;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * Frame component class, used for the GUI of the application.
@@ -17,7 +16,6 @@ public class ViewFrame extends JFrame {
      * Constructor which sets the layout, size, background, and enabling program shut down of the GUI frame.
      */
     public ViewFrame() {
-        this.setLayout(new BorderLayout());
         setResizable(false);
         setSize(1000, 650);
         setVisible(true);

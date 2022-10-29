@@ -29,8 +29,6 @@ public class StartView extends BaseView {
         this.viewFrame = viewFrame;
         this.listener = listener;
         bigPanel.setLayout(new BorderLayout());
-
-
     }
 
     /**

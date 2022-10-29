@@ -13,7 +13,7 @@ public class Fancycorn extends BaseCharacter {
      * Constructor for initializing Fancycorns, sets the name and image file path.
      */
     public Fancycorn() {
-        setName("Fancy");
+        setName(Constants.NAME_FANCYCORN);
         setImg(Constants.IMAGE_FANCYCORN);
     }
 }

@@ -11,13 +11,13 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
- * Main model class, responsible for handling the application's data and perform calculations.
+ * Main model class, responsible for handling the application's data and performing calculations.
  * @author Emma Pesjak
  */
 public class MainModel {
 
-    AbstractFactory monsterFactory = FactoryProvider.getFactory(1);
-    AbstractFactory unicornFactory = FactoryProvider.getFactory(2);
+    AbstractFactory monsterFactory = new MonsterFactory();
+    AbstractFactory unicornFactory = new UnicornFactory();
     private final List<String> words = Constants.STRING_LIST_LVL1;
     private int lvl2Result;
 
@@ -56,18 +56,13 @@ public class MainModel {
     }
 
     /**
-     * Method for level 2, responsible  for calculating the sum of the user's input.
+     * Method for level 2, responsible  for calculating the sum of the user's input, checks whether the
+     * user input is correct.
      * @param numbs is a list of integers.
-     */
-    public void calculateLevel2(List<Integer> numbs) {
-        lvl2Result = numbs.stream().reduce(0, Integer::sum);
-    }
-
-    /**
-     * Method for level 2, checks whether the user input is correct.
      * @return boolean that states if it is correct or not.
      */
-    public boolean level2Success() {
+    public boolean calculateLevel2(List<Integer> numbs) {
+        lvl2Result = numbs.stream().reduce(0, Integer::sum);
         return lvl2Result == Constants.RESULT_LVL2;
     }
 

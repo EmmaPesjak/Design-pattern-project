@@ -89,7 +89,7 @@ public class Controller implements Observer {
      * Method used by the timer for updating the GUI with the current health of Vaelarya.
      */
     public void updateLevel5View() {
-        level5View.updateLevel5(new HealthBarPanel(vaelarya.getHealth()), vaelarya.getHealth());
+        level5View.updateLevel5(new HealthBarPanel(vaelarya.getHealth(), vaelarya.getColor()), vaelarya.getHealth());
     }
 
     /**
@@ -149,8 +149,8 @@ public class Controller implements Observer {
     }
 
     /**
-     * Inner class responsible for checking if the user has answered correctly and either initiating level 3
-     * or displaying a message telling the user to try again.
+     * Inner class responsible for checking with the model if the user has answered correctly and either
+     * initiating level 3 or displaying a message telling the user to try again.
      */
     class Level2ButtonListener implements ActionListener {
 
@@ -160,15 +160,12 @@ public class Controller implements Observer {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                mainModel.calculateLevel2(level2View.getBuckets());
-
-                if (mainModel.level2Success()) {
+                if (mainModel.calculateLevel2(level2View.getBuckets())) {
                     level3View.makePanel();
 
                 } else {
                     viewFrame.displayErrorMsg("Does not add up to " + Constants.RESULT_LVL2 + ", try again!");
                 }
-
             } catch (NumberFormatException exception) {
                 System.out.println(exception);
                 viewFrame.displayErrorMsg("Please fill in all boxes, and only with numbers.");

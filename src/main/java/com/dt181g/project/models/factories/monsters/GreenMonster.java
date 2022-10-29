@@ -13,7 +13,7 @@ public class GreenMonster extends BaseCharacter {
      * Constructor for initializing GreenMonsters, sets the name and image file path.
      */
     public GreenMonster() {
-        setName("Ashflayer");
+        setName(Constants.NAME_GREEN_MONSTER);
         setImg(Constants.IMAGE_GREEN_MONSTER);
     }
 }

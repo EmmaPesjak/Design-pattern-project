@@ -26,50 +26,57 @@ To summarize the concrete goals:
 
 
 ## Procedures
-As the MVC pattern was the base structure for this project...
+The MVC pattern was the base structure and architecture used for this project. Different packages for models, views, 
+and controllers contained almost all the classes and interfaces. A `Constants` interface was created in the support 
+package. This interface contained defined constant values used throughout the program by the different classes.
+A `Project` class directly under the project package was the main starting point of the program and this initiated 
+the MVC start entities. The game consisted of 5 different levels with various implementations to fulfill all the 
+project requirements. Each level was represented by a monster, read the 'Execution of the program' section below 
+for more information about the levels. 
 
-något generellt här
-generell kodstruktur
+The `MainModel` class was responsible for handling the application's data, performing calculations, and 
+communicating with the controller. The `MainModel` class was completely in charge of the logic for levels 1 and 2, 
+and handled the communication with the controller for level 3. This class also created the monsters for each level 
+with the `getRandomMonster()` method which used the `MonsterFactory` described in the factory subcategory below. 
+For level 1 the `MainModel` had three methods: `level1RandomWords()`, `sortLevel1Alphabetically()`, and 
+`countWordsLevel1()`. These methods produced different strings from a list of words to be used in the GUI depending 
+on the choice of the user. This was also where two streams API methods were used. The 
+`stream().sorted().collect(Collectors.toList())`, for sorting the list in alphabetical order, and the 
+`stream().filter()` for counting words in the list that consisted of more than five letters. The third stream API
+method was the `stream().reduce()` which was used by the `calculateLevel2(List<Integer> numbs)` method. This simply 
+took a list of integers as arguments and calculated the sum of these. The integers came from the user input in 
+level 2 via the controller. It then checked if the calculated value was equal to the set value in the `Constants` 
+interface and returned a boolean. The rest of the classes in the models package are described in greater detail in 
+the subcategories of design patterns below.
 
-The game consisted of 5 different levels with various different kinds of implementations.
+The view classes were responsible for creating the GUI for the application. The class `ViewFrame` initiated the JFrame 
+and set the size and background. It had a method for updating the view, which took a panel as an argument, added it to 
+the frame, and repainted/revalidated. It also had a method for displaying error messages. Since all the buttons of the 
+application and almost all the panels had the same base design, the classes `MyButton` and `MyPanel` were created. These 
+set the layout and looks of these components. A class `HealthBarPanel` for creating the health bar panel of level 
+5 was also created. This class got the amount of health and color it was supposed to portray from the `Controller` 
+and painted the graphics as a rectangle with it. Each level, as well as the start and end screens, 
+had its own class for creating the panel to present in the GUI frame, extending the `BaseView` class with the 
+template method pattern described in greater detail in the subcategory below. These classes set the design of the 
+event-driven GUI, utilizing the Constants interface for colors and fonts. They used Swing components such as 
+`JLabel`, `JRadioButton`, `JCombobox`, `JPanel`, `ImageIcon`, `JButton`, and `JTextField`. They also used the
+Swing layouts `GridLayout`, `BorderLayout`, `GridBagLayout`, `BoxLayout`, and `FlowLayout`. A problem that occurred 
+during the creation of the JAR file was that the images used in the application were not displayed in the GUI. 
+This was solved by placing all image .pngs in the resources directory and adding an `ImageReader` class. This class 
+created JLabels with the ImageIcons from the URL by the class loader.
 
-MODEL
-The `MainModel` class was responsible for handling the application's data and perform calculations, communicating
-with the controller.
-kirrade level 1, 2 och 3. 
-1 streams API stream().sorted().collect(Collectors.toList()),stream().filter(word -> word.length() > 5).count()
-level1RandomWords(), sortLevel1Alphabetically(),countWordsLevel1()
-2 stream().reduce(0, Integer::sum)
-calculateLevel2(List<Integer> numbs), level2Success()
-3 described in greater deatail in factory below.
-the rest of the classes in the models package are described in greater detail in the subcategories of design patterns
-below.
-
-VIEW
-The view is the front of the application, where the user...
-här fick jag in layouts och components och event-driven UI
-problem: duplicate images could not be displayed since the Jlabel was created in Constants interface,
-by instead only setting it to imageicons and making new labels when needed this was fixed
-problem that occured: mosterna ritas inte ut, någon form av race condition?? efersom de randomas fram.
-fixades med revalidate/repaint i updatePanel()
-egna button och panel klasser för att spara massa rader kod eftersom alla bakgrunder är likadana och
-alla butttons är likadana.
-Om jag inte skriver tillräckligt specifikt om viewsen här får jag lägga till mer i template method.
-jframe, jlabel, jradiobutton, jcombobox, jpanel, imageicon, jbutton, jtextfield
-gridlayout, borderlayout, gridbag layout, boxlayout, flowlayout
-beskriva att olika levels har olika views...
-
-CONTROLLER
-finns en controller, interface och två buttonlistenerklasser, controllern har många inre listenerklasser men 
-de får vara kvar eftersom man i dem gör val som påverkar view/model. quit och next bröts ut för att koden i controller
-inte skulle bli för lång.
-
-lägger in allt som kan ändras i spelet i constants för att det ska finnas på ett ställe och vara lätt
-har dock namnen på monsterna i sina klasser
-
-Skriva om JAR och pom?
-A problem that occurred during the creation of JAR file...
-FETT PROBLEM IMAGES -> ImageReader klass
+The `Controller` was responsible for communication with the models and the views, accessing data from the view,
+telling the model to calculate the data, and then telling the view to update. The constructor initiated the different
+level views, added action listeners to the buttons, and displayed the start view. The action listeners were implemented
+as inner classes. The `Level1ComboboxListener` was responsible for listening to the combo box of level 1 and updating 
+the UI with the help of the model depending on the choice of the user. The `Level2ButtonListener` and the
+`Level4ButtonListener` was in their own ways responsible for checking if the user had answered correctly and either 
+initiating the next level or displaying a message telling the user to try again. The `Level3ButtonListenerProduce` was 
+responsible for telling the view to display produced characters from the model. The `Level5ButtonListener` was
+simply responsible for initiating the level 5 simulation. The action listeners for buttons starting the next level 
+and the quit button were made into separate classes to make the code more readable. These were also used by multiple 
+buttons. The `NextLevelButtonListener` started the next level by making the panel of the view it received as an
+argument. The `QuitButtonListener` simply terminated the program.
 
 ### Producer/consumer pattern
 The producer/consumer pattern was used in the healing simulation in level 5. It was also here that the concurrent 
@@ -139,9 +146,7 @@ done by the subclasses with the factory method. Both the `MonsterFactory` class 
 randomized which concrete product to create. Each concrete product extended either the abstract class `BaseCharacter`
 or `BaseColor`, which had getters and setters for names and image paths respectively colors. Four methods were 
 implemented in the `MainModel` class for getting random monsters, getting lists of random characters' image path and 
-name, getting random colors, and getting random factories which were used by the two previous methods. The `MainModel` 
-used the `FactoryProvider` class when creating factories, this class simply created factories with the 
-`getFactory(int nmb)` method.
+name, getting random colors, and getting random factories which were used by the two previous methods. 
 
 A design problem that occurred here was that a simple factory was implemented instead of a factory method at first.
 The factory method is often mistaken for the simple factory idiom, and when reviewing the course material this was
@@ -162,7 +167,8 @@ with the panel was also added to the `BaseView`. Each concrete subclass, see fig
 its methods, deciding how the GUI should look, and decided if the hooks should be used.
 
 ![](UMLTemplate.png)
-<br>Figure 5: UML diagram of the template method used for the different views.
+<br>Figure 5: UML diagram of the template method used for the different views. Not that many of the arguments 
+of the different methods are simply described as '(...)' in the figure to save space.
 
 
 ## Discussion
@@ -242,10 +248,8 @@ snacka om att det är bra med att ha alla konstanter på ett ställe, att man ka
 strängar här, så det endast är ett ställe att uppdatera på om man gör ändringar i spelet.
 notera att man inte kan ge vaelarya hur mycket hälsa som helst eller göra ordlistan för lång utan att fucka UIt.
 
-factory:
-
-abstract factory: fett förvirrande med simple factory, istället för att randomiza fram allt skulle man kunna specificera
-allt.
+factory/abstract factory: fett förvirrande med simple factory, istället för att randomiza fram allt skulle man kunna specificera
+allt. Producerar massa objekt, här får man vara försiktig
 
 prod/cons: oftarst delade resurser i en blocking queue men jag kör en int. snacka om volitile boolean i trådarna. kunde skrivit ut mer info
 i consol/till en log/i GUIt om fighten, vilka monster som använde vilket vapen, vilka som vilade etc
@@ -254,6 +258,11 @@ observer: har ofta en remove observer men den behövdes inte för programmet. ha
 och loopar ööver den vid uppdatering vilket kan kännas lite onödigt, however det är bra för framtiden om man vill bygga 
 vidare på programmet och lägga till fler. Hade kanske kunnat lägga vaelarya inne i main model 
 istället, men nu blev det tydligt.
+
+
+
+
+lägger in allt som kan ändras i spelet i constants för att det ska finnas på ett ställe och vara lätt
 
 Diskutera:
 To summarize the concrete goals:
@@ -284,6 +293,8 @@ Was the approaches and procedures suitable? Only the methodology is considered h
 to see some dissection of the actual procedures. At this point in time you have already conducted 
 the study and should possess more knowledge in comparison to what you had in the beginning. If you 
 or someone else were to redo this study, what should be done differently?
+
+göra om i framtiden: gör färre levels som är lite roligare med mer user interaction
 
 
 ### Execution of the program

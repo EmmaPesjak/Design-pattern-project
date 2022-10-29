@@ -13,7 +13,7 @@ public class SlimeMonster extends BaseCharacter {
      * Constructor for initializing SlimeMonsters, sets the name and image file path..
      */
     public SlimeMonster() {
-        setName("Gutscream");
+        setName(Constants.NAME_SLIME_MONSTER);
         setImg(Constants.IMAGE_SLIME_MONSTER);
     }
 }

@@ -11,7 +11,7 @@ import javax.swing.*;
 public class MyButton extends JButton {
 
     /**
-     * Constructor setting layout of the button.
+     * Constructor setting design of the button.
      * @param text is the text displayed in the button.
      */
     public MyButton(String text) {
