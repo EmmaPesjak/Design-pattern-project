@@ -1,4 +1,4 @@
 /**
- * Package for all views and components.
+ * Package for all views.
  */
 package com.dt181g.project.views;

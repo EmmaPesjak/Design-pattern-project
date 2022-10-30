@@ -29,10 +29,10 @@ To summarize the concrete goals:
 The MVC pattern was the base structure and architecture used for this project. Different packages for models, views, 
 and controllers contained almost all the classes and interfaces. A `Constants` interface was created in the support 
 package. This interface contained defined constant values used throughout the program by the different classes.
-A `Project` class directly under the project package was the main starting point of the program and this initiated 
-the MVC start entities. The game consisted of 5 different levels with various implementations to fulfill all the 
-project requirements. Each level was represented by a monster, read the 'Execution of the program' section below 
-for more information about the levels. 
+A `Project` class directly under the project package was the program's main starting point and initiated the MVC start 
+entities. The game consisted of 5 different levels with various implementations to fulfill all the project 
+requirements. Each level was represented by a monster, read the 'Execution of the program' section below for more 
+information about the levels. 
 
 The `MainModel` class was responsible for handling the application's data, performing calculations, and 
 communicating with the controller. The `MainModel` class was completely in charge of the logic for levels 1 and 2, 
@@ -54,7 +54,7 @@ and set the size and background. It had a method for updating the view, which to
 the frame, and repainted/revalidated. It also had a method for displaying error messages. Since all the buttons of the 
 application and almost all the panels had the same base design, the classes `MyButton` and `MyPanel` were created. These 
 set the layout and looks of these components. A class `HealthBarPanel` for creating the health bar panel of level 
-5 was also created. This class got the amount of health and color it was supposed to portray from the `Controller` 
+5 was also created. This class got the amount of health and color it was supposed to portray via the `Controller` 
 and painted the graphics as a rectangle with it. Each level, as well as the start and end screens, 
 had its own class for creating the panel to present in the GUI frame, extending the `BaseView` class with the 
 template method pattern described in greater detail in the subcategory below. These classes set the design of the 
@@ -73,10 +73,8 @@ the UI with the help of the model depending on the choice of the user. The `Leve
 `Level4ButtonListener` was in their own ways responsible for checking if the user had answered correctly and either 
 initiating the next level or displaying a message telling the user to try again. The `Level3ButtonListenerProduce` was 
 responsible for telling the view to display produced characters from the model. The `Level5ButtonListener` was
-simply responsible for initiating the level 5 simulation. The action listeners for buttons starting the next level 
-and the quit button were made into separate classes to make the code more readable. These were also used by multiple 
-buttons. The `NextLevelButtonListener` started the next level by making the panel of the view it received as an
-argument. The `QuitButtonListener` simply terminated the program.
+simply responsible for initiating the level 5 simulation. The `NextLevelButtonListener` started the next level by 
+making the panel of the view it received as an argument. The `QuitButtonListener` simply terminated the program.
 
 ### Producer/consumer pattern
 The producer/consumer pattern was used in the healing simulation in level 5. It was also here that the concurrent 
@@ -173,6 +171,50 @@ of the different methods are simply described as '(...)' in the figure to save s
 
 ## Discussion
 
+
+HITTA ALLT SOM HANDLAR OM FACTORIES OCH ÄNDRA EFTERSOM JAG HAR FLYTTAT
+
+ÄNDRA SÅ ATT VAELARYA OCH WEAPONDISTR INTE ÄR SINGLETONS?
+GÖR VAELARYA TILL ICKE SINGLETON, SKAPA NY VAELARYA I CONTROLLERN OCH SKICKA IN DEN I TRÅDARNA
+ÄNDRA I TEXTEN OCH I UML DIAGRAMMEN
+
+ÄNDRA I TEXTEN ATT JAG LA WEAPINDISRT OCH WEAPON UNDER SUPPORT????
+
+LÄGG DTHREAD OCH HTHREAD UNDER CONTROLLER???
+
+SNACKA OM FILSTRUKTUR, VARFÖR JAG LA KLASSERNA DÄR JAG LA DEM
+
+
+MVC
+
+hade det varit ett större spel hade man kunnat dela in main model mer på olika levels.
+kunda ha delat upp model i de olika levels? särskilt om man har mer avancerade levels.
+
+lägger in allt som kan ändras i spelet i constants för att det ska finnas på ett ställe och vara lätt
+snacka om att det är bra med att ha alla konstanter på ett ställe, att man kanske även kan lägga in alla
+strängar här, så det endast är ett ställe att uppdatera på om man gör ändringar i spelet.
+notera att man inte kan ge vaelarya hur mycket hälsa som helst eller göra ordlistan för lång utan att fucka UIt.
+
+
+As one of the concrete goals of the purpose was to create an event-driven application with a GUI.......
+ja det har ju obv uppnåtts, event-driven där usern klickar på knappar/radiobuttons/combobox för att köra vidare spelet
+to what level of completeness? Visst hade det kunnat vara mer user interaction... men det är en fin app
+
+Another of the concrete goals was to
+* Include at least six different Swing components and four different layouts. which is fulfilled above and beyond
+  jframe, jlabel, jradiobutton, jcombobox, jpanel, imageicon, jbutton, jtextfield
+  gridlayout, borderlayout, gridbag layout, boxlayout, flowlayout
+
+
+* Use the seven design patterns mentioned above.
+  japp
+
+* Implement at least three uses of Streams API.
+också kirrat
+  stream.reduce(), stream().sorted().collect(Collectors.toList()), stream().filter()
+
+
+
 "lab2
 The observer pattern was one of the main designs of this assignment. There are slightly different variations of the
 observer pattern, and for this laboration, the pattern described in the course literature was used. What could be
@@ -208,6 +250,23 @@ been a lot larger with parallel processing, multiple Views etc. Though it is a s
 concrete goals of the purpose, creating a program using Swing, MVC, and streams API.
 "
 
+template method: snacka om hooks
+
+factory/abstract factory: fett förvirrande med simple factory, istället för att randomiza fram allt skulle man kunna specificera
+allt. Producerar massa objekt, här får man vara försiktig
+
+prod/cons: oftarst delade resurser i en blocking queue men jag kör en int. snacka om volitile boolean i trådarna. kunde skrivit ut mer info
+i consol/till en log/i GUIt om fighten, vilka monster som använde vilket vapen, vilka som vilade etc
+* Have a minimum of five concurrent processes, where at least 3 are synchronized.
+  visas i level 5 med simuleringen av draken där 7 trådar accessar health. concrete goal!
+
+observer: har ofta en remove observer men den behövdes inte för programmet. har bara en observer, trots det gör jag en lista
+och loopar ööver den vid uppdatering vilket kan kännas lite onödigt, however det är bra för framtiden om man vill bygga
+vidare på programmet och lägga till fler. Hade kanske kunnat lägga vaelarya inne i main model
+istället, men nu blev det tydligt.
+
+When multible synchrinized threads are used, thread safty is of utter importance...
+
 object pool pattern:
 object pool pattern används ofta med ett annat syfte, när kostnaden av att initiera
 ett object är väldigt hög, och därmed återbrukas dem. Här är kanske kostnaden inte
@@ -236,64 +295,6 @@ the first alternative but the only reason is to get a better separation of conce
 learning purposes."
 
 
-template method: snacka om hooks
-
-
-kunda ha delat upp model i de olika levels? särskilt om man har mer avancerade levels.
-
-
-hade det varit ett större spel hade man kunnat dela in main model mer på olika levels.
-
-snacka om att det är bra med att ha alla konstanter på ett ställe, att man kanske även kan lägga in alla 
-strängar här, så det endast är ett ställe att uppdatera på om man gör ändringar i spelet.
-notera att man inte kan ge vaelarya hur mycket hälsa som helst eller göra ordlistan för lång utan att fucka UIt.
-
-factory/abstract factory: fett förvirrande med simple factory, istället för att randomiza fram allt skulle man kunna specificera
-allt. Producerar massa objekt, här får man vara försiktig
-
-prod/cons: oftarst delade resurser i en blocking queue men jag kör en int. snacka om volitile boolean i trådarna. kunde skrivit ut mer info
-i consol/till en log/i GUIt om fighten, vilka monster som använde vilket vapen, vilka som vilade etc
-
-observer: har ofta en remove observer men den behövdes inte för programmet. har bara en observer, trots det gör jag en lista
-och loopar ööver den vid uppdatering vilket kan kännas lite onödigt, however det är bra för framtiden om man vill bygga 
-vidare på programmet och lägga till fler. Hade kanske kunnat lägga vaelarya inne i main model 
-istället, men nu blev det tydligt.
-
-
-
-
-lägger in allt som kan ändras i spelet i constants för att det ska finnas på ett ställe och vara lätt
-
-Diskutera:
-To summarize the concrete goals:
-* Create an event-driven application with a GUI. 
-    ja det har ju obv uppnåtts, event-driven där usern klickar på knappar/radiobuttons/combobox för att köra vidare spelet
-* Have a minimum of five concurrent processes, where at least 3 are synchronized.
-    visas i level 5 med simuleringen av draken där 7 trådar accessar health
-* Include at least six different Swing components and four different layouts.
-    jframe, jlabel, jradiobutton, jcombobox, jpanel, imageicon, jbutton, jtextfield
-    gridlayout, borderlayout, gridbag layout, boxlayout, flowlayout
-* Use the seven design patterns mentioned above.
-    japp
-* Implement at least three uses of Streams API.
-    stream.reduce(), stream().sorted().collect(Collectors.toList()), stream().filter()
-
-Perspective: Has the purpose been fulfilled? Determine the suitability of the implementation...
-should alternative approaches and procedures be considered?
-
-The two most important things we need in this section regards analyses of both success and implementation.
-Has the purpose been fulfilled, and to what extent has it been successful? Remember to argue for such
-success on the basis of actual results. The reader needs to be able to run the thread of logic
-backwards from conclusion to its source in the results, so remember to maintain objectivity. 
-If the statements leading to the conclusion contains any trace of subjectivity (I think... 
-I believe... I feel... etc) it will remove all scientific value, rendering your reasoning void 
-of substance.
-
-Was the approaches and procedures suitable? Only the methodology is considered here, and we expect 
-to see some dissection of the actual procedures. At this point in time you have already conducted 
-the study and should possess more knowledge in comparison to what you had in the beginning. If you 
-or someone else were to redo this study, what should be done differently?
-
 göra om i framtiden: gör färre levels som är lite roligare med mer user interaction
 
 
@@ -317,4 +318,6 @@ This course has given me a deeper knowledge of OOP and Java, dabbling into pom a
 applications, etc. The course material has been very helpful, however as I am a big fan of the teacher's notes, more 
 of these would be appreciated. It is always good to read code written by teachers to understand the 
 code/classes/patterns, how to structure larger programs, how to comment etc. The most difficult part of this project 
-was to incorporate all the different design patterns while still conforming to MVC.
+was to incorporate all the different design patterns while still conforming to MVC. I decided to make five levels very 
+early on during the development to fit in all the objectives. In hindsight, and if I were to redo this project, I 
+would perhaps have implemented fewer levels with more substance and user interaction instead.

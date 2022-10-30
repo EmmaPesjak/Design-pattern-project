@@ -1,9 +1,10 @@
 package com.dt181g.project.controllers;
 
 import com.dt181g.project.models.*;
-import com.dt181g.project.models.factories.BaseCharacter;
+import com.dt181g.project.factories.BaseCharacter;
 import com.dt181g.project.support.Constants;
 import com.dt181g.project.views.*;
+import com.dt181g.project.views.components.HealthBarPanel;
 
 import javax.swing.Timer;
 import java.awt.*;
@@ -227,6 +228,44 @@ public class Controller implements Observer {
         @Override
         public void actionPerformed(ActionEvent e) {
             initLevel5();
+        }
+    }
+
+
+    /**
+     * Inner class responsible for initiating the next level when clicking on a button.
+     */
+    static class NextLevelButtonListener implements ActionListener {
+        BaseView view;
+
+        /**
+         * Constructor that sets the BaseView.
+         * @param view is the BaseView to be initiated next.
+         */
+        public NextLevelButtonListener(BaseView view) {
+            this.view = view;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            view.makePanel();
+        }
+    }
+
+    /**
+     * Inner class responsible for enabling the program to shut down when pressing a 'quit' button.
+     */
+    static class QuitButtonListener implements ActionListener {
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.exit(0);
         }
     }
 }

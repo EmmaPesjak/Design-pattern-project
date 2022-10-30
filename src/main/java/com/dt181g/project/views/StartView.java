@@ -1,6 +1,9 @@
 package com.dt181g.project.views;
 
 import com.dt181g.project.support.Constants;
+import com.dt181g.project.views.components.ImageReader;
+import com.dt181g.project.views.components.MyButton;
+import com.dt181g.project.views.components.MyPanel;
 
 import javax.swing.*;
 import java.awt.*;

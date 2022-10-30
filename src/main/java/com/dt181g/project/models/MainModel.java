@@ -1,6 +1,9 @@
 package com.dt181g.project.models;
 
-import com.dt181g.project.models.factories.*;
+import com.dt181g.project.factories.AbstractFactory;
+import com.dt181g.project.factories.BaseCharacter;
+import com.dt181g.project.factories.MonsterFactory;
+import com.dt181g.project.factories.UnicornFactory;
 import com.dt181g.project.support.Constants;
 
 import java.awt.*;
@@ -19,7 +22,6 @@ public class MainModel {
     AbstractFactory monsterFactory = new MonsterFactory();
     AbstractFactory unicornFactory = new UnicornFactory();
     private final List<String> words = Constants.STRING_LIST_LVL1;
-    private int lvl2Result;
 
     /**
      * Method for creating a monster from the MonsterFactory.
@@ -62,7 +64,7 @@ public class MainModel {
      * @return boolean that states if it is correct or not.
      */
     public boolean calculateLevel2(List<Integer> numbs) {
-        lvl2Result = numbs.stream().reduce(0, Integer::sum);
+        int lvl2Result = numbs.stream().reduce(0, Integer::sum);
         return lvl2Result == Constants.RESULT_LVL2;
     }
 
