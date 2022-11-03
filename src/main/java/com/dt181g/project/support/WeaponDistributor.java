@@ -1,4 +1,4 @@
-package com.dt181g.project.models;
+package com.dt181g.project.support;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;

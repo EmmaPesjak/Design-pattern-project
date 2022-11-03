@@ -1,6 +1,4 @@
-package com.dt181g.project.models;
-
-import com.dt181g.project.support.Constants;
+package com.dt181g.project.support;
 
 import java.util.Random;
 

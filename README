@@ -58,7 +58,7 @@ set the layout and looks of these components. A class `HealthBarPanel` for creat
 and painted the graphics as a rectangle with it. Each level, as well as the start and end screens, 
 had its own class for creating the panel to present in the GUI frame, extending the `BaseView` class with the 
 template method pattern described in greater detail in the subcategory below. These classes set the design of the 
-event-driven GUI, utilizing the Constants interface for colors and fonts. They used Swing components such as 
+event-driven GUI, utilizing the Constants interface for colors and fonts. They used Swing components such as
 `JLabel`, `JRadioButton`, `JCombobox`, `JPanel`, `ImageIcon`, `JButton`, and `JTextField`. They also used the
 Swing layouts `GridLayout`, `BorderLayout`, `GridBagLayout`, `BoxLayout`, and `FlowLayout`. A problem that occurred 
 during the creation of the JAR file was that the images used in the application were not displayed in the GUI. 
@@ -80,21 +80,20 @@ making the panel of the view it received as an argument. The `QuitButtonListener
 The producer/consumer pattern was used in the healing simulation in level 5. It was also here that the concurrent 
 synchronized processes were implemented by having seven threads, producers and consumers, accessing the shared resource
 of health. Two classes for the different actors were created, one `HealThread` representing the producer and one 
-`DamageThread` representing the consumer, see figure 1. These classes were very similar, they both implemented the 
-`Runnable` interface, and had a private volatile boolean that was used to control the lifetime of the thread. They both 
-had a `stopThread()` method which simply set the boolean to false and thereby terminating the thread in the overridden
+`DamageThread` representing the consumer, see figure 1. These classes were very similar, their constructor took and set 
+a `Vaelarya` which represented the dragon's health bar in the simulation. They both implemented the `Runnable` 
+interface, and had a private volatile boolean that was used to control the lifetime of the thread. They both had a 
+`stopThread()` method which simply set the boolean to false and thereby terminating the thread in the overridden
 `run()` method. The `run()` method contained a while loop that ran as long as the boolean was set to true. The 
 `HealThread`'s `run()` method simply randomized a healing amount which it communicated to the class `Vaelarya` via the 
-`addHealth(int healAmount)` method, it then slept for a set number of seconds. 
-
-The `Vaelarya` class represented the dragon's health bar in the simulation and was also implemented as a Singleton.
-In addition to the `addHealth()` method, `Vaelarya` also had a `removeHealth()` method which was used by the 
-`DamageThread`. The `DamageThread`'s `run()` method used a `Weapon` from the `WeaponDistributor` as described below 
-in the object pool pattern section.  If a weapon was available, the thread would first sleep for a set amount of
-seconds, representing the time it took the monster to swing the weapon. It would then use the weapon by calling
-`Vaelarya`'s `removeHealth(int damageAmount)` method with the integer damage of the weapon. It would then return the 
-weapon to the distributor and sleep again for a set amount of seconds representing rest time. However, if no weapon 
-was available the thread would simply sleep for a set amount of seconds representing wait time.
+`addHealth(int healAmount)` method, it then slept for a set number of seconds. In addition to the `addHealth()` method, 
+`Vaelarya` also had a `removeHealth()` method which was used by the `DamageThread`. The `DamageThread`'s `run()` 
+method used a `Weapon` from the `WeaponDistributor` as described below in the object pool pattern section. If a weapon 
+was available, the thread would first sleep for a set amount of seconds, representing the time it took the monster 
+to swing the weapon. It would then use the weapon by calling `Vaelarya`'s `removeHealth(int damageAmount)` method with 
+the integer damage of the weapon. It would then return the weapon to the distributor and sleep again for a set amount 
+of seconds representing rest time. However, if no weapon was available the thread would simply sleep for a set amount 
+of seconds representing wait time.
 
 ![](UMLProducerConsumer.png)
 <br>Figure 1: UML diagram of the producer/consumer pattern.
@@ -111,10 +110,10 @@ implemented by the observable class `Vaelarya`, which overrode the methods of th
 observers simply took an observer as an argument and added this to a list of observers. The method for notifying 
 observers looped over the list of observers and called each observer's update method. This meant that the `Observer` 
 interface needed to have a method for updating, which was its only method. The `Controller` class implemented this 
-interface and overrode the method, checking the current amount of health from an instance of the `Vaelarya` class with 
-the `getHealth()` method. Based on if the current health was above the set upper health or equal to or below 0, the 
-`Controller` would end the simulation, stop the timer, terminate the threads, and set up the end view. If the amount 
-of health was somewhere in between the simulation would continue. 
+interface and overrode the method, checking the current amount of health from the `Vaelarya` with the `getHealth()` 
+method. Based on if the current health was above the set upper health or equal to or below 0, the `Controller` would 
+end the simulation, stop the timer, terminate the threads, and set up the end view. If the amount of health was 
+somewhere in between the simulation would continue. 
 
 ![](UMLObserver.png)
 <br>Figure 2: UML diagram of the observer pattern. Note that the `Controller` class contains several more inner 
@@ -165,31 +164,53 @@ with the panel was also added to the `BaseView`. Each concrete subclass, see fig
 its methods, deciding how the GUI should look, and decided if the hooks should be used.
 
 ![](UMLTemplate.png)
-<br>Figure 5: UML diagram of the template method used for the different views. Not that many of the arguments 
+<br>Figure 5: UML diagram of the template method used for the different views. Note that many of the arguments 
 of the different methods are simply described as '(...)' in the figure to save space.
 
 
 ## Discussion
+One of the concrete goals of the purpose was to create an event-driven application with a GUI. This goal has been 
+achieved since the application certainly is event-driven as the user interacts with buttons, radio buttons, and
+combo boxes in the GUI. The GUI has several views with lots of different graphical components which the user interacts 
+with during the different levels. Another concrete goal was to include at least six different Swing components and four 
+different layouts. This has also been achieved to the highest degree. The swing components used were as mentioned in
+the procedures; `JFrame`, `JLabel`, `JRadioButton`, `JCombobox`, `JPanel`, `ImageIcon`, `JButton`, and `JTextField`.
+The Swing layouts used were; `GridLayout`, `BorderLayout`, `GridBagLayout`, `BoxLayout`, and `FlowLayout`. Some 
+components, such as the `JButton` and `JPanel` were frequently made from their own classes `MyButton` and `MyPanel`.
+This allowed for generic looks in the GUI with significantly less code than if the attributes had been set each time 
+a class would have made a button or panel.
 
 
-HITTA ALLT SOM HANDLAR OM FACTORIES OCH ÄNDRA EFTERSOM JAG HAR FLYTTAT
+to what level of completeness? 
 
-ÄNDRA SÅ ATT VAELARYA OCH WEAPONDISTR INTE ÄR SINGLETONS?
-GÖR VAELARYA TILL ICKE SINGLETON, SKAPA NY VAELARYA I CONTROLLERN OCH SKICKA IN DEN I TRÅDARNA
-ÄNDRA I TEXTEN OCH I UML DIAGRAMMEN
-vaelarya which is an observable could be implemented as a singelton... blablabla
-
-ÄNDRA I TEXTEN ATT JAG LA WEAPINDISRT OCH WEAPON UNDER SUPPORT????
-
-LÄGG DTHREAD OCH HTHREAD UNDER CONTROLLER???
 
 SNACKA OM FILSTRUKTUR, VARFÖR JAG LA KLASSERNA DÄR JAG LA DEM
 
-
 MVC
+
+"lab 3
+The MVC pattern was the foundation for this laboration. One of the benefits with using the MVC pattern is that it is
+easily planned. The interface code belongs in the view, the data in the model, and the communication and requests in
+the controller. This increases the scalability of the application.
+The `View` class contains a lot of different sizes, dimensions and a few colors. If this was a larger application
+where they would be reused, they should be put in constants, considering the size of this application, that is not
+necessary. An action listener was chosen for communication between the View and the Controller.  To create the GUI,
+different Swing layouts and components were used.
+Streams API can be used for a range of things, here the `stream.reduce()` method was used which was very convenient
+for calculating the sum of the user input, rather than doing it in a loop. In conclusion, this laboration could have
+been a lot larger with parallel processing, multiple Views etc. Though it is a simple solution, it fulfills the
+concrete goals of the purpose, creating a program using Swing, MVC, and streams API.
+"
+
+
 
 hade det varit ett större spel hade man kunnat dela in main model mer på olika levels.
 kunda ha delat upp model i de olika levels? särskilt om man har mer avancerade levels.
+
+* Implement at least three uses of Streams API.
+  också kirrat
+  stream.reduce(), stream().sorted().collect(Collectors.toList()), stream().filter()
+
 
 lägger in allt som kan ändras i spelet i constants för att det ska finnas på ett ställe och vara lätt
 snacka om att det är bra med att ha alla konstanter på ett ställe, att man kanske även kan lägga in alla
@@ -197,25 +218,11 @@ strängar här, så det endast är ett ställe att uppdatera på om man gör än
 notera att man inte kan ge vaelarya hur mycket hälsa som helst eller göra ordlistan för lång utan att fucka UIt.
 
 
-As one of the concrete goals of the purpose was to create an event-driven application with a GUI.......
-ja det har ju obv uppnåtts, event-driven där usern klickar på knappar/radiobuttons/combobox för att köra vidare spelet
-to what level of completeness? Visst hade det kunnat vara mer user interaction... men det är en fin app
-
-Another of the concrete goals was to
-* Include at least six different Swing components and four different layouts. which is fulfilled above and beyond
-  jframe, jlabel, jradiobutton, jcombobox, jpanel, imageicon, jbutton, jtextfield
-  gridlayout, borderlayout, gridbag layout, boxlayout, flowlayout
-
-
 * Use the seven design patterns mentioned above.
   japp
 
-* Implement at least three uses of Streams API.
-också kirrat
-  stream.reduce(), stream().sorted().collect(Collectors.toList()), stream().filter()
 
-
-
+vaelarya which is an observable could be implemented as a singelton... blablabla
 "lab2
 The observer pattern was one of the main designs of this assignment. There are slightly different variations of the
 observer pattern, and for this laboration, the pattern described in the course literature was used. What could be
@@ -237,19 +244,7 @@ dependent on that only one thread at a time run the method, or else concurrency 
 amount of resources in the pool will be incorrect if two threads add resources at the same time.
 "
 
-"lab 3
-The MVC pattern was the foundation for this laboration. One of the benefits with using the MVC pattern is that it is
-easily planned. The interface code belongs in the view, the data in the model, and the communication and requests in
-the controller. This increases the scalability of the application.
-The `View` class contains a lot of different sizes, dimensions and a few colors. If this was a larger application
-where they would be reused, they should be put in constants, considering the size of this application, that is not
-necessary. An action listener was chosen for communication between the View and the Controller.  To create the GUI,
-different Swing layouts and components were used.
-Streams API can be used for a range of things, here the `stream.reduce()` method was used which was very convenient
-for calculating the sum of the user input, rather than doing it in a loop. In conclusion, this laboration could have
-been a lot larger with parallel processing, multiple Views etc. Though it is a simple solution, it fulfills the
-concrete goals of the purpose, creating a program using Swing, MVC, and streams API.
-"
+
 
 template method: snacka om hooks
 
@@ -294,9 +289,6 @@ one run instructions from cached memory. But at the same time we also have some 
 overhead with atomic datatypes which could impact performance. For our design we go with 
 the first alternative but the only reason is to get a better separation of concerns, for
 learning purposes."
-
-
-göra om i framtiden: gör färre levels som är lite roligare med mer user interaction
 
 
 ### Execution of the program

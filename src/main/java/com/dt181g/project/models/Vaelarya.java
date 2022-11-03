@@ -9,18 +9,13 @@ import java.util.List;
 
 /**
  * Observable class that represents the amount of health of the dragon Vaelarya,
- * communicating directly with the actors, implemented as a Singleton.
+ * communicating directly with the actors.
  * @author Emma Pesjak
  */
 public class Vaelarya implements Observable {
-    public static final Vaelarya INSTANCE = new Vaelarya();
+
     public List<Observer> observers = new ArrayList<>();
     public volatile int health = Constants.VAELARYA_START_HEALTH;
-
-    /**
-     * Private constructor.
-     */
-    private Vaelarya() {}
 
     /**
      * {@inheritDoc}

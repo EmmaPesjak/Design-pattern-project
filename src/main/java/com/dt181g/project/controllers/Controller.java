@@ -2,6 +2,8 @@ package com.dt181g.project.controllers;
 
 import com.dt181g.project.models.*;
 import com.dt181g.project.factories.BaseCharacter;
+import com.dt181g.project.models.threads.DamageThread;
+import com.dt181g.project.models.threads.HealThread;
 import com.dt181g.project.support.Constants;
 import com.dt181g.project.views.*;
 import com.dt181g.project.views.components.HealthBarPanel;
@@ -26,9 +28,9 @@ public class Controller implements Observer {
     private final Level3View level3View;
     private final Level4View level4View;
     private final Level5View level5View;
-    private final Vaelarya vaelarya = Vaelarya.INSTANCE;
-    private final HealThread healThread = new HealThread();
-    private final DamageThread damageThread = new DamageThread();
+    private final Vaelarya vaelarya = new Vaelarya();
+    private final HealThread healThread = new HealThread(vaelarya);
+    private final DamageThread damageThread = new DamageThread(vaelarya);
     private final Deque<DamageThread> damageThreads = new LinkedList<>();
     private final Timer timer = new Timer(150, e -> {
         updateLevel5View();

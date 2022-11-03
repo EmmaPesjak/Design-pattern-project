@@ -120,5 +120,4 @@ public class Level5View extends BaseView {
     void addButtonListener() {
         myButton.addActionListener(listener);
     }
-
 }

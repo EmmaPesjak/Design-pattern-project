@@ -1,6 +1,9 @@
-package com.dt181g.project.models;
+package com.dt181g.project.models.threads;
 
+import com.dt181g.project.models.Vaelarya;
 import com.dt181g.project.support.Constants;
+import com.dt181g.project.support.Weapon;
+import com.dt181g.project.support.WeaponDistributor;
 
 import java.util.Random;
 
@@ -10,8 +13,15 @@ import java.util.Random;
  */
 public class DamageThread implements Runnable {
 
-    // Boolean that controls the lifetime of the thread.
-    private volatile boolean terminate = false;
+    private volatile boolean terminate = false; // Boolean that controls the lifetime of the thread.
+    private final Vaelarya vaelarya;
+
+    /**
+     * Constructor that sets the Vaelarya (dragon) which the monsters damage.
+     */
+    public DamageThread (Vaelarya vaelarya) {
+        this.vaelarya = vaelarya;
+    }
 
     /**
      * Overridden method that simulates damaging in the game.
@@ -28,7 +38,7 @@ public class DamageThread implements Runnable {
                     // If a weapon is available, sleep representing the time it takes to swing the weapon.
                     Thread.sleep((new Random().nextInt(Constants.SLEEP_SWING_WEAPON) + 1) * 1000);
                     // Remove health from the health meter.
-                    Vaelarya.INSTANCE.removeHealth(weapon.getDamage());
+                    vaelarya.removeHealth(weapon.getDamage());
                     // Return the weapon.
                     distributor.returnWeapon(weapon);
                     // Sleep representing rest time, fighting is exhausting.
