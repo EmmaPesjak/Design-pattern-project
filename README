@@ -11,7 +11,7 @@ maven version 3.8.5, and Git version 2.33.0.windows.2.
 The purpose of this project was to demonstrate a comprehensive understanding of the course's learning
 objectives. Specifically, to create an event-driven application with a Graphical User Interface (GUI) using 
 Java Swing. The goal was to achieve a grade as high as possible and thereby showcase the utilization of the
-Swing library and implement a range of different layouts and components. Furthermore, to incorporate the use of 
+Swing library and implementing a range of different layouts and components. Furthermore, to incorporate the use of 
 Streams API and to use concurrent synchronized processes in an atomic fashion. Lastly also to demonstrate the 
 use of design patterns. While having the entire code structured according to the Model-View-Controller (MVC) 
 pattern, also incorporating the observer, object pool, producer/consumer, factory method, abstract factory,
@@ -50,13 +50,13 @@ interface and returned a boolean. The rest of the classes in the models package 
 the subcategories of design patterns below.
 
 The view classes were responsible for creating the GUI for the application. The class `ViewFrame` initiated the JFrame 
-and set the size and background. It had a method for updating the view, which took a panel as an argument, added it to 
+and set the size and background. It had a method for updating the view, which took a panel as an argument, adding it to 
 the frame, and repainted/revalidated. It also had a method for displaying error messages. Since all the buttons of the 
 application and almost all the panels had the same base design, the classes `MyButton` and `MyPanel` were created. These 
 set the layout and looks of these components. A class `HealthBarPanel` for creating the health bar panel of level 
 5 was also created. This class got the amount of health and color it was supposed to portray via the `Controller` 
 and painted the graphics as a rectangle with it. Each level, as well as the start and end screens, 
-had its own class for creating the panel to present in the GUI frame, extending the `BaseView` class with the 
+had its class for creating the panel to present in the GUI frame, extending the `BaseView` class with the 
 template method pattern described in greater detail in the subcategory below. These classes set the design of the 
 event-driven GUI, utilizing the Constants interface for colors and fonts. They used Swing components such as
 `JLabel`, `JRadioButton`, `JCombobox`, `JPanel`, `ImageIcon`, `JButton`, and `JTextField`. They also used the
@@ -86,14 +86,14 @@ interface, and had a private volatile boolean that was used to control the lifet
 `stopThread()` method which simply set the boolean to false and thereby terminating the thread in the overridden
 `run()` method. The `run()` method contained a while loop that ran as long as the boolean was set to true. The 
 `HealThread`'s `run()` method simply randomized a healing amount which it communicated to the class `Vaelarya` via the 
-`addHealth(int healAmount)` method, it then slept for a set number of seconds. In addition to the `addHealth()` method, 
-`Vaelarya` also had a `removeHealth()` method which was used by the `DamageThread`. The `DamageThread`'s `run()` 
-method used a `Weapon` from the `WeaponDistributor` as described below in the object pool pattern section. If a weapon 
-was available, the thread would first sleep for a set amount of seconds, representing the time it took the monster 
-to swing the weapon. It would then use the weapon by calling `Vaelarya`'s `removeHealth(int damageAmount)` method with 
-the integer damage of the weapon. It would then return the weapon to the distributor and sleep again for a set amount 
-of seconds representing rest time. However, if no weapon was available the thread would simply sleep for a set amount 
-of seconds representing wait time.
+synchronized `addHealth(int healAmount)` method, it then slept for a set number of seconds. In addition to the 
+`addHealth()` method, `Vaelarya` also had a synchronized `removeHealth()` method which was used by the `DamageThread`. 
+The `DamageThread`'s `run()` method used a `Weapon` from the `WeaponDistributor` as described below in the object pool
+pattern section. If a weapon was available, the thread would first sleep for a set amount of seconds, representing the
+time it took the monster to swing the weapon. It would then use the weapon by calling `Vaelarya`'s 
+`removeHealth(int damageAmount)` method with the integer damage of the weapon. It would then return the weapon to 
+the distributor and sleep again for a set amount of seconds representing rest time. However, if no weapon was available 
+the thread would simply sleep for a set amount of seconds representing wait time.
 
 ![](UMLProducerConsumer.png)
 <br>Figure 1: UML diagram of the producer/consumer pattern.
@@ -161,7 +161,7 @@ method `makePanel()` for creating the panel to be added to the GUI frame. The pa
 (top, center, and bottom) and an action listener for a button, these all had a method for implementation. They 
 also had hooks in case the concrete views decided not to implement all of them. A method for updating the GUI frame 
 with the panel was also added to the `BaseView`. Each concrete subclass, see figure 5, extended `BaseView` and overrode
-its methods, deciding how the GUI should look, and decided if the hooks should be used.
+its methods, decided how the GUI should look, and decided if the hooks should be used.
 
 ![](UMLTemplate.png)
 <br>Figure 5: UML diagram of the template method used for the different views. Note that many of the arguments 
@@ -171,7 +171,7 @@ of the different methods are simply described as '(...)' in the figure to save s
 ## Discussion
 One of the concrete goals of the purpose was to create an event-driven application with a GUI. This goal has been 
 achieved since the application certainly is event-driven as the user interacts with buttons, radio buttons, and
-combo boxes in the GUI. The GUI has several views with lots of different graphical components which the user interacts 
+combo boxes in the GUI. The GUI has several views with many graphical components that the user interacts 
 with during the different levels. Another concrete goal was to include at least six different Swing components and four 
 different layouts. This has also been achieved to the highest degree. The swing components used were as mentioned in
 the procedures; `JFrame`, `JLabel`, `JRadioButton`, `JCombobox`, `JPanel`, `ImageIcon`, `JButton`, and `JTextField`.
@@ -180,116 +180,72 @@ components, such as the `JButton` and `JPanel` were frequently made from their o
 This allowed for generic looks in the GUI with significantly less code than if the attributes had been set each time 
 a class would have made a button or panel.
 
+The MVC pattern was the foundation for this project, dividing the entities into the roles and packages of 
+models/views/controllers. Entities not adhering to any of the roles, like factories, the `Constants` interface, and the 
+`WeaponDistributor` were placed in the factories package respectively the support package. As mentioned in the 
+procedures section, the controller stood for the communication between the models and the views. The views created 
+the GUI and the models contained the data and performed the calculations. The goal of structuring the project 
+according to the MVC pattern has thereby been fulfilled. The `MainModel` class methods for several levels, if the 
+levels of the game had contained more and larger methods, the `MainModel` could have been divided into one model per
+level to increase the readability of the code. By creating the `Constants` interface and placing all common variables 
+like names, colors, and combat stats in it, the flexibility of the code increases, and redundancies are somewhat 
+avoided. It makes changing these values easier, and the program becomes more scalable.
 
-to what level of completeness? 
+Another concrete goal was to implement at least three uses of Streams API. Streams API can be used for various purposes,
+in this project `stream.reduce()`, `stream().sorted().collect(Collectors.toList())`, and `stream().filter()` were used
+as described in the procedures section. Using the Streams API significantly shortens and improves the readability of 
+the code.
 
+The goal of having a minimum of five concurrent processes, where at least 3 were synchronized was fulfilled in the 
+producer/consumer pattern. Seven threads competed in the simulation of healing the dragon, six taking health, and one 
+healing. When multiple synchronized threads are used, thread safety is of utter importance for avoiding concurrency 
+issues. This can be done in a variety of ways, by adding locks, using atomic integers, adding synchronized blocks,
+synchronizing whole methods, etc. As declaring methods synchronized adds a built-in lock, this was chosen for the 
+critical methods of the program as the methods with possible concurrency risks did not have many lines of code. 
+If they had been larger with more or broader functionality, perhaps a synchronized block had been preferable, or using 
+an atomic integer. Often when using the producer/consumer pattern, the shared resources are some form of objects, 
+and a blocking queue is used to avoid concurrency issues. However, since the shared resource in this application is an 
+integer, a blocking queue was not necessary here. The entire healing simulation could easily be enhanced to add more 
+information about the fight and show this to the user. Information about which monster was using which weapon, how much
+damage was done by whom, which monsters were resting, etc. could have been visualized in the GUI or printed in the 
+console/to a log file, this was not implemented as the solution as it fulfills the goals, but it is a way to build on 
+to the application later.
 
-SNACKA OM FILSTRUKTUR, VARFÖR JAG LA KLASSERNA DÄR JAG LA DEM
-
-MVC
-
-"lab 3
-The MVC pattern was the foundation for this laboration. One of the benefits with using the MVC pattern is that it is
-easily planned. The interface code belongs in the view, the data in the model, and the communication and requests in
-the controller. This increases the scalability of the application.
-The `View` class contains a lot of different sizes, dimensions and a few colors. If this was a larger application
-where they would be reused, they should be put in constants, considering the size of this application, that is not
-necessary. An action listener was chosen for communication between the View and the Controller.  To create the GUI,
-different Swing layouts and components were used.
-Streams API can be used for a range of things, here the `stream.reduce()` method was used which was very convenient
-for calculating the sum of the user input, rather than doing it in a loop. In conclusion, this laboration could have
-been a lot larger with parallel processing, multiple Views etc. Though it is a simple solution, it fulfills the
-concrete goals of the purpose, creating a program using Swing, MVC, and streams API.
-"
-
-
-
-hade det varit ett större spel hade man kunnat dela in main model mer på olika levels.
-kunda ha delat upp model i de olika levels? särskilt om man har mer avancerade levels.
-
-* Implement at least three uses of Streams API.
-  också kirrat
-  stream.reduce(), stream().sorted().collect(Collectors.toList()), stream().filter()
-
-
-lägger in allt som kan ändras i spelet i constants för att det ska finnas på ett ställe och vara lätt
-snacka om att det är bra med att ha alla konstanter på ett ställe, att man kanske även kan lägga in alla
-strängar här, så det endast är ett ställe att uppdatera på om man gör ändringar i spelet.
-notera att man inte kan ge vaelarya hur mycket hälsa som helst eller göra ordlistan för lång utan att fucka UIt.
-
-
-* Use the seven design patterns mentioned above.
-  japp
-
-
-vaelarya which is an observable could be implemented as a singelton... blablabla
-"lab2
-The observer pattern was one of the main designs of this assignment. There are slightly different variations of the
-observer pattern, and for this laboration, the pattern described in the course literature was used. What could be
-slightly confusing about the observer pattern is that the observer `Manager` has a `ResourcePool` when the Observable
-interface has an observer interface, see figure 1. But since the object that is being observed is already passed into
-the constructor, we do not have to pass anything in when we call `update()`. Usually, the observer pattern´s observable
+The observer pattern lets a subject/observable be observed by its observers and is often used in even-driven software. 
+In this program, the pattern was implemented to let the `Controller` be aware of the changed state of the health 
+of `Vaelarya`, and then communicate it to the views which updated the GUI. Usually, the observer pattern´s observable
 also has a `removeObserver()` method. However, such a method was not necessary for this program since no observer ever
-needs to be removed.
-The producer/consumer pattern is however not implemented in the code exactly as described in the course literature
-since the resource pool consists of an integer, not tasks, which makes a queue or a blockingqueue that is commonly used
-in this pattern redundant.
-As threads are used in the program, the code had to be made thread safe in order to not have concurrency issues.
-This can be done in a few different ways, by adding locks, adding synchronized blocks, synchronizing whole methods etc.
-Declaring methods synchronized adds Java built in locks and this was chosen for the program as the methods with
-possible concurrency risks did not have many lines of code. If they had been larger with more or broader functionality,
-perhaps a synchronized block had been preferable. `Manager:update()`, `ResourcePool:addResources()`,
-`ResourcePool:removeResources()`, and `ResourcePool:getAmountOfResources()` were made synchronized since these are
-dependent on that only one thread at a time run the method, or else concurrency issues may occur, for example the
-amount of resources in the pool will be incorrect if two threads add resources at the same time.
-"
+needs to be removed. Currently, the program only has one observer, and the `Vaelarya::notifyObservers()` method
+loops over a list of the only observer when notifying. This might seem unnecessary, but it allows for easily adding 
+multiple observers would the program be developed further. Observables are often good to implement as Singletons
+and instantiate by the classes using them. `Vaelarya` was not implemented as a Singleton, and to solve the communication 
+between it, the `Controller`, and the producer/consumers, a new `Vaelarya` was created in the controller and passed
+to the threads.
 
+Object pools reuse objects and are often used when the cost of initiating a resource is high. In this project, the cost 
+of initiating a `Weapon` is not high but the object pool `WeaponDistributor` demonstrates the object pool design
+pattern (as a distribution service), which was one of the objectives of this project. The distributor has a pool of 
+weapons for the monsters to use when fighting the dragon. It keeps track of these weapons and lends them to the 
+monsters, who return them when finished with them. Since multiple threads are trying to access the pool simultaneously, 
+it is important to make it thread-safe. As mentioned above in the procedures section, this was a problem that occurred 
+during development and was solved with a blocking queue. This meant that the `borrowWeapon()` and 
+`returnWeapon(Weapon weapon)` methods did not need to be declared synchronized.
 
+The factory patterns encapsulate the creation of objects. The abstract factory pattern provides an interface for 
+creating multiple concrete products. In this project, the abstract factory has methods for creating concrete characters 
+and concrete colors used by the application. All creation of concrete products are randomized in the different 
+factories, this could of course be specified instead. However, randomization suites the purpose of the game better as 
+random monsters are created for each level and the third level is based upon that the user randomized several characters 
+with different colors to be used in the background. 
 
-template method: snacka om hooks
+The template method pattern implemented in this project defines the structure of the GUI. It has a set of abstract 
+methods used to compose the GUI. It lets the subclasses, which are each of the different views the user encounters, 
+define the content and the concrete implementation of these. By adding hooks to each method, the subclasses can 
+choose to exclude any of the methods if they so choose. This gives the GUI a set frame for cohesiveness but still 
+provides flexibility to the design.
 
-factory/abstract factory: fett förvirrande med simple factory, istället för att randomiza fram allt skulle man kunna specificera
-allt. Producerar massa objekt, här får man vara försiktig
-
-prod/cons: oftarst delade resurser i en blocking queue men jag kör en int. snacka om volitile boolean i trådarna. kunde skrivit ut mer info
-i consol/till en log/i GUIt om fighten, vilka monster som använde vilket vapen, vilka som vilade etc
-* Have a minimum of five concurrent processes, where at least 3 are synchronized.
-  visas i level 5 med simuleringen av draken där 7 trådar accessar health. concrete goal!
-
-observer: har ofta en remove observer men den behövdes inte för programmet. har bara en observer, trots det gör jag en lista
-och loopar ööver den vid uppdatering vilket kan kännas lite onödigt, however det är bra för framtiden om man vill bygga
-vidare på programmet och lägga till fler. Hade kanske kunnat lägga vaelarya inne i main model
-istället, men nu blev det tydligt.
-
-When multible synchrinized threads are used, thread safty is of utter importance...
-
-object pool pattern:
-object pool pattern används ofta med ett annat syfte, när kostnaden av att initiera
-ett object är väldigt hög, och därmed återbrukas dem. Här är kanske kostnaden inte
-så hög för just klassen weapon men det demonstrerar en object pool pattern.
-så det fulfillar purpose.
-weapon distributor måste vara thread-safe med en blocking queue
-Object pool och producer/consumer från object pool discussion:
-"The other way we could approach this would be to use AtomicInteger rather than primitive
-int or the base Integer object. This will actually guarantee complete thread safety for us
-and make sure that all operations are done atomically, in an ordered fashion. The tradeoff 
-here is that we introduce a little more overhead since it involves Compare and Swap 
-Instructions, but this is a small price to pay for the benefits of atomic abstraction. 
-One could also make a strong case for added cohesion with this approach since all matters
-surrounding concurrency are isolated to one entity rather than spread over multiple. 
-In our case we only have a single method which modifies the value, but you could perhaps 
-imagine having several procedures each making different modifications.
-So by using AtomicInteger we no longer need to declare synchronized blocks explicitly.
-
-Whether to use volatile together with explicit synchronization or use AtomicInteger are for
-the most part arbitrary, but there are some occasions where one should be preferred over the 
-other. The former can become an issue in multi-core systems where each CPU runs in isolation.
-The JVM is rather poor in ensuring visibility between closed subsystems, especially when each 
-one run instructions from cached memory. But at the same time we also have some minor
-overhead with atomic datatypes which could impact performance. For our design we go with 
-the first alternative but the only reason is to get a better separation of concerns, for
-learning purposes."
-
+By implementing the seven different design patterns, and completing all the concrete goals, the purpose has been 
+fulfilled.
 
 ### Execution of the program
 When running the program, the user first encounters a general start screen with brief information about the game.
