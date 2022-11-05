@@ -3,7 +3,7 @@ package com.dt181g.project.views;
 import javax.swing.*;
 
 /**
- * Base class of the GUI panel creation, makes the panel that is displayed by the frame,
+ * Abstract base class of the GUI panel creation, makes the panel that is displayed by the frame,
  * implemented with the template method design pattern.
  * @author Emma Pesjak
  */

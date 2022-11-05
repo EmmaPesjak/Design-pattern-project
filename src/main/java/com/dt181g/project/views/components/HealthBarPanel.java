@@ -24,7 +24,7 @@ public class HealthBarPanel extends JPanel {
     }
 
     /**
-     * Overridden method responsible for painting the health bar with the current health.
+     * Overridden method responsible for painting the health bar with the color and current health amount.
      */
     @Override
     public void paint(Graphics g) {

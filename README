@@ -61,9 +61,10 @@ template method pattern described in greater detail in the subcategory below. Th
 event-driven GUI, utilizing the Constants interface for colors and fonts. They used Swing components such as
 `JLabel`, `JRadioButton`, `JCombobox`, `JPanel`, `ImageIcon`, `JButton`, and `JTextField`. They also used the
 Swing layouts `GridLayout`, `BorderLayout`, `GridBagLayout`, `BoxLayout`, and `FlowLayout`. A problem that occurred 
-during the creation of the JAR file was that the images used in the application were not displayed in the GUI. 
-This was solved by placing all image .pngs in the resources directory and adding an `ImageReader` class. This class 
-created JLabels with the ImageIcons from the URL by the class loader.
+during the creation of the JAR file using the command "mvn clean verify" in the terminal, was that the images used 
+in the application were not displayed in the GUI when the JAR was executed. This was solved by placing all image 
+.pngs in the resources directory and adding an `ImageReader` class. This class created JLabels with the ImageIcons 
+from the URL by the class loader.
 
 The `Controller` was responsible for communication with the models and the views, accessing data from the view,
 telling the model to calculate the data, and then telling the view to update. The constructor initiated the different
@@ -192,9 +193,15 @@ like names, colors, and combat stats in it, the flexibility of the code increase
 avoided. It makes changing these values easier, and the program becomes more scalable.
 
 Another concrete goal was to implement at least three uses of Streams API. Streams API can be used for various purposes,
-in this project `stream.reduce()`, `stream().sorted().collect(Collectors.toList())`, and `stream().filter()` were used
+in this project `stream.reduce()`, `stream().filter()`, and `stream().sorted().collect(Collectors.toList())` were used
 as described in the procedures section. Using the Streams API significantly shortens and improves the readability of 
-the code.
+the code. As the `MainModel::calculateLevel2(List<Integer> numbs)` takes a list of integers, the 
+`stream.reduce(0, Integer::sum)` sums these up in one line of code. An alternative would be to declare a sum variable,
+loop over the list and add each integer to the sum variable. This would require multiple lines of code. The same goes
+for `MainModel::countWordsLevel1()`, where `stream().filter()` was used instead of looping over a list counting words
+longer than five letters and storing the sum in some variable. The third use of Streams API which was used in
+`MainModel::sortLevel1Alphabetically()`. It provided one line of code that sorted the list of words alphabetically and
+collected the items to a new list. The list could then be joined into a string for output in the GUI.
 
 The goal of having a minimum of five concurrent processes, where at least 3 were synchronized was fulfilled in the 
 producer/consumer pattern. Seven threads competed in the simulation of healing the dragon, six taking health, and one 
@@ -232,19 +239,22 @@ during development and was solved with a blocking queue. This meant that the `bo
 `returnWeapon(Weapon weapon)` methods did not need to be declared synchronized.
 
 The factory patterns encapsulate the creation of objects. The abstract factory pattern provides an interface for 
-creating multiple concrete products. In this project, the abstract factory has methods for creating concrete characters 
-and concrete colors used by the application. All creation of concrete products are randomized in the different 
-factories, this could of course be specified instead. However, randomization suites the purpose of the game better as 
-random monsters are created for each level and the third level is based upon that the user randomized several characters 
-with different colors to be used in the background. 
+creating multiple concrete products without specifying the concrete classes. In this project, the abstract factory 
+has methods for creating concrete characters and concrete colors used by the application. It uses the factory 
+method pattern to implement these. All creation of concrete products are randomized in the different factories, this 
+could of course be specified instead. However, randomization suites the purpose of the game better. Random monsters 
+are created for each level and the third level is based upon that the user randomizes several characters with different 
+colors to be used in the background. Adding both new subclasses and products are easy with the factory patterns.
+Would this application be further developed in the future, lots of functionality could be added to the different classes
+to enhance the game. Perhaps adding attributes, stats, or gear to the monsters for more advanced levels.
 
 The template method pattern implemented in this project defines the structure of the GUI. It has a set of abstract 
 methods used to compose the GUI. It lets the subclasses, which are each of the different views the user encounters, 
 define the content and the concrete implementation of these. By adding hooks to each method, the subclasses can 
 choose to exclude any of the methods if they so choose. This gives the GUI a set frame for cohesiveness but still 
-provides flexibility to the design.
+provides flexibility to the design. Creating more levels is easy by simply creating more subclasses.
 
-By implementing the seven different design patterns, and completing all the concrete goals, the purpose has been 
+By implementing the seven different design patterns and completing all the concrete goals the purpose has been 
 fulfilled.
 
 ### Execution of the program

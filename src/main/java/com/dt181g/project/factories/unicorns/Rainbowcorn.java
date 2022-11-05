@@ -16,5 +16,4 @@ public class Rainbowcorn extends BaseCharacter {
         setName(Constants.NAME_RAINBOWCORN);
         setImg(Constants.IMAGE_RAINBOWCORN);
     }
-
 }

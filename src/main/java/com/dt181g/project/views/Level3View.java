@@ -54,23 +54,23 @@ public class Level3View extends BaseView {
 
     /**
      * Method for updating level 3 displaying the five produced characters with backgrounds.
-     * @param charLists is the deque of the randomized characters lists of string image file paths and names.
+     * @param charLists is the deque of the characters lists of string image file paths and names.
      * @param colors is the deque of colors.
      */
     public void updateLevel3(Deque<List<String>> charLists, Deque<Color> colors) {
         centerPanel.removeAll();
-        for (Color color: colors) {
-            JPanel panel = new JPanel();
-            panel.setBackground(color);
-            List<String> character = charLists.pollFirst();
+        for (Color color: colors) {         // Loop over the deque of colors.
+            JPanel panel = new JPanel();    // Create a panel.
+            panel.setBackground(color);     // Set the background.
+            List<String> character = charLists.pollFirst();     // Poll a character.
             assert character != null;
-            String image = character.get(0);
-            String name = character.get(1);
-            panel.add(ImageReader.getImageFromFile(image, this));
+            String image = character.get(0);                    // Get the image path file.
+            String name = character.get(1);                     // Get the name.
+            panel.add(ImageReader.getImageFromFile(image, this)); // Add the image to the panel.
             JLabel nameLabel = new JLabel(name);
             nameLabel.setFont(Constants.FONT_TEXT);
             nameLabel.setForeground(Constants.COLOR_TEXT);
-            panel.add(nameLabel);
+            panel.add(nameLabel);                               // Add the name to the panel.
             centerPanel.add(panel);
         }
         centerPanel.revalidate();

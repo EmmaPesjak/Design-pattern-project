@@ -1,5 +1,9 @@
 package com.dt181g.project.factories;
 
+/**
+ * Abstract base class of the characters in the game.
+ * @author Emma Pesjak
+ */
 public abstract class BaseCharacter {
 
     private String name;
