@@ -17,12 +17,12 @@ use of design patterns. While having the entire code structured according to the
 pattern, also incorporating the observer, object pool, producer/consumer, factory method, abstract factory,
 and template method patterns.
 
-To summarize the concrete goals:
-* Create an event-driven application with a GUI.
-* Have a minimum of five concurrent processes, where at least 3 are synchronized.
-* Include at least six different Swing components and four different layouts.
-* Use the seven design patterns mentioned above.
-* Implement at least three uses of Streams API.
+To summarize the concrete goals:<br>
+1. Create an event-driven application with a GUI. 
+2. Have a minimum of five concurrent processes, where at least 3 are synchronized. 
+3. Include at least six different Swing components and four different layouts. 
+4. Use the seven design patterns mentioned above. 
+5. Implement at least three uses of Streams API.
 
 
 ## Procedures
@@ -181,12 +181,17 @@ components, such as the `JButton` and `JPanel` were frequently made from their o
 This allowed for generic looks in the GUI with significantly less code than if the attributes had been set each time 
 a class would have made a button or panel.
 
-The MVC pattern was the foundation for this project, dividing the entities into the roles and packages of 
+The MVC pattern was the foundation architecture for this project, dividing the entities into the roles and packages of 
 models/views/controllers. Entities not adhering to any of the roles, like factories, the `Constants` interface, and the 
 `WeaponDistributor` were placed in the factories package respectively the support package. As mentioned in the 
 procedures section, the controller stood for the communication between the models and the views. The views created 
 the GUI and the models contained the data and performed the calculations. The goal of structuring the project 
-according to the MVC pattern has thereby been fulfilled. The `MainModel` class methods for several levels, if the 
+according to the MVC pattern has thereby been fulfilled. The controller handles multiple views and models. All of 
+these are created and used by the controller. Alternatively, the creation could be taken out of the controller and 
+instead supplied by some other class with a responsibility of creating the entities. However, this was not done....
+
+The `MainModel` class consisted of methods for several levels,
+if the 
 levels of the game had contained more and larger methods, the `MainModel` could have been divided into one model per
 level to increase the readability of the code. By creating the `Constants` interface and placing all common variables 
 like names, colors, and combat stats in it, the flexibility of the code increases, and redundancies are somewhat 
@@ -293,8 +298,6 @@ user can also quit the program by clicking on the 'X' in the upper right corner.
 
 ![](End.PNG)
 <br>Figure 12: Image of the end screen.
-
-
 
 ### Personal reflections
 This course has given me a deeper knowledge of OOP and Java, dabbling into pom and JAR files, creating GUI 
