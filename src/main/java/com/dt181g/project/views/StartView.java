@@ -15,13 +15,13 @@ import java.awt.event.ActionListener;
  * @author Emma Pesjak
  */
 public class StartView extends BaseView {
-    ViewFrame viewFrame;
-    JPanel bigPanel = new JPanel();
-    MyPanel topPanel = new MyPanel();
-    MyPanel centerPanel = new MyPanel();
-    MyPanel bottomPanel = new MyPanel();
-    MyButton myButton = new MyButton("Start");
-    ActionListener listener;
+    private final ViewFrame viewFrame;
+    private final JPanel bigPanel = new JPanel();
+    private final MyPanel topPanel = new MyPanel();
+    private final MyPanel centerPanel = new MyPanel();
+    private final MyPanel bottomPanel = new MyPanel();
+    private final MyButton myButton = new MyButton("Start");
+    private final ActionListener listener;
 
     /**
      * Constructor which sets the layout and takes needed GUI arguments.
@@ -38,7 +38,7 @@ public class StartView extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addTopPanel() {
+    public void addTopPanel() {
         JLabel title = new JLabel("The Monster Game");
         title.setFont(Constants.FONT_BIG);
         title.setForeground(Constants.COLOR_TEXT);
@@ -50,7 +50,7 @@ public class StartView extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addCenterPanel() {
+    public void addCenterPanel() {
         centerPanel.setPreferredSize(new Dimension(1000, 400));
         centerPanel.setLayout(new GridLayout(2,2, 5, 5));
         centerPanel.add(ImageReader.getImageFromFile(Constants.IMAGE_YELLOW_MONSTER, this));
@@ -64,7 +64,7 @@ public class StartView extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addBottomPanel() {
+    public void addBottomPanel() {
         bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS));
         JLabel info = new JLabel("<html>This game takes you through 5 thrilling levels where you<br>encounter" +
                 " monsters, some are friendly and some are very<br>dangerous. Thread carefully hero. </html>");
@@ -82,7 +82,7 @@ public class StartView extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addButtonListener() {
+    public void addButtonListener() {
         myButton.addActionListener(listener);
     }
 

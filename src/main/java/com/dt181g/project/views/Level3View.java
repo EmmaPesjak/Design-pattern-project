@@ -81,7 +81,7 @@ public class Level3View extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addTopPanel() {
+    public void addTopPanel() {
         JLabel label = new JLabel("<html>" + name + " is my name, nice to meet you hero. This is" +
                 " my<br>abstract factory. It creates moster factories and unicorn<br>factories. " +
                 "Each factory produces colors and characters.<br>" +
@@ -101,7 +101,7 @@ public class Level3View extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addCenterPanel() {
+    public void addCenterPanel() {
         bigPanel.add(centerPanel, BorderLayout.CENTER);
         centerPanel.setPreferredSize(new Dimension(1000, 300));
         centerPanel.setBorder(new EmptyBorder(150, 5, 5,5));
@@ -111,7 +111,7 @@ public class Level3View extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addBottomPanel() {
+    public void addBottomPanel() {
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
         bottomPanel.add(produceBtn);
@@ -122,7 +122,7 @@ public class Level3View extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addButtonListener() {
+    public void addButtonListener() {
         nextLevelBtn.addActionListener(nextListener);
     }
 
@@ -130,7 +130,7 @@ public class Level3View extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void updatePanel() {
+    public void updatePanel() {
         this.revalidate();
         this.repaint();
         viewFrame.updateView(bigPanel);

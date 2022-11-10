@@ -19,8 +19,8 @@ import java.util.stream.Collectors;
  */
 public class MainModel {
 
-    AbstractFactory monsterFactory = new MonsterFactory();
-    AbstractFactory unicornFactory = new UnicornFactory();
+    private final AbstractFactory monsterFactory = new MonsterFactory();
+    private final AbstractFactory unicornFactory = new UnicornFactory();
     private final List<String> words = Constants.STRING_LIST_LVL1;
 
     /**

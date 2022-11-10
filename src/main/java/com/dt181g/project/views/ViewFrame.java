@@ -10,7 +10,7 @@ import javax.swing.*;
  */
 public class ViewFrame extends JFrame {
 
-    JPanel panel = new JPanel();
+    private final JPanel panel = new JPanel();
 
     /**
      * Constructor which sets the layout, size, background, and enabling program shut down of the GUI frame.

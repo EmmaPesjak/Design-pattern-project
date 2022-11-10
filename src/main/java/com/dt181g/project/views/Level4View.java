@@ -61,7 +61,7 @@ public class Level4View extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addTopPanel() {
+    public void addTopPanel() {
         JLabel label = new JLabel("<html>Hi, my name is " + name + " the Ugly Flesh Beast, long name I know." +
                 "<br>I lost my brother Rothead so now I'm sad. Can you cheer me up<br>by solving my riddle? " +
                 "What do you call a monster with a high IQ? </html>");
@@ -75,7 +75,7 @@ public class Level4View extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addCenterPanel() {
+    public void addCenterPanel() {
         centerPanel.setPreferredSize(new Dimension(1000, 400));
         centerPanel.setBorder(new EmptyBorder(120, 5, 5,5));
         ButtonGroup buttonGroup = new ButtonGroup();
@@ -108,7 +108,7 @@ public class Level4View extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addBottomPanel() {
+    public void addBottomPanel() {
         bottomPanel.add(myButton);
         myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);
@@ -118,7 +118,7 @@ public class Level4View extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addButtonListener() {
+    public void addButtonListener() {
         myButton.addActionListener(listener);
     }
 

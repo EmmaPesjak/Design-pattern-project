@@ -89,7 +89,7 @@ public class Level1View extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addTopPanel() {
+    public void addTopPanel() {
         JLabel label = new JLabel("Hi, I'm " + name + ". I like words. " +
                 "These are my words. Want to play?");
         label.setFont(Constants.FONT_TEXT);
@@ -102,7 +102,7 @@ public class Level1View extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addCenterPanel() {
+    public void addCenterPanel() {
         centerPanel.setPreferredSize(new Dimension(1000, 470));
         centerPanel.add(ImageReader.getImageFromFile(monsterImg, this));
         centerPanel.add(comboBox);
@@ -118,7 +118,7 @@ public class Level1View extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addBottomPanel() {
+    public void addBottomPanel() {
         bottomPanel.add(myButton);
         myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);
@@ -128,7 +128,7 @@ public class Level1View extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addButtonListener() {
+    public void addButtonListener() {
         myButton.addActionListener(listener);
     }
 

@@ -45,7 +45,7 @@ public class EndView extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addTopPanel() {
+    public void addTopPanel() {
         topPanel.removeAll();
         JLabel completed = new JLabel(text);
         completed.setFont(Constants.FONT_BIG);
@@ -58,7 +58,7 @@ public class EndView extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addCenterPanel() {
+    public void addCenterPanel() {
         centerPanel.removeAll();
         centerPanel.setPreferredSize(new Dimension(1000, 470));
         centerPanel.setBorder(new EmptyBorder(120, 5, 5,5));
@@ -70,7 +70,7 @@ public class EndView extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addBottomPanel() {
+    public void addBottomPanel() {
         bottomPanel.removeAll();
         bottomPanel.add(myButton);
         myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -81,7 +81,7 @@ public class EndView extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addButtonListener() {
+    public void addButtonListener() {
         myButton.addActionListener(listener);
     }
 

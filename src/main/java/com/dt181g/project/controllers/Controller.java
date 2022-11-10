@@ -21,8 +21,8 @@ import java.util.List;
  */
 public class Controller implements Observer {
 
-    private final MainModel mainModel;
-    private final ViewFrame viewFrame;
+    private final MainModel mainModel = new MainModel();
+    private final ViewFrame viewFrame = new ViewFrame();
     private final Level1View level1View;
     private final Level2View level2View;
     private final Level3View level3View;
@@ -38,13 +38,8 @@ public class Controller implements Observer {
 
     /**
      * Controller constructor, responsible for initiating the different level views and displaying the start view.
-     * @param viewFrame is the GUI frame of the application.
-     * @param mainModel is the main model of the application.
      */
-    public Controller(ViewFrame viewFrame, MainModel mainModel) {
-        this.viewFrame = viewFrame;
-        this.mainModel = mainModel;
-
+    public Controller() {
         // Create monsters for each level.
         BaseCharacter monster1 = mainModel.getRandomMonster();
         BaseCharacter monster2 = mainModel.getRandomMonster();
@@ -99,11 +94,12 @@ public class Controller implements Observer {
      * Method for terminating damage and heal threads when the simulation is completed.
      */
     public void terminateThreads() {
-        healThread.stopThread();
-
-        for (DamageThread thread : damageThreads) {
-            thread.stopThread();
-        }
+        EventQueue.invokeLater(() -> {      // Execute method on EDT.
+            healThread.stopThread();
+            for (DamageThread thread : damageThreads) {
+                thread.stopThread();
+            }
+        });
     }
 
     /**
@@ -112,22 +108,24 @@ public class Controller implements Observer {
      */
     @Override
     public synchronized void updateObservers() {
-        int amountOfHealth = this.vaelarya.getHealth();
+        EventQueue.invokeLater(() -> {      // Execute method on EDT.
+            int amountOfHealth = this.vaelarya.getHealth();
 
-        if (amountOfHealth > Constants.VAELARYA_UPPER_HEALTH) {
-            terminateThreads();
-            timer.stop();
-            EndView endView = new EndView(viewFrame, new QuitButtonListener(),
-                    "You completed the game! Well done!", Constants.IMAGE_STAR);
-            endView.makePanel();
+            if (amountOfHealth > Constants.VAELARYA_UPPER_HEALTH) {
+                terminateThreads();
+                timer.stop();
+                EndView endView = new EndView(viewFrame, new QuitButtonListener(),
+                        "You completed the game! Well done!", Constants.IMAGE_STAR);
+                endView.makePanel();
 
-        } else if (amountOfHealth <= 0) {
-            terminateThreads();
-            timer.stop();
-            EndView endView = new EndView(viewFrame, new QuitButtonListener(),
-                    "Game Over!", Constants.IMAGE_RED_MONSTER);
-            endView.makePanel();
-        }
+            } else if (amountOfHealth <= 0) {
+                terminateThreads();
+                timer.stop();
+                EndView endView = new EndView(viewFrame, new QuitButtonListener(),
+                        "Game Over!", Constants.IMAGE_RED_MONSTER);
+                endView.makePanel();
+            }
+        });
     }
 
     /**

@@ -64,7 +64,7 @@ public class Level5View extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addTopPanel() {
+    public void addTopPanel() {
         topPanel.removeAll();
         JLabel label = new JLabel("<html>Hero! I am Vaelarya Vision Walker, the mighty dragon. A monster<br>" +
                 "named " + name + " and his five friends are attacking me! Luckily<br>they only have a pool of three " +
@@ -80,7 +80,7 @@ public class Level5View extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addCenterPanel() {
+    public void addCenterPanel() {
         centerPanel.removeAll();
         centerPanel.setPreferredSize(new Dimension(1000, 300));
         centerPanel.setLayout(new GridLayout(2,2, 5, 5));
@@ -95,7 +95,7 @@ public class Level5View extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addBottomPanel() {
+    public void addBottomPanel() {
         bottomPanel.removeAll();
         bottomPanel.setPreferredSize(new Dimension(1000, 120));
         bottomPanel.add(myButton);
@@ -117,7 +117,7 @@ public class Level5View extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addButtonListener() {
+    public void addButtonListener() {
         myButton.addActionListener(listener);
     }
 }

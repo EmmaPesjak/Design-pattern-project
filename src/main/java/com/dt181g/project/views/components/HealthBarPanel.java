@@ -11,8 +11,8 @@ import java.awt.*;
  */
 public class HealthBarPanel extends JPanel {
 
-    int amountOfHealth;
-    Color color;
+    private final int amountOfHealth;
+    private final Color color;
 
     /**
      * Constructor that sets the amount of health.

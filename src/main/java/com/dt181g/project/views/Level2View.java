@@ -60,7 +60,7 @@ public class Level2View extends BaseView {
      * {@inheritDoc}
      */
     @Override
-     void addTopPanel() {
+    public void addTopPanel() {
         JLabel label = new JLabel("<html>Well hello there Hero. I might look super scary but I'm a nice monster" +
                 "<br>named " + name + ". Can you help me with a problem? I've got three buckets" +
                 "<br> to carry my apples in, I need a total amount of " + Constants.RESULT_LVL2 +
@@ -75,7 +75,7 @@ public class Level2View extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addCenterPanel() {
+    public void addCenterPanel() {
         centerPanel.setPreferredSize(new Dimension(900, 400));
         centerPanel.setLayout(new GridLayout(3,3, 5, 0));
         centerPanel.add(ImageReader.getImageFromFile(monsterImg, this));
@@ -98,7 +98,7 @@ public class Level2View extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addBottomPanel() {
+    public void addBottomPanel() {
         bottomPanel.add(myButton);
         myButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         bigPanel.add(bottomPanel, BorderLayout.SOUTH);
@@ -108,7 +108,7 @@ public class Level2View extends BaseView {
      * {@inheritDoc}
      */
     @Override
-    void addButtonListener() {
+    public void addButtonListener() {
         myButton.addActionListener(listener);
     }
 

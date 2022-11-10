@@ -29,10 +29,10 @@ To summarize the concrete goals:
 The MVC pattern was the base structure and architecture used for this project. Different packages for models, views, 
 and controllers contained almost all the classes and interfaces. A `Constants` interface was created in the support 
 package. This interface contained defined constant values used throughout the program by the different classes.
-A `Project` class directly under the project package was the program's main starting point and initiated the MVC start 
-entities. The game consisted of 5 different levels with various implementations to fulfill all the project 
-requirements. Each level was represented by a monster, read the 'Execution of the program' section below for more 
-information about the levels. 
+A `Project` class directly under the project package was the program's main starting point and initiated the controller.
+The game consisted of 5 different levels with various implementations to fulfill all the project requirements. 
+Each level was represented by a monster, read the 'Execution of the program' section below for more information 
+about the levels. 
 
 The `MainModel` class was responsible for handling the application's data, performing calculations, and 
 communicating with the controller. The `MainModel` class was completely in charge of the logic for levels 1 and 2, 
@@ -258,19 +258,43 @@ By implementing the seven different design patterns and completing all the concr
 fulfilled.
 
 ### Execution of the program
-When running the program, the user first encounters a general start screen with brief information about the game.
-By pressing the 'start' button, the game then takes the user through five different levels, meeting random monsters on
-each level. Level 1 presents the user with a list of words, which can be sorted or counted based on the user's selection 
-in a combo box. By pressing the 'Next level' button, the game moves on to level 2. At this level, the user needs to help
-the monster to place a certain amount of apples into different buckets. If the answer is correct, level 3 starts.
-Here, the user can produce random monsters and unicorns from an abstract factory. Clicking on the 'Produce' button 
-creates five characters. The user can proceed to the next level at any time by pressing the 'Next level' button.
-Level 4 displays a riddle for the user to answer, if they do so correctly, they proceed to level 5. At this level,
-the user meets Vaelarya Vision Walker, a dragon in need of help from evil monsters. By pressing the 'Channel crystal'
-button, a simulation begins where Vaelarya is healed by the user and damaged by the monsters. When Vealarya is either
-dead (0 hp or less) or completely healed to her maximum hp, the simulation ends automatically. The user then comes to 
-an end view where there is a button for quitting the game and thereby shutting down the program. At any time during 
-the game, the user can also quit the program by clicking on the 'X' in the upper right corner.
+When running the program, the user first encounters a general start screen with brief information about the game, see 
+figure 6. By pressing the 'start' button, the game then takes the user through five different levels, meeting random 
+monsters on each level. Level 1, see figure 7, presents the user with a list of words, which can be sorted or counted 
+based on the user's selection in a combo box. By pressing the 'Next level' button, the game moves on to level 2, see 
+figure 8. At this level, the user needs to help the monster to place a certain amount of apples into different buckets.
+If the answer is correct, level 3 starts. Here, the user can produce random monsters and unicorns from an abstract 
+factory. Clicking on the 'Produce' button creates five characters, see figure 9. The user can proceed to the next level 
+at any time by pressing the 'Next level' button. Level 4 displays a riddle for the user to answer, see figure 10. If 
+they do so correctly, they proceed to level 5. At this level, the user meets Vaelarya Vision Walker, a dragon in need 
+of help from evil monsters, see figure 11. By pressing the 'Channel crystal' button, a simulation begins where 
+Vaelarya is healed by the user and damaged by the monsters. When Vealarya is either dead (0 hp or less) or completely 
+healed to her maximum hp, the simulation ends automatically. The user then comes to an end view where there is a 
+button for quitting the game and thereby shutting down the program, see figure 12. At any time during the game, the 
+user can also quit the program by clicking on the 'X' in the upper right corner.
+
+![](Start.PNG)
+<br>Figure 6: Image of the start screen.
+
+![](Lvl1.PNG)
+<br>Figure 7: Image of level 1.
+
+![](Lvl2.PNG)
+<br>Figure 8: Image of level 2.
+
+![](Lvl3.PNG)
+<br>Figure 9: Image of level 3.
+
+![](Lvl4.PNG)
+<br>Figure 10: Image of level 4.
+
+![](Lvl5.PNG)
+<br>Figure 11: Image of level 5.
+
+![](End.PNG)
+<br>Figure 12: Image of the end screen.
+
+
 
 ### Personal reflections
 This course has given me a deeper knowledge of OOP and Java, dabbling into pom and JAR files, creating GUI 
