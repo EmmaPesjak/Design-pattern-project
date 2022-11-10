@@ -18,11 +18,11 @@ pattern, also incorporating the observer, object pool, producer/consumer, factor
 and template method patterns.
 
 To summarize the concrete goals:<br>
-1. Create an event-driven application with a GUI. 
-2. Have a minimum of five concurrent processes, where at least 3 are synchronized. 
-3. Include at least six different Swing components and four different layouts. 
-4. Use the seven design patterns mentioned above. 
-5. Implement at least three uses of Streams API.
+* Create an event-driven application with a GUI.<br>
+* Have a minimum of five concurrent processes, where at least 3 are synchronized.<br>
+* Include at least six different Swing components and four different layouts.<br>
+* Use the seven design patterns mentioned above.<br>
+* Implement at least three uses of Streams API.<br>
 
 
 ## Procedures
@@ -188,14 +188,12 @@ procedures section, the controller stood for the communication between the model
 the GUI and the models contained the data and performed the calculations. The goal of structuring the project 
 according to the MVC pattern has thereby been fulfilled. The controller handles multiple views and models. All of 
 these are created and used by the controller. Alternatively, the creation could be taken out of the controller and 
-instead supplied by some other class with a responsibility of creating the entities. However, this was not done....
-
-The `MainModel` class consisted of methods for several levels,
-if the 
-levels of the game had contained more and larger methods, the `MainModel` could have been divided into one model per
-level to increase the readability of the code. By creating the `Constants` interface and placing all common variables 
-like names, colors, and combat stats in it, the flexibility of the code increases, and redundancies are somewhat 
-avoided. It makes changing these values easier, and the program becomes more scalable.
+instead supplied by some other class with a responsibility of serving the entities. However, this was not done since
+it does not improve the design and structure of the code. The `MainModel` class consisted of methods for several levels,
+if the levels of the game had contained more and larger methods, the `MainModel` could have been divided into one model
+per level to increase the readability of the code. By creating the `Constants` interface and placing all common 
+variables like names, colors, and combat stats in it, the flexibility of the code increases, and redundancies are 
+somewhat avoided. It makes changing these values easier, and the program becomes more scalable.
 
 Another concrete goal was to implement at least three uses of Streams API. Streams API can be used for various purposes,
 in this project `stream.reduce()`, `stream().filter()`, and `stream().sorted().collect(Collectors.toList())` were used
